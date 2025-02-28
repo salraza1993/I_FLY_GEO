@@ -1,0 +1,65 @@
+@mixin generateFont($fontFamily, $localFName, $source, $fontWeight, $style) {
+  @font-face {
+    font-family:'#{$fontFamily}';
+    src: url('/assets/fonts/#{$source}.eot');
+    src: local('#{$localFName}'), local('/assets/fonts/Verbatim-WideThinOblique'),
+      url('/assets/fonts/#{$source}.eot?#iefix') format('embedded-opentype'),
+      url('/assets/fonts/#{$source}.woff2') format('woff2'),
+      url('/assets/fonts/#{$source}.woff') format('woff'),
+      url('/assets/fonts/#{$source}.ttf') format('truetype');
+    font-weight: $fontWeight;
+    font-style: $style;
+  }
+}
+
+$variablesName: (
+  'thin', 'thin-italic',
+  'light', 'light-italic',
+  'regular', 'regular-italic',
+  'medium', 'medium-italic',
+  'bold', 'bold-italic',
+  'black', 'black-italic'
+);
+@mixin generateFontVariables($array) {
+  :root {
+    @each $i in $array {
+      --verbatim_#{$i}: 'verbatim-wide-#{$i}';
+    }
+  }
+}
+
+@include generateFontVariables($variablesName);
+
+
+// ===================[ Thin ]=================== //
+@include generateFont('verbatim-wide-thin', 'Verbatim Wide Thin', 'Verbatim-WideThin', 300, normal);
+// ===================[ Thin Oblique ]=================== //
+@include generateFont('Verbatim-wide-thin-italic', 'Verbatim Wide Thin Oblique', 'Verbatim-WideThinOblique', 100, italic);
+
+// ===================[ Light ]=================== //
+@include generateFont('verbatim-wide-light','Verbatim Wide Light', 'Verbatim-WideLight', 300, normal);
+// ===================[ Light Oblique ]=================== //
+@include generateFont('verbatim-wide-light-italic', 'Verbatim Wide Light Oblique', 'Verbatim-WideLightOblique', 300, italic);
+
+// ===================[ Medium ]=================== //
+@include generateFont('verbatim-wide-medium', 'Verbatim Wide Medium', 'Verbatim-WideMedium', 500, normal);
+// ===================[ Medium Oblique ]=================== //
+@include generateFont('verbatim-wide-medium-italic', 'Verbatim Wide Medium Oblique', 'Verbatim-WideMediumOblique', 500, italic);
+
+// ===================[ Regular ]=================== //
+@include generateFont('verbatim-wide-regular', 'Verbatim Wide', 'Verbatim-Wide', normal, italic);
+// ===================[ Regular Oblique ]=================== //
+@include generateFont('verbatim-wide-regular-italic', 'Verbatim Wide Oblique', 'Verbatim-WideOblique', normal, italic);
+
+// ===================[ Bold ]=================== //
+@include generateFont('verbatim-wide-bold', 'Verbatim Wide Bold', 'Verbatim-WideBold', bold, normal);
+// ===================[ Bold Oblique ]=================== //
+@include generateFont('verbatim-wide-bold-italic', 'Verbatim Wide Bold Oblique', 'Verbatim-WideBoldOblique', bold, italic);
+
+// ===================[ Black ]=================== //
+@include generateFont('verbatim-wide-black', 'Verbatim Wide Black', 'Verbatim-WideBlack', 900, normal);
+// ===================[ Black Oblique ]=================== //
+@include generateFont('verbatim-wide-black-italic', 'Verbatim Wide Black Oblique', 'Verbatim-WideBlackOblique', 900, italic);
+
+
+

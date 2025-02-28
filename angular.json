@@ -32,9 +32,13 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/assets/styles/common/common.scss",
+              "src/assets/styles/variables/variables.scss",
+              "src/assets/styles/global.scss"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
@@ -91,12 +95,30 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/assets/styles/common/common.scss",
+              "src/assets/styles/variables/variables.scss",
+              "src/assets/styles/global.scss"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   }
 }

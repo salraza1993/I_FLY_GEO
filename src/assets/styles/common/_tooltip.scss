@@ -1,0 +1,209 @@
+body {
+  &[dir=ltr],
+  &:is(.ltr) {
+    --tooltip-translate-x: -50%;
+  }
+
+  &[dir=rtl],
+  &:is(.rtl) {
+    --tooltip-translate-x: 50%;
+  }
+}
+.ng-tooltip-container {
+  position: relative;
+  cursor: pointer;
+  --tooltip-inset-y: 0;
+  --tooltip-inset-x: 50%;
+
+  &:hover {
+    z-index: var(--tooltip-z-index);
+    transition-delay: 250;
+    --tooltip-opacity: 1;
+    --tooltip-visibility: visible;
+    --tooltip-z-index: calc(var(--max-z-index) + 1);
+  }
+
+  &:not(.direction--left, .direction--right, .direction--top, .direction--bottom):hover {
+    --tooltip-inset-y: calc(100% + 2px);
+  }
+
+  &.direction {
+    &--left {
+      --tooltip-inset-x: 60%;
+      --tooltip-inset-y: -1px;
+
+      &:hover {
+        --tooltip-inset-x: calc(100% + 2px);
+      }
+    }
+
+    &--right {
+      --tooltip-inset-x: 60%;
+      --tooltip-inset-y: 0;
+
+      &:hover {
+        --tooltip-inset-x: calc(100% + 2px);
+      }
+    }
+
+    &--top {
+      --tooltip-inset-x: 0;
+      --tooltip-inset-y: 0;
+
+      &:hover {
+        --tooltip-inset-y: calc(100% + 2px);
+      }
+    }
+
+    &--bottom {
+      --tooltip-inset-x: 0;
+      --tooltip-inset-y: 0;
+
+      &:hover {
+        --tooltip-inset-y: calc(100% + 2px);
+      }
+    }
+
+    &--center {
+      --tooltip-inset-x: 0;
+      --tooltip-inset-y: 0;
+
+      &:hover {
+        --tooltip-inset-y: calc(100% + 2px);
+        --tooltip-inset-x: 50%;
+      }
+    }
+  }
+}
+
+.ng-tooltip {
+  position: absolute;
+  inset-block-start: var(--tooltip-inset-y);
+  inset-inline-start: var(--tooltip-inset-x);
+  max-width: max-content;
+  padding-inline: var(--tooltip-padding-x);
+  padding-block: var(--tooltip-padding-y);
+  z-index: var(--tooltip-z-index);
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-color);
+  border-radius: var(--tooltip-border-radius);
+  font-size: var(--tooltip-font-size);
+  font-family: var(--tooltip-font-family);
+  line-height: var(--tooltip-line-height);
+  backdrop-filter: blur(4px);
+  transition: var(--tooltip-transition);
+  visibility: var(--tooltip-visibility);
+  opacity: var(--tooltip-opacity);
+  max-width: var(--tooltip-max-width);
+  min-width: var(--tooltip-min-width);
+  width: var(--tooltip-width);
+  display: flex;
+  flex-wrap: wrap;
+  white-space: initial;
+  text-align: start;
+
+  p:last-child {
+    margin-block-end: 0;
+  }
+
+  &--template {
+    max-width: var(--tooltip-max-width);
+    width: var(--tooltip-width);
+  }
+
+  &--string {
+    max-width: var(--tooltip-max-width);
+    width: var(--tooltip-width);
+  }
+
+  &--danger {
+    --tooltip-bg: rgba(var(--bs-danger-rgb), 0.9);
+  }
+
+  &--success {
+    --tooltip-bg: rgba(var(--bs-success-rgb), 0.9);
+  }
+  &--primary {
+    --tooltip-bg: rgba(var(--bs-primary-rgb), 0.9);
+  }
+
+  &--warning {
+    --tooltip-bg: rgba(var(--bs-warning-rgb), 0.9);
+    --tooltip-color: var(--bs-dark);
+  }
+
+  &--left {
+    inset-inline-end: var(--tooltip-inset-x);
+    inset-block-start: var(--tooltip-inset-y);
+    inset-inline-start: initial;
+    inset-block-end: initial;
+  }
+
+  &--right {
+    inset-inline-start: var(--tooltip-inset-x);
+    inset-block-start: var(--tooltip-inset-y);
+    inset-inline-end: initial;
+    inset-block-end: initial;
+  }
+
+  &--top {
+    inset-block-start: initial;
+    inset-block-end: var(--tooltip-inset-y);
+    inset-inline-start: var(--tooltip-inset-x);
+  }
+
+  &--bottom {
+    inset-block-end: initial;
+    inset-block-start: var(--tooltip-inset-y);
+    inset-inline-start: var(--tooltip-inset-x);
+  }
+
+  &--center {
+    inset-inline-start: var(--tooltip-inset-x);
+    inset-inline-end: initial;
+    inset-block-start: var(--tooltip-inset-y);
+    inset-block-end: initial;
+    translate: var(--tooltip-translate-x) 0;
+
+    &-top {
+      inset-block-end: var(--tooltip-inset-y);
+      inset-block-start: initial;
+    }
+
+    &-bottom,
+    &-top {
+      translate: var(--tooltip-translate-x) 0;
+    }
+  }
+
+  &:not(.ng-tooltip--left, .ng-tooltip--right, .ng-tooltip--top, .ng-tooltip--bottom, .ng-tooltip--center, .ng-tooltip--center-top, .ng-tooltip--center-bottom) {
+    inset-inline-start: 50%;
+    inset-inline-end: initial;
+    translate: var(--tooltip-translate-x) 0;
+  }
+
+  &:is(.max-width-applied),
+  &:is(.min-width-applied) {
+    --tooltip-width: 100%;
+
+    .ng-tooltip {
+
+      &--template,
+      &--string {
+        max-width: 100%;
+      }
+    }
+  }
+
+  &:is(.fixed-width-applied) {
+    --tooltip-max-width: var(--tooltip-width);
+
+    .ng-tooltip {
+
+      &--template,
+      &--string {
+        max-width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+@use './../common/scss_variables';
+
+@mixin generateFontWeights($weights, $internal: true) {
+  @for $i from 1 through length($weights) {
+    @if $internal {
+      &:is(.fw-#{nth($weights, $i)}) {
+        font-weight: nth($weights, $i) !important;
+      }
+    } @else {
+      .fw-#{nth($weights, $i)} {
+        font-weight: nth($weights, $i) !important;
+      }
+    }
+  }
+}
+
+@mixin centerItems($ai: center, $jc: center, $ac: center, $display: flex) {
+  display: $display;
+  justify-content: $jc;
+  align-items: $ai;
+  align-content: $ac;
+}
+
+@mixin contentCenter($gap: 0, $display: grid, $pi: center, $pc: center) {
+  display: $display;
+  place-items: $pi;
+  place-content: $pc;
+  gap: $gap;
+}
+
+@mixin scrollBar($width: var(--scroll-bar-width), $track: transparent, $thumb: var(--bs-primary), $pointerEvent: initial) {
+  &::-webkit-scrollbar-track {
+    background: $track;
+    pointer-events: $pointerEvent;
+    overflow: hidden;
+    border-radius: 15px;
+  }
+
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+    background: transparent;
+    pointer-events: $pointerEvent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb;
+    pointer-events: $pointerEvent;
+    border-radius: 10px;
+  }
+}
+
+@mixin fontAwesome($type: 900) {
+  font-family: "Font Awesome 6 Free";
+
+  @if $type =='400' {
+    font-weight: 400;
+  }
+
+  @else {
+    font-weight: 900;
+  }
+}
+
+@mixin cardShadow($colorRGB: var(--bs-dark-rgb)) {
+  box-shadow: 0px 2.5px 2.2px rgba(#{$colorRGB}, 0.020),
+  0px 5.9px 5.3px rgba(#{$colorRGB}, 0.025),
+  0px 11.1px 10px rgba(#{$colorRGB}, 0.03),
+  0px 19.9px 17.9px rgba(#{$colorRGB}, 0.038),
+  0px 37.2px 33.4px rgba(#{$colorRGB}, 0.048),
+  0px 89px 80px rgba(#{$colorRGB}, 0.07);
+}
+
+@mixin transition($duration: 0.3s, $function: ease-in-out, $delay: 0s, $property: all) {
+  --transition-duration: #{$duration};
+  --transition-timing-function: #{$function};
+  --transition-delay: #{$delay};
+  --transition-property: #{$property};
+  transition: var(--transition-property) var(--transition-duration) var(--transition-delay) var(--transition-timing-function);
+
+  :root {
+    --bs-transition: var(--transition-property) var(--transition-duration) var(--transition-delay) var(--transition-timing-function);
+  }
+}
+
+@mixin multiline($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin objectFit($width: 100%,
+  $height: 100%,
+  $maxWidth: 100%,
+  $maxHeight: 100%,
+  $fit: cover,
+  $position: center) {
+  overflow: hidden;
+
+  img,
+  svg {
+    max-width: $maxWidth;
+    max-height: $maxHeight;
+    width: $width !important;
+    height: $height !important;
+    object-fit: $fit;
+    object-position: $position;
+  }
+}
+
+@mixin border($direction: border,
+  $width: 1,
+  $style: solid,
+  $rgb_color: --bs-text-color-rgb,
+  $color_opacity: 0.25) {
+  #{$direction}: #{$width}px $style rgba(var(#{$rgb_color}), $color_opacity);
+}
+@mixin NextImgReset(
+  $position: inherit,
+  $left: initial,
+  $top: initial,
+  $right: initial,
+  $bottom: initial,
+) {
+  svg, img {
+    position: $position !important;
+    left: $left !important;
+    top: $top !important;
+    right: $right !important;
+    bottom: $bottom !important;
+  }
+}
+
+@mixin anchorHover($height: 1px) {
+  position: relative;
+  &::after {
+    transition: var(--transition);
+    content: '';
+    position: absolute;
+    inset-block-start: calc(100% + 0.25rem);
+    inset-inline-end: 0;
+    width: 0;
+    height: $height;
+    background-color: var(--accent);
+  }
+
+  &:hover {
+    color: var(--accent);
+    &:after {
+      width: 100%;
+      inset-inline-start: 0;
+    }
+  }
+}

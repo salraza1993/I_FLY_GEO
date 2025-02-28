@@ -1,0 +1,12 @@
+:host {
+  display: grid;
+  gap: 1rem;
+  .grid-box {
+    height: 50px;
+    display: grid;
+    place-items: center;
+    align-items: center;
+    width: 100%;
+    background-color: #252525;
+  }
+}

@@ -1,0 +1,31 @@
+:root {
+  color-scheme: light dark;
+
+  --body-bg: Canvas;
+  --body-color: CanvasText;
+  --body-bg-gradient-light: linear-gradient(to bottom, #f3f3f3, transparent 30%);
+  --body-bg-gradient-dark: linear-gradient(to bottom, #252525, transparent 30%);
+
+  --auth-wrapper-bg-light: hsl(0, 0%, 96%);
+  --auth-wrapper-bg-dark: hsl(0, 0%, 15%);
+
+  // --bs-danger: var(--status-danger--dark);
+  // --bs-danger-rgb: var(--status-danger--dark-rgb);
+  // --bs-danger-light: var(--status-danger--light);
+  // --bs-danger-light-rgb: var(--status-danger--light-rgb);
+
+  // --bs-success: var(--status-success--dark);
+  // --bs-success-rgb: var(--status-success--dark-rgb);
+  // --bs-success-light: var(--status-success--light);
+  // --bs-success-light-rgb: var(--status-success--light-rgb);
+
+  // --bs-warning: var(--status-warning--dark);
+  // --bs-warning-rgb: var(--status-warning--dark-rgb);
+  // --bs-warning-light: var(--status-warning--light);
+  // --bs-warning-light-rgb: var(--status-warning--light-rgb);
+
+  // --bs-info: var(--status-info--dark);
+  // --bs-info-rgb: var(--status-info--dark-rgb);
+  // --bs-info-light: var(--status-info--light);
+  // --bs-info-light-rgb: var(--status-info--light-rgb);
+}

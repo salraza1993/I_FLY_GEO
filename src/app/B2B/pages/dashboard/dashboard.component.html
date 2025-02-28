@@ -1,0 +1,8 @@
+<div class="grid-wrapper grid-wrapper__md">
+  @for (item of [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; track item) {
+    <div class="grid-col__{{item}} grid-span-sm__6 grid-span-md__4">
+      <div class="grid-box">{{$index + 1}}</div>
+    </div>
+  }
+</div>
+
