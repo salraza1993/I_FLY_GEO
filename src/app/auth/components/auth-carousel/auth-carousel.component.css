@@ -1,0 +1,36 @@
+:host {
+  --carousel-max-with: calc(400px + 10vw);
+  display: grid;
+  place-items: center;
+  position: relative;
+  padding: var(--container-padding);
+
+  .carousel-container {
+    position: relative;
+    max-width: var(--carousel-max-with);
+    .content {
+      color: var(--body-color_dark);
+      --heading-line-height: 1.35;
+      margin-block-end: calc(var(--common-margin) + 3vh);
+    }
+    .images {
+      display: block;
+      width: 100%;
+      padding-inline: calc(var(--container-padding) / 3);
+      border-block-end: 2px solid var(--accent);
+    }
+  }
+  /* ::ng-deep .swiper-button-prev-unique {
+    left: 0;
+    top: 50%;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  ::ng-deep .swiper-button-next-unique {
+    right: 0;
+    top: 50%;
+    position: absolute;
+    cursor: pointer;
+  } */
+}

@@ -1,0 +1,8 @@
+body[dir=rtl] {
+  .fa-arrow-up-left::before { content: "\e09f"; }
+  .fa-arrow-up-right::before { content: "\e09d"; }
+  .fa-arrow-left::before { content: "\f061"; }
+  .fa-arrow-right::before { content: "\f060"; }
+  .fa-angle-left::before { content: "\f105"; }
+  .fa-angle-right::before { content: "\f104"; }
+}

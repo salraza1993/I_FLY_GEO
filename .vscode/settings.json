@@ -1,0 +1,10 @@
+{
+  "angular-schematics.schematicsDefaultOptions": {
+    "angular-*": {
+      "style": "css"
+    }
+  },
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  }
+}

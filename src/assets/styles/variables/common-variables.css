@@ -1,0 +1,63 @@
+:root {
+  --gutter-x: 1.5rem;
+  --gutter-y: 0;
+  --max-z-index: 10;
+  --border-width: 1px;
+  --common-opacity: 0.25;
+  --common-btn-height: 45px;
+  --common-input-height: 45px;
+  --common-margin: 1rem;
+  --common-margin-y-end: var(--common-margin);
+  --common-padding: 1rem;
+  --common-font-weight: 400;
+  --border-radius: 0.35rem;
+  --transition-property: all;
+  --transition-type: ease-in-out;
+  --transition-duration: 0.35s;
+  --cubic-bezier: cubic-bezier(0.88, 0.22, 0.1, 0.89);
+  --transition: var(--transition-property) var(--transition-duration) var(--transition-type);
+
+  --svg-fill: var(--bs-body-color);
+  --svg-stroke: var(--bs-body-color);
+  --svg-stroke-width: 3.25;
+
+  --cta-gaps: 0.5rem;
+
+
+  /* ===========[ Tooltip ]=========== */
+  --tooltip-inset-x: 0;
+  --tooltip-inset-y: 10%;
+  --tooltip-bg: rgba(var(--bs-dark-rgb), 0.85);
+  --tooltip-color: var(--bs-white);
+  --tooltip-border-radius: calc(var(--bs-border-radius) * 1.08);
+  --tooltip-font-size: 0.85rem;
+  --tooltip-font-family: var(--bs-body-font-family);
+  --tooltip-line-height: 1.25em;
+  --tooltip-padding-x: 0.65rem;
+  --tooltip-padding-y: 0.5rem;
+  --tooltip-max-width: 250px;
+  --tooltip-min-width: max-content;
+  --tooltip-width: initial;
+  --tooltip-transition: var(--bs-transition);
+  --tooltip-opacity: 0;
+  --tooltip-visibility: hidden;
+  --tooltip-z-index: -1;
+  --tooltip-translate-x: -50%;
+
+
+  /* =========== [ Switch Toggles ]=========== */
+  --switch-height: 18px;
+  --switch-width: var(--switch-height);
+  --checkbox-position-x: 0;
+  --label-color: var(--bs-body-color);
+  --label-font-size: 1rem;
+  --label-font-weight: 400;
+  --checkbox-checked-bg: var(--bs-primary);
+  --checkbox-checked-circle: var(--bs-white);
+
+  --breaker-line-height: 5px;
+  --breaker-line-opacity: 0.5;
+  --breaker-line-bg-rgb: var(--bs-border-color-rgb);
+  --breaker-line-margin-y: 1rem;
+  --breaker-line-padding-y: 0.45rem;
+}

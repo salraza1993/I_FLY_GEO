@@ -1,0 +1,10 @@
+:root {
+  --accent-light: hsl(24, 100%, 50%);
+  --accent-dark: hsl(24, 100%, 50%);
+  --accent: light-dark(var(--accent-light), var(--accent-dark));
+  --primary-light: hsl(242, 82%, 38%);
+  --primary-dark: hsl(242, 80%, 75%);
+  --primary: light-dark(var(--primary-light), var(--primary-dark));
+  --auth-page-bg-light: hsl(242, 90%, 25%);
+  --auth-page-bg-dark: hsl(242, 95%, 2%);
+}

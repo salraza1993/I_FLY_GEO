@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-setting',
   imports: [],
   templateUrl: './setting.component.html',
-  styleUrl: './setting.component.scss'
+  styleUrl: './setting.component.css'
 })
 export class SettingComponent {
 

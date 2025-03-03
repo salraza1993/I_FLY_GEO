@@ -1,1 +1,24 @@
-<p>register works!</p>
+<div class="auth-form-wrapper">
+  <div class="client-logo">
+    <picture>
+      <source srcset="{{clientLogoPath + 'logo-light.png'}}" media="(prefers-color-scheme: light)" />
+      <source srcset="{{clientLogoPath + 'logo-dark.png'}}" media="(prefers-color-scheme: dark)" />
+      <img src="{{clientLogoPath + 'logo-light.png'}}" alt="Client Logo" />
+    </picture>
+  </div>
+  <div class="form-content">
+    <h4 class="subTitle font__verbatim--medium mb-0_5">{{ content().smallTitle | uppercase }}</h4>
+    <h1 class="title font__verbatim--bold text--primary mb-0_5">{{ content().title | uppercase }}</h1>
+    <div class="text">
+      <p>{{ content().text }}</p>
+    </div>
+  </div>
+  <register-form />
+  <p>
+    Already have an account?
+    <strong>
+      <a [routerLink]="['/login']" class="link">Sign In</a>
+    </strong>
+  </p>
+</div>
+<flight-watermark />

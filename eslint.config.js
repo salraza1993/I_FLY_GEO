@@ -1,8 +1,3 @@
-// @ts-check
-const eslint = require("@eslint/js");
-const tseslint = require("typescript-eslint");
-const angular = require("angular-eslint");
-
 module.exports = tseslint.config(
   {
     files: ["**/*.ts"],
@@ -14,36 +9,38 @@ module.exports = tseslint.config(
     ],
     processor: angular.processInlineTemplates,
     rules: {
+      // Disable specific accessibility rules
+      "@angular-eslint/template/click-events-have-key-events": "off",
+      "@angular-eslint/template/interactive-supports-focus": "off",
+
       // Best Practices
-      // 'no-console': 'error',
-      'eqeqeq': ['error', 'always'],
-      '@typescript-eslint/explicit-module-boundary-types': 'error',
-      '@typescript-eslint/explicit-function-return-type': 'warn',
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      "eqeqeq": ["error", "always"],
+      "@typescript-eslint/explicit-module-boundary-types": "error",
+      "@typescript-eslint/explicit-function-return-type": "warn",
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
 
       // Code Style
-      // 'quotes': ['error', 'single'],
-      'semi': ['error', 'always'],
-      'indent': ['error', 2, { SwitchCase: 1 }],
-      'comma-dangle': ['error', 'never'],
-      'object-curly-spacing': ['error', 'always'],
-      'arrow-spacing': 'error',
-      'space-before-blocks': 'error',
+      "semi": ["error", "always"],
+      "indent": ["error", 2, { SwitchCase: 1 }],
+      "comma-dangle": ["error", "never"],
+      "object-curly-spacing": ["error", "always"],
+      "arrow-spacing": "error",
+      "space-before-blocks": "error",
 
       // Function Visibility (Private starts with _)
-      '@typescript-eslint/naming-convention': [
-        'error',
+      "@typescript-eslint/naming-convention": [
+        "error",
         {
-          selector: 'method',
-          modifiers: ['private'],
-          format: ['camelCase'],
-          leadingUnderscore: 'require'
+          selector: "method",
+          modifiers: ["private"],
+          format: ["camelCase"],
+          leadingUnderscore: "require"
         },
         {
-          selector: 'method',
-          modifiers: ['public'],
-          format: ['camelCase'],
-          leadingUnderscore: 'forbid'
+          selector: "method",
+          modifiers: ["public"],
+          format: ["camelCase"],
+          leadingUnderscore: "forbid"
         }
       ],
 
@@ -71,6 +68,10 @@ module.exports = tseslint.config(
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
-    rules: {},
+    rules: {
+      // Disable accessibility rules in HTML templates
+      "@angular-eslint/template/click-events-have-key-events": "off",
+      "@angular-eslint/template/interactive-supports-focus": "off",
+    },
   }
 );

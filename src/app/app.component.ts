@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LayoutService } from './layouts/layout.service';
 import { PageLayoutEnum } from './shared/enums/PageLayoutEnum';
@@ -12,6 +12,7 @@ import { ErrorLayoutComponent } from "./layouts/error-layout/error-layout.compon
   imports: [RouterOutlet, CommonModule, DefaultLayoutComponent, AuthLayoutComponent, ErrorLayoutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   host: {
     class: 'root-wrapper'
   }

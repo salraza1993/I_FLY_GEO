@@ -1,7 +1,24 @@
-<div class="client-logo">
-  <picture>
-    <source srcset="{{clientLogoPath + 'logo-light.png'}}" media="(prefers-color-scheme: light)" />
-    <source srcset="{{clientLogoPath + 'logo-dark.png'}}" media="(prefers-color-scheme: dark)" />
-    <img src="{{clientLogoPath + 'logo-light.png'}}" alt="Client Logo" />
-  </picture>
+<div class="auth-form-wrapper">
+  <div class="client-logo">
+    <picture>
+      <source srcset="{{clientLogoPath + 'logo-light.png'}}" media="(prefers-color-scheme: light)" />
+      <source srcset="{{clientLogoPath + 'logo-dark.png'}}" media="(prefers-color-scheme: dark)" />
+      <img src="{{clientLogoPath + 'logo-light.png'}}" alt="Client Logo" />
+    </picture>
+  </div>
+  <div class="form-content">
+    <h5 class="subTitle font__verbatim--medium mb-0_5">{{ content().smallTitle | uppercase }}</h5>
+    <h2 class="title font__verbatim--bold text--primary mb-0_5">{{ content().title | uppercase }}</h2>
+    <div class="text">
+      <p>{{ content().text }}</p>
+    </div>
+  </div>
+  <login-form />
+  <p [style]="{'margin-block-start': '1.5rem'}">
+    Don't have an account?
+    <strong>
+      <a [routerLink]="['/register']" class="link">Register Now</a>
+    </strong>
+  </p>
 </div>
+<flight-watermark />

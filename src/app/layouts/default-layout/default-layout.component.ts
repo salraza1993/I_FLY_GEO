@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   selector: 'default-layout',
   // imports: [HeaderComponent, AsideComponent],
   templateUrl: './default-layout.component.html',
-  styleUrl: './default-layout.component.scss',
+  styleUrl: './default-layout.component.css',
   host: {
     class: 'app-default-layout'
   }

@@ -1,0 +1,29 @@
+<form action="" class="form-wrapper">
+  <div class="grouped-input">
+    <div class="input-block" aria-label="email">
+      <span class="icon icon-start">
+        <i class="fa-light fa-envelope"></i>
+      </span>
+      <input type="email" placeholder="Enter registered Email" />
+    </div>
+    <div class="input-block" aria-label="password">
+      <span class="icon icon-start">
+        @if(showPassword()) {
+          <i class="fa-solid fa-unlock"></i>
+        } @else {
+          <i class="fa-light fa-lock"></i>
+        }
+      </span>
+      <input type="{{showPassword() ? 'text' : 'password'}}" placeholder="Enter Password" />
+      <span class="icon icon-start cursor--pointer clickable" (click)="showPasswordHandler()">
+        @if(showPassword()) {
+          <i class="fa-solid fa-eye"></i>
+        } @else {
+          <i class="fa-light fa-eye-slash"></i>
+        }
+      </span>
+    </div>
+  </div>
+  <a [routerLink]="['/forget-password']" class="link margin-start--auto">Forgot Password?</a>
+  <button type="submit" class="submit-btn btn-dark">Proceed to Access</button>
+</form>

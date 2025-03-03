@@ -1,0 +1,23 @@
+@import url('./common/custom-grid.css');
+@import url('./pages/auth-pages.css');
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  color-scheme: light dark;
+  font-size: var(--base-size);
+}
+
+body {
+  color: var(--body-color);
+  background-color: var(--body-bg);
+  font-weight: 400;
+  font-family: var(--body-font-family) !important;
+  line-height: var(--body-line-height);
+  font-family: var(--fs-p);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+

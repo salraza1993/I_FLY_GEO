@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-flight',
   imports: [],
   templateUrl: './flight.component.html',
-  styleUrl: './flight.component.scss'
+  styleUrl: './flight.component.css'
 })
 export class FlightComponent {
 

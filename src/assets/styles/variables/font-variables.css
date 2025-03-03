@@ -1,0 +1,33 @@
+:root {
+  --base-size: 16px;
+  --ratio: 1.25;
+  --heading-line-height: 1.25;
+  --body-line-height: 1.5;
+
+  --inter: 'Inter', sans-serif;
+  --noto: 'Noto Naskh Arabic', serif;
+  --default-fonts: 'system-ui,-apple-system,"Segoe UI", Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"';
+  --fonts_english: var(--inter);
+  --fonts_arabic:  var(--noto);
+  --body-font-family: var(--fonts_english), var(--default-fonts) !important;
+  --fa-default-font-weight: 400;
+
+
+  /* 40px - 66px */
+  --fs-h1: clamp(2rem, 4vw, 2.75rem);
+  /* 32px - 52.8px */
+  --fs-h2: clamp(1.6rem, 3.5vw, 2.25rem);
+  /* 25.6px - 42.24px */
+  --fs-h3: clamp(1.3rem, 3vw, 2.11rem);
+  /* 20.8px - 33.76px */
+  --fs-h4: clamp(1rem, 2.5vw, 1.68rem);
+  /* 16px - 26.88px */
+  --fs-h5: clamp(0.85rem, 2vw, 1.34rem);
+  /* 13.6px - 21.44px */
+  --fs-h6: clamp(1rem, 1.8vw, 1.125rem);
+  /* 16px - 18px */
+  --fs-p: clamp(1rem, 1.6vw, 1.075rem);
+  /* 14px - 16px */
+  --fs-small: clamp(0.75rem, calc(0.5rem + 0.667vw), 1rem);
+  /* min: 12px, max: 16px */;
+}

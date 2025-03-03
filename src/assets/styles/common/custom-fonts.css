@@ -1,0 +1,143 @@
+/* Define CSS Variables */
+:root {
+  --verbatim_thin: 'verbatim-wide-thin';
+  --verbatim_thin-italic: 'verbatim-wide-thin-italic';
+  --verbatim_light: 'verbatim-wide-light';
+  --verbatim_light-italic: 'verbatim-wide-light-italic';
+  --verbatim_regular: 'verbatim-wide-regular';
+  --verbatim_regular-italic: 'verbatim-wide-regular-italic';
+  --verbatim_medium: 'verbatim-wide-medium';
+  --verbatim_medium-italic: 'verbatim-wide-medium-italic';
+  --verbatim_bold: 'verbatim-wide-bold';
+  --verbatim_bold-italic: 'verbatim-wide-bold-italic';
+  --verbatim_black: 'verbatim-wide-black';
+  --verbatim_black-italic: 'verbatim-wide-black-italic';
+}
+
+/* Font-Face Definitions */
+
+/* Thin */
+@font-face {
+  font-family: 'verbatim-wide-thin';
+  src: url('/assets/fonts/Verbatim-WideThin.eot');
+  src: local('Verbatim Wide Thin'),
+    local('/assets/fonts/Verbatim-WideThinOblique'),
+    url('/assets/fonts/Verbatim-WideThin.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Verbatim-WideThin.woff2') format('woff2'),
+    url('/assets/fonts/Verbatim-WideThin.woff') format('woff'),
+    url('/assets/fonts/Verbatim-WideThin.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Thin Oblique */
+@font-face {
+  font-family: 'Verbatim-wide-thin-italic';
+  src: url('/assets/fonts/Verbatim-WideThinOblique.eot');
+  src: local('Verbatim Wide Thin Oblique'),
+    local('/assets/fonts/Verbatim-WideThinOblique'),
+    url('/assets/fonts/Verbatim-WideThinOblique.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Verbatim-WideThinOblique.woff2') format('woff2'),
+    url('/assets/fonts/Verbatim-WideThinOblique.woff') format('woff'),
+    url('/assets/fonts/Verbatim-WideThinOblique.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
+
+/* Light */
+@font-face {
+  font-family: 'verbatim-wide-light';
+  src: url('/assets/fonts/Verbatim-WideLight.eot');
+  src: local('Verbatim Wide Light'),
+    local('/assets/fonts/Verbatim-WideLight'),
+    url('/assets/fonts/Verbatim-WideLight.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Verbatim-WideLight.woff2') format('woff2'),
+    url('/assets/fonts/Verbatim-WideLight.woff') format('woff'),
+    url('/assets/fonts/Verbatim-WideLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Light Oblique */
+@font-face {
+  font-family: 'verbatim-wide-light-italic';
+  src: url('/assets/fonts/Verbatim-WideLightOblique.eot');
+  src: local('Verbatim Wide Light Oblique'),
+    local('/assets/fonts/Verbatim-WideLightOblique'),
+    url('/assets/fonts/Verbatim-WideLightOblique.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Verbatim-WideLightOblique.woff2') format('woff2'),
+    url('/assets/fonts/Verbatim-WideLightOblique.woff') format('woff'),
+    url('/assets/fonts/Verbatim-WideLightOblique.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Medium */
+@font-face {
+  font-family: 'verbatim-wide-medium';
+  src: url('/assets/fonts/Verbatim-WideMedium.eot');
+  src: local('Verbatim Wide Medium'),
+    local('/assets/fonts/Verbatim-WideMedium'),
+    url('/assets/fonts/Verbatim-WideMedium.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Verbatim-WideMedium.woff2') format('woff2'),
+    url('/assets/fonts/Verbatim-WideMedium.woff') format('woff'),
+    url('/assets/fonts/Verbatim-WideMedium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Medium Oblique */
+@font-face {
+  font-family: 'verbatim-wide-medium-italic';
+  src: url('/assets/fonts/Verbatim-WideMediumOblique.eot');
+  src: local('Verbatim Wide Medium Oblique'),
+    local('/assets/fonts/Verbatim-WideMediumOblique'),
+    url('/assets/fonts/Verbatim-WideMediumOblique.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Verbatim-WideMediumOblique.woff2') format('woff2'),
+    url('/assets/fonts/Verbatim-WideMediumOblique.woff') format('woff'),
+    url('/assets/fonts/Verbatim-WideMediumOblique.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Regular */
+@font-face {
+  font-family: 'verbatim-wide-regular';
+  src: url('/assets/fonts/Verbatim-Wide.eot');
+  src: local('Verbatim Wide'),
+    local('/assets/fonts/Verbatim-Wide'),
+    url('/assets/fonts/Verbatim-Wide.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Verbatim-Wide.woff2') format('woff2'),
+    url('/assets/fonts/Verbatim-Wide.woff') format('woff'),
+    url('/assets/fonts/Verbatim-Wide.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'verbatim-wide-bold';
+  src: url('/assets/fonts/Verbatim-WideBold.eot');
+  src: local('Verbatim Wide Bold'),
+    local('/assets/fonts/Verbatim-WideBold'),
+    url('/assets/fonts/Verbatim-WideBold.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Verbatim-WideBold.woff2') format('woff2'),
+    url('/assets/fonts/Verbatim-WideBold.woff') format('woff'),
+    url('/assets/fonts/Verbatim-WideBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Black */
+@font-face {
+  font-family: 'verbatim-wide-black';
+  src: url('/assets/fonts/Verbatim-WideBlack.eot');
+  src: local('Verbatim Wide Black'),
+    local('/assets/fonts/Verbatim-WideBlack'),
+    url('/assets/fonts/Verbatim-WideBlack.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Verbatim-WideBlack.woff2') format('woff2'),
+    url('/assets/fonts/Verbatim-WideBlack.woff') format('woff'),
+    url('/assets/fonts/Verbatim-WideBlack.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}

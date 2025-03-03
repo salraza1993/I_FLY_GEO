@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'error-layout',
   imports: [],
   templateUrl: './error-layout.component.html',
-  styleUrl: './error-layout.component.scss',
+  styleUrl: './error-layout.component.css',
   host: {
     '[class.error-page-layout]': 'true'
   }

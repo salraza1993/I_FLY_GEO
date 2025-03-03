@@ -1,0 +1,21 @@
+:host {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-inline-end: 1vw;
+  svg {
+    max-height: 75%;
+    .gradient-strip {
+      color: light-dark(hsl(0, 0%, 93%), hsl(0, 0%, 27.5%));
+    }
+    .aircraft {
+      color: light-dark(hsl(0, 0%, 88%), hsl(0, 0%, 30%));
+    }
+    .aircraft-shadow {
+      color: light-dark(hsl(0, 0%, 92%), hsl(0, 0%, 22%));
+    }
+  }
+}

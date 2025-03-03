@@ -1,0 +1,25 @@
+:root {
+  color-scheme: light dark;
+
+  --body-bg_light: hsl(0, 0%, 100%);
+  --body-bg_dark: hsl(0, 0%, 10%);
+  --body-bg: light-dark(var(--body-bg_light), var(--body-bg_dark));
+
+  --body-color_light: hsl(0, 0%, 10%);
+  --body-color_dark: hsl(0, 0%, 95%);
+  --body-color: light-dark(var(--body-color_light), var(--body-color_dark));
+
+  --link-color: light-dark(var(--accent-light), var(--accent-dark));
+
+  --_auth-bg_light: hsl(0, 0%, 96%);
+  --_auth-bg_dark: hsl(0, 0%, 25%);
+  --auth-wrapper-bg: light-dark(var(--_auth-bg_light), var(--_auth-bg_dark));
+
+  --_auth-client-logo-bg_light: hsl(0, 0%, 100%);
+  --_auth-client-logo-bg_dark: hsl(0, 0%, 15%);
+  --auth-client-logo-bg: light-dark(var(--_auth-client-logo-bg_light), var(--_auth-client-logo-bg_dark));
+
+  --_auth-client-logo-border_light: hsl(0, 0%, 90%);
+  --_auth-client-logo-border_dark: hsl(0, 0%, 35%);
+  --auth-client-logo-border: light-dark(var(--_auth-client-logo-border_light), var(--_auth-client-logo-border_dark));
+}
