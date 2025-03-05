@@ -2,14 +2,8 @@
   --auth-wrapper-max-width: calc(500px + 20vw);
   display: flex;
   align-items: center;
-
-  .carousel-wrapper {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-  }
-
+  justify-content: flex-end;
+  width: 100%;
   .auth-page-wrapper {
     position: relative;
     width: 100%;

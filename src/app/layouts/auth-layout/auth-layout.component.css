@@ -1,16 +1,16 @@
 
 :host {
   --bg-image-url: url('/assets/images/auth-page-bg.jpg');
-  --auth-wrapper-max-width: calc(650px + 5vw);
   --container-padding: calc(2rem + 1vw);
 
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-  display: grid;
+  display: flex;
   isolation: isolate;
   position: relative;
   background-color: light-dark(var(--auth-page-bg-light), var(--auth-page-bg-dark));
+  overflow-x: clip;
   &::before {
     content: '';
     position: absolute;
@@ -22,6 +22,14 @@
     background-size: cover;
     background-position: bottom right;
     opacity: 0.20;
+  }
+  .auth-layout-wrapper {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    &:is(.tablet-view, .mobile-view) {
+      flex-direction: column;
+    }
   }
 }
 

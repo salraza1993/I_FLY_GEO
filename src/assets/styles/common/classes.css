@@ -15,9 +15,10 @@
 
 .link, .anchor-link, .anchor--link {
   text-decoration: none;
+  color: var(--link-color);
   &:hover {
     text-decoration: underline;
-    color: var(--link-color);
+    color: var(--link-hover-color);
   }
 }
 

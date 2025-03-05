@@ -1,5 +1,6 @@
-<div class="auth-content-wrapper">
+<div class="auth-layout-wrapper" responsiveClass>
   <auth-carousel />
-  <ng-content />
+  <div class="auth-content-wrapper" @slideIn>
+    <ng-content />
+  </div>
 </div>
-

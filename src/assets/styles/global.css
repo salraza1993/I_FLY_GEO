@@ -16,8 +16,14 @@ body {
   font-weight: 400;
   font-family: var(--body-font-family) !important;
   line-height: var(--body-line-height);
-  font-family: var(--fs-p);
   min-height: 100vh;
   min-height: 100dvh;
 }
 
+.root-wrapper {
+  position: relative;
+  background: transparent;
+  min-height: 100vh;
+  width: 100%;
+  display: block;
+}

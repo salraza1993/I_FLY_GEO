@@ -9,7 +9,8 @@
   --body-color_dark: hsl(0, 0%, 95%);
   --body-color: light-dark(var(--body-color_light), var(--body-color_dark));
 
-  --link-color: light-dark(var(--accent-light), var(--accent-dark));
+  --link-color: var(--body-color);
+  --link-hover-color: light-dark(var(--accent-light), var(--accent-dark));
 
   --_auth-bg_light: hsl(0, 0%, 96%);
   --_auth-bg_dark: hsl(0, 0%, 25%);

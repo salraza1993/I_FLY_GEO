@@ -1,7 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SwiperContainer } from 'swiper/element/bundle';
-import 'swiper/css';
-import 'swiper/css/pagination';
 
 @Component({
   selector: 'auth-carousel',

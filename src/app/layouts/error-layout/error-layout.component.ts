@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'error-layout',
   imports: [],
-  templateUrl: './error-layout.component.html',
+  template: `
+    <div class="error-page-wrapper"><ng-content /></div>
+  `,
   styleUrl: './error-layout.component.css',
   host: {
     '[class.error-page-layout]': 'true'

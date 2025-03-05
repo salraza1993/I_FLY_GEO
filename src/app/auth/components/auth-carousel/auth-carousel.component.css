@@ -4,6 +4,7 @@
   place-items: center;
   position: relative;
   padding: var(--container-padding);
+  width: 100%;
 
   .carousel-container {
     position: relative;
