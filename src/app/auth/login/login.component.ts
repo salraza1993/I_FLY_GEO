@@ -13,7 +13,7 @@ import { ResponsiveClassDirective } from '../../core/directives/responsive-class
     'class': 'auth-page-wrapper login-page'
   }
 })
-export class LoginComponent implements OnInit {
+export default class LoginComponent implements OnInit {
   public clientLogoPath = '/assets/client/';
   public content = signal({
     smallTitle: 'Access Your',

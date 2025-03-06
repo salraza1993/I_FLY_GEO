@@ -1,0 +1,136 @@
+:host {
+  --aside-bg: light-dark(var(--primary-90_light), var(--primary-90_dark));
+  --aside-border-color: light-dark(var(--primary-80_light), transparent);
+  --aside-block-paddings: calc(var(--common-padding) / 1.25);
+  --aside-menu-bg: light-dark(var(--primary-70_light), var(--primary-70_dark));
+  --aside-active-menu-bg: light-dark(var(--primary-100_light), var(--primary-100_dark));
+  --aside-active-menu-color: var(--secondary);
+  --aside-menu-size: 52px;
+  --aside-tooltip-size: 30px;
+  --aside-tooltip-bg: var(--body-color);
+  --aside-tooltip-color: var(--body-bg);
+
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-content: start;
+  width: var(--aside-width);
+  height: 100%;
+  background-color: var(--aside-bg);
+  z-index: var(--max-z-index);
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  border-inline-end: 1px solid var(--aside-border-color);
+  padding: var(--aside-block-paddings);
+
+  .aside-menu {
+    position: relative;
+    padding-block-start: var(--aside-block-paddings);
+    display: grid;
+    gap: calc(var(--aside-block-paddings) / 2);
+    & li {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      height: var(--aside-menu-size);
+      &:is(.active) {
+        --aside-tooltip-bg: var(--accent);
+        --aside-tooltip-color: var(--primary-100_light);
+      }
+    }
+    .menu-item {
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 100%;
+        inset-inline-end: 0;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        background-color: inherit;
+        border: 1px solid var(--border-color);
+        box-shadow: inset -5px 0 0 var(--secondary);
+        border-inline-end: 0;
+        transition: var(--transition);
+        border-start-start-radius: var(--border-radius);
+        border-end-start-radius: var(--border-radius);
+        z-index: -1;
+      }
+      &:is(.active) {
+        background-color: var(--aside-active-menu-bg);
+        color: var(--aside-active-menu-color);
+        width: calc(100% + var(--aside-block-paddings) + 6px);
+        font-size: 1.3rem;
+        i {
+          margin-inline-start: calc(0px - calc(var(--aside-block-paddings) * 1.5));
+        }
+        &::after {
+          width: 100%;
+          visibility: visible;
+          opacity: 1;
+          inset-inline-start: 0;
+        }
+        &:hover {
+          .tooltip-text {
+            inset-inline-start: calc(100% - 5px);
+          }
+        }
+      }
+    }
+  }
+  .aside-bar-wrapper {
+    position: relative;
+    height: calc(var(--header-height) - var(--aside-block-paddings));
+    border-block-end: 1px solid var(--border-color);
+  }
+
+  .menu-item {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    height: var(--aside-menu-size);
+    display: grid;
+    place-items: center;
+    font-size: 1.25rem;
+    transition: var(--transition);
+    border-radius: var(--border-radius);
+    isolation: isolate;
+    .tooltip-text {
+      position: absolute;
+      inset-inline-start: 50%;
+      inset-block-start: calc(50% - calc(var(--aside-tooltip-size) / 2));
+      background-color: var(--aside-tooltip-bg);
+      color: var(--aside-tooltip-color);
+      height: var(--aside-tooltip-size);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      padding: 0 0.65rem;
+      line-height: 1.25;
+      border-radius: calc(var(--border-radius) / 1.25);
+      pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: var(--transition);
+      white-space: nowrap;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset-inline-end: 100%;
+        border-block-start: 6px solid transparent;
+        border-block-end: 6px solid transparent;
+        border-inline-end: 6px solid var(--aside-tooltip-bg);
+      }
+    }
+
+    &:hover {
+      background-color: var(--aside-menu-bg);
+      .tooltip-text {
+        transition-delay: 0.5s;
+        visibility: visible;
+        opacity: 1;
+        inset-inline-start: calc(100% + calc(var(--aside-block-paddings) * 1 + 1px));
+      }
+    }
+  }
+}

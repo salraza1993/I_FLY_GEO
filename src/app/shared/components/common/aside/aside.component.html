@@ -1,1 +1,33 @@
-<p>aside works!</p>
+<div class="aside-bar-wrapper">
+  <div class="menu-item bar-menu cursor--pointer">
+    <i class="fa-solid fa-sharp fa-bars"></i>
+    <span class="tooltip-text">Expand Menus</span>
+  </div>
+</div>
+<ul class="aside-menu">
+  @for (menu of asideMenus(); track menu) {
+    <li
+      [routerLink]="menu.path"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}"
+      class="aside-menu__list">
+      <a
+        [routerLink]="menu.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="menu-item__link menu-item">
+        <i class="fa-solid fa-{{menu.icon}}"></i>
+        <span class="tooltip-text">{{ menu.title }}</span>
+      </a>
+    </li>
+  }
+
+</ul>
+
+<div class="menu-item setting-item margin-y-start--auto">
+  <a [routerLink]="'/setting'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+    class="menu-item__link menu-item">
+    <i class="fa-solid fa-sharp fa-gear"></i>
+    <span class="tooltip-text">Settings</span>
+  </a>
+</div>

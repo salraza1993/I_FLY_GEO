@@ -1,0 +1,12 @@
+:host {
+  --header-bg: light-dark(var(--primary-90_light), var(--primary-80_dark));
+  --border-border-color: light-dark(var(--primary-80_light), transparent);
+  display: flex;
+  width: 100%;
+  height: var(--header-height);
+  position: sticky;
+  z-index: var(--max-z-index);
+  background-color: var(--header-bg);
+  border-block-end: 1px solid var(--border-border-color);
+  inset-block-start: 0;
+}

@@ -12,7 +12,7 @@ import { FlightWatermarkComponent } from "../components/flight-watermark/flight-
     'class': 'auth-page-wrapper register-page'
   }
 })
-export class RegisterComponent implements OnInit {
+export default class RegisterComponent implements OnInit {
   public clientLogoPath = '/assets/client/';
   public content = signal({
     smallTitle: 'Start Your',

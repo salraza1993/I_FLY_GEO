@@ -10,7 +10,7 @@
     position: relative;
     max-width: var(--carousel-max-with);
     .content {
-      color: var(--body-color_dark);
+      color: var(--light);
       --heading-line-height: 1.35;
       margin-block-end: calc(var(--common-margin) + 3vh);
     }

@@ -32,6 +32,10 @@ footer, header, hgroup, main, menu, nav, section {
 *[hidden] {
   display: none;
 }
+a {
+  color: var(--body-color);
+  text-decoration: none;
+}
 body {
 	line-height: 1;
 }

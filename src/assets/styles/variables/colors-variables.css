@@ -1,26 +1,55 @@
 :root {
   color-scheme: light dark;
+  --primary-hue: 0;
 
-  --body-bg_light: hsl(0, 0%, 100%);
-  --body-bg_dark: hsl(0, 0%, 10%);
-  --body-bg: light-dark(var(--body-bg_light), var(--body-bg_dark));
+  /* =======[ Light colors ]======= */
+  --primary-100_light: hsl(var(--primary-hue), 0%, 100%);
+  --primary-90_light: hsl(var(--primary-hue), 0%, 97%);
+  --primary-80_light: hsl(var(--primary-hue), 0%, 92%);
+  --primary-70_light: hsl(var(--primary-hue), 0%, 89%);
+  --primary-60_light: hsl(var(--primary-hue), 0%, 85%);
+  --primary-50_light: hsl(var(--primary-hue), 0%, 81%);
+  --primary-40_light: hsl(var(--primary-hue), 0%, 77%);
+  --primary-30_light: hsl(var(--primary-hue), 0%, 73%);
+  --primary-20_light: hsl(var(--primary-hue), 0%, 69%);
+  --primary-10_light: hsl(var(--primary-hue), 0%, 65%);
 
-  --body-color_light: hsl(0, 0%, 10%);
-  --body-color_dark: hsl(0, 0%, 95%);
-  --body-color: light-dark(var(--body-color_light), var(--body-color_dark));
+  /* =======[ Dark colors ]======= */
+  --primary-100_dark: hsl(var(--primary-hue), 0%, 10%);
+  --primary-90_dark: hsl(var(--primary-hue), 0%, 15%);
+  --primary-80_dark: hsl(var(--primary-hue), 0%, 20%);
+  --primary-70_dark: hsl(var(--primary-hue), 0%, 25%);
+  --primary-60_dark: hsl(var(--primary-hue), 0%, 30%);
+  --primary-50_dark: hsl(var(--primary-hue), 0%, 35%);
+  --primary-40_dark: hsl(var(--primary-hue), 0%, 40%);
+  --primary-30_dark: hsl(var(--primary-hue), 0%, 45%);
+  --primary-20_dark: hsl(var(--primary-hue), 0%, 50%);
+  --primary-10_dark: hsl(var(--primary-hue), 0%, 55%);
+
+  --primary-100: light-dark(var(--primary-100_light), var(--primary-100_dark));
+  --primary-90: light-dark(var(--primary-90_light), var(--primary-90_dark));
+  --primary-80: light-dark(var(--primary-80_light), var(--primary-80_dark));
+  --primary-70: light-dark(var(--primary-70_light), var(--primary-70_dark));
+  --primary-60: light-dark(var(--primary-60_light), var(--primary-60_dark));
+  --primary-50: light-dark(var(--primary-50_light), var(--primary-50_dark));
+  --primary-40: light-dark(var(--primary-40_light), var(--primary-40_dark));
+  --primary-30: light-dark(var(--primary-30_light), var(--primary-30_dark));
+  --primary-20: light-dark(var(--primary-20_light), var(--primary-20_dark));
+  --primary-10: light-dark(var(--primary-10_light), var(--primary-10_dark));
+
+  /* useable variables */
+  --body-bg: light-dark(var(--primary-100_light), var(--primary-100_dark));
+  --body-color: light-dark(var(--primary-100_dark), var(--primary-100_light));
+
+  --border-color: light-dark(var(--primary-80_light), var(--primary-70_dark));
 
   --link-color: var(--body-color);
   --link-hover-color: light-dark(var(--accent-light), var(--accent-dark));
 
-  --_auth-bg_light: hsl(0, 0%, 96%);
-  --_auth-bg_dark: hsl(0, 0%, 25%);
-  --auth-wrapper-bg: light-dark(var(--_auth-bg_light), var(--_auth-bg_dark));
 
-  --_auth-client-logo-bg_light: hsl(0, 0%, 100%);
-  --_auth-client-logo-bg_dark: hsl(0, 0%, 15%);
-  --auth-client-logo-bg: light-dark(var(--_auth-client-logo-bg_light), var(--_auth-client-logo-bg_dark));
+  --light: var(--primary-100_light);
+  --white: var(--primary-100_light);
+  --dark: var(--primary-100_dark);
+  --black: var(--primary-100_dark);
 
-  --_auth-client-logo-border_light: hsl(0, 0%, 90%);
-  --_auth-client-logo-border_dark: hsl(0, 0%, 35%);
-  --auth-client-logo-border: light-dark(var(--_auth-client-logo-border_light), var(--_auth-client-logo-border_dark));
 }

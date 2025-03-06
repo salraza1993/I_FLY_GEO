@@ -1,0 +1,14 @@
+:host {
+  padding: var(--common-padding);
+  display: grid;
+  gap: 1rem;
+  position: relative;
+}
+
+
+/* centering text */
+section {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}

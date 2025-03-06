@@ -1,10 +1,4 @@
 import { Routes } from "@angular/router";
-import { BookingsComponent } from "../../B2B/pages/bookings/bookings.component";
-import { FlightComponent } from "../../B2B/pages/search/flight/flight.component";
-import { ReportsComponent } from "../../B2B/pages/reports/reports.component";
-import { SettingComponent } from "../../B2B/pages/setting/setting.component";
-import { WalletComponent } from "../../B2B/pages/wallet/wallet.component";
-import { DashboardComponent } from "../../B2B/pages/dashboard/dashboard.component";
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -14,26 +8,26 @@ export const DASHBOARD_ROUTES: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    loadComponent: () => import('../../B2B/pages/dashboard/dashboard.component')
   },
   {
     path: 'bookings',
-    component: BookingsComponent
+    loadComponent: () => import('../../B2B/pages/bookings/bookings.component')
   },
   {
     path: 'search',
-    component: FlightComponent
+    loadComponent: () => import('../../B2B/pages/search/search.component')
   },
   {
     path: 'reports',
-    component: ReportsComponent
+    loadComponent: () => import('../../B2B/pages/reports/reports.component')
   },
   {
     path: 'setting',
-    component: SettingComponent
+    loadComponent: () => import('../../B2B/pages/setting/setting.component')
   },
   {
     path: 'setting',
-    component: WalletComponent
+    loadComponent: () => import('../../B2B/pages/wallet/wallet.component')
   }
 ];

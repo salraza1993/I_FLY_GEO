@@ -12,7 +12,7 @@ import { FlightWatermarkComponent } from "../components/flight-watermark/flight-
     'class': 'auth-page-wrapper login-page'
   }
 })
-export class ForgetPasswordComponent implements OnInit {
+export default class ForgetPasswordComponent implements OnInit {
   public clientLogoPath = '/assets/client/';
   public content = signal({
     smallTitle: 'Forgot your',

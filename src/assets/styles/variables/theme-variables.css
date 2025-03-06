@@ -1,10 +1,44 @@
 :root {
+  /* Secondary Base */
+  --secondary-hue: 242;
+  --secondary-saturation: 84%;
+  --secondary-lightness: 37%;
+
+  /* Light Shades */
+  --secondary-100_light: hsl(var(--secondary-hue), var(--secondary-saturation), 97%);
+  --secondary-90_light: hsl(var(--secondary-hue), var(--secondary-saturation), 90%);
+  --secondary-80_light: hsl(var(--secondary-hue), var(--secondary-saturation), 80%);
+  --secondary-70_light: hsl(var(--secondary-hue), var(--secondary-saturation), 70%);
+  --secondary-60_light: hsl(var(--secondary-hue), var(--secondary-saturation), 60%);
+  --secondary-50_light: hsl(var(--secondary-hue), var(--secondary-saturation), 50%);
+  --secondary-40_light: hsl(var(--secondary-hue), var(--secondary-saturation), 40%);
+  --secondary-30_light: hsl(var(--secondary-hue), var(--secondary-saturation), 30%);
+  --secondary-20_light: hsl(var(--secondary-hue), var(--secondary-saturation), 20%);
+  --secondary-10_light: hsl(var(--secondary-hue), var(--secondary-saturation), 10%);
+
+  /* Dark Shades */
+  --secondary-100_dark: hsl(var(--secondary-hue), var(--secondary-saturation), 37%);
+  --secondary-90_dark: hsl(var(--secondary-hue), var(--secondary-saturation), 33%);
+  --secondary-80_dark: hsl(var(--secondary-hue), var(--secondary-saturation), 28%);
+  --secondary-70_dark: hsl(var(--secondary-hue), var(--secondary-saturation), 24%);
+  --secondary-60_dark: hsl(var(--secondary-hue), var(--secondary-saturation), 20%);
+  --secondary-50_dark: hsl(var(--secondary-hue), var(--secondary-saturation), 16%);
+  --secondary-40_dark: hsl(var(--secondary-hue), var(--secondary-saturation), 12%);
+  --secondary-30_dark: hsl(var(--secondary-hue), var(--secondary-saturation), 9%);
+  --secondary-20_dark: hsl(var(--secondary-hue), var(--secondary-saturation), 6%);
+  --secondary-10_dark: hsl(var(--secondary-hue), var(--secondary-saturation), 3%);
+
+
+
+
+
   --accent-light: hsl(24, 100%, 50%);
   --accent-dark: hsl(24, 100%, 50%);
   --accent: light-dark(var(--accent-light), var(--accent-dark));
-  --primary-light: hsl(242, 82%, 38%);
-  --primary-dark: hsl(242, 80%, 75%);
-  --primary: light-dark(var(--primary-light), var(--primary-dark));
+  --secondary-light: hsl(242, 82%, 38%);
+  --secondary-dark: hsl(242, 80%, 75%);
+  --secondary: light-dark(var(--secondary-light), var(--secondary-dark));
+
   --auth-page-bg-light: hsl(242, 90%, 25%);
   --auth-page-bg-dark: hsl(242, 95%, 2%);
 }

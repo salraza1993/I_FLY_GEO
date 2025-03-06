@@ -21,7 +21,8 @@
   --svg-stroke: var(--bs-body-color);
   --svg-stroke-width: 3.25;
 
-  --cta-gaps: 0.5rem;
+  --header-height: 80px;
+  --aside-width: 80px;
 
 
   /* ===========[ Tooltip ]=========== */
