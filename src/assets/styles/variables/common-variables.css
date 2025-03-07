@@ -17,11 +17,17 @@
   --cubic-bezier: cubic-bezier(0.88, 0.22, 0.1, 0.89);
   --transition: var(--transition-property) var(--transition-duration) var(--transition-type);
 
+  --input-color: inherit;
+  --input-fw: inherit;
+  --input-color: inherit;
+  --input-placeholder-opacity: 0.75;
+  --input-placeholder-fw: inherit;
+
   --svg-fill: var(--bs-body-color);
   --svg-stroke: var(--bs-body-color);
   --svg-stroke-width: 3.25;
 
-  --header-height: 80px;
+  --header-height: 70px;
   --aside-width: 80px;
 
 

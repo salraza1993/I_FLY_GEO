@@ -1,5 +1,6 @@
 :root {
   --base-size: 16px;
+  --base-body-font-size: 1rem;
   --ratio: 1.25;
   --heading-line-height: 1.25;
   --body-line-height: 1.5;

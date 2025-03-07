@@ -1,0 +1,21 @@
+:host {
+  --logo-bg: light-dark(var(--primary-100_light), var(--primary-50_dark));
+  --logo-border-radius: calc(var(--border-radius) * 2);
+  --logo-border-color: light-dark(var(--primary-60_light), var(--primary-50_dark));
+  display: block;
+  background-color: var(--logo-bg);
+  height: calc(var(--header-height) + 20px);
+  border: 1px solid var(--logo-border-color);
+  border-block-start: 0;
+  border-end-start-radius: var(--logo-border-radius);
+  border-end-end-radius: var(--logo-border-radius);
+  flex-shrink: 0;
+  .header-logo {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding: calc(var(--common-padding) / 1.25);
+    padding-block-end: calc(var(--common-padding) / 1.5);
+    border-radius: inherit;
+  }
+}

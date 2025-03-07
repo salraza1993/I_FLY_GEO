@@ -29,11 +29,22 @@ footer, header, hgroup, main, menu, nav, section {
 	display: block;
 }
 /* HTML5 hidden-attribute fix for newer browsers */
-*[hidden] {
-  display: none;
+*[hidden] { display: none; }
+input, button, textarea, select {
+  font: inherit;
+  color: var(--input-color);
+  font-weight: var(--input-fw);
+  &::placeholder {
+    color: var(--input-placeholder-color);
+    opacity: var(--input-placeholder-opacity);
+    font-weight: var(--input-placeholder-fw);
+  }
+}
+strong {
+  font-weight: 600;
 }
 a {
-  color: var(--body-color);
+  color: inherit;
   text-decoration: none;
 }
 body {

@@ -39,7 +39,9 @@
 
   /* useable variables */
   --body-bg: light-dark(var(--primary-100_light), var(--primary-100_dark));
+  --body-bg_reversed: light-dark(var(--primary-100_dark), var(--primary-100_light));
   --body-color: light-dark(var(--primary-100_dark), var(--primary-100_light));
+  --body-color_reversed: light-dark(var(--primary-100_light), var(--primary-100_dark));
 
   --border-color: light-dark(var(--primary-80_light), var(--primary-70_dark));
 
@@ -51,5 +53,6 @@
   --white: var(--primary-100_light);
   --dark: var(--primary-100_dark);
   --black: var(--primary-100_dark);
+  --transparent: transparent;
 
 }

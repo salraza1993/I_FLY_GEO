@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-aside',
+  selector: 'aside-bar',
   imports: [RouterModule],
   templateUrl: './aside.component.html',
   styleUrl: './aside.component.css'

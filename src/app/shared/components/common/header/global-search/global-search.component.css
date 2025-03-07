@@ -1,0 +1,65 @@
+:host {
+  --input-bg: light-dark(var(--primary-80_light), var(--primary-50_dark));
+  --input-bg-focus: light-dark(var(--primary-100_dark), var(--primary-100_dark));
+  --input-color-focus: light-dark(var(--primary-100_light), var(--primary-100_light));
+  --input-focus-shadow: light-dark(var(--primary-10_dark), var(--primary-60_dark));
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius);
+
+  .global-search-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: var(--grouped-wrapper-border-radius);
+    gap: var(--common-padding);
+    height: var(--grouped-elements-height);
+    transition: var(--transition);
+    background-color: var(--input-bg);
+    &:focus-within {
+      box-shadow: 0 0 0 5px var(--input-focus-shadow);
+      background-color: var(--input-bg-focus);
+      color: var(--input-color-focus);
+    }
+    .input-block {
+      display: flex;
+      width: inherit;
+      .search-input {
+        width: inherit;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        --input-placeholder-fw: 300;
+      }
+    }
+  }
+  .icon {
+    width: var(--grouped-elements-height);
+    height: var(--grouped-elements-height);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    position: relative;
+    isolation: isolate;
+    &:is(.icon--clickable) {
+      &::after {
+        content: '';
+        position: absolute;
+        scale: 0;
+        inset: 0;
+        background-color: light-dark(var(--primary-70_light), var(--primary-80_dark));
+        border-radius: var(--grouped-wrapper-border-radius);
+        z-index: -1;
+      }
+      &:hover, &:active, &:focus, &:is(.active, .selected) {
+        &::after {
+          transition: var(--transition);
+          scale: 0.85;
+        }
+      }
+    }
+  }
+}

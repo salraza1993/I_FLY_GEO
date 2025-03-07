@@ -1,0 +1,30 @@
+:host {
+  --btn-bg: light-dark(var(--accent-10), var(--secondary-50));
+  --btn-color: var(--accent);
+  --btn-bg-hover: var(--accent);
+  --btn-color-hover: var(--accent-color);
+  display: block;
+  flex-shrink: 0;
+  position: relative;
+
+  .header-wallet-button {
+    position: relative;
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
+    height: var(--grouped-elements-height);
+    border-radius: var(--grouped-wrapper-border-radius);
+    display: flex;
+    align-items: center;
+    padding-inline: var(--common-padding);
+    gap: var(--common-padding);
+    transition: var(--transition);
+    .wallet-amount {
+      font-size: 1.25rem;
+      line-height: 1.5rem;
+    }
+    &:hover {
+      background-color: var(--btn-bg-hover);
+      color: var(--btn-color-hover);
+    }
+  }
+}

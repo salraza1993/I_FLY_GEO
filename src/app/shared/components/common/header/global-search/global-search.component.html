@@ -1,0 +1,17 @@
+<div class="global-search-input">
+  <div class="input-block">
+    <span class="icon">
+      <i class="fa-regular fa-search"></i>
+    </span>
+    <input type="text" class="search-input" placeholder="Search with Trip ID / PNR and more..." />
+  </div>
+  <div
+    [ngClass]="{'active': searchIndicatorState()}"
+    class="search-info icon icon--clickable cursor--pointer"
+    (click)="toggleSearchIndicator(!searchIndicatorState())">
+    <i class="fa-regular fa-circle-info"></i>
+  </div>
+</div>
+@if(searchIndicatorState()) {
+  <search-indicator @myInsertRemoveTrigger (clickOutside)="toggleSearchIndicator(false)" />
+}

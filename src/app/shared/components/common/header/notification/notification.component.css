@@ -1,0 +1,45 @@
+:host {
+  --block-bg: light-dark(var(--primary-80_light), var(--primary-50_dark));
+  --block-bg-hover: var(--accent);
+  --counter-bg: var(--accent);
+  --counter-color: var(--accent-color);
+  --counter-hover-bg: var(--secondary);
+  --counter-color: var(--secondary-color);
+
+  display: block;
+  position: relative;
+  flex-shrink: 0;
+
+  .notification-icon {
+    background: var(--block-bg);
+    display: grid;
+    place-items: center;
+    width: var(--grouped-elements-height);
+    aspect-ratio: 1;
+    position: relative;
+    border-radius: var(--grouped-wrapper-border-radius);
+    transition: var(--transition);
+    i { font-size: 1.25rem;}
+    &:hover, &:is(.active, .selected) {
+      background: var(--block-bg-hover);
+      --counter-bg: var(--dark);
+      --counter-color: var(--light);
+    }
+    .notification-count {
+      position: absolute;
+      inset-inline-end: 0;
+      inset-block-start: 0;
+      background-color: var(--counter-bg);
+      color: var(--counter-color);
+      width: 23px;
+      height: 23px;
+      line-height: 20px;
+      border-start-end-radius: calc(var(--border-radius) / 1.25);
+      border-end-start-radius: 80%;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      transition: inherit;
+    }
+  }
+}

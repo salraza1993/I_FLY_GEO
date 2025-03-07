@@ -1,0 +1,40 @@
+:host {
+  --indicator-bg: light-dark(var(--primary-80_dark), var(--primary-50_light));
+  --indicator-color: var(--body-color_reversed);
+  --grid-column: 2;
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: calc(100% + 2px);
+  .search-indicator-wrapper {
+    font-size: .9rem;
+    line-height: 1.15rem;
+    background-color: var(--indicator-bg);
+    color: var(--indicator-color);
+    border-radius: var(--border-radius);
+    padding: var(--common-padding);
+    box-shadow: 0 0 0 1px var(--indicator-border);
+    transition: var(--transition);
+    &::after {
+      content: '';
+      position: absolute;
+      inset-block-end: 100%;
+      inset-inline-end: 14px;
+      border-inline-start: 8px solid transparent;
+      border-inline-end: 8px solid transparent;
+      border-block-end: 8px solid var(--indicator-bg);
+    }
+    .indicator-list {
+      position: relative;
+      display: grid;
+      max-width: fit-content;
+      grid-template-columns: repeat(var(--grid-column), 1fr);
+      column-gap: calc(var(--common-padding) * 1.5);
+      row-gap: calc(var(--common-padding) / 3);
+      & .indicator-list__item {
+        display: flex;
+        align-items: center;
+        gap: calc(var(--common-padding) / 2);
+      }
+    }
+  }
+}

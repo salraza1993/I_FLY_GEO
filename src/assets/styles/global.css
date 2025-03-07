@@ -13,6 +13,7 @@ html {
 body {
   color: var(--body-color);
   background-color: var(--body-bg);
+  font-family: var(--base-body-font-size);
   font-weight: 400;
   font-family: var(--body-font-family) !important;
   line-height: var(--body-line-height);

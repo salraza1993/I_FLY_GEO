@@ -1,11 +1,12 @@
 :host {
-  --aside-bg: light-dark(var(--primary-90_light), var(--primary-90_dark));
-  --aside-border-color: light-dark(var(--primary-80_light), transparent);
-  --aside-block-paddings: calc(var(--common-padding) / 1.25);
-  --aside-menu-bg: light-dark(var(--primary-70_light), var(--primary-70_dark));
-  --aside-active-menu-bg: light-dark(var(--primary-100_light), var(--primary-100_dark));
-  --aside-active-menu-color: var(--secondary);
-  --aside-menu-size: 52px;
+  --aside-bg: light-dark(var(--primary-80_light), var(--primary-70_dark));
+  --aside-border-color: light-dark(var(--primary-60_light), transparent);
+  --aside-block-paddings: calc(var(--aside-width) / 5.5);
+  --aside-menu-bg: light-dark(var(--primary-50_light), var(--primary-40_dark));
+  --border-color: light-dark(var(--primary-60_light), var(--primary-40_dark));
+  --aside-active-menu-bg: light-dark(var(--secondary), var(--primary-100_dark));
+  --aside-active-menu-color: var(--light);
+  --aside-menu-size: calc(var(--aside-width) - calc(var(--aside-block-paddings) * 2));
   --aside-tooltip-size: 30px;
   --aside-tooltip-bg: var(--body-color);
   --aside-tooltip-color: var(--body-bg);
@@ -38,6 +39,7 @@
       }
     }
     .menu-item {
+      transition: var(--transition);
       &::after {
         content: '';
         position: absolute;
@@ -48,8 +50,8 @@
         opacity: 0;
         pointer-events: none;
         background-color: inherit;
-        border: 1px solid var(--border-color);
-        box-shadow: inset -5px 0 0 var(--secondary);
+        /* border: 1px solid var(--border-color); */
+        box-shadow: inset -5px 0 0 var(--accent);
         border-inline-end: 0;
         transition: var(--transition);
         border-start-start-radius: var(--border-radius);
@@ -59,10 +61,11 @@
       &:is(.active) {
         background-color: var(--aside-active-menu-bg);
         color: var(--aside-active-menu-color);
-        width: calc(100% + var(--aside-block-paddings) + 6px);
+        width: calc(100% + var(--aside-block-paddings) + 1px);
         font-size: 1.3rem;
         i {
-          margin-inline-start: calc(0px - calc(var(--aside-block-paddings) * 1.5));
+          font-weight: 900;
+          margin-inline-start: calc(0px - calc(var(--aside-block-paddings) * 0.75));
         }
         &::after {
           width: 100%;
@@ -72,7 +75,7 @@
         }
         &:hover {
           .tooltip-text {
-            inset-inline-start: calc(100% - 5px);
+            inset-inline-start: calc(100% + 6px);
           }
         }
       }
@@ -80,7 +83,7 @@
   }
   .aside-bar-wrapper {
     position: relative;
-    height: calc(var(--header-height) - var(--aside-block-paddings));
+    min-height: calc(var(--header-height) - var(--aside-block-paddings));
     border-block-end: 1px solid var(--border-color);
   }
 
@@ -94,6 +97,7 @@
     transition: var(--transition);
     border-radius: var(--border-radius);
     isolation: isolate;
+
     .tooltip-text {
       position: absolute;
       inset-inline-start: 50%;
@@ -112,6 +116,7 @@
       opacity: 0;
       transition: var(--transition);
       white-space: nowrap;
+      z-index: -5;
 
       &::after {
         content: '';
@@ -126,6 +131,7 @@
     &:hover {
       background-color: var(--aside-menu-bg);
       .tooltip-text {
+        z-index: 2;
         transition-delay: 0.5s;
         visibility: visible;
         opacity: 1;

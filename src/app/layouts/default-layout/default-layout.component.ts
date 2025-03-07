@@ -6,9 +6,9 @@ import { AsideComponent } from '../../shared/components/common/aside/aside.compo
   selector: 'default-layout',
   imports: [HeaderComponent, AsideComponent],
   template: `
-  <app-header></app-header>
+  <main-header></main-header>
   <ng-content />
-  <app-aside></app-aside>
+  <aside-bar></aside-bar>
   `,
   styleUrl: './default-layout.component.css',
   host: {
