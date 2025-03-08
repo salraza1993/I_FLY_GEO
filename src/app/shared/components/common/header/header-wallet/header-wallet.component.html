@@ -1,14 +1,24 @@
 <div class="header-wallet-button cursor--pointer">
-  <span class="wallet-amount">
-    <span class="icon">
-      <i class="fa-solid fa-wallet"></i>
-    </span>
-    &nbsp;
-    <strong class="wallet-amount font-weight--bold">
-      {{ currency }} {{ totalWalletAmount }}
-    </strong>
+  <span class="wallet-amount pointer-event--none">
+    <i class="fa-solid fa-wallet"></i>&nbsp;
+    <h5 class="m-0">{{ currency() }} {{ totalWalletAmount }}</h5>
   </span>
-  <span class="icon after-icon">
+  <span
+    class="icon after-icon icon-clickable"
+    [ngClass]="{'active': showTooltip()}"
+    (click)="showTooltipHandler(!showTooltip())">
     <i class="fa-solid fa-ellipsis-v"></i>
   </span>
 </div>
+@if(showTooltip()) {
+<tooltip-wrapper (clickOutside)="showTooltipHandler(false)">
+  <ul class="wallet-short-info">
+    @for(list of tooltipContent(); track list.label) {
+      <li class="wallet-short-info__list white-space--nowrap">
+        <small class="label">{{ list.label }}</small>
+        <h6 class="m-0 value">{{ currency() }} {{ list.value }}</h6>
+      </li>
+    }
+  </ul>
+</tooltip-wrapper>
+}

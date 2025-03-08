@@ -1,8 +1,9 @@
 :host {
-  --btn-bg: light-dark(var(--accent-10), var(--secondary-50));
-  --btn-color: var(--accent);
-  --btn-bg-hover: var(--accent);
+  --btn-bg: light-dark(var(--accent-10), var(--accent-20));
+  --btn-color: var(--accent-100);
+  --btn-bg-hover: var(--accent-100);
   --btn-color-hover: var(--accent-color);
+  --btn-ellipsis-color: light-dark(var(--primary-100_dark), var(--primary-100_dark));
   display: block;
   flex-shrink: 0;
   position: relative;
@@ -10,21 +11,60 @@
   .header-wallet-button {
     position: relative;
     background-color: var(--btn-bg);
-    color: var(--btn-color);
     height: var(--grouped-elements-height);
     border-radius: var(--grouped-wrapper-border-radius);
     display: flex;
     align-items: center;
-    padding-inline: var(--common-padding);
-    gap: var(--common-padding);
+    padding-inline-start: var(--common-padding);
+    gap: calc(var(--common-padding) / 4);
     transition: var(--transition);
+    height: var(--grouped-elements-height);
     .wallet-amount {
+      display: flex;
+      align-items: center;
       font-size: 1.25rem;
       line-height: 1.5rem;
+      gap: 0.25rem;
+      color: var(--btn-color);
+    }
+    .icon {
+      --icon-hover-bg_light: var(--accent-50);
+      --icon-hover-bg_dark: var(--accent-50);
+      width: var(--grouped-elements-height);
+      aspect-ratio: 1;
+      color: var(--btn-ellipsis-color);
     }
     &:hover {
       background-color: var(--btn-bg-hover);
-      color: var(--btn-color-hover);
+      .wallet-amount {
+        color: var(--btn-color-hover);
+      }
+    }
+  }
+
+  .wallet-short-info {
+    --columns: 3;
+    position: relative;
+    display: grid;
+    gap: calc(var(--common-padding) * 3);
+    grid-template-columns: repeat(var(--columns), 1fr);
+    & .wallet-short-info__list {
+      position: relative;
+      display: grid;
+      gap: calc(var(--common-padding) / 3);
+      .label {
+        opacity: 0.75;
+      }
+
+      &:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        inset-inline-start: calc(100% + calc(var(--common-padding) * 1.5));
+        width: 1px;
+        height: 100%;
+        opacity: 0.25;
+        background-color: var(--border-color);
+      }
     }
   }
 }

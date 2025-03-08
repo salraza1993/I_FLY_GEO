@@ -1,0 +1,26 @@
+:host {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: calc(100% + 10px);
+
+  .tooltip-content-wrapper {
+    font-size: .9rem;
+    line-height: 1.15rem;
+    border-radius: var(--border-radius);
+    padding: var(--common-padding);
+    transition: var(--transition);
+    background-color: var(--tooltip-wrapper-bg);
+    color: var(--tooltip-wrapper-color);
+    max-width: max-content;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-block-end: 100%;
+      inset-inline-end: 14px;
+      border-inline-start: 8px solid transparent;
+      border-inline-end: 8px solid transparent;
+      border-block-end: 8px solid var(--tooltip-wrapper-bg);
+    }
+  }
+}

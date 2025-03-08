@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { HeaderLogoComponent } from "./header-logo/header-logo.component";
 import { GlobalSearchComponent } from "./global-search/global-search.component";
 import { HeaderProfileComponent } from "./header-profile/header-profile.component";
@@ -15,5 +15,4 @@ import { NotificationComponent } from "./notification/notification.component";
   }
 })
 export class HeaderComponent {
-
 }

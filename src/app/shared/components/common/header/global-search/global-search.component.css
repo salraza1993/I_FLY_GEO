@@ -39,27 +39,5 @@
   .icon {
     width: var(--grouped-elements-height);
     height: var(--grouped-elements-height);
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
-    position: relative;
-    isolation: isolate;
-    &:is(.icon--clickable) {
-      &::after {
-        content: '';
-        position: absolute;
-        scale: 0;
-        inset: 0;
-        background-color: light-dark(var(--primary-70_light), var(--primary-80_dark));
-        border-radius: var(--grouped-wrapper-border-radius);
-        z-index: -1;
-      }
-      &:hover, &:active, &:focus, &:is(.active, .selected) {
-        &::after {
-          transition: var(--transition);
-          scale: 0.85;
-        }
-      }
-    }
   }
 }

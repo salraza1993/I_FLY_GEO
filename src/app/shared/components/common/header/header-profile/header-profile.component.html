@@ -1,1 +1,33 @@
-<p>header-profile works!</p>
+<div class="profile-button" [ngClass]="{'is-opened': showDropdown()}" (click)="dropdownToggler(!showDropdown())">
+  <div class="img-name">
+    <div class="profile-image">
+      <img [src]="userProfile().userImage" alt="user image" />
+    </div>
+    <strong class="m-0">{{userProfile().firstName}} {{userProfile().lastName}}</strong>
+  </div>
+  <div class="icon icon-clickable">
+    <i class="fa-solid fa-ellipsis-v"></i>
+  </div>
+</div>
+@if(showDropdown()) {
+  <div class="dropdown__data dropdown-anime-item end"
+    [ngClass]="{'is-opened': showDropdown()}"
+    (clickOutside)="dropdownToggler(false)"
+    [@dropDownMenu]>
+    <ul class="dropdown__list">
+      @for(list of userDropdownList(); track list.label) {
+      <li class="dropdown-anime-item dropdown__list__item {{list.class && list.class}}" (click)="dropdownToggler(false)">
+        @if(list.path) {
+          <a (click)="redirect(list.label)" [routerLink]="list.path" class="dropdown__list__item--link">
+            <span class="icon"><i class="fa-regular fa-{{list.icon}}"></i></span>
+            <span class="text">{{list.label}}</span>
+          </a>
+        } @else {
+          <span class="icon"><i class="fa-regular fa-{{list.icon}}"></i></span>
+          <span class="text">{{list.label}}</span>
+          }
+      </li>
+      }
+    </ul>
+  </div>
+}

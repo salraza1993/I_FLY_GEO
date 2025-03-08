@@ -1,22 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { SearchIndicatorComponent } from "./search-indicator/search-indicator.component";
-import { slideIn } from '../../../../animations/slide.animations';
-import { fadeIn } from '../../../../animations/fade.animations';
 import { CommonModule } from '@angular/common';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { ClickOutsideDirective } from '../../../../../core/directives/click-outside.directive';
+import { TooltipWrapperComponent } from "../../tooltip-wrapper/tooltip-wrapper.component";
 
 @Component({
   selector: 'global-search',
-  imports: [SearchIndicatorComponent, CommonModule, ClickOutsideDirective],
+  imports: [SearchIndicatorComponent, CommonModule, ClickOutsideDirective, TooltipWrapperComponent],
   templateUrl: './global-search.component.html',
   styleUrl: './global-search.component.css',
-  animations: [
-    trigger('myInsertRemoveTrigger', [
-      transition(':enter', [style({ opacity: 0 }), animate('100ms', style({ opacity: 1 }))]),
-      transition(':leave', [animate('100ms', style({ opacity: 0 }))]),
-    ]),
-  ],
   host: {
     class: 'global-search'
   }

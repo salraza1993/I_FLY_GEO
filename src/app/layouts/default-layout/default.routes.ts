@@ -23,11 +23,19 @@ export const DASHBOARD_ROUTES: Routes = [
     loadComponent: () => import('../../B2B/pages/reports/reports.component')
   },
   {
-    path: 'setting',
+    path: 'settings',
     loadComponent: () => import('../../B2B/pages/setting/setting.component')
   },
   {
     path: 'setting',
     loadComponent: () => import('../../B2B/pages/wallet/wallet.component')
+  },
+  {
+    path: 'my-profile',
+    loadComponent: () => import('../../B2B/pages/my-profile/my-profile.component')
+  },
+  {
+    path: 'change-password',
+    loadComponent: () => import('../../B2B/pages/change-password/change-password.component')
   }
 ];

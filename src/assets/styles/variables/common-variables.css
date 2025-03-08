@@ -27,11 +27,15 @@
   --svg-stroke: var(--bs-body-color);
   --svg-stroke-width: 3.25;
 
-  --header-height: 70px;
+  --header-height: 75px;
   --aside-width: 80px;
 
 
   /* ===========[ Tooltip ]=========== */
+  --tooltip-wrapper-bg: light-dark(var(--primary-80_dark), var(--primary-50_light));
+  --tooltip-wrapper-color: var(--body-color_reversed);
+
+
   --tooltip-inset-x: 0;
   --tooltip-inset-y: 10%;
   --tooltip-bg: rgba(var(--bs-dark-rgb), 0.85);

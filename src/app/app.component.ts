@@ -1,5 +1,5 @@
 import { ViewportService } from './core/services/viewport.service';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LayoutService } from './layouts/layout.service';
 import { PageLayoutEnum } from './shared/enums/PageLayoutEnum';
@@ -7,6 +7,8 @@ import { DefaultLayoutComponent } from "./layouts/default-layout/default-layout.
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
 import { CommonModule } from '@angular/common';
 import { ErrorLayoutComponent } from "./layouts/error-layout/error-layout.component";
+import { AppSettingsService } from './core/services/appSettings.service';
+import { LocalStorageService } from './core/services/localStorage.service';
 
 @Component({
   selector: 'root',
@@ -32,16 +34,29 @@ import { ErrorLayoutComponent } from "./layouts/error-layout/error-layout.compon
 `,
   styleUrl: './app.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [ViewportService, AppSettingsService, LocalStorageService],
   host: {
     class: 'root-wrapper'
   }
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'i_fly_geo';
   readonly PageLayout = PageLayoutEnum;
+  private viewportService = inject(ViewportService);
+  private appSettingsService = inject(AppSettingsService);
+  private localStorageService = inject(LocalStorageService);
 
-  constructor(
-    public LayoutService: LayoutService,
-    private ViewportService: ViewportService
-  ) { }
+  private appSettings = signal<any>(null);
+
+  constructor(public LayoutService : LayoutService) { }
+
+  ngOnInit(): void {
+    this.appSettings.set(
+      this.appSettingsService.initializeAppSetting().subscribe((data) => {
+        if (this.localStorageService.getItem('appSettings') === null) {
+          this.localStorageService.setItem('appSettings', JSON.stringify(data));
+        }
+      })
+    )
+  }
 }

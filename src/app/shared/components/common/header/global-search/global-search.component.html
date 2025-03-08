@@ -7,11 +7,13 @@
   </div>
   <div
     [ngClass]="{'active': searchIndicatorState()}"
-    class="search-info icon icon--clickable cursor--pointer"
+    class="search-info icon icon-clickable cursor--pointer"
     (click)="toggleSearchIndicator(!searchIndicatorState())">
     <i class="fa-regular fa-circle-info"></i>
   </div>
 </div>
 @if(searchIndicatorState()) {
-  <search-indicator @myInsertRemoveTrigger (clickOutside)="toggleSearchIndicator(false)" />
+  <tooltip-wrapper (clickOutside)="toggleSearchIndicator(false)">
+    <search-indicator />
+  </tooltip-wrapper>
 }

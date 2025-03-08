@@ -1,10 +1,8 @@
-<div class="search-indicator-wrapper" [ngStyle]="{'--grid-column': gridColumn()}">
-  <ul class="indicator-list">
-    @for(indicate of indicationList(); track indicate.type) {
-      <li class="indicator-list__item">
-        <strong>{{ indicate.type }}</strong>
-        <small>({{ indicate.info }})</small>
-      </li>
-    }
-  </ul>
-</div>
+<ul class="indicator-list">
+  @for(indicate of indicationList(); track indicate.type) {
+    <li class="indicator-list__item">
+      <strong>{{ indicate.type }}</strong>
+      <small>({{ indicate.info }})</small>
+    </li>
+  }
+</ul>

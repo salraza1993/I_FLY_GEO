@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 interface indicators {
   type: string;
@@ -16,7 +16,6 @@ interface indicators {
   }
 })
 export class SearchIndicatorComponent {
-  gridColumn = input(2);
   indicationList = input<indicators[]>([
     { type: '[tag]', info: 'search within a tag' },
     { type: 'user:1234', info: 'search by user' },
