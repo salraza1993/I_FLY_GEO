@@ -26,7 +26,6 @@ export class HeaderProfileComponent implements OnInit {
     { label: 'Logout', icon: 'arrow-right-from-bracket', class: 'logout' },
   ]);
   public showDropdown = signal(false);
-
   public dropdownToggler(value: boolean): void {
     this.showDropdown.update(() => value);
   }

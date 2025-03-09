@@ -1,4 +1,4 @@
-@import url('./common/custom-grid.css');
+/* @import url('./common/custom-grid.css'); */
 @import url('./pages/auth-pages.css');
 *, *::after, *::before {
   box-sizing: border-box;
@@ -27,4 +27,8 @@ body {
   min-height: 100vh;
   width: 100%;
   display: block;
+}
+.page-content-wrapper {
+  padding: var(--common-padding);
+  position: relative;
 }

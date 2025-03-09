@@ -1,7 +1,7 @@
 :host {
-  --logo-bg: light-dark(var(--primary-100_light), var(--primary-50_dark));
+  --logo-bg: light-dark(var(--primary-100_light), var(--transparent));
   --logo-border-radius: calc(var(--border-radius) * 2);
-  --logo-border-color: light-dark(var(--primary-80_light), var(--primary-50_dark));
+  --logo-border-color: light-dark(var(--primary-80_light), var(--transparent));
   display: block;
   background-color: var(--logo-bg);
   height: calc(var(--header-height));

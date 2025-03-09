@@ -5,6 +5,7 @@
   --btn-bg-hover: var(--accent-100);
   --btn-color-hover: var(--accent-color);
   --btn-ellipsis-color: light-dark(var(--primary-100_dark), var(--primary-100_dark));
+  --profile-image-bg: light-dark(var(--primary-40_light), var(--primary-70_dark));
   position: relative;
   display: block;
   .profile-button {
@@ -15,9 +16,10 @@
     height: var(--grouped-elements-height);
     border-radius: var(--grouped-wrapper-border-radius);
     cursor: pointer;
-    padding-inline-start: 0.4rem;
+    padding-inline-start: 3px;
     transition: var(--transition);
     &:hover, &:is(.active, .is-opened, .selected) {
+      --profile-image-bg: var(--accent-50);
       background-color: var(--btn-bg-hover);
       color: var(var(--btn-color-hover))
     }
@@ -27,11 +29,13 @@
       align-items: center;
       gap: calc(var(--common-padding) / 1.5);
       .profile-image {
-        width: calc(var(--grouped-elements-height) - 10px);
-        height: calc(var(--grouped-elements-height) - 10px);
-        border-radius: var(--grouped-wrapper-border-radius);
+        width: calc(var(--grouped-elements-height) - 6px);
+        height: calc(var(--grouped-elements-height) - 6px);
+        line-height: calc(var(--grouped-elements-height) + 5px);
+        border-radius: var(--border-radius);
+        background-color: var(--profile-image-bg);
         overflow: clip;
-        box-shadow: 0 0 0 2px var(--border-color);
+        i { font-size: 1.3rem; }
       }
     }
     & .icon {

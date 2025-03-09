@@ -1,0 +1,61 @@
+:host {
+  --tab-bg-fallback: light-dark(var(--primary-80_light), var(--primary-80_dark));
+  --tab-color-fallback: light-dark(var(--primary-70_dark), var(--primary-50_light));
+  --tab-list-bg-hover-fallback: light-dark(var(--primary-30_light), var(--primary-30_dark));
+  --tab-list-hover-color-fallback: light-dark(var(--primary-100_dark), var(--primary-100_light));
+  --tab-list-active-bg-fallback: light-dark(var(--primary-80_dark), var(--primary-30_dark));
+  --tab-list-active-color-fallback: light-dark(var(--primary-100_light), var(--primary-100_light));
+
+  position: relative;
+  display: flex;
+  width: 100%;
+
+  .custom-tabs {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--tab-bg, var(--tab-bg-fallback));
+    height: var(--tab-height, var(--common-btn-height));
+    border-radius: var(--tab-border-radius, var(--border-radius));
+    padding: var(--tab-padding, 0.32rem);
+    gap: var(--tab-gap, 0);
+    &:is(.bordered) {
+      box-shadow: 0 0 0 var(--tab-border-width, 1px) var(--tab-border, var(--border-color));
+    }
+    & .custom-tabs__item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      border-radius: var(--tab-item-border-radius, calc(var(--border-radius) / 1.5));
+      height: var(--tab-light-height, calc(var(--common-btn-height) - 10px));
+      padding-inline-start: var(--tab-padding-x-start, var(--common-padding));
+      padding-inline-end: var(--tab-padding-x-end, var(--common-padding));
+      color: var(--tab-color, var(--tab-color-fallback));
+      transition: var(--transition);
+      text-transform: var(--tab-list-transform, uppercase);
+      cursor: pointer;
+      min-width: var(--tab-item-width, auto);
+      z-index: 1;
+      &:not(.selected, .active):hover {
+        background-color: var(--tab-list-bg-hover, var(--tab-list-bg-hover-fallback));
+        color: var(--tab-list-color-hover, var(--tab-list-hover-color-fallback));
+      }
+      &:is(.active, .selected) {
+        transition-delay: none;
+        /* background-color: var(--tab-list-bg-active, var(--tab-list-active-bg-fallback)); */
+        color: var(--tab-list-color-active, var(--tab-list-active-color-fallback));
+        font-weight: var(--tab-list-active-font-weight, 400);
+      }
+    }
+    .selected-strip {
+      width: var(--tab-active-item-width, auto);
+      inset-inline-start: var(--tab-active-item-offset-x, 5px);
+      height: var(--tab-light-height, calc(var(--common-btn-height) - 10px));
+      background-color: var(--tab-list-bg-active, var(--tab-list-active-bg-fallback));
+      border-radius: var(--tab-item-border-radius, calc(var(--border-radius) / 1.5));
+      position: absolute;
+      z-index: 0;
+      transition: var(--transition);
+    }
+  }
+}

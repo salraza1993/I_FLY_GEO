@@ -1,0 +1,25 @@
+<div class="section-header">
+  <div class="block-scope block-scope__start">
+    @if(backButton()) {
+      <button (click)="goBackHandler()">Back Button</button>
+    }
+    <div class="title-block">
+      <p class="m-0 title">
+        <span>{{ title()[0] | titlecase }} </span>
+        <span class=" title-strong">{{ title()[1] | titlecase }}</span>
+      </p>
+      @if(description().length > 0) {
+        <div class="description">
+          <p>
+            {{ description()[0] }}&nbsp;<strong class="description-strong">{{ description()[1] }}</strong>
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+  @if(contentScopeEnd()) {
+    <div class="block-scope block-scope__end">
+      <ng-content></ng-content>
+    </div>
+  }
+</div>

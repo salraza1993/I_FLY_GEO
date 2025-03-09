@@ -37,22 +37,114 @@
   --primary-20: light-dark(var(--primary-20_light), var(--primary-20_dark));
   --primary-10: light-dark(var(--primary-10_light), var(--primary-10_dark));
 
+  /* === INFO COLORS (Blue) === */
+  --info-100_light: hsl(210, 100%, 95%);
+  --info-90_light: hsl(210, 95%, 85%);
+  --info-80_light: hsl(210, 90%, 75%);
+  --info-70_light: hsl(210, 85%, 65%);
+  --info-60_light: hsl(210, 80%, 55%);
+  --info-50_light: hsl(210, 75%, 45%);
+  --info-40_light: hsl(210, 70%, 35%);
+  --info-30_light: hsl(210, 65%, 25%);
+  --info-20_light: hsl(210, 60%, 20%);
+  --info-10_light: hsl(210, 55%, 15%);
+
+  --info-100_dark: hsl(210, 100%, 30%);
+  --info-90_dark: hsl(210, 95%, 35%);
+  --info-80_dark: hsl(210, 90%, 40%);
+  --info-70_dark: hsl(210, 85%, 45%);
+  --info-60_dark: hsl(210, 80%, 50%);
+  --info-50_dark: hsl(210, 75%, 55%);
+  --info-40_dark: hsl(210, 70%, 60%);
+  --info-30_dark: hsl(210, 65%, 65%);
+  --info-20_dark: hsl(210, 60%, 70%);
+  --info-10_dark: hsl(210, 55%, 75%);
+
+  /* === SUCCESS COLORS (Green) === */
+  --success-100_light: hsl(145, 80%, 95%);
+  --success-90_light: hsl(145, 75%, 85%);
+  --success-80_light: hsl(145, 70%, 75%);
+  --success-70_light: hsl(145, 65%, 65%);
+  --success-60_light: hsl(145, 60%, 55%);
+  --success-50_light: hsl(145, 55%, 45%);
+  --success-40_light: hsl(145, 50%, 35%);
+  --success-30_light: hsl(145, 45%, 25%);
+  --success-20_light: hsl(145, 40%, 20%);
+  --success-10_light: hsl(145, 35%, 15%);
+
+  --success-100_dark: hsl(145, 80%, 30%);
+  --success-90_dark: hsl(145, 75%, 35%);
+  --success-80_dark: hsl(145, 70%, 40%);
+  --success-70_dark: hsl(145, 65%, 45%);
+  --success-60_dark: hsl(145, 60%, 50%);
+  --success-50_dark: hsl(145, 55%, 55%);
+  --success-40_dark: hsl(145, 50%, 60%);
+  --success-30_dark: hsl(145, 45%, 65%);
+  --success-20_dark: hsl(145, 40%, 70%);
+  --success-10_dark: hsl(145, 35%, 75%);
+
+  /* === DANGER COLORS (Red) === */
+  --danger-100_light: hsl(0, 90%, 95%);
+  --danger-90_light: hsl(0, 85%, 85%);
+  --danger-80_light: hsl(0, 80%, 75%);
+  --danger-70_light: hsl(0, 75%, 65%);
+  --danger-60_light: hsl(0, 70%, 55%);
+  --danger-50_light: hsl(0, 65%, 45%);
+  --danger-40_light: hsl(0, 60%, 35%);
+  --danger-30_light: hsl(0, 55%, 25%);
+  --danger-20_light: hsl(0, 50%, 20%);
+  --danger-10_light: hsl(0, 45%, 15%);
+
+  --danger-100_dark: hsl(0, 90%, 30%);
+  --danger-90_dark: hsl(0, 85%, 35%);
+  --danger-80_dark: hsl(0, 80%, 40%);
+  --danger-70_dark: hsl(0, 75%, 45%);
+  --danger-60_dark: hsl(0, 70%, 50%);
+  --danger-50_dark: hsl(0, 65%, 55%);
+  --danger-40_dark: hsl(0, 60%, 60%);
+  --danger-30_dark: hsl(0, 55%, 65%);
+  --danger-20_dark: hsl(0, 50%, 70%);
+  --danger-10_dark: hsl(0, 45%, 75%);
+
+  /* === WARNING COLORS (Yellow/Orange) === */
+  --warning-100_light: hsl(40, 100%, 95%);
+  --warning-90_light: hsl(40, 95%, 85%);
+  --warning-80_light: hsl(40, 90%, 75%);
+  --warning-70_light: hsl(40, 85%, 65%);
+  --warning-60_light: hsl(40, 80%, 55%);
+  --warning-50_light: hsl(40, 75%, 45%);
+  --warning-40_light: hsl(40, 70%, 35%);
+  --warning-30_light: hsl(40, 65%, 25%);
+  --warning-20_light: hsl(40, 60%, 20%);
+  --warning-10_light: hsl(40, 55%, 15%);
+
+  --warning-100_dark: hsl(40, 100%, 30%);
+  --warning-90_dark: hsl(40, 95%, 35%);
+  --warning-80_dark: hsl(40, 90%, 40%);
+  --warning-70_dark: hsl(40, 85%, 45%);
+  --warning-60_dark: hsl(40, 80%, 50%);
+  --warning-50_dark: hsl(40, 75%, 55%);
+  --warning-40_dark: hsl(40, 70%, 60%);
+  --warning-30_dark: hsl(40, 65%, 65%);
+  --warning-20_dark: hsl(40, 60%, 70%);
+  --warning-10_dark: hsl(40, 55%, 75%);
+
   /* useable variables */
   --body-bg: light-dark(var(--primary-100_light), var(--primary-100_dark));
   --body-bg_reversed: light-dark(var(--primary-100_dark), var(--primary-70_light));
   --body-color: light-dark(var(--primary-100_dark), var(--primary-100_light));
   --body-color_reversed: light-dark(var(--primary-100_light), var(--primary-100_dark));
 
-  --border-color: light-dark(var(--primary-80_light), var(--primary-70_dark));
+  --border-color: light-dark(var(--primary-60_light), var(--primary-70_dark));
 
   --link-color: var(--body-color);
   --link-hover-color: light-dark(var(--accent-light), var(--accent-dark));
 
 
   --light: var(--primary-100_light);
-  --white: var(--primary-100_light);
+  --white: hsl(0, 0%, 100%);
   --dark: var(--primary-100_dark);
-  --black: var(--primary-100_dark);
+  --black: hsl(0, 0%, 3%);
   --transparent: transparent;
 
 }

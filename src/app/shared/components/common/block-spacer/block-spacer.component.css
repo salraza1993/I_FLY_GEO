@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: var(--common-padding);
+  width: 100%;
+  white-space: nowrap;
+  margin-block-start: var(--spacer-margin-y-start, var(--common-padding));
+  margin-block-end: var(--spacer-margin-y-end, var(--common-padding));
+  .spacer-content {
+    color: var(--spacer-title-color, var(--body-color));
+    text-transform: var(--spacer-title-transform, initial);
+    font-weight: var(--spacer-font-weight, 400);
+    font-size: var(--spacer-font-size, var(--base-body-font-size));
+  }
+  .line {
+    width: 100%;
+    height: var(--spacer-line-height, 1px);
+    background-color: var(--spacer-line-color, var(--border-color));
+    display: block;
+  }
+}

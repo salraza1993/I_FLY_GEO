@@ -1,14 +1,19 @@
 :host {
-  padding: var(--common-padding);
   display: grid;
-  gap: 1rem;
   position: relative;
-}
+  .page-heading {
+    --title-strong-color: var(--accent);
+    --title-font-family: var(--verbatim_light);
+    --title-strong-font-family: var(--verbatim_bold);
+  }
 
-
-/* centering text */
-section {
-  display: grid;
-  place-items: center;
-  text-align: center;
+  .report-title-header {
+    --title-font-size: var(--fs-h5);
+    --title-transform: uppercase;
+  }
 }
+p { text-align: center; font-weight: 700; padding: 0.5rem;}
+.col {
+  border: 1px solid red;
+}
+/* .container {} */

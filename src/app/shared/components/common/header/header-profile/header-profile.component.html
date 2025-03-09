@@ -1,7 +1,12 @@
 <div class="profile-button" [ngClass]="{'is-opened': showDropdown()}" (click)="dropdownToggler(!showDropdown())">
   <div class="img-name">
-    <div class="profile-image">
-      <img [src]="userProfile().userImage" alt="user image" />
+    <div class="profile-image grid-content-center">
+      @if(userProfile().userImage) {
+        <img [src]="userProfile().userImage" alt="user image" />
+      } @else {
+        <i class="fa-solid fa-user"></i>
+      }
+
     </div>
     <strong class="m-0">{{userProfile().firstName}} {{userProfile().lastName}}</strong>
   </div>

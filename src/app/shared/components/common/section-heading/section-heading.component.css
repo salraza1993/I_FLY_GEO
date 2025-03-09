@@ -1,0 +1,44 @@
+:host {
+  --gaps: calc(1rem + 0.5vw);
+  position: relative;
+  display: flex;
+  .section-header {
+    position: sticky;
+    inset-block-start: calc(var(--header-height) + 0.6rem);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gaps);
+    isolation: isolate;
+
+    .title-block {
+      position: relative;
+      display: grid;
+      gap: calc(var(--common-padding) / 4);
+      .title {
+        color: var(--title-color, var(--body-color));
+        font-family: var(--title-font-family, var(--body-font-family));
+        font-size: var(--title-font-size, var(--fs-h4));
+        text-transform: var(--title-transform, initial);
+        .title-strong {
+          color: var(--title-strong-color, var(--title-color));
+          font-family: var(--title-strong-font-family, var(--title-font-family));
+          font-weight: var(--title-strong-font-weight, 700);
+        }
+      }
+      .description {
+        color: var(--description-color, var(--body-color));
+        .description-strong {
+          color: var(--description-strong-color, var(--description-color))
+        };
+      }
+    }
+    .block-scope {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: calc(var(--gaps) / 2);
+      width: max-content;
+    }
+  }
+}
