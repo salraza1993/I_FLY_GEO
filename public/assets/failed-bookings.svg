@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72.266" height="72.559" viewBox="0 0 72.266 72.559">
+  <g id="failed-bookings" transform="translate(0.512 0.747)">
+    <g id="Group_3576" data-name="Group 3576">
+      <rect id="Rectangle_1165" data-name="Rectangle 1165" width="13.415" height="13.415" rx="6.589" transform="translate(2 28.745)" fill="none" stroke="#ddd" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="Line_417" data-name="Line 417" x2="24.305" transform="translate(26.056 3.359)" fill="none" stroke="#ddd" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <rect id="Rectangle_1166" data-name="Rectangle 1166" width="13.415" height="13.415" rx="6.589" transform="translate(2 56.397)" fill="none" stroke="#ddd" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="Line_418" data-name="Line 418" x2="39.52" transform="translate(26.056 68.454)" fill="none" stroke="#ddd" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_4374" data-name="Path 4374" d="M2.314,10.08l4.959,5.336L15.415,2" fill="none" stroke="#ddd" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    </g>
+    <g id="Group_3818" data-name="Group 3818">
+      <line id="Line_419" data-name="Line 419" x2="15.932" y2="15.932" transform="translate(40.178 28.179)" fill="none" stroke="#ff6700" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="Line_420" data-name="Line 420" x1="15.932" y2="15.932" transform="translate(40.178 28.179)" fill="none" stroke="#ff6700" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    </g>
+    <rect id="Rectangle_1167" data-name="Rectangle 1167" width="43.698" height="43.701" rx="21.849" transform="translate(26.056 14.055)" fill="none" stroke="#1511b1" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  </g>
+</svg>

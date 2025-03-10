@@ -1,0 +1,41 @@
+<section-heading class="report-title-header p-0" [title]="['Today`s', 'Report']" [contentScopeEnd]="true">
+  <div class="d-flex" [style]="{'gap': '1rem'}">
+    <custom-tabs [setTabs]="subTabs()" />
+    <a routerLink="/bookings" type="button" class="button icon-only">
+      <div class="icon">
+        <i class="fa-regular fa-arrow-up-right"></i>
+      </div>
+    </a>
+  </div>
+</section-heading>
+<div class="reports-wrapper">
+  <report-elements
+    legend
+    counter="$2530.0"
+    title="Total Transaction"
+    [icon]="IconTransactionsComponent" />
+
+  <report-elements
+    counter="150"
+    title="Bookings"
+    [icon]="IconBookingsComponent" />
+
+  <report-elements
+    counter="150"
+    title="Hold Bookings"
+    [icon]="IconHoldBookingsComponent" />
+
+  <report-elements
+    counter="150"
+    title="Failed Bookings"
+    [icon]="IconFailedBookingsComponent" />
+
+  <report-elements
+    counter="150"
+    title="Change Request"
+    [icon]="IconChangeRequestComponent" />
+
+
+</div>
+
+

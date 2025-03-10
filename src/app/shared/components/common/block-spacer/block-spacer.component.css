@@ -1,4 +1,5 @@
 :host {
+  --base-margin: 1rem;
   display: flex;
   align-items: center;
   gap: var(--common-padding);
@@ -18,4 +19,13 @@
     background-color: var(--spacer-line-color, var(--border-color));
     display: block;
   }
+  &:is(.gap--1) { --gaps: calc(var(--base-gap) * 1); }
+  &:is(.gap--1_5) { --gaps: calc(var(--base-gap) * 1.5); }
+  &:is(.gap--2) { --gaps: calc(var(--base-gap) * 2); }
+  &:is(.gap--2_5) { --gaps: calc(var(--base-gap) * 2.5); }
+  &:is(.gap--3) { --gaps: calc(var(--base-gap) * 3); }
+  &:is(.gap--3_5) { --gaps: calc(var(--base-gap) * 3.5); }
+  &:is(.gap--4) { --gaps: calc(var(--base-gap) * 4); }
+  &:is(.gap--4_5) { --gaps: calc(var(--base-gap) * 4.5); }
+  &:is(.gap--5) { --gaps: calc(var(--base-gap) * 5); }
 }

@@ -1,0 +1,25 @@
+@if(legend()) {
+  <div class="legend-block">
+    @if(icon) {
+      <div class="element-icon">
+        <ng-container *ngComponentOutlet="icon || null"></ng-container>
+      </div>
+    }
+    <div class="content">
+      <h4 class="m-0 text--accent">{{ counter() }}</h4>
+      <p class="m-0 title font-weight--700">{{ title() }}</p>
+    </div>
+  </div>
+} @else {
+  @if(icon) {
+    <div class="icon-n-title">
+      <div class="element-icon">
+        <ng-container *ngComponentOutlet="icon || null"></ng-container>
+      </div>
+      <h4 class="m-0">{{ counter() }}</h4>
+    </div>
+    <p class="m-0 title text--uppercase font-weight--700">{{ title() }}</p>
+  }
+
+}
+

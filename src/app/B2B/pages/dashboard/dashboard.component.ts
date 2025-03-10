@@ -1,16 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { SectionHeadingComponent } from "../../../shared/components/common/section-heading/section-heading.component";
 import { BlockSpacerComponent } from "../../../shared/components/common/block-spacer/block-spacer.component";
-import { CustomTabsComponent } from "../../../shared/components/common/custom-tabs/custom-tabs.component";
-interface SubTabs {
-  label: string,
-  id: string,
-  selected: boolean,
-  method: (tabItem: SubTabs) => void,
-}
+import { DashboardReportsComponent } from "../../../shared/components/B2B/dashboard/dashboard-reports/dashboard-reports.component";
+import { DashboardGraphComponent } from "../../../shared/components/B2B/dashboard/dashboard-graph/dashboard-graph.component";
+
 @Component({
   selector: 'dashboard',
-  imports: [SectionHeadingComponent, BlockSpacerComponent, CustomTabsComponent],
+  imports: [SectionHeadingComponent, BlockSpacerComponent, DashboardReportsComponent, DashboardGraphComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
   host: {
@@ -18,14 +14,5 @@ interface SubTabs {
   }
 })
 export default class DashboardComponent {
-  public subTabs = signal<SubTabs[]>([
-    { label: "Day", id: "day", selected: true, method: this.tabHandler.bind(this) },
-    { label: "Week", id: "week", selected: false, method: this.tabHandler.bind(this) },
-    { label: "Month", id: "month", selected: false, method: this.tabHandler.bind(this) },
-  ]);
-  public tabHandler(tabItem: SubTabs): void {
-    this.subTabs.update((tabs) =>
-      tabs.map(tab => ({...tab, selected: tab.id === tabItem.id}))
-    )
-  }
+
 }

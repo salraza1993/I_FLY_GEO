@@ -1,0 +1,11 @@
+:host {
+  --elements-gap: var(--common-padding);
+  display: block;
+  display: grid;
+  gap: var(--elements-gap);
+  .reports-wrapper {
+    position: relative;
+    display: flex;
+    gap: var(--elements-gap);
+  }
+}
