@@ -12,13 +12,20 @@ html {
 
 body {
   color: var(--body-color);
-  background-color: var(--body-bg);
-  font-family: var(--base-body-font-size);
+  background-color: var(--body-backdrop-bg);
   font-weight: 400;
-  font-family: var(--body-font-family) !important;
   line-height: var(--body-line-height);
   min-height: 100vh;
   min-height: 100dvh;
+  font-family: var(--body-font-family) !important;
+  font-family: var(--base-body-font-size);
+  &[dir="rtl"] {
+    font-family: var(--fonts_arabic), var(--body-font-family) !important;
+  }
+  &:not(.auth-page) {
+    padding-inline-start: var(--aside-width);
+    padding-block-start: var(--header-height);
+  }
 }
 
 .root-wrapper {

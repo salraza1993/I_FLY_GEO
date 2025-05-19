@@ -1,0 +1,24 @@
+.language-switcher {
+  position: relative;
+  display: flex;
+  background-color: light-dark(var(--primary-95_light), var(--primary-75_dark));
+  padding: 0.25rem;
+  border-radius: var(--border-radius);
+  max-width: max-content;
+  & .language-switcher_list {
+    padding-inline: 1.5rem;
+    border-radius: calc(var(--border-radius) / 2);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    &:not(.active):hover {
+      background-color: light-dark(var(--primary-90_light), var(--primary-85_dark));
+    }
+    &:is(.active) {
+      background-color: light-dark(var(--primary-100_light), var(--primary-95_dark));
+    }
+  }
+}

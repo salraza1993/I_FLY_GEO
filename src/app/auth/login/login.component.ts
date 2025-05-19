@@ -1,12 +1,19 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { COMMON_IMPORTS } from '../../shared/helpers/common-imports';
 import { FlightWatermarkComponent } from "../components/flight-watermark/flight-watermark.component";
 import { ResponsiveClassDirective } from '../../core/directives/responsive-class.directive';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageSwitcherComponent } from '../../shared/components/common/language-switcher/language-switcher.component';
 
+interface LoginTranslations {
+  smallTitle: string;
+  title: string;
+  text: string;
+}
 @Component({
   selector: 'login-component',
-  imports: [...COMMON_IMPORTS, LoginFormComponent, FlightWatermarkComponent, ResponsiveClassDirective],
+  imports: [...COMMON_IMPORTS, LoginFormComponent, FlightWatermarkComponent, ResponsiveClassDirective, LanguageSwitcherComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css', '../styles/auth-common-styles.css'],
   host: {
@@ -14,12 +21,27 @@ import { ResponsiveClassDirective } from '../../core/directives/responsive-class
   }
 })
 export default class LoginComponent implements OnInit {
+  private translate = inject(TranslateService);
   public clientLogoPath = '/assets/client/';
-  public content = signal({
-    smallTitle: 'Access Your',
-    title: 'Dashboard',
-    text: 'Sign in to manage your trips, bookings, and travel preferences effortlessly.'
-  });
+  constructor() {
+    this.loadTranslatedData();
+    this.translate.onLangChange.subscribe(() => this.loadTranslatedData());
+  }
+  public content = signal<LoginTranslations>({ smallTitle: '', title: '', text: ''});
+
+  private loadTranslatedData(): void {
+    this.translate.get([
+      'LOGIN.SMALL_TITLE',
+      'LOGIN.TITLE',
+      'LOGIN.SHORT_INFO'
+    ]).subscribe(translations => {
+      this.content.set({
+        smallTitle: translations['LOGIN.SMALL_TITLE'],
+        title: translations['LOGIN.TITLE'],
+        text: translations['LOGIN.SHORT_INFO']
+      });
+    });
+  }
 
   ngOnInit(): void {
     console.log('Login Page is initialized');

@@ -3,11 +3,12 @@
   --btn-color: var(--accent-100);
   --btn-bg-hover: var(--accent-100);
   --btn-color-hover: var(--accent-color);
+  --btn-border-color: light-dark(var(--accent-40), var(--accent-30));
   --btn-ellipsis-color: light-dark(var(--primary-100_dark), var(--primary-100_dark));
   display: block;
   flex-shrink: 0;
   position: relative;
-
+  
   .header-wallet-button {
     position: relative;
     background-color: var(--btn-bg);
@@ -19,6 +20,7 @@
     gap: calc(var(--common-padding) / 4);
     transition: var(--transition);
     height: var(--grouped-elements-height);
+    box-shadow: inset 0 0 0 1px var(--btn-border-color);
     .wallet-amount {
       display: flex;
       align-items: center;
@@ -36,6 +38,7 @@
     }
     &:hover {
       background-color: var(--btn-bg-hover);
+      box-shadow: inset 0 0 0 1px var(--btn-bg-hover);
       .wallet-amount {
         color: var(--btn-color-hover);
       }

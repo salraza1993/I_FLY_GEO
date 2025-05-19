@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthCarouselComponent } from '../../auth/components/auth-carousel/auth-carousel.component';
 import { slideIn } from '../../shared/animations/slide.animations';
 import { ResponsiveClassDirective } from '../../core/directives/responsive-class.directive';
+import { BodyClassModifierService } from '../../core/services/body-modifier.service';
 
 @Component({
   selector: 'auth-layout',
@@ -14,4 +15,10 @@ import { ResponsiveClassDirective } from '../../core/directives/responsive-class
   imports: [AuthCarouselComponent, CommonModule, ResponsiveClassDirective],
   animations: [slideIn]
 })
-export class AuthLayoutComponent {}
+export class AuthLayoutComponent implements OnInit {
+  constructor(private bodyClassService: BodyClassModifierService) {}
+  ngOnInit() {
+    this.bodyClassService.removeBodyClass('default-page')
+    this.bodyClassService.addClassToBody('auth-page')
+  }
+}

@@ -4,5 +4,11 @@
   min-height: 100dvh;
   width: 100%;
   position: relative;
-  padding-inline-start: var(--aside-width);
+  border-start-start-radius: calc(var(--border-radius) * 2.5);
+  background-color: var(--body-bg);
+  border-block-start: 1px solid light-dark(var(--primary-85_light), var(--primary-100_dark));
+  border-inline-start: 1px solid light-dark(var(--primary-85_light), var(--primary-100_dark));
+  .body-content {
+    position: relative;
+  }
 }

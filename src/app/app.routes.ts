@@ -12,7 +12,7 @@ export const routes: Routes = [
     }
   },
   {
-    path: 'auth',
+    path: '',
     loadChildren: () => import('./layouts/auth-layout/auth.routes').then((auth) => auth.AUTH_ROUTES),
     resolve: {
       layout: setLayout(PageLayoutEnum.UnAuthorized)

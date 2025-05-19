@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewportService } from '../services/viewport.service';
 import { BodyClassModifierService } from '../services/body-modifier.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../services/language.service';
 
 export const COMMON_PROVIDERS = [
   importProvidersFrom(
@@ -16,6 +18,7 @@ export const COMMON_PROVIDERS = [
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ViewportService,
-    BodyClassModifierService
+    LanguageService,
+    BodyClassModifierService,
   )
 ];

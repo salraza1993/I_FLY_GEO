@@ -1,0 +1,23 @@
+{
+  "DASHBOARD": {
+    "WELCOME_HEADING": ["👋 Hello!", "Salman Raza"],
+    "WELCOME_SUB_TEXT": ["Welcome back to your", "Dashboard"],
+    "TABS": {
+      "WEEK": "Week",
+      "MONTH": "Month",
+      "DAY": "Day"
+    }
+  },
+  "BOOK_NOW": "Book Now",
+  "USER_NAME": "Salman Raza",
+  "LOGIN": {
+    "SMALL_TITLE": "ACCESS YOUR",
+    "TITLE": "DASHBOARD",
+    "SHORT_INFO": "Sign in to manage your trips, bookings, and travel preferences effortlessly.",
+    "FORGOT_PASSWORD": "Forgot Password?",
+    "BUTTON": "Proceed To Access",
+    "DO_NOT_HAVE_AN_ACCOUNT": "Don't have an Account?",
+    "REGISTER": "Register Now"
+
+  }
+}

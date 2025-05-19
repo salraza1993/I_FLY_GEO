@@ -49,13 +49,18 @@
     }
     .selected-strip {
       width: var(--tab-active-item-width, auto);
-      inset-inline-start: var(--tab-active-item-offset-x, 5px);
       height: var(--tab-light-height, calc(var(--common-btn-height) - 10px));
       background-color: var(--tab-list-bg-active, var(--tab-list-active-bg-fallback));
       border-radius: var(--tab-item-border-radius, calc(var(--border-radius) / 1.5));
       position: absolute;
       z-index: 0;
       transition: var(--transition);
+      &[dir="rtl"] {
+        inset-inline-end: var(--tab-active-item-offset-x, 5px);
+      }
+      &[dir="ltr"] {
+        inset-inline-start: var(--tab-active-item-offset-x, 5px);
+      }
     }
   }
 }

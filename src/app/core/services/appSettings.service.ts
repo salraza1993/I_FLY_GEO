@@ -1,14 +1,15 @@
-  import { Injectable } from '@angular/core';
-  import { HttpClient } from '@angular/common/http';
-  import { Observable } from 'rxjs';
-  @Injectable({
-    providedIn: 'root',
-  })
-  export class AppSettingsService {
-    private APP_SETTINGS = 'assets/static-json/appSettingConfig.json';
-    constructor(private http: HttpClient) {}
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AppSettingsDataTypes } from '../../types/appSettingInterface';
+@Injectable({
+  providedIn: 'root',
+})
+export class AppSettingsService {
+  private readonly APP_SETTINGS_URL = 'assets/static-json/appSettingConfig.json';
+  constructor(private http: HttpClient) { }
 
-    public initializeAppSetting(): Observable<any> {
-      return this.http.get(this.APP_SETTINGS);
-    }
+  public initializeAppSetting(): Observable<AppSettingsDataTypes> {
+    return this.http.get<AppSettingsDataTypes>(this.APP_SETTINGS_URL);
   }
+}

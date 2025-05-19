@@ -3,11 +3,10 @@
   --logo-border-radius: calc(var(--border-radius) * 2);
   --logo-border-color: light-dark(var(--primary-80_light), var(--transparent));
   display: block;
-  background-color: var(--logo-bg);
   height: calc(var(--header-height));
-  border: 1px solid var(--logo-border-color);
   border-block-start: 0;
   border-inline-start: 0;
+  /* background-color: var(--logo-bg); */
   /* border-end-start-radius: var(--logo-border-radius);
   border-end-end-radius: var(--logo-border-radius); */
   flex-shrink: 0;

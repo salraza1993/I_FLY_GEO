@@ -1,5 +1,5 @@
 :host {
-  --input-bg: light-dark(var(--primary-80_light), var(--primary-50_dark));
+  --input-bg: light-dark(var(--primary-20_dark), var(--primary-85_dark));
   --input-bg-focus: light-dark(var(--primary-100_dark), var(--primary-100_dark));
   --input-color-focus: light-dark(var(--primary-100_light), var(--primary-100_light));
   --input-focus-shadow: light-dark(var(--primary-10_dark), var(--primary-60_dark));

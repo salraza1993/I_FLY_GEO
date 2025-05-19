@@ -1,4 +1,4 @@
-<ul class="custom-tabs {{ tabsContainerClass() }}">
+<ul class="custom-tabs {{ tabsContainerClass() }}" [dir]="layoutDirection">
   @for (tab of setTabs(); track tab?.id) {
     <li
       [ngClass]="{ active: tab?.selected }"
@@ -7,5 +7,5 @@
       <span class="label">{{ tab?.label }}</span>
     </li>
   }
-  <span class="selected-strip" [style]="activeStripStyles()"></span>
+  <span class="selected-strip" [dir]="layoutDirection" [style]="activeStripStyles()"></span>
 </ul>

@@ -2,30 +2,51 @@
   color-scheme: light dark;
   --primary-hue: 0;
 
-  /* =======[ Light colors ]======= */
+  /* Light Theme Shades */
   --primary-100_light: hsl(var(--primary-hue), 0%, 100%);
-  --primary-90_light: hsl(var(--primary-hue), 0%, 97%);
-  --primary-80_light: hsl(var(--primary-hue), 0%, 92%);
-  --primary-70_light: hsl(var(--primary-hue), 0%, 89%);
-  --primary-60_light: hsl(var(--primary-hue), 0%, 85%);
-  --primary-50_light: hsl(var(--primary-hue), 0%, 81%);
-  --primary-40_light: hsl(var(--primary-hue), 0%, 77%);
-  --primary-30_light: hsl(var(--primary-hue), 0%, 73%);
-  --primary-20_light: hsl(var(--primary-hue), 0%, 69%);
-  --primary-10_light: hsl(var(--primary-hue), 0%, 65%);
+  --primary-95_light: hsl(var(--primary-hue), 0%, 95%);
+  --primary-90_light: hsl(var(--primary-hue), 0%, 90%);
+  --primary-85_light: hsl(var(--primary-hue), 0%, 85%);
+  --primary-80_light: hsl(var(--primary-hue), 0%, 80%);
+  --primary-75_light: hsl(var(--primary-hue), 0%, 75%);
+  --primary-70_light: hsl(var(--primary-hue), 0%, 70%);
+  --primary-65_light: hsl(var(--primary-hue), 0%, 65%);
+  --primary-60_light: hsl(var(--primary-hue), 0%, 60%);
+  --primary-55_light: hsl(var(--primary-hue), 0%, 55%);
+  --primary-50_light: hsl(var(--primary-hue), 0%, 50%);
+  --primary-45_light: hsl(var(--primary-hue), 0%, 45%);
+  --primary-40_light: hsl(var(--primary-hue), 0%, 40%);
+  --primary-35_light: hsl(var(--primary-hue), 0%, 35%);
+  --primary-30_light: hsl(var(--primary-hue), 0%, 30%);
+  --primary-25_light: hsl(var(--primary-hue), 0%, 25%);
+  --primary-20_light: hsl(var(--primary-hue), 0%, 20%);
+  --primary-15_light: hsl(var(--primary-hue), 0%, 15%);
+  --primary-10_light: hsl(var(--primary-hue), 0%, 10%);
+  --primary-5_light: hsl(var(--primary-hue), 0%, 5%);
 
-  /* =======[ Dark colors ]======= */
-  --primary-100_dark: hsl(var(--primary-hue), 0%, 10%);
-  --primary-90_dark: hsl(var(--primary-hue), 0%, 15%);
+  /* Dark Theme Shades (reversed logic for darker backgrounds) */
+  --primary-100_dark: hsl(var(--primary-hue), 0%, 0%);
+  --primary-95_dark: hsl(var(--primary-hue), 0%, 5%);
+  --primary-90_dark: hsl(var(--primary-hue), 0%, 10%);
+  --primary-85_dark: hsl(var(--primary-hue), 0%, 15%);
   --primary-80_dark: hsl(var(--primary-hue), 0%, 20%);
-  --primary-70_dark: hsl(var(--primary-hue), 0%, 25%);
-  --primary-60_dark: hsl(var(--primary-hue), 0%, 30%);
-  --primary-50_dark: hsl(var(--primary-hue), 0%, 35%);
-  --primary-40_dark: hsl(var(--primary-hue), 0%, 40%);
-  --primary-30_dark: hsl(var(--primary-hue), 0%, 45%);
-  --primary-20_dark: hsl(var(--primary-hue), 0%, 50%);
-  --primary-10_dark: hsl(var(--primary-hue), 0%, 55%);
-
+  --primary-75_dark: hsl(var(--primary-hue), 0%, 25%);
+  --primary-70_dark: hsl(var(--primary-hue), 0%, 30%);
+  --primary-65_dark: hsl(var(--primary-hue), 0%, 35%);
+  --primary-60_dark: hsl(var(--primary-hue), 0%, 40%);
+  --primary-55_dark: hsl(var(--primary-hue), 0%, 45%);
+  --primary-50_dark: hsl(var(--primary-hue), 0%, 50%);
+  --primary-45_dark: hsl(var(--primary-hue), 0%, 55%);
+  --primary-40_dark: hsl(var(--primary-hue), 0%, 60%);
+  --primary-35_dark: hsl(var(--primary-hue), 0%, 65%);
+  --primary-30_dark: hsl(var(--primary-hue), 0%, 70%);
+  --primary-25_dark: hsl(var(--primary-hue), 0%, 75%);
+  --primary-20_dark: hsl(var(--primary-hue), 0%, 80%);
+  --primary-15_dark: hsl(var(--primary-hue), 0%, 85%);
+  --primary-10_dark: hsl(var(--primary-hue), 0%, 90%);
+  --primary-5_dark: hsl(var(--primary-hue), 0%, 95%);
+  
+  /* =======[ Light/light colors ]======= */
   --primary-100: light-dark(var(--primary-100_light), var(--primary-100_dark));
   --primary-90: light-dark(var(--primary-90_light), var(--primary-90_dark));
   --primary-80: light-dark(var(--primary-80_light), var(--primary-80_dark));
@@ -130,7 +151,8 @@
   --warning-10_dark: hsl(40, 55%, 75%);
 
   /* useable variables */
-  --body-bg: light-dark(var(--primary-100_light), var(--primary-100_dark));
+  --body-backdrop-bg: light-dark(var(--primary-90_light), var(--primary-95_dark));
+  --body-bg: light-dark(var(--primary-100_light), var(--primary-85_dark));
   --body-bg_reversed: light-dark(var(--primary-100_dark), var(--primary-70_light));
   --body-color: light-dark(var(--primary-100_dark), var(--primary-100_light));
   --body-color_reversed: light-dark(var(--primary-100_light), var(--primary-100_dark));

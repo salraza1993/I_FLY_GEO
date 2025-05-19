@@ -1,5 +1,5 @@
 :host {
-  --block-bg: light-dark(var(--primary-80_light), var(--primary-50_dark));
+  --block-bg: light-dark(var(--primary-20_dark), var(--primary-85_dark));
   --block-bg-hover: var(--accent);
   --counter-bg: var(--accent);
   --counter-color: var(--accent-color);

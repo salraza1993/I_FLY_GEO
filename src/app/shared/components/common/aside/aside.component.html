@@ -1,9 +1,9 @@
-<div class="aside-bar-wrapper">
+<!-- <div class="aside-bar-wrapper">
   <div class="menu-item bar-menu cursor--pointer">
     <i class="fa-regular fa-bars"></i>
     <span class="tooltip-text">Expand Menus</span>
   </div>
-</div>
+</div> -->
 <ul class="aside-menu">
   @for (menu of asideMenus(); track menu) {
     <li
@@ -24,7 +24,7 @@
 
 </ul>
 
-<div class="menu-item setting-item margin-y-start--auto">
+<div class="menu-item setting-item margin-y-start--auto"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
   <a [routerLink]="'/settings'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
     class="menu-item__link menu-item">
     <i class="fa-light fa-gear"></i>

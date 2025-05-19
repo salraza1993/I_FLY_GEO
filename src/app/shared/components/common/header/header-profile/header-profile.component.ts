@@ -31,6 +31,6 @@ export class HeaderProfileComponent implements OnInit {
   }
   public redirect(label: String):void {}
   ngOnInit(): void {
-    this.userProfile.set(this.localStorage.getInnerItem('appSettings', 'user'));
+    this.userProfile.set(this.localStorage.getInnerItem('appSettings', 'userInfo'));
   }
 }

@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, effect, ElementRef, input, signal } from '@angular/core';
+import { AfterViewInit, Component, effect, ElementRef, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../../../core/services/language.service';
 
 @Component({
   selector: 'custom-tabs',
@@ -11,6 +12,8 @@ import { CommonModule } from '@angular/common';
   }
 })
 export class CustomTabsComponent implements AfterViewInit {
+  private _languageService = inject(LanguageService);
+  layoutDirection: "ltr" | "rtl" = this._languageService.getLayoutDirection;
   constructor(private elRef: ElementRef) {
     effect(() => {
       this.setTabs();

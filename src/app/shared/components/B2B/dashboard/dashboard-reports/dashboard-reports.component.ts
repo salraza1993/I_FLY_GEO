@@ -1,4 +1,4 @@
-import { Component, signal, Type } from '@angular/core';
+import { Component, inject, signal, Type } from '@angular/core';
 import { SectionHeadingComponent } from "../../../common/section-heading/section-heading.component";
 import { CustomTabsComponent } from "../../../common/custom-tabs/custom-tabs.component";
 import { RouterLink } from '@angular/router';
@@ -8,6 +8,7 @@ import { IconBookingsComponent } from './icons/icon-bookings/icon-bookings.compo
 import { IconHoldBookingsComponent } from './icons/icon-hold-bookings/icon-hold-bookings.component';
 import { IconChangeRequestComponent } from './icons/icon-change-request/icon-change-request.component';
 import { IconFailedBookingsComponent } from './icons/icon-failed-bookings/icon-failed-bookings.component';
+import { TranslateService } from '@ngx-translate/core';
 
 interface SubTabs {
   label: string,
@@ -32,17 +33,31 @@ type IconComponentType = Type<any>;
   }
 })
 export class DashboardReportsComponent {
+  private translate = inject(TranslateService);
   readonly IconTransactionsComponent: IconComponentType = IconTransactionsComponent;
   readonly IconBookingsComponent: IconComponentType = IconBookingsComponent;
   readonly IconHoldBookingsComponent: IconComponentType = IconHoldBookingsComponent;
   readonly IconFailedBookingsComponent: IconComponentType = IconFailedBookingsComponent;
   readonly IconChangeRequestComponent: IconComponentType = IconChangeRequestComponent;
+  public subTabs = signal<SubTabs[]>([]);
+  constructor() {
+    this.loadTranslatedTabs();
+    this.translate.onLangChange.subscribe(() => this.loadTranslatedTabs());
+  }
 
-  public subTabs = signal<SubTabs[]>([
-    { label: "Day", id: "day", selected: true, method: this.tabHandler.bind(this) },
-    { label: "Week", id: "week", selected: false, method: this.tabHandler.bind(this) },
-    { label: "Month", id: "month", selected: false, method: this.tabHandler.bind(this) },
-  ]);
+  private loadTranslatedTabs(): void {
+    this.translate.get([
+      'DASHBOARD.TABS.DAY',
+      'DASHBOARD.TABS.WEEK',
+      'DASHBOARD.TABS.MONTH'
+    ]).subscribe(translations => {
+      this.subTabs.set([
+        { label: translations['DASHBOARD.TABS.DAY'], id: 'day', selected: true, method: this.tabHandler.bind(this) },
+        { label: translations['DASHBOARD.TABS.WEEK'], id: 'week', selected: false, method: this.tabHandler.bind(this) },
+        { label: translations['DASHBOARD.TABS.MONTH'], id: 'month', selected: false, method: this.tabHandler.bind(this) },
+      ]);
+    });
+  }
 
   public tabHandler(tabItem: SubTabs): void {
     this.subTabs.update((tabs) =>

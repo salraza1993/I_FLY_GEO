@@ -1,5 +1,5 @@
 :host {
-  --btn-bg: light-dark(var(--primary-80_light), var(--primary-50_dark));
+  --btn-bg: light-dark(var(--primary-20_dark), var(--primary-65_dark));
   --image-border: light-dark(var(--primary-10_light), var(--primary-90_dark));
   --btn-color: var(--accent-100);
   --btn-bg-hover: var(--accent-100);
@@ -16,7 +16,7 @@
     height: var(--grouped-elements-height);
     border-radius: var(--grouped-wrapper-border-radius);
     cursor: pointer;
-    padding-inline-start: 3px;
+    padding-inline-start: 4px;
     transition: var(--transition);
     &:hover, &:is(.active, .is-opened, .selected) {
       --profile-image-bg: var(--accent-50);
@@ -29,10 +29,10 @@
       align-items: center;
       gap: calc(var(--common-padding) / 1.5);
       .profile-image {
-        width: calc(var(--grouped-elements-height) - 6px);
-        height: calc(var(--grouped-elements-height) - 6px);
+        width: calc(var(--grouped-elements-height) - 8px);
+        height: calc(var(--grouped-elements-height) - 8px);
         line-height: calc(var(--grouped-elements-height) + 5px);
-        border-radius: var(--border-radius);
+        border-radius: calc(var(--border-radius) / 1.5);
         background-color: var(--profile-image-bg);
         overflow: clip;
         i { font-size: 1.3rem; }

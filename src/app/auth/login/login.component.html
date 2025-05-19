@@ -14,10 +14,11 @@
     </div>
   </div>
   <login-form />
+  <language-switcher />
   <p [style]="{'margin-block-start': '1.5rem'}">
-    Don't have an account?
+    {{'LOGIN.DO_NOT_HAVE_AN_ACCOUNT' | translate }}
     <strong>
-      <a [routerLink]="['/register']" class="link">Register Now</a>
+      <a [routerLink]="['/register']" class="link">{{'LOGIN.REGISTER' | translate }}</a>
     </strong>
   </p>
 </div>

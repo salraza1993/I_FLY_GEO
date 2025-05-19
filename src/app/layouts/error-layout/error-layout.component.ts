@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BodyClassModifierService } from '../../core/services/body-modifier.service';
 
 @Component({
   selector: 'error-layout',
@@ -12,5 +13,9 @@ import { Component } from '@angular/core';
   }
 })
 export class ErrorLayoutComponent {
-
+  constructor(private bodyClassService: BodyClassModifierService) {}
+  ngOnInit():void {
+    this.bodyClassService.removeBodyClasses(['auth-page', 'default-page'])
+    this.bodyClassService.addClassToBody('error-page')
+  }
 }

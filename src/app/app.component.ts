@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { ErrorLayoutComponent } from "./layouts/error-layout/error-layout.component";
 import { AppSettingsService } from './core/services/appSettings.service';
 import { LocalStorageService } from './core/services/localStorage.service';
+import { BodyClassModifierService } from './core/services/body-modifier.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'root',
@@ -48,7 +50,14 @@ export class AppComponent implements OnInit {
 
   private appSettings = signal<any>(null);
 
-  constructor(public LayoutService : LayoutService) { }
+  constructor(
+    public LayoutService: LayoutService,
+    private bodyClassService: BodyClassModifierService,
+    private translate: TranslateService
+  ) { 
+    translate.setDefaultLang('en');
+    translate.use('en'); // could load from localStorage or browser
+  }
 
   ngOnInit(): void {
     this.appSettings.set(
@@ -58,5 +67,6 @@ export class AppComponent implements OnInit {
         }
       })
     )
+    this.bodyClassService.initializeRouteBasedClass();
   }
 }

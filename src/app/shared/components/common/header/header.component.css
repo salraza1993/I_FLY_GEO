@@ -1,19 +1,21 @@
 :host {
-  --header-bg: light-dark(var(--primary-80_light), var(--primary-90_dark));
+  --header-bg: light-dark(var(--primary-80_light), var(--primary-70_dark));
   --border-border-color: light-dark(var(--primary-80_light), transparent);
   --grouped-wrapper-height: calc(var(--header-height) - 20px);
   --grouped-wrapper-bg: light-dark(var(--primary-100_light), var(--primary-80_dark));
   --grouped-wrapper-border-radius: var(--border-radius);
-  --grouped-elements-height: calc(var(--grouped-wrapper-height) - 10px);
+  --grouped-elements-height: calc(var(--grouped-wrapper-height) - 5px);
 
   display: flex;
   width: 100%;
   height: var(--header-height);
-  position: sticky;
+  position: fixed;
   z-index: var(--max-z-index);
-  background-color: var(--header-bg);
-  border-block-end: 1px solid var(--border-border-color);
+  backdrop-filter: blur(10px);
+  background-color: var(--body-backdrop-bg);
+  /* border-block-end: 1px solid var(--border-border-color); */
   inset-block-start: 0;
+  inset-inline-start: 0;
 
   .header-wrapper {
     position: relative;
@@ -21,19 +23,19 @@
     display: flex;
     justify-content: space-between;
     padding-inline-end: var(--common-padding);
-    gap: var(--common-padding);
+    gap: calc(var(--common-padding) / 1.5);
   }
   .grouped-elements {
     position: relative;
-    background-color: var(--grouped-wrapper-bg);
-    height: var(--grouped-wrapper-height);
+    /* background-color: var(--grouped-wrapper-bg); */
+    /* height: var(--grouped-wrapper-height); */
     display: flex;
     align-items: center;
     margin-block: auto;
     gap: calc(var(--common-padding) / 1.5);
     width: 100%;
     border-radius: calc(var(--grouped-wrapper-border-radius) * 1.5);
-    padding: calc(var(--common-padding) / 3);
+    /* padding: calc(var(--common-padding) / 3); */
     &:is(.profile-block) {
       max-width: max-content;
     }

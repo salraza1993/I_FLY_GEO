@@ -1,15 +1,15 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { LanguageSwitchService } from 'src/app/services/languageSwitch.service';
+import { inject, Pipe, PipeTransform } from '@angular/core';
+import { LocalStorageService } from '../services/localStorage.service';
+import { LanguageService } from '../services/language.service';
 
 @Pipe({
   name: 'languageDirection',
   standalone: true,
 })
 export class LanguageDirectionPipe implements PipeTransform {
-  currentLanguage: string = 'en';
-  constructor(private _languageService: LanguageSwitchService) {
-  }
-  transform(value: string | unknown): string {
-    return value === 'ar' ? 'rtl' : 'ltr';
+  private _languageService = inject(LanguageService);
+
+  transform(): 'ltr' | 'rtl' {
+    return this._languageService.getLayoutDirection;
   }
 }
