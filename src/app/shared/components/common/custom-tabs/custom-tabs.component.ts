@@ -18,6 +18,7 @@ export class CustomTabsComponent implements AfterViewInit {
     effect(() => {
       this.setTabs();
       this.updateActiveStrip();
+      
     });
   }
   private tabsPlaceholder = [
