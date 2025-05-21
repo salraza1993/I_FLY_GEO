@@ -1,0 +1,29 @@
+<div class="setting-icon" [ngClass]="{ 'active': showDataListSignal() }" (click)="showSettingList(!showDataListSignal())" >
+  <i class="fa-solid fa-gear"></i>
+</div>
+@if(showDataListSignal()) {
+  <div class="setting-list" (clickOutside)="showSettingList(false)">
+    <div class="content-block">
+      <small>Theme Preference</small>
+      <ul class="block-selection-element theme-mode-switcher {{ selectedThemeMode() }}">
+        @for (themeItem of themeSelectionList(); track themeItem.id) {
+          <li class="block-selection-element__list {{themeItem.selected ? 'selected': ''}}" (click)="changeTheme(themeItem.id)">
+            {{ themeItem.label }}
+          </li>
+        }
+        <span class="active-strip {{ selectedThemeMode() }}" [dir]="languageService.currentDirectionSignal()"></span>
+      </ul>
+    </div>
+    <div class="content-block">
+      <small>Language Preference</small>
+      <ul class="block-selection-element language-switcher {{ selectedThemeMode() }}">
+        <li (click)="changeLanguage('en')" [ngClass]="{'active': currentLang() === 'en'}" class="block-selection-element__list">
+          English</li>
+        <li (click)="changeLanguage('ar')" [ngClass]="{'active': currentLang() === 'ar'}" class="block-selection-element__list">
+          عربية
+        </li>
+        <span class="active-strip {{ currentLang() }}" [dir]="languageService.currentDirectionSignal()"></span>
+      </ul>
+    </div>
+  </div>
+}
