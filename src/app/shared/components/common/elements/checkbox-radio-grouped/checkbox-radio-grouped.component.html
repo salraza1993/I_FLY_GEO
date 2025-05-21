@@ -1,0 +1,39 @@
+<div class="option-group">
+  @for (option of options(); track option.value) {  <!-- Added () here -->
+    @if (groupType() === 'checkbox') {
+      <label class="option-label">
+        <input
+          type="checkbox"
+          [name]="groupName()"
+          [value]="option.value"
+          [checked]="isChecked(option.value)"
+          (change)="onCheckboxChange(option.value, $event)"
+          [disabled]="option.disabled"
+        />
+        {{ option.label }}
+      </label>
+    } @else {
+      <label class="option-label">
+        <input
+          type="radio"
+          [name]="groupName()"
+          [value]="option.value"
+          [checked]="radioModel() === option.value"
+          (change)="radioModel.set(option.value)"
+          [disabled]="option.disabled"
+        />
+        {{ option.label }}
+      </label>
+    }
+  }
+</div>
+<!-- sample to be used in parent -->
+<!-- <checkbox-radio-grouped [groupType]="'checkbox'" [groupName]="'hobbies'" [options]="hobbyOptions()"
+  [(checkboxModel)]="selectedHobbies" />
+
+<h3>Select Your Gender</h3>
+<checkbox-radio-grouped [groupType]="'radio'" [groupName]="'gender'" [options]="genderOptions()"
+  [(radioModel)]="selectedGender" />
+
+<p>Selected Hobbies: {{ selectedHobbies() | json }}</p>
+<p>Selected Gender: {{ selectedGender() }}</p> -->

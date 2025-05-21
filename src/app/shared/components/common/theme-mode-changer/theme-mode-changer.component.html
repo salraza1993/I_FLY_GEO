@@ -1,0 +1,11 @@
+<ul class="theme-mode-changer {{ selectedThemeMode() }}">
+  @for (themeItem of themeSelectionList(); track themeItem.id) {
+    <li 
+      class="theme-mode-changer__list {{themeItem.selected ? 'selected': ''}}"
+      (click)="changeTheme(themeItem.id)">
+      <span class="icon"><i class="fa-{{themeItem.selected ? 'solid' : 'regular'}} {{themeItem.icon}}"></i></span>
+      <p class="label">{{ themeItem.label }}</p>
+    </li>
+  }
+  <span class="active-strip {{ selectedThemeMode() }}" [dir]="languageService.currentDirectionSignal()"></span>
+</ul>

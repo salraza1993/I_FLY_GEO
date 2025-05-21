@@ -2,12 +2,12 @@
 button.button,
 a.button,
 [role="button"] {
-  --btn-bg-fallback: light-dark(var(--primary-80_light), var(--primary-70_dark));
-  --btn-color-fallback: light-dark(var(--primary-100_dark), var(--primary-60_light));
-  --btn-hover-bg-fallback: light-dark(var(--primary-30_light), var(--primary-30_light));
+  --btn-bg-fallback: light-dark(var(--primary-85_light), var(--primary-70_dark));
+  --btn-color-fallback: light-dark(var(--primary-100_dark), var(--primary-90_light));
+  --btn-hover-bg-fallback: light-dark(var(--primary-30_light), var(--primary-90_light));
   --btn-hover-color-fallback: light-dark(var(--primary-100_dark), var(--primary-100_dark));
 
-  --border-color-fallback: light-dark(var(--primary-60_light), var(--primary-50_dark));
+  --border-color-fallback: light-dark(var(--primary-75_light), var(--primary-65_dark));
   --btn-box-shadow-fallback: light-dark(var(--primary-80_light), var(--primary-80_dark));
   --btn-padding-x-start-fallback: 0.985rem;
   --btn-padding-x-end-fallback: 0.985rem;
@@ -32,7 +32,6 @@ a.button,
   border: var(--btn-border-width, var(--border-width)) solid var(--btn-border-color, var(--border-color-fallback));
   border-radius: var(--btn-border-radius, var(--border-radius));
   background-color: var(--btn-bg, var(--btn-bg-fallback));
-  outline: none;
   transition: color .15s ease-in-out,
     background-color .15s ease-in-out,
     border-color .15s ease-in-out,
@@ -49,8 +48,8 @@ a.button,
   }
 
   &:not(:disabled, .disabled):is(:focus-visible, &:focus, &:focus-within) {
-    --btn-bg-fallback: light-dark(var(--primary-100_light), var(--primary-50_dark));
-    box-shadow: 0 0 0 var(--box-shadow-size, 0.25rem) var(--btn-box-shadow, var(--btn-box-shadow-fallback));
+    /* --btn-bg-fallback: light-dark(var(--primary-100_light), var(--primary-50_dark));
+    box-shadow: 0 0 0 var(--box-shadow-size, 0.25rem) var(--btn-box-shadow, var(--btn-box-shadow-fallback)); */
   }
 
   &:not(:disabled, .disabled):is(:active, &:target) {

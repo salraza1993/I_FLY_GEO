@@ -11,7 +11,7 @@
     <strong class="m-0">{{userProfile().firstName}} {{userProfile().lastName}}</strong>
   </div>
   <div class="icon icon-clickable">
-    <i class="fa-solid fa-ellipsis-v"></i>
+    <i class="fa-solid fa-ellipsis-{{showDropdown() ? 'h' : 'v'}}"></i>
   </div>
 </div>
 @if(showDropdown()) {
@@ -21,7 +21,9 @@
     [@dropDownMenu]>
     <ul class="dropdown__list">
       @for(list of userDropdownList(); track list.label) {
-      <li class="dropdown-anime-item dropdown__list__item {{list.class && list.class}}" (click)="dropdownToggler(false)">
+      <li 
+        class="dropdown-anime-item dropdown__list__item {{list.class && list.class}}" 
+        (click)="list.method ? list.method() : dropdownToggler(false)">
         @if(list.path) {
           <a (click)="redirect(list.label)" [routerLink]="list.path" class="dropdown__list__item--link">
             <span class="icon"><i class="fa-regular fa-{{list.icon}}"></i></span>
@@ -30,7 +32,7 @@
         } @else {
           <span class="icon"><i class="fa-regular fa-{{list.icon}}"></i></span>
           <span class="text">{{list.label}}</span>
-          }
+        }
       </li>
       }
     </ul>

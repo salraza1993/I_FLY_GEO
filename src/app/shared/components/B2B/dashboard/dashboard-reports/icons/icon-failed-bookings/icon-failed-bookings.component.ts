@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-icon-failed-bookings',
+  selector: 'icon-failed-bookings',
   imports: [],
   templateUrl: './icon-failed-bookings.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class IconFailedBookingsComponent {
 

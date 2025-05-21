@@ -35,12 +35,9 @@
       </span>
     </div>
   </div>
-  <div>
-    <input type="checkbox" name="" id="" />
-    <span>
-      <span>I agree to</span>&nbsp;
-      <a [routerLink]="['/terms-n-conditions']" class="link margin-start--auto">Terms & Conditions</a>
-    </span>
-  </div>
+  <checkbox [(checked)]="tncAgreement" [elementId]="'terms-n-conditions'" [elementName]="'terms-n-conditions'">
+    <span>I agree to</span>&nbsp;
+    <strong><a [routerLink]="['/terms-n-conditions']" class="link margin-start--auto">Terms & Conditions</a></strong>
+  </checkbox>
   <button type="submit" class="submit-btn btn-dark">Get Started</button>
 </form>

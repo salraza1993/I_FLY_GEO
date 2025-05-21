@@ -9,31 +9,14 @@
   </div>
 </section-heading>
 <div class="reports-wrapper">
-  <report-elements
-    legend
-    counter="$2530.0"
-    title="Total Transaction"
-    [icon]="IconTransactionsComponent" />
+  <report-elements [style.--card-opacity]="0.0" legend counter="$2530.0" [cardTitle]="'Total Transaction'" [icon]="IconTransactionsComponent" />
+  <div class="sub-wrapper">
+    <report-elements [style.--card-opacity]="0.10" counter="150" [cardTitle]="'Bookings'" [icon]="IconBookingsComponent" />
+    <report-elements [style.--card-opacity]="0.14" counter="150" [cardTitle]="'Hold Bookings'" [icon]="IconHoldBookingsComponent" />
+    <report-elements [style.--card-opacity]="0.18" counter="150" [cardTitle]="'Failed Bookings'" [icon]="IconFailedBookingsComponent" />
+    <report-elements [style.--card-opacity]="0.22" counter="150" [cardTitle]="'Change Request'" [icon]="IconChangeRequestComponent" />
 
-  <report-elements
-    counter="150"
-    title="Bookings"
-    [icon]="IconBookingsComponent" />
-
-  <report-elements
-    counter="150"
-    title="Hold Bookings"
-    [icon]="IconHoldBookingsComponent" />
-
-  <report-elements
-    counter="150"
-    title="Failed Bookings"
-    [icon]="IconFailedBookingsComponent" />
-
-  <report-elements
-    counter="150"
-    title="Change Request"
-    [icon]="IconChangeRequestComponent" />
+  </div>
 </div>
 
 

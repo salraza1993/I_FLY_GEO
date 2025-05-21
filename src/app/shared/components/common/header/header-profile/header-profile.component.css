@@ -1,5 +1,5 @@
 :host {
-  --btn-bg: light-dark(var(--primary-20_dark), var(--primary-65_dark));
+  --btn-bg: light-dark(var(--primary-90_light), var(--primary-80_dark));
   --image-border: light-dark(var(--primary-10_light), var(--primary-90_dark));
   --btn-color: var(--accent-100);
   --btn-bg-hover: var(--accent-100);

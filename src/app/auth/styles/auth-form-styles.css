@@ -1,14 +1,14 @@
 .form-wrapper {
   --form-max-width: 400px;
   --input-height: 53px;
-  --input-bg: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 35%));
-  --input-color: light-dark(hsl(0, 0%, 15%), hsl(0, 0%, 85%));
-  --input-border: light-dark(hsl(0, 0%, 85%), hsl(0, 0%, 45%));
-  --input-bg-focus: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 45%));
-
-  --button-bg: light-dark(hsl(0, 0%, 30%), hsl(0, 0%, 40%));
-  --button-color: light-dark(hsl(0, 0%, 90%), hsl(0, 0%, 90%));
+  --input-bg: light-dark(var(--primary-100_light), var(--primary-65_dark));
+  --input-color: light-dark(var(--primary-10_light), var(--primary-5_dark));
+  --input-border: light-dark(var(--primary-90_light), var(--primary-55_dark));
+  --input-bg-focus: light-dark(var(--primary-75_light), var(--primary-85_dark));
+  --button-bg: light-dark(var(--primary-85_light), var(--primary-90_dark));
+  --button-color: light-dark(var(--primary-30_light), var(--primary-20_dark));
   --button-active-bg: var(--accent);
+  --button-active-color: var(--accent-color);
 
   position: relative;
   max-width: var(--form-max-width);
@@ -19,6 +19,7 @@
   .input-grid {
     display: grid;
     gap: var(--common-margin);
+    width: 100%;
     &:is(.col-2) {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -103,7 +104,6 @@
 
   .submit-btn {
     width: 100%;
-    outline: none;
     border: 0;
     border-radius: var(--border-radius);
     height: var(--input-height);
@@ -116,7 +116,7 @@
     transition: var(--transition);
     &:hover {
       background-color: var(--button-active-bg);
-      color: hsl(0, 0%, 100%);
+      color: var(--button-active-color);
     }
   }
 }

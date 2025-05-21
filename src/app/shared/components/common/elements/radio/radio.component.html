@@ -1,0 +1,34 @@
+<input
+  class="radio-input"
+  type="radio"
+  [name]="elementName()"
+  [id]="elementId()"
+  [value]="value()"
+  [checked]="isChecked()"
+  (change)="onChange($event)"
+  [disabled]="disabled()"
+  [attr.aria-labelledby]="elementId() + '-label'"
+  [attr.aria-describedby]="description() ? elementId() + '-description' : null"
+  [attr.aria-disabled]="disabled()"
+/>
+<label
+  tabindex="0"
+  [id]="elementId() + '-label'"
+  [htmlFor]="elementId()"
+  (keydown.enter)="selectRadio()"
+  (keydown.space)="selectRadio()"
+  class="radio-label"
+  [class.checked]="isChecked()"
+  [attr.data-disabled]="disabled()"
+>
+  @if (label() === null) {
+    <ng-content />
+  } @else {
+    {{ label() }}
+  }
+</label>
+@if (description()) {
+  <small [id]="elementId() + '-description'" class="radio-description">
+    {{ description() }}
+  </small>
+}

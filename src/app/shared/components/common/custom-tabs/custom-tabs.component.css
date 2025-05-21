@@ -1,10 +1,10 @@
 :host {
-  --tab-bg-fallback: light-dark(var(--primary-80_light), var(--primary-80_dark));
-  --tab-color-fallback: light-dark(var(--primary-70_dark), var(--primary-50_light));
+  --tab-bg-fallback: light-dark(var(--primary-85_light), var(--primary-70_dark));
+  --tab-color-fallback: light-dark(var(--primary-90_dark), var(--primary-90_light));
   --tab-list-bg-hover-fallback: light-dark(var(--primary-30_light), var(--primary-30_dark));
   --tab-list-hover-color-fallback: light-dark(var(--primary-100_dark), var(--primary-100_light));
-  --tab-list-active-bg-fallback: light-dark(var(--primary-80_dark), var(--primary-30_dark));
-  --tab-list-active-color-fallback: light-dark(var(--primary-100_light), var(--primary-100_light));
+  --tab-list-active-bg-fallback: light-dark(var(--primary-85_dark), var(--primary-85_light));
+  --tab-list-active-color-fallback: light-dark(var(--primary-100_light), var(--primary-100_dark));
 
   position: relative;
   display: flex;

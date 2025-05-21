@@ -52,10 +52,13 @@ export class LanguageService {
   public get currentLangSignal() {
     return this._currentLang;
   }
+  public get currentDirectionSignal() {
+    return this._layoutDirection;
+  }
   public get currentLang(): string {
     return this._currentLang();
   }
-  get getLayoutDirection(): 'ltr' | 'rtl' {
+  public get getLayoutDirection(): 'ltr' | 'rtl' {
     return this._layoutDirection() as 'ltr' | 'rtl'
   }
 }

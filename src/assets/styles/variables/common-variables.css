@@ -30,6 +30,14 @@
   --header-height: 70px;
   --aside-width: 80px;
 
+  --outline-width: 0.15rem;
+  --outline-style: solid;
+  --outline-color: hsla(var(--light-hsl), 0.5);
+  --outline-bg: hsla(var(--light-hsl), 0.35);
+  --outline-text-color: inherit;
+  --outline-offset: 0.2rem;
+  --outline-radius: var(--border-radius);
+
 
   /* ===========[ Tooltip ]=========== */
   --tooltip-wrapper-bg: light-dark(var(--primary-80_dark), var(--primary-50_light));

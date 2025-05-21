@@ -6,8 +6,8 @@
   position: relative;
   border-start-start-radius: calc(var(--border-radius) * 2.5);
   background-color: var(--body-bg);
-  border-block-start: 1px solid light-dark(var(--primary-85_light), var(--primary-100_dark));
-  border-inline-start: 1px solid light-dark(var(--primary-85_light), var(--primary-100_dark));
+  border-block-start: 1px solid light-dark(var(--primary-90_light), var(--primary-75_dark));
+  border-inline-start: 1px solid light-dark(var(--primary-90_light), var(--primary-75_dark));
   .body-content {
     position: relative;
   }

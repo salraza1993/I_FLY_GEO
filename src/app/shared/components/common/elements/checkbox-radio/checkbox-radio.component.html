@@ -1,0 +1,46 @@
+<input
+  class="input-control"
+  [type]="type()"
+  [name]="elementName()"
+  [id]="elementId()"
+  [checked]="isChecked()"
+  (change)="onChange($event)"
+  [disabled]="disabled()"
+  [value]="value()"
+  [attr.aria-labelledby]="elementId() + '-label'"
+  [attr.aria-describedby]="description() ? elementId() + '-description' : null"
+  [attr.aria-disabled]="disabled()"
+/>
+<label
+  tabindex="0"
+  [id]="elementId() + '-label'"
+  [htmlFor]="elementId()"
+  (keydown.enter)="toggle()"
+  (keydown.space)="toggle()"
+  class="input-label"
+  [class.checked]="isChecked()"
+  [attr.data-disabled]="disabled()"
+>
+  @if (label() === null) {
+    <ng-content />
+  } @else {
+    {{ label() }}
+  }
+</label>
+@if (description()) {
+  <small [id]="elementId() + '-description'" class="input-description">
+    {{ description() }}
+  </small>
+}
+
+<!-- sample to be used in Parent -->
+<!-- <checkbox-radio type="checkbox" elementName="terms-agreement" elementId="terms-checkbox" [(checked)]="termsAccepted"
+  label="I agree to the terms" />
+<p>Agreed: {{ termsAccepted() }}</p>
+
+<checkbox-radio type="radio" elementName="payment-method" elementId="payment-credit" value="credit"
+  [(selectedValue)]="paymentMethod" label="Credit Card" />
+
+<checkbox-radio type="radio" elementName="payment-method" elementId="payment-paypal" value="paypal"
+  [(selectedValue)]="paymentMethod" label="PayPal" />
+<p>Payment: {{ paymentMethod() }}</p> -->

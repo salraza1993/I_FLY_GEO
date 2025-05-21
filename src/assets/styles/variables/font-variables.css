@@ -13,6 +13,7 @@
   --body-font-size: 1rem;
   --body-font-family: var(--fonts_english), var(--default-fonts) !important;
   --fa-default-font-weight: 400;
+  --font-awesome-family: "Font Awesome 6 Pro";
 
 
   /* 40px - 66px */

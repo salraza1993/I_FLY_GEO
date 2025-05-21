@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-icon-transactions',
+  selector: 'icon-transactions',
   imports: [],
   templateUrl: './icon-transactions.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class IconTransactionsComponent {}

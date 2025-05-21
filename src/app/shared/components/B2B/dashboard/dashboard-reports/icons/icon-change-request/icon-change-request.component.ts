@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-icon-change-request',
+  selector: 'icon-change-request',
   imports: [],
   templateUrl: './icon-change-request.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class IconChangeRequestComponent {
 

@@ -3,8 +3,15 @@ import { LocalStorageService } from '../../../../../core/services/localStorage.s
 import { dropDownMenu } from '../../../../animations/dropdownList.animation';
 import { ClickOutsideDirective } from '../../../../../core/directives/click-outside.directive';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
+type UserDropdownListDataTypes = {
+  label: string,
+  icon: string,
+  path?: string,
+  class?: string,
+  method?: () => void
+}
 @Component({
   selector: 'header-profile',
   imports: [ClickOutsideDirective, CommonModule, RouterModule],
@@ -19,11 +26,12 @@ import { RouterModule } from '@angular/router';
 export class HeaderProfileComponent implements OnInit {
   public userProfile = signal<any | null>(null);
   private localStorage = inject(LocalStorageService);
-  public userDropdownList = signal([
+  private router = inject(Router);
+  public userDropdownList = signal<UserDropdownListDataTypes[]>([
     { label: 'My Profile', icon: 'user', path: 'my-profile' },
     { label: 'Change Password', icon: 'lock', path: 'change-password' },
     { label: 'Settings', icon: 'gear', path: 'settings' },
-    { label: 'Logout', icon: 'arrow-right-from-bracket', class: 'logout' },
+    { label: 'Logout', icon: 'arrow-right-from-bracket', class: 'logout', method: this.logout.bind(this) },
   ]);
   public showDropdown = signal(false);
   public dropdownToggler(value: boolean): void {
@@ -32,5 +40,8 @@ export class HeaderProfileComponent implements OnInit {
   public redirect(label: String):void {}
   ngOnInit(): void {
     this.userProfile.set(this.localStorage.getInnerItem('appSettings', 'userInfo'));
+  }
+  logout():void {
+    this.router.navigate(['/login'])
   }
 }

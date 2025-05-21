@@ -25,7 +25,7 @@ type IconComponentType = Type<any>;
     CustomTabsComponent,
     RouterLink,
     ReportElementsComponent
-],
+  ],
   templateUrl: './dashboard-reports.component.html',
   styleUrl: './dashboard-reports.component.css',
   host: {

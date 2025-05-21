@@ -31,10 +31,11 @@
 }
 
 .dropdown-container {
-  --dropdown-bg-fallback: light-dark(var(--primary-80_dark), var(--primary-50_light));
-  --dropdown-bg-color: var(--body-color_reversed);
-  --dropdown-list-hover-bg-fallback: light-dark(var(--primary-50_dark), var(--primary-80_dark));
-  --dropdown-list-hover-color-fallback: light-dark(var(--primary-100_light), var(--primary-50_light));
+  --dropdown-bg-fallback: light-dark(var(--primary-100_light), var(--primary-15_dark));
+  --dropdown-bg-color: light-dark(var(--primary-90_dark), var(--primary-90_dark));
+  --dropdown-border-color-fallback: light-dark(var(--primary-85_light), var(--primary-10_dark));
+  --dropdown-list-hover-bg-fallback: light-dark(var(--primary-85_dark), var(--primary-80_dark));
+  --dropdown-list-hover-color-fallback: light-dark(var(--primary-95_light), var(--primary-90_light));
 
   --dropdown-list-active-bg-fallback: light-dark(var(--primary-10_dark), var(--primary-100_dark));
   --dropdown-list-active-hover-bg-fallback: light-dark(var(--primary-100_light), var(--primary-80_light));
@@ -49,7 +50,7 @@
     inset-block-start: var(--dropdown-position-y, calc(100% + 2px));
     padding: var(--dropdown-padding, calc(var(--common-padding) / 2.5));
     border-radius: var(--dropdown-border-radius, calc(var(--border-radius) * 1.5));
-    border: 1px solid var(--dropdown-border-color, var(--border-color));
+    border: 1px solid var(--dropdown-border-color, var(--dropdown-border-color-fallback));
     min-width: var(--dropdown-min-width, 210px);
 
     &:not(.direction--left, .direction--start, .start, .left) {

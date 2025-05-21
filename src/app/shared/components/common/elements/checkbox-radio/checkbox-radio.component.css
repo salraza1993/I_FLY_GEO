@@ -1,0 +1,79 @@
+:host {
+  position: relative;
+  display: flex;
+  max-width: max-content;
+
+  &.checkbox .input-label::before {
+    content: var(--input-value, '\f0c8');
+  }
+
+  &.checkbox .input-label.checked::before {
+    content: var(--input-checked-value, '\f14a');
+  }
+
+  &.radio .input-label::before {
+    content: var(--input-value, '\f111');
+  }
+
+  &.radio .input-label.checked::before {
+    content: var(--input-checked-value, '\f192');
+  }
+
+  .input-control {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+
+    &:is(:focus-visible, :focus)~.input-label::before {
+      outline: 2px solid var(--input-focus-color, #005fcc);
+      outline-offset: 2px;
+    }
+  }
+
+  .input-label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-inline-start: calc(var(--input-size, 1.25rem) + var(--input-gap, 0.5rem));
+    font-weight: var(--input-label-weight, 400);
+    color: var(--input-label-color, currentColor);
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0;
+      font-family: var(--font-awesome-family);
+      font-weight: var(--input-icon-weight, 400);
+      width: var(--input-size, 1.25rem);
+      height: var(--input-size, 1.25rem);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: var(--input-icon-size, 1.25rem);
+      color: var(--input-icon-color, currentColor);
+    }
+
+    &.checked {
+      --input-icon-weight: 900;
+      font-weight: var(--input-active-label-weight, 700);
+      color: var(--input-active-label-color, var(--body-color));
+
+      &::before {
+        color: var(--input-active-icon-color, var(--accent));
+      }
+    }
+
+    &[data-disabled="true"] {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  .input-description {
+    font-size: 0.875rem;
+    color: var(--input-description-color, #666);
+    margin-top: -2px;
+    padding-inline-start: calc(var(--input-size, 1.25rem) + var(--input-gap, 0.5rem));
+  }
+}

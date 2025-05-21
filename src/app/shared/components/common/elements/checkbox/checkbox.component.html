@@ -1,0 +1,33 @@
+<input
+  class="checkbox-input"
+  type="checkbox"
+  [name]="elementName()"
+  [id]="elementId()"
+  [checked]="checked()"
+  (change)="onChange($event)"
+  [disabled]="disabled()"
+  [attr.aria-labelledby]="elementId() + '-label'"
+  [attr.aria-describedby]="description() ? elementId() + '-description' : null"
+  [attr.aria-disabled]="disabled()"
+/>
+<label
+  tabindex="0"
+  [id]="elementId() + '-label'"
+  [htmlFor]="elementId()"
+  (keydown.enter)="toggleCheckbox()"
+  (keydown.space)="toggleCheckbox()"
+  class="checkbox-label"
+  [class.checked]="checked()"
+  [attr.data-disabled]="disabled()"
+>
+  @if (label() === null) {
+    <ng-content />
+  } @else {
+    {{ label() }}
+  }
+</label>
+@if (description()) {
+  <small [id]="elementId() + '-description'" class="checkbox-description">
+    {{ description() }}
+  </small>
+}

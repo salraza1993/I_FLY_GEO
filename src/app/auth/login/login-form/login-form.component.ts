@@ -1,6 +1,7 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { COMMON_IMPORTS } from '../../../shared/helpers/common-imports';
 import { showPasswordToggler } from '../../helpers/CommonFunction';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { showPasswordToggler } from '../../helpers/CommonFunction';
   styleUrls: ['./login-form.component.css', '../../styles/auth-form-styles.css']
 })
 export class LoginFormComponent {
+  private router = inject(Router)
   // reference to create custom reuseable input
   // https://www.youtube.com/watch?v=nV7hnUAOS2Q&ab_channel=BabatundeLamidi
   // Angular 18
@@ -17,5 +19,8 @@ export class LoginFormComponent {
   public showPassword: WritableSignal<boolean> = signal(false);
   public showPasswordHandler(): void {
     showPasswordToggler(this.showPassword, this.showPassword());
+  }
+  public accessToDashboard():void {
+    this.router.navigate(['/dashboard'])
   }
 }

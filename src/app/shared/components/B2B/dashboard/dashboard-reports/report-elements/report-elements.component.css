@@ -1,48 +1,135 @@
 :host {
   --icon-size: 65px;
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--common-padding) / 1.25);
+  --block-bg: light-dark(var(--primary-100_light), var(--primary-85_dark));
+  --block-hover-bg: light-dark(var(--primary-100_light), var(--primary-65_dark));
+  --block-border: light-dark(var(--primary-90_light), var(--primary-60_dark));
+  --block-hover-border: light-dark(var(--primary-100_light), var(--primary-80_dark));
+  --stroke-primary-color: light-dark(var(--primary-50_light), var(--primary-40_dark));
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  gap: 0.5rem;
   position: relative;
   width: 100%;
   padding-block: calc(var(--common-padding) / 2 + 0.55vw);
   padding-inline: calc(var(--common-padding) / 2 + 0.55vw);
-  border: 1px solid var(--border-color);
-  border-radius: calc(var(--border-radius) * 1.5);
   transition: var(--transition);
-  background-color: light-dark(var(--primary-90_light), var(--primary-80_dark));
-  &:first-child {
-    min-width: calc(350px + 2vw);
-    justify-content: center;
-    /* align-items: center; */
-    padding-block: calc(var(--common-padding) + 0.55vw);
-    padding-inline: calc(var(--common-padding) + 0.55vw);
-    background-color: light-dark(var(--accent-10), var(--accent-70));
-    border-color: light-dark(var(--accent-30), var(--accent-70));
-  }
-  p { line-height: normal; }
+  cursor: pointer;
+  background-color: var(--block-bg);
+  isolation: isolate;
+  overflow: clip;
 
-  .icon-n-title {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: calc(var(--common-padding) * 2);
+  @media (width < 1300px) {
+    grid-template-columns: calc(var(--icon-size) * 1.25) 1fr;
   }
-  .legend-block {
-    --icon-size: 90px;
-    position: relative;
-    display: flex;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--body-color);
+    z-index: -1;
+    opacity: var(--card-opacity);
+    transition: inherit;
+  }
+
+  .element-icon {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-row-end: 1;
+    grid-column-end: 3;
+    display: grid;
     align-items: center;
-    gap: calc(var(--common-padding) * 2);
-    .content {
-      display: grid;
-      gap: 0.5rem;
+    width: 100%;
+
+    @media (width < 1300px) {
+      grid-row-end: 3;
+      grid-column-end: 2;
+    }
+
+    .icon-wrapper {
+      display: block;
+      max-height: var(--icon-size);
+      max-width: var(--icon-size);
+
+      img,
+      svg {
+        width: var(--icon-size);
+        height: var(--icon-size);
+        object-fit: contain;
+      }
     }
   }
-  .element-icon {
-    width: var(--icon-size);
-    aspect-ratio: 1;
-    flex-shrink: 0;
+
+  .counter {
+    grid-row-start: 1;
+    grid-column-start: 3;
+    grid-row-end: 1;
+    grid-column-end: 5;
+    display: flex;
+    align-items: center;
+
+    @media (width < 1300px) {
+      grid-row-start: 2;
+      grid-column-start: 2;
+      grid-row-end: 3;
+      grid-column-end: 3;
+    }
+  }
+
+  .block-title {
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-row-end: 3;
+    grid-column-end: 5;
+    display: flex;
+    align-items: center;
+
+    @media (width < 1300px) {
+      grid-row-start: 1;
+      grid-column-start: 2;
+
+      grid-row-end: 2;
+      grid-column-end: 3;
+    }
+  }
+
+  &:hover {
+    --card-opacity: 0 !important;
+    z-index: 1;
+    border-color: var(--block-hover-border);
+    background-color: var(--block-hover-bg);
+    box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.01),
+      0px 5px 5px rgba(3, 7, 18, 0.02),
+      0px 11px 12px rgba(3, 7, 18, 0.03),
+      0px 19px 21px rgba(3, 7, 18, 0.04),
+      0px 30px 33px rgba(3, 7, 18, 0.05);
+  }
+
+  &:is(.legend-block-wrapper) {
+    --icon-size: 90px;
+    width: 100%;
+    padding-block: calc(var(--common-padding) + 0.55vw);
+    padding-inline: calc(var(--common-padding) + 1vw);
+    background-color: light-dark(var(--primary-100_light), var(--primary-90_dark));
+    border-color: light-dark(var(--accent-30), var(--accent-70));
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: none;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    .content {
+      grid-row-start: 1;
+      grid-column-start: 3;
+    
+      grid-row-end: 2;
+      grid-column-end: 6;
+    }
+
+    @media (width < 1300px) {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+    }
   }
 }
-
