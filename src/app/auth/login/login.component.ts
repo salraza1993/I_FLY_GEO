@@ -1,9 +1,10 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { COMMON_IMPORTS } from '../../shared/helpers/common-imports';
 import { FlightWatermarkComponent } from "../components/flight-watermark/flight-watermark.component";
 import { ResponsiveClassDirective } from '../../core/directives/responsive-class.directive';
 import { TranslateService } from '@ngx-translate/core';
+import { ClientLogoComponent } from '../../shared/components/common/client-logo/client-logo.component';
 
 interface LoginTranslations {
   smallTitle: string;
@@ -12,9 +13,10 @@ interface LoginTranslations {
 }
 @Component({
   selector: 'login-component',
-  imports: [...COMMON_IMPORTS, LoginFormComponent, FlightWatermarkComponent, ResponsiveClassDirective],
+  imports: [...COMMON_IMPORTS, LoginFormComponent, FlightWatermarkComponent, ResponsiveClassDirective, ClientLogoComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css', '../styles/auth-common-styles.css'],
+  encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'auth-page-wrapper login-page'
   }

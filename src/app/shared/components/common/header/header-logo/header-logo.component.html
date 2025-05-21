@@ -1,5 +1,11 @@
 <picture class="header-logo">
-  <source srcset="{{clientLogoPath + 'logo-light.png'}}" media="(prefers-color-scheme: light)" />
-  <source srcset="{{clientLogoPath + 'logo-dark.png'}}" media="(prefers-color-scheme: dark)" />
-  <img src="{{clientLogoPath + 'logo-light.png'}}" alt="Client Logo" />
+  @if(themeService.themeModeSignal() === 'light') {
+    <img src="{{clientLogoPath + 'logo-light.png'}}" alt="Client Logo" />
+  } @else if(themeService.themeModeSignal() === 'dark') {
+    <img src="{{clientLogoPath + 'logo-dark.png'}}" alt="Client Logo" />
+  } @else {
+    <source srcset="{{clientLogoPath + 'logo-light.png'}}" media="(prefers-color-scheme: light)" />
+    <source srcset="{{clientLogoPath + 'logo-dark.png'}}" media="(prefers-color-scheme: dark)" />
+    <img src="{{clientLogoPath + 'logo-light.png'}}" alt="Client Logo" />
+  }
 </picture>

@@ -9,13 +9,13 @@
   svg {
     max-height: 75%;
     .gradient-strip {
-      color: light-dark(hsl(0, 0%, 93%), hsl(0, 0%, 27.5%));
+      color: light-dark(var(--primary-90_light), var(--primary-80_dark));
     }
     .aircraft {
-      color: light-dark(hsl(0, 0%, 88%), hsl(0, 0%, 30%));
+      color: light-dark(var(--primary-85_light), var(--primary-75_dark));
     }
     .aircraft-shadow {
-      color: light-dark(hsl(0, 0%, 92%), hsl(0, 0%, 22%));
+      color: light-dark(var(--primary-90_light), var(--primary-90_dark));
     }
   }
 }
