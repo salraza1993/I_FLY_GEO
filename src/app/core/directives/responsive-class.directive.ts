@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostListener, inject, Renderer2 } from '@angular/core';
-import { AddRemoveClassService } from './../services/add-remove-class.service';
+import { AddRemoveClassService } from '../../shared/services/add-remove-class.service';
 
 @Directive({
   selector: '[responsiveClass]',

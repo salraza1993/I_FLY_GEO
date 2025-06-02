@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CheckboxGroupedComponent } from './checkbox-grouped.component';
+import { AlertComponent } from './alert.component';
 
-describe('CheckboxGroupedComponent', () => {
-  let component: CheckboxGroupedComponent;
-  let fixture: ComponentFixture<CheckboxGroupedComponent>;
+describe('AlertComponent', () => {
+  let component: AlertComponent;
+  let fixture: ComponentFixture<AlertComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CheckboxGroupedComponent]
+      imports: [AlertComponent]
     })
     .compileComponents();
-
-    fixture = TestBed.createComponent(CheckboxGroupedComponent);
+    
+    fixture = TestBed.createComponent(AlertComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

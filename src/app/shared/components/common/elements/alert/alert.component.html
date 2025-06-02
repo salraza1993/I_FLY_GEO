@@ -1,0 +1,33 @@
+@if(isDismissible) {
+  <div 
+    [ngStyle]="{
+      '--bs-alert-padding-x-start': paddingXStart, 
+      '--bs-alert-padding-x-end': paddingXEnd, 
+      '--bs-alert-padding-y-start': paddingYStart,
+      '--bs-alert-padding-y-end': paddingYEnd,
+    }"
+    [ngClass]="{ 'alert-dismissible': showDismissibleIcon }"
+    class="alert alert-{{type}} alert-{{ size || 'salman'}} {{classes}}" 
+    role="alert">
+    @if(template) {
+      <div class="alert__body {{ alertBodyClass }}">
+        <ng-content></ng-content>
+      </div>
+    } @else {
+      <div class="alert__header {{ alertHeaderClass }}"></div>
+      <div class="alert__body {{ alertBodyClass }}">
+        <div class="icon">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div class="content">{{ content }}</div>
+      </div>
+      <div class="alert__footer {{ alertFooterClass }}"></div>
+    }
+    @if(showDismissibleIcon) {
+      <span class="close-icon" (click)="closeAlert()"><i class="fa-regular fa-xmark"></i></span>
+    }
+    @if(dismissOnTimeout) {
+      <small class="dismisseOnTime">This alert will be removed in {{dismissOnTimeout}}s</small>
+    }
+  </div>
+}

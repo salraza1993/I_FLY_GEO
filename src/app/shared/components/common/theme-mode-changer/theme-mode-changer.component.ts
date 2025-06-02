@@ -1,9 +1,9 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ThemeMode, ThemeService } from '../../../../core/services/theme.service';
 import { COMMON_IMPORTS } from '../../../helpers/common-imports';
 import { LanguageDirectionPipe } from '../../../../core/pipes/direction.pipe';
-import { LanguageService } from '../../../../core/services/language.service';
+import { LanguageService } from '../../../services/language.service';
 import { FormsModule } from '@angular/forms';
+import { ThemeMode, ThemeService } from '../../../services/theme.service';
 
 export interface ThemeListTypes {
   label: string,

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { LocalStorageService } from '../../../../../core/services/localStorage.service';
+import { LocalStorageService } from '../../../../services/localStorage.service';
 import { dropDownMenu } from '../../../../animations/dropdownList.animation';
 import { ClickOutsideDirective } from '../../../../../core/directives/click-outside.directive';
 import { CommonModule } from '@angular/common';

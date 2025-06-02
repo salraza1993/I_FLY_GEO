@@ -1,5 +1,4 @@
 :host {
-  padding: var(--common-padding);
   display: grid;
   gap: 1rem;
   position: relative;

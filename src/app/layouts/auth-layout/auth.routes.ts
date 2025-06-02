@@ -17,5 +17,9 @@ export const AUTH_ROUTES: Routes = [
   {
     path: 'forget-password',
     loadComponent: () => import('../../auth/forget-password/forget-password.component')
-  }
+  },
+  // {
+  //   path: 'reset-password',
+  //   loadComponent: () => import('../../auth/reset-password/reset-password.component')
+  // }
 ];

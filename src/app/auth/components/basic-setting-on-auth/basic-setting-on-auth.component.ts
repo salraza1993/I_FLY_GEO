@@ -1,9 +1,9 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { COMMON_IMPORTS } from '../../../shared/helpers/common-imports';
 import { ThemeListTypes } from '../../../shared/components/common/theme-mode-changer/theme-mode-changer.component';
-import { LanguageService } from '../../../core/services/language.service';
-import { ThemeMode, ThemeService } from '../../../core/services/theme.service';
+import { LanguageService } from '../../../shared/services/language.service';
 import { ClickOutsideDirective } from '../../../core/directives/click-outside.directive';
+import { ThemeMode, ThemeService } from '../../../shared/services/theme.service';
 
 @Component({
   selector: 'basic-setting-on-auth',

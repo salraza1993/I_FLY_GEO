@@ -1,0 +1,79 @@
+*:focus-visible {
+  --outline-bg-fallback: light-dark(var(--primary-75_light), var(--primary-90_dark));
+  --outline-color-fallback: light-dark(var(--primary-75_light), var(--primary-50_dark));
+  background-color: var(--outline-bg, var(--outline-bg-fallback));
+  color: var(--outline-text-color, inherit);
+  border-color: var(--outline-border-color);
+  outline-width: var(--outline-width, 0.15rem);
+  outline-style: var(--outline-style, solid);
+  outline-color: var(--outline-color, var(--outline-color-fallback));
+  outline-offset: var(--outline-offset, 0.2rem);
+  border-radius: var(--outline-radius, var(--border-radius));
+}
+
+svg {
+  --stroke-width-fallback: 3;
+  stroke-width: var(--stroke-width, var(--stroke-width-fallback));
+
+  .svg-accent {
+    fill: var(--svg-accent-fill, var(--accent));
+  }
+
+  .svg-stroke-accent {
+    stroke-width: var(--stroke-accent-width, var(--stroke-width-fallback));
+    stroke: var(--stroke-accent-color, var(--accent));
+  }
+
+  .svg-secondary {
+    fill: var(--svg-secondary-fill, var(--secondary));
+  }
+
+  .svg-stroke-secondary {
+    stroke-width: var(--stroke-secondary-width, var(--stroke-width-fallback));
+    stroke: var(--stroke-secondary-color, var(--secondary));
+  }
+
+  .svg-primary {
+    fill: var(--svg-primary-fill, light-dark(var(--primary-95_dark), var(--primary-95_light)));
+  }
+
+  .svg-stroke-primary {
+    stroke-width: var(--stroke-primary-width, var(--stroke-width-fallback));
+    stroke: var(--stroke-primary-color, light-dark(var(--primary-60_light), var(--primary-60_dark)));
+  }
+}
+
+/* Header  */
+
+.header-wrapper {
+  .client-logo, client-logo {
+    --logo-bg: light-dark(var(--primary-100_light), var(--transparent));
+    --logo-border-radius: calc(var(--border-radius) * 2);
+    --logo-border-color: light-dark(var(--primary-80_light), var(--transparent));
+    display: block;
+    height: calc(var(--header-height));
+    flex-shrink: 0;
+    padding-inline: calc(var(--common-padding) / 1.25);
+    padding-block: calc(var(--common-padding) / 2.5);
+    picture {
+      display: flex;
+      width: 100%;
+      height: 100%;  
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.charts-wrapper {
+  .content-card-body {
+    background-color: light-dark(var(--primary-90_light), var(--primary-85_dark));
+    height: 150px;
+    display: grid;
+    place-items: center;
+    text-transform: uppercase;
+  }
+}

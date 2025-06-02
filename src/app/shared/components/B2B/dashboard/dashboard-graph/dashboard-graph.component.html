@@ -1,1 +1,23 @@
-<p>dashboard-graph works!</p>
+<div class="block-header">
+  <custom-tabs [setTabs]="subTabs()" isOnlyBordered />
+  <div class="block-end" class="d-flex" [style]="{'gap': '1rem'}">
+    <custom-tabs [setTabs]="daysTabs()" />
+    <a routerLink="/bookings" type="button" class="button icon-only">
+      <div class="icon">
+        <i class="fa-regular fa-arrow-up-right"></i>
+      </div>
+    </a>
+    <!-- <custom-button buttonType="button" iconAfter="fa-regular fa-arrow-up-right" title="Customize" /> -->
+  </div>
+</div>
+<div class="block-body">
+  <div class="charts-wrapper">
+    @for(card of dummyCards; track card) {
+      <content-card [cardTitle]="card.heading">
+        <div cardBodyContent>
+          <p>{{card.data}}</p>
+        </div>  
+      </content-card>
+    }
+  </div>
+</div>

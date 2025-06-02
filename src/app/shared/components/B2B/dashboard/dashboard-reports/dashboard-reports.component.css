@@ -2,8 +2,9 @@
   --legend-card-width: calc(320px + 2vw);
   --card-min-width: 200px;
   --elements-gap: var(--common-padding);
-  --wrapper-bg: light-dark(var(--primary-100_light), var(--primary-60_dark));
+  /* --wrapper-bg: light-dark(var(--primary-100_light), var(--primary-60_dark)); */
   --cards-border: light-dark(var(--primary-90_light), var(--primary-75_dark));
+  --elements-border-radius: calc(var(--border-radius) * 1.5);
   container: inline-size;
   display: block;
   display: grid;
@@ -15,9 +16,9 @@
     display: grid;
     grid-template-columns: var(--legend-card-width) 1fr;
     background-color: var(--wrapper-bg);
-    box-shadow: 0 0 0 1px var(--cards-border);
-    border-radius: calc(var(--border-radius) * 1.5);
-    overflow: clip;
+    /* box-shadow: 0 0 0 1px var(--cards-border); */
+    border-radius: var(--elements-border-radius);
+    /* overflow: clip; */
 
     .sub-wrapper {
       position: relative;

@@ -9,6 +9,7 @@ export const routes: Routes = [
     // canActivate: [AuthGuard],
     resolve: {
       layout: setLayout(PageLayoutEnum.Authorized)
+      
     }
   },
   {

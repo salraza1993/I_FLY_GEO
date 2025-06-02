@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LanguageService } from './language.service';
+import { EChartThemeService } from './echart-theme.service';
 
-describe('LanguageService', () => {
-  let service: LanguageService;
+describe('EChartThemeService', () => {
+  let service: EChartThemeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LanguageService);
+    service = TestBed.inject(EChartThemeService);
   });
 
   it('should be created', () => {

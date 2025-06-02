@@ -1,0 +1,38 @@
+:host {
+  --tab-bg: light-dark(var(--primary-100_light), var(--primary-75_dark));
+  position: relative;
+  display: block;
+  .block-header {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    .block-end {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  .block-body {
+    position: relative;
+    margin-block-start: calc(1rem + 0.5vw);
+
+    .charts-wrapper {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: calc(1rem + 0.25vw);
+
+      .cart-card {
+        position: relative;
+        width: 100%;
+        background-color: light-dark(var(--primary-100_light), var(--primary-75_dark));
+        box-shadow: 0 0 0 1px var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 1rem;
+        display: grid;
+        
+      }
+      
+    }
+  }
+}

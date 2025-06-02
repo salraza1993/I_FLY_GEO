@@ -1,4 +1,3 @@
-import { ViewportService } from './core/services/viewport.service';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LayoutService } from './layouts/layout.service';
@@ -7,9 +6,9 @@ import { DefaultLayoutComponent } from "./layouts/default-layout/default-layout.
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
 import { CommonModule } from '@angular/common';
 import { ErrorLayoutComponent } from "./layouts/error-layout/error-layout.component";
-import { AppSettingsService } from './core/services/appSettings.service';
-import { LocalStorageService } from './core/services/localStorage.service';
-import { BodyClassModifierService } from './core/services/body-modifier.service';
+import { AppSettingsService } from './shared/services/appSettings.service';
+import { LocalStorageService } from './shared/services/localStorage.service';
+import { BodyClassModifierService } from './shared/services/body-modifier.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -36,7 +35,7 @@ import { TranslateService } from '@ngx-translate/core';
 `,
   styleUrl: './app.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ViewportService, AppSettingsService, LocalStorageService],
+  providers: [AppSettingsService, LocalStorageService],
   host: {
     class: 'root-wrapper'
   }
@@ -44,7 +43,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent implements OnInit {
   title = 'i_fly_geo';
   readonly PageLayout = PageLayoutEnum;
-  private viewportService = inject(ViewportService);
   private appSettingsService = inject(AppSettingsService);
   private localStorageService = inject(LocalStorageService);
 
@@ -55,8 +53,8 @@ export class AppComponent implements OnInit {
     private bodyClassService: BodyClassModifierService,
     private translate: TranslateService
   ) { 
-    translate.setDefaultLang('en');
-    translate.use('en'); // could load from localStorage or browser
+    this.translate.setDefaultLang('en');
+    this.translate.use('en'); // could load from localStorage or browser
   }
 
   ngOnInit(): void {

@@ -1,0 +1,36 @@
+/* :host {
+  --table-bg_fallback: light-dark(var(--primary-100_light), var(--primary-100_dark));
+  --table-border-color_fallback: light-dark(var(--primary-90_light), var(--primary-90_dark));
+  --table-header-bg_fallback: light-dark(var(--primary-100_light), var(--primary-100_dark));
+  --table-padding-x_fallback: 1.5rem;
+  --table-padding-y_fallback: 1.5rem;
+  position: relative;
+  background-color: var(--table-bg, var(--table-bg_fallback));
+  display: grid;
+  gap: var(--table-gap, 1.5rem);
+  box-sizing: border-box;
+  padding-inline: var(--table-padding-x, var(--table-padding-x_fallback));
+  padding-block: var(--table-padding-x, var(--table-padding-y_fallback));
+  border-radius: var(--table-border-radius, calc(var(--border-radius) * 2));
+
+  &:not(.no-bordered) {
+    border: var(--table-border-width, 1px) var(--table-border-type, solid) var(--table-border-color, var(--table-border-color_fallback))
+  }
+
+
+  .table-header {
+    background-color: var(--table-header-bg, var(--table-header-bg_fallback));
+    background-color: var(--table-header-bg, red);
+  }
+
+  .table-body {
+    background-color: var(--table-body-bg, var(--table-bg_fallback));
+  }
+
+  .ngx-datatable .datatable-header {
+    position: relative;
+    background-color: blue !important;
+    display: flex !important;
+    align-items: center;
+  }
+} */

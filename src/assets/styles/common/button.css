@@ -2,12 +2,12 @@
 button.button,
 a.button,
 [role="button"] {
-  --btn-bg-fallback: light-dark(var(--primary-85_light), var(--primary-70_dark));
+  --btn-bg-fallback: light-dark(var(--primary-90_light), var(--primary-75_dark));
   --btn-color-fallback: light-dark(var(--primary-100_dark), var(--primary-90_light));
-  --btn-hover-bg-fallback: light-dark(var(--primary-30_light), var(--primary-90_light));
+  --btn-hover-bg-fallback: light-dark(var(--primary-90_dark), var(--primary-90_light));
   --btn-hover-color-fallback: light-dark(var(--primary-100_dark), var(--primary-100_dark));
 
-  --border-color-fallback: light-dark(var(--primary-75_light), var(--primary-65_dark));
+  --border-color-fallback: light-dark(var(--primary-80_light), var(--primary-70_dark));
   --btn-box-shadow-fallback: light-dark(var(--primary-80_light), var(--primary-80_dark));
   --btn-padding-x-start-fallback: 0.985rem;
   --btn-padding-x-end-fallback: 0.985rem;
@@ -32,10 +32,7 @@ a.button,
   border: var(--btn-border-width, var(--border-width)) solid var(--btn-border-color, var(--border-color-fallback));
   border-radius: var(--btn-border-radius, var(--border-radius));
   background-color: var(--btn-bg, var(--btn-bg-fallback));
-  transition: color .15s ease-in-out,
-    background-color .15s ease-in-out,
-    border-color .15s ease-in-out,
-    box-shadow .15s ease-in-out;
+  transition: var(--transition);
 
   .text {
     white-space: nowrap;

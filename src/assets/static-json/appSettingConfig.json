@@ -31,10 +31,6 @@
       "darkPrimary": "#1a1a1a",
       "darkSecondary": "#474747",
       "darkAccent": "#ffb700"
-    },
-    "logos": {
-      "light": "assets/client/logo-light.svg",
-      "dark": "assets/client/logo-dark.svg"
     }
   }
 }

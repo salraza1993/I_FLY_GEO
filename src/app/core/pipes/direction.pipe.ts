@@ -1,6 +1,6 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
-import { LocalStorageService } from '../services/localStorage.service';
-import { LanguageService } from '../services/language.service';
+import { LocalStorageService } from '../../shared/services/localStorage.service';
+import { LanguageService } from '../../shared/services/language.service';
 
 @Pipe({
   name: 'languageDirection',

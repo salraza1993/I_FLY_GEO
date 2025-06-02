@@ -1,0 +1,51 @@
+@import '/src/assets/scss/mixins';
+
+.alert {
+  --bs-alert-padding-x-start: 0.5rem;
+  --bs-alert-padding-x-end: 0.5rem;
+  --bs-alert-padding-y-start: 0.25rem;
+  --bs-alert-padding-y-end: 0.25rem;
+  --bs-alert-gaps: 0.5rem;
+  --bs-alert-icon-size: 30px;
+  --bs-alert-icon-font-size: clamp(1.25rem, calc(1rem + 10vw), 1.15rem);
+
+  display: flex;
+  flex-direction: column;
+  padding-inline-start: var(--bs-alert-padding-x-start);
+  padding-inline-end: var(--bs-alert-padding-x-end);
+  padding-block-start: var(--bs-alert-padding-y-start);
+  padding-block-end: var(--bs-alert-padding-y-end);
+  &-dismissible {
+    padding-inline-end: calc(var(--bs-alert-padding-x) * 1.5 + var(--bs-alert-icon-size));
+  }
+  &__body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--bs-alert-gaps);
+    .content {
+      p {
+        margin-block-end: 0.5rem;
+        line-height: normal;
+        &:last-child {
+          margin: 0 !important;
+        }
+      }
+    }
+  }
+  .icon {
+    width: var(--bs-alert-icon-size);
+    aspect-ratio: 1 / 1;
+    @include centerItems();
+    flex-shrink: 0;
+    font-size: var(--bs-alert-icon-font-size);
+  }
+  .close-icon {
+    @extend .icon;
+    position: absolute;
+    cursor: pointer;
+    inset-inline-end: calc(var(--bs-alert-padding-x-end) - 0.2rem);
+    transition: var(--bs-transition);
+    @include iconHoverAfter();
+  }
+}

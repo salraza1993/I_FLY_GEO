@@ -1,0 +1,33 @@
+@if(cardTitle() || hasCardHeader() || hasCardHeaderStartBlock() || hasCardHeaderEndBlock()) {
+  <div class="content-card-header">
+    @if(cardTitle()) {<h6 class="block-start">{{ cardTitle()}}</h6>} 
+    @else if(hasCardHeaderStartBlock() || hasCardHeaderEndBlock()) {
+      <div class="block-start" *ngIf="hasCardHeaderStartBlock()">
+        <ng-content select="[cardHeaderBlockStart]"></ng-content>
+      </div>
+      <div class="block-end" *ngIf="hasCardHeaderStartBlock()">
+        <ng-content select="[cardHeaderBlockEnd]"></ng-content>
+      </div>
+    } @else {
+      <ng-content select="[cardHeaderContent]"></ng-content>      
+    }
+  </div>
+}
+<div class="content-card-body">
+  <ng-content select="[cardBodyContent]"></ng-content>
+</div>
+@if(hasCardFooter() || hasCardFooterStartBlock() || hasCardFooterEndBlock()) {
+  <div class="content-card-footer">
+    @if(hasCardFooterStartBlock() || hasCardFooterEndBlock()) {
+    <div class="block-start" *ngIf="hasCardFooterStartBlock()">
+      <ng-content select="[cardFooterBlockStart]"></ng-content>
+    </div>
+    <div class="block-end" *ngIf="hasCardFooterEndBlock()">
+      <ng-content select="[cardFooterBlockEnd]"></ng-content>
+    </div>
+    } @else {
+      <ng-content select="[cardFooterContent]"></ng-content>
+    }
+  </div>
+}
+

@@ -1,7 +1,7 @@
 .auth-content-wrapper {
-  --auth-wrapper-bg: light-dark(var(--primary-95_light), var(--primary-85_dark));
+  --auth-wrapper-bg: light-dark(var(--primary-95_light), var(--primary-75_dark));
   --auth-client-logo-bg: light-dark(var(--primary-100_light), var(--primary-90_dark));
-  --auth-client-logo-border: light-dark(var(--primary-80_light), var(--primary-80_dark));
+  --auth-client-logo-border: light-dark(var(--primary-80_light), var(--primary-95_dark));
   --auth-wrapper-max-width: calc(500px + 20vw);
 
   display: flex;

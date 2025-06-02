@@ -1,7 +1,7 @@
 import { booleanAttribute, Component, input } from '@angular/core';
 
 @Component({
-  selector: 'app-custom-button-link, custom-button-link, a[customButtonLink] a[role="button"]',
+  selector: 'app-custom-button-link, custom-button, custom-button-link, a[customButtonLink] a[role="button"]',
   imports: [],
   templateUrl: './custom-button-link.component.html',
   styleUrl: './custom-button-link.component.css',

@@ -8,7 +8,9 @@ import { booleanAttribute, Component, input, signal } from '@angular/core';
   styleUrl: './custom-button.component.css',
   host: {
     'class': 'button',
-    'area-label': ''
+    'aria-label': 'button',
+    '[attr.role]': 'button',
+    '[attr.index]': '0',
   }
 })
 export class CustomButtonComponent {

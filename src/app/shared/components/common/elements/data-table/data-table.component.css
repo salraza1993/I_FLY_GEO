@@ -1,0 +1,92 @@
+.data-table-wrapper {
+  --table-wrapper-bg_fallback: light-dark(var(--primary-100_light), var(--primary-85_dark));
+  --table-border-color_fallback: light-dark(var(--primary-100_light), var(--primary-75_dark));
+  --table-wrapper-header-bg_fallback: light-dark(var(--primary-100_light), var(--primary-75_dark));
+  --table-head-bg_fallback: light-dark(var(--primary-10_light), var(--primary-70_dark));
+  --table-head-color_fallback: light-dark(var(--primary-100_light), var(--primary-100_light));
+  --table-wrapper-padding-x_fallback: calc(1rem + 0.5vw);
+  --table-wrapper-padding-y_fallback: calc(1rem + 0.5vw);
+
+  --table-row-odd-bg_fallback: light-dark(var(--primary-95_light), var(--primary-80_dark));
+  --table-row-even-bg_fallback: light-dark(var(--primary-90_light), var(--primary-75_dark));
+  
+  position: relative;
+  background-color: var(--table-wrapper-bg, var(--table-wrapper-bg_fallback));
+  display: flex;
+  flex-direction: column;
+  gap: var(--table-gap, 1.5rem);
+  box-sizing: border-box;
+  padding-inline: var(--table-wrapper-padding-x, var(--table-wrapper-padding-x_fallback));
+  padding-block: var(--table-wrapper-padding-x, var(--table-wrapper-padding-y_fallback));
+  border-radius: var(--table-border-radius, calc(var(--border-radius) * 2));
+
+  &:not(.no-bordered) {
+    border: var(--table-wrapper-border-width, 1px) var(--table-wrapper-border-type, solid) var(--table-wrapper-border-color, var(--table-border-color_fallback))
+  }
+
+
+  .table-header {
+    background-color: var(--table-wrapper-header-bg, var(--table-wrapper-bg_fallback));
+  }
+
+  .table-body {
+    background-color: var(--table-wrapper-body-bg, var(--table-wrapper-bg_fallback));
+  }
+
+  .ngx-datatable {
+    .datatable-header {
+      position: relative;
+      background-color: var(--table-head-bg, var(--table-head-bg_fallback));
+      color: var(--table-head-color, var(--table-head-color_fallback));
+      display: flex;
+      align-items: center;
+      margin-block-end: var(--table-head-margin-bottom, 1rem);
+      border-radius: var(--table-head-border-radius, var(--border-radius));
+      height: var(--table-head-height, 45px) !important;
+      min-height: var(--table-head-height, 45px) !important;
+    }
+    .datatable-header, .datatable-row-wrapper {
+      /* padding-inline: var(--table-head-padding-x, 0.5rem); */
+    }
+    .datatable-body-cell,
+    .datatable-header-cell {
+      padding-inline: var(--table-cell-padding-x, 0.5rem);
+      padding-block: var(--table-cell-padding-y, 0.5rem);
+      &:first-child {
+        padding-inline-start: var(--table-cell-first-child-padding-x, 0.85rem);
+      }
+      &:last-child {
+        padding-inline-end: var(--table-cell-first-child-padding-x, 0.85rem);
+      }
+    }
+    .datatable-body {
+      position: relative;
+      background-color: var(--table-body-bg, var(--table-wrapper-bg_fallback));
+      /* border: var(--table-border-width, 1px) var(--table-border-type, solid) var(--table-border-color, var(--table-border-color_fallback)); */
+      /* border-radius: var(--table-border-radius, var(--border-radius)); */
+      .datatable-row-wrapper {
+        position: relative;
+        transition: var(--transition);
+        &:first-child {
+          border-start-start-radius: var(--table-border-radius, var(--border-radius));
+          border-start-end-radius: var(--table-border-radius, var(--border-radius));
+        }
+        &:last-child {
+          border-end-start-radius: var(--table-border-radius, var(--border-radius));
+          border-end-end-radius: var(--table-border-radius, var(--border-radius));
+        }
+        &:nth-child(odd) {
+          background-color: var(--table-row-odd-bg, var(--table-row-odd-bg_fallback));
+        }
+        &:nth-child(even) {
+          background-color: var(--table-row-even-bg, var(--table-row-even-bg_fallback));
+        }
+        &:hover, &:is(.active, .selected) {
+          background-color: var(--table-row-hover-bg, var(--accent));
+          color: var(--table-row-hover-color, var(--accent-color));
+          z-index: 1;
+        }
+      }
+    }
+  }
+}

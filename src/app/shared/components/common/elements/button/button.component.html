@@ -1,0 +1,43 @@
+@if(buttonTemplate) {
+  @if(type === 'link-external' || type === 'link-external' || type === 'external-link' || type === 'external') {
+    <a [href]="path" class="btn btn-{{size}} btn-{{color}} btn-hover--{{hover}} {{classes}}" [ngClass]="{ 'shadow' : shadow }">
+      <ng-content></ng-content>
+    </a>
+  } @else if(type === 'internal-link' || type === 'internal' || type === 'link-internal' || type === 'internal') {
+    <a [routerLink]="path" class="btn btn-{{size}} btn-{{color}} btn-hover--{{hover}} {{classes}}" [ngClass]="{ 'shadow' : shadow }">
+      <ng-content></ng-content>
+    </a>
+  } @else {
+    <button [type]="type" class="btn btn-{{size}} btn-{{color}} btn-hover--{{hover}} {{classes}}" [ngClass]="{ 'shadow' : shadow }">
+      <ng-content></ng-content>
+    </button>
+  }
+} @else {
+  @if(type === 'link-external' || type === 'link-external' || type === 'external-link' || type === 'external') {
+  <a [href]="path" class="btn btn-{{size}} btn-{{color}} btn-hover--{{hover}} {{classes}}" [ngClass]="{ 'shadow' : shadow }">
+    <i *ngIf="iconBefore" class="fa-{{iconBeforeType}} fa-{{iconBeforeName}}"></i>
+    <ng-container *ngIf="!iconOnly">
+      <span>{{buttonText}}</span>
+    </ng-container>
+    <i *ngIf="iconAfter" class="fa-{{iconAfterType}} fa-{{iconAfterName}}"></i>
+  </a>
+  } @else if(type === 'internal-link' || type === 'internal' || type === 'link-internal' || type === 'internal') {
+  <a [routerLink]="path" class="btn btn-{{size}} btn-{{color}} btn-hover--{{hover}} {{classes}}" [ngClass]="{ 'shadow' : shadow }">
+    <i *ngIf="iconBefore" class="fa-{{iconBeforeType}} fa-{{iconBeforeName}}"></i>
+    <ng-container *ngIf="!iconOnly">
+      <span>{{buttonText}}</span>
+    </ng-container>
+    <i *ngIf="iconAfter" class="fa-{{iconAfterType}} fa-{{iconAfterName}}"></i>
+  </a>
+  } @else {
+  <button [type]="type" class="btn btn-{{size}} btn-{{color}} btn-hover--{{hover}} {{classes}}" [ngClass]="{ 'shadow' : shadow }">
+    <i *ngIf="iconBefore" class="fa-{{iconBeforeType}} fa-{{iconBeforeName}}"></i>
+    <ng-container *ngIf="!iconOnly">
+      <span>{{buttonText}}</span>
+    </ng-container>
+    <i *ngIf="iconAfter" class="fa-{{iconAfterType}} fa-{{iconAfterName}}"></i>
+  </button>
+  }
+}
+
+

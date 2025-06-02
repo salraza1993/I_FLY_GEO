@@ -1,0 +1,147 @@
+<div class="table-container table-wrapper {{wrapperClass}}">
+  <!-- <div class="custom-table custom-table--{{size}}">
+    <div class="custom-table__head">
+      <ul class="custom-table__row">
+        <li class="custom-table__col col__{{column.key}} {{columnClasses}}" *ngFor="let column of setTableData[0].columns">
+          @if(column.capitalized) {
+            {{ column.label | uppercase }}
+          } @else {
+            {{ column.label | titlecase }}
+          }
+        </li>
+      </ul>
+    </div>
+    <div class="custom-table__body" (clickOutside)="hideActionsButtonsHandler()">
+      <ul class="custom-table__row" 
+        *ngFor="let row of setTableData[0]?.body; index as rowIndex" 
+        [ngClass]="{'selected': showActionsButtons && selectedRowIndex === rowIndex}" >
+        <li class="custom-table__col col__{{column.key}} {{columnClasses}}" *ngFor="let column of setTableData[0]?.columns">
+          @if(column.key === 'id') {
+            <a [routerLink]="row['id']?.path" class="fw-bold">{{ row['id']?.value }}</a>
+          } @else if(column.key === 'actions') {
+            @if(row[column.key].length > 0) {
+              <div class="action-buttons-container" [ngClass]="{'active': showActionsButtons && selectedRowIndex === rowIndex}"
+                (click)="showActionsButtonsHandler(rowIndex)">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+                @if(showActionsButtons && selectedRowIndex === rowIndex) {
+                <ul class="actions-buttons" @slideInLeft [ngClass]="{'opened': showActionsButtons && selectedRowIndex === rowIndex}">
+                  <li class="anime-slideInLeft actions-buttons__list type--{{actionItem?.label}}"
+                    *ngFor="let actionItem of row.actions">
+                    <a [routerLink]="actionItem?.path" class="" *ngIf="actionItem?.label === 'info'" title="View Details">
+                      <i class="fa-solid fa-circle-info"></i>
+                    </a>
+                    <span class="" *ngIf="actionItem?.label === 'delete'" (click)="deleteButtonHandler(row['id']?.value)"
+                      title="Delete Items">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </span>
+                    <span class="" *ngIf="actionItem?.label === 'edit'" title="Edit Details">
+                      <i class="fa-solid fa-edit"></i>
+                    </span>
+                  </li>
+                </ul>
+                }
+              </div>
+            }
+          } @else if(column.type === 'button') {
+            <app-status-button [text]="row[column.key] | titlecase" [type]="row[column.key] | lowercase"></app-status-button>
+          } @else if(column.type === 'switch') {
+            <app-switch-toggle [(ngToggle)]="row[column.key]" switchId="{{rowIndex}}" label="Inactive" activeLabel="Active"></app-switch-toggle>
+          } @else if(column.type === 'img' || column.type === 'image') {
+            <div class="table-image-block">
+              <span class="__image">
+                <img [src]="row[column.key]?.imagePath" alt="row[column.key]?.aircraftNumber" />
+              </span>
+              <small class="__value">
+                {{row[column.key]?.airlineId}}-{{row[column.key]?.airlineNumber}}
+              </small>
+            </div>
+          } @else if(column.type === 'datetime' || column.type === 'dateTime') {
+            <span class="d-inline-block __date">{{row[column.key]?.date }}</span>
+            <span class="d-inline-block __time">{{row[column.key]?.time }}</span>
+          } @else if(column.type === 'curPrice' || column.type === 'curprice') {
+            <span class="__currency">{{row[column.key]?.currency}} </span><span class="__price">{{row[column.key]?.amount }}</span>
+          } @else {
+            <span class="__text">{{ row[column.key] }}</span>
+          }
+        </li>
+      </ul>
+    </div>
+  </div> -->
+  <table class="custom-table custom-table--{{size}}">
+    <thead class="custom-table__thead">
+      <tr class="custom-table__tr">
+        <th class="custom-table__td th--{{column.key}} {{columnClasses}}" *ngFor="let column of setTableData[0].columns">
+          <div class="custom-table__td__cell cell__{{column.key}}-th">
+            @if(column.capitalized) {
+              {{ column.label | uppercase }}
+            } @else {
+              {{ column.label | titlecase }}
+            }
+          </div>          
+        </th>
+      </tr>
+      <tr class="custom-table__tr __blank"></tr>
+    </thead>
+    <tbody class="custom-table__tbody" (clickOutside)="hideActionsButtonsHandler()">
+      @for(row of setTableData[0]?.body; track row; let rowIndex = $index) {
+        <tr 
+          class="custom-table__tr" 
+          [ngClass]="{'selected': showActionsButtons && selectedRowIndex === rowIndex}">
+          <td class="custom-table__td td--{{column.key}} {{columnClasses}}" *ngFor="let column of setTableData[0]?.columns">
+            <div class="custom-table__td__cell cell__{{column.key}}">
+              @if(column.key === 'id') {
+                <a [routerLink]="row['id']?.path" class="fw-bold">{{ row['id']?.value }}</a>
+              } @else if(column.key === 'actions') {
+                @if(row[column.key].length > 0) {
+                  <div class="action-buttons-container" [ngClass]="{'active': showActionsButtons && selectedRowIndex === rowIndex}"
+                    (click)="showActionsButtonsHandler(rowIndex)">
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                      @if(showActionsButtons && selectedRowIndex === rowIndex) {
+                      <ul class="actions-buttons" @slideInLeft [ngClass]="{'opened': showActionsButtons && selectedRowIndex === rowIndex}">
+                        <li class="anime-slideInLeft actions-buttons__list type--{{actionItem?.label}}"
+                          *ngFor="let actionItem of row.actions">
+                          <a [routerLink]="actionItem?.path" class="" *ngIf="actionItem?.label === 'info'" title="View Details">
+                            <i class="fa-solid fa-circle-info"></i>
+                          </a>
+                          <span class="" *ngIf="actionItem?.label === 'delete'" (click)="deleteButtonHandler(row['id']?.value)"
+                            title="Delete Items">
+                            <i class="fa-solid fa-trash-can"></i>
+                          </span>
+                          <span class="" *ngIf="actionItem?.label === 'edit'" title="Edit Details">
+                            <i class="fa-solid fa-edit"></i>
+                          </span>
+                        </li>
+                      </ul>
+                      }
+                  </div>
+                }
+              } @else if(column.type === 'button') {
+                <app-status-button [text]="row[column.key] | titlecase" [type]="row[column.key] | lowercase"></app-status-button>
+              } @else if(column.type === 'switch') {
+                <app-switch-toggle [(ngToggle)]="row[column.key]" switchId="{{rowIndex}}" switchName="{{rowIndex}}" label="Inactive" activeLabel="Active"></app-switch-toggle>
+              } @else if(column.type === 'img' || column.type === 'image') {
+                <div class="table-image-block">
+                  <span class="__image">
+                    <img [src]="row[column.key]?.imagePath" alt="row[column.key]?.aircraftNumber" />
+                  </span>
+                  <small class="__value">
+                    {{row[column.key]?.airlineId}}-{{row[column.key]?.airlineNumber}}
+                  </small>
+                </div>
+              } @else if(column.type === 'datetime' || column.type === 'dateTime') {
+                <span class="d-block __date">{{row[column.key]?.date }}</span>                
+                <span class="d-block __time">{{row[column.key]?.time }}</span>
+              } @else if(column.type === 'curPrice' || column.type === 'curprice') {
+                <span class="__currency">{{row[column.key]?.currency}} </span><span class="__price">{{row[column.key]?.amount }}</span>
+              } @else {
+                <span class="__text">{{ row[column.key] }}</span>
+              }
+            </div>
+          </td>
+        </tr>
+        <tr class="custom-table__tr __blank"></tr>
+      }
+    </tbody>
+  </table>
+</div>
+

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthCarouselComponent } from '../../auth/components/auth-carousel/auth-carousel.component';
 import { slideIn } from '../../shared/animations/slide.animations';
 import { ResponsiveClassDirective } from '../../core/directives/responsive-class.directive';
-import { BodyClassModifierService } from '../../core/services/body-modifier.service';
+import { BodyClassModifierService } from '../../shared/services/body-modifier.service';
 import { BasicSettingOnAuthComponent } from '../../auth/components/basic-setting-on-auth/basic-setting-on-auth.component';
 
 @Component({

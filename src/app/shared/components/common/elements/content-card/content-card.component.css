@@ -1,0 +1,58 @@
+:host {
+  --card-bg_fallback: light-dark(var(--primary-100_light), var(--primary-75_dark));
+  --card-border-radius_fallback: calc(var(--border-radius) * 1.75);
+  --content-card-padding_fallback: 1rem;
+  position: relative;
+  background-color: var(--content-card-bg, var(--card-bg_fallback));
+  color: var(--content-card-color, var(--body-color));
+  border-radius: var(--content-card-border-radius, var(--card-border-radius_fallback));
+  box-shadow: 0 0 0 1px var(--content-card-border, var(--border-color));
+  display: grid;
+  align-items: start;
+  
+  & .content-card-header,  
+  & .content-card-footer {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: var(--content-card-padding, var(--content-card-padding_fallback));
+  }
+
+  &:has(.content-card-header) {
+    .content-card-header {
+      h1, h2, h3, h4, h5, h6 { margin-bottom: 0; }
+      padding-block-end: var(--content-card-padding, calc(var(--content-card-padding_fallback) / 1.5));
+      border-start-start-radius: var(--content-card-border-radius, var(--card-border-radius_fallback));
+      border-start-end-radius: var(--content-card-border-radius, var(--card-border-radius_fallback)); 
+    }
+  }
+  
+  &:has(.content-card-footer) {
+    .content-card-footer {
+      padding-block-start: var(--content-card-padding, calc(var(--content-card-padding_fallback) / 1.5));
+      border-end-start-radius: var(--content-card-border-radius, var(--card-border-radius_fallback));
+      border-end-end-radius: var(--content-card-border-radius, var(--card-border-radius_fallback)); 
+    }
+  }
+  & .content-card-body {
+    padding-inline: var(--content-card-padding, var(--content-card-padding_fallback));
+    padding-block: var(--content-card-padding, calc(var(--content-card-padding_fallback) / 2));
+  }
+  
+  &:not(:has(.content-card-header)) {
+    .content-card-body {
+      padding-block-start: var(--content-card-padding, calc(var(--content-card-padding_fallback) / 1));
+      border-start-start-radius: var(--content-card-border-radius, var(--card-border-radius_fallback));
+      border-start-end-radius: var(--content-card-border-radius, var(--card-border-radius_fallback));
+    }
+  }
+  &:not(:has(.content-card-footer)) {
+    .content-card-body {
+      padding-block-end: var(--content-card-padding, calc(var(--content-card-padding_fallback) / 1));
+      border-end-start-radius: var(--content-card-border-radius, var(--card-border-radius_fallback));
+      border-end-end-radius: var(--content-card-border-radius, var(--card-border-radius_fallback));
+    }
+  }
+  
+}

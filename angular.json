@@ -20,9 +20,7 @@
               "outputPath": "dist/i_fly_geo",
               "index": "src/index.html",
               "browser": "src/main.ts",
-              "polyfills": [
-                "zone.js"
-              ],
+              "polyfills": ["zone.js"],
               "tsConfig": "tsconfig.app.json",
               "inlineStyleLanguage": "css",
               "assets": [
@@ -33,6 +31,9 @@
                 }
               ],
               "styles": [
+                "node_modules/@swimlane/ngx-datatable/index.css",
+                "node_modules/@swimlane/ngx-datatable/themes/material.css",
+                "node_modules/@swimlane/ngx-datatable/assets/icons.css",
                 "node_modules/swiper/swiper-bundle.min.css",
                 "src/assets/styles/common/common.css",
                 "src/assets/styles/variables/variables.css",
@@ -104,6 +105,9 @@
                 }
               ],
               "styles": [
+                "node_modules/@swimlane/ngx-datatable/index.css",
+                "node_modules/@swimlane/ngx-datatable/themes/material.css",
+                "node_modules/@swimlane/ngx-datatable/assets/icons.css",
                 "node_modules/swiper/swiper-bundle.min.css",
                 "src/assets/styles/common/common.css",
                 "src/assets/styles/variables/variables.css",

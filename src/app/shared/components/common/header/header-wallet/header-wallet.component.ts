@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { TooltipWrapperComponent } from "../../tooltip-wrapper/tooltip-wrapper.component";
 import { ClickOutsideDirective } from '../../../../../core/directives/click-outside.directive';
-import { CurrencyService } from '../../../../../core/services/currency.service';
+import { CurrencyService } from '../../../../services/currency.service';
 
 @Component({
   selector: 'header-wallet',

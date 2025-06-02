@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BodyClassModifierService } from '../../core/services/body-modifier.service';
+import { BodyClassModifierService } from '../../shared/services/body-modifier.service';
 
 @Component({
   selector: 'error-layout',
