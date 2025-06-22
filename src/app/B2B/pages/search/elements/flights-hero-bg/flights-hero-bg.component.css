@@ -1,0 +1,57 @@
+:host {
+  width: 100%;
+  display: flex;
+  overflow: clip;
+  position: relative;
+  svg, img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  svg {
+    .bg-base {
+      color: light-dark(var(--primary-85_light), var(--primary-85_dark));
+    }
+    .bg-base-1 {
+      color: light-dark(var(--primary-100_light), var(--primary-90_dark));
+    }
+    .color-light {
+      color: light-dark(var(--primary-100_light), var(--primary-90_dark));
+    }
+    .clouds {
+      color: light-dark(var(--primary-95_light), var(--primary-80_dark));
+    }
+    .secondary { color: var(--secondary);}
+    .accent { color: var(--accent);}
+    .body-color { color: #e78896; }
+    .mountain-shade {
+      color: light-dark(var(--primary-75_light), var(--primary-70_dark));
+    }
+    .mountain-light {
+      color: light-dark(var(--primary-85_light), var(--primary-85_dark));
+    }
+    .tree-roots {
+      color: light-dark(var(--primary-90_light), var(--primary-80_dark));
+    }
+    .bag-bg {
+      color: light-dark(var(--primary-10_light), var(--primary-60_dark));
+    }
+    .big-bg-image {
+      color: light-dark(var(--primary-90_dark), var(--primary-40_dark));
+    }
+    .big-bag-highlighter, .bag-highlighter {
+      color: light-dark(var(--primary-50_light), var(--primary-60_dark));
+    }
+    .flight-highlight {
+      color: light-dark(var(--primary-100_light), var(--primary-50_dark));
+    }
+    .baby-hair {
+      color: light-dark(var(--primary-100_dark), var(--primary-65_dark));
+    }
+    .body-shadow {
+      color: light-dark(var(--primary-40_light), var(--primary-70_dark));
+    }
+  }
+}

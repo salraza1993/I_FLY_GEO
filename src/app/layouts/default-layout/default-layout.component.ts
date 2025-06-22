@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../../shared/components/common/header/header.component';
-import { AsideComponent } from '../../shared/components/common/aside/aside.component';
-import { BodyClassModifierService } from '../../shared/services/body-modifier.service';
+import { HeaderComponent } from '@/shared/components/header/header.component';
+import { AsideComponent } from '@/shared/components/aside/aside.component';
+import { BodyClassModifierService } from '@sharedServices/body-modifier.service';
 
 @Component({
   selector: 'default-layout',

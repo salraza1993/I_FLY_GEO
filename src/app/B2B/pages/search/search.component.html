@@ -1,4 +1,5 @@
-<section>
-  <h1>search works!</h1>
-  <flight-search></flight-search>
+<section class="search-page-content-wrapper">
+  <search-services-tabs (sendSelectedTab)="getCurrentTabHandler($event)"></search-services-tabs>
+  <search-content-container [getCurrentTab]="getActiveTab()"></search-content-container>
 </section>
+

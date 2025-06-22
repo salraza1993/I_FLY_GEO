@@ -1,11 +1,11 @@
 import { Component, OnInit, signal, ViewEncapsulation } from '@angular/core';
-import { COMMON_IMPORTS } from '../../shared/helpers/common-imports';
+import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
 import { RegisterFormComponent } from "./register-form/register-form.component";
-import { FlightWatermarkComponent } from "../components/flight-watermark/flight-watermark.component";
-import { ClientLogoComponent } from '../../shared/components/common/client-logo/client-logo.component';
+import { FlightWatermarkComponent } from "@auth/_components/flight-watermark/flight-watermark.component";
+import { ClientLogoComponent } from '@sharedComponents/client-logo/client-logo.component';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-register, register-component, register',
   imports: [...COMMON_IMPORTS, RegisterFormComponent, FlightWatermarkComponent, ClientLogoComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css', '../styles/auth-common-styles.css'],
@@ -14,7 +14,7 @@ import { ClientLogoComponent } from '../../shared/components/common/client-logo/
     'class': 'auth-page-wrapper register-page'
   }
 })
-export default class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   public clientLogoPath = '/assets/client/';
   public content = signal({
     smallTitle: 'Start Your',

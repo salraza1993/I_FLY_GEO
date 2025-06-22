@@ -1,0 +1,19 @@
+<div class="search-form-header">
+  <ng-content select="[search-form-header]">
+    <flights-hero-bg></flights-hero-bg>
+  </ng-content>
+  <div class="heading">
+    <h5 class="font__verbatim m-0 text--uppercase">{{ headingSmall() }}</h5>
+    <h4 class="font__verbatim--bold m-0 text--accent text--uppercase">{{ headingBig() }}</h4>
+  </div>
+</div>
+<div class="search-form-content">
+  <div class="search-form-body">
+    <ng-content>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
+      perferendis, assumenda laborum ratione deleniti praesentium? Ea vero laborum,
+      velit ab neque architecto nostrum nemo, maiores delectus, dolore rerum
+      perferendis quia!
+    </ng-content>
+  </div>
+</div>

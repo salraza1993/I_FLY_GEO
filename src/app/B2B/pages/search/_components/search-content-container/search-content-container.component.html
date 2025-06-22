@@ -1,0 +1,17 @@
+@switch (getCurrentTab()) {
+  @case ('flights') {
+    <app-search-flights></app-search-flights>
+  }
+  @case ('hotels') {
+    <app-search-hotels></app-search-hotels>
+  }
+  @case ('cars') {
+    <app-search-cars></app-search-cars>
+  }
+  @case ('activities') {
+    <app-search-activities></app-search-activities>
+  }
+  @default {
+    <app-search-flights></app-search-flights>
+  }
+}

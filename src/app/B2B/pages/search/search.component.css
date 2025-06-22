@@ -1,13 +1,33 @@
 :host {
+  --wrapper-width: calc(1040px + 5vw);
+  --tab-width: 100%;
+  --tab-padding: 0.55rem;
+  --tab-padding-y-start: 0;
+  --tab-height: auto;
+  --tab-list-height: 45px;
+  --tab-border-radius: calc(var(--border-radius) * 2.5);
+  --tab-item-border-radius: calc(var(--border-radius) * 1.5);
+  --tab-border-radius-start-start: 0;
+  --tab-border-radius-start-end: 0;
+  --tab-border-color: light-dark(var(--primary-90_light), var(--primary-75_dark));
+  --tab-bg: light-dark(var(--primary-100_light), var(--primary-95_dark));
+  --tab-list-color-hover: var(--tab-color);
+  --tab-list-bg-active: var(--accent);
+
   display: grid;
   gap: 1rem;
+  position: relative;    
+}
+
+
+.search-page-content-wrapper {
+  width: 100%;
+  max-width: var(--wrapper-width);
+  margin-inline: auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--common-margin-y-end);
 }
 
 
-/* centering text */
-section {
-  display: grid;
-  place-items: center;
-  text-align: center;
-}

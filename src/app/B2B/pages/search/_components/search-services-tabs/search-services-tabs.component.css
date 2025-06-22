@@ -1,0 +1,58 @@
+:host {
+  --tab-width: 100%;
+  --tab-padding: 0.55rem;
+  --tab-padding-y-start: 0;
+  --tab-height: auto;
+  --tab-list-height: 45px;
+  --tab-border-radius: calc(var(--border-radius) * 2.5);
+  --tab-item-border-radius: calc(var(--border-radius) * 1.5);
+  --tab-border-radius-start-start: 0;
+  --tab-border-radius-start-end: 0;
+  --tab-border-color: light-dark(var(--primary-85_light), var(--primary-75_dark));
+  --tab-bg: light-dark(var(--primary-100_light), var(--primary-95_dark));
+  --tab-list-color-hover: var(--tab-color);
+  --tab-list-bg-active: var(--accent);
+  position: relative;
+  width: 100%;
+  display: flex;
+  isolation: isolate;
+  
+  .custom-tabs-wrapper {
+    position: relative;
+    margin-block-start: -1px;
+    border: 1px solid var(--tab-border-color);
+    border-end-start-radius: var(--tab-border-radius);
+    border-end-end-radius: var(--tab-border-radius);
+    &::before, &::after {
+    content: '';
+    position: absolute;
+    background-color: transparent;
+    width: var(--tab-border-radius);
+    height: var(--tab-border-radius);
+    inset-block-start: 0;
+    z-index: 0;
+    border-block-start: 1px solid var(--tab-border-color);
+  }
+  &::before {
+    inset-inline-end: 100%;
+    border-radius: 0 100vw 0 0;
+    box-shadow: 4px -4px 0 4px var(--tab-bg);
+    border-inline-end: 1px solid var(--tab-border-color);
+  }
+  &::after {
+    inset-inline-start: 100%;
+    border-radius: 100vw 0 0 0;
+    box-shadow: -4px -4px 0 4px var(--tab-bg);
+    border-inline-start: 1px solid var(--tab-border-color);
+  }
+  }
+  .empty-strip {
+    width: 100%;
+    height: 6px;
+    margin-block-start: -1px;
+    position: absolute;
+    background-color: light-dark(var(--secondary-light), var(--tab-border-color));
+    border-end-start-radius: 10px;
+    border-end-end-radius: 10px;
+  }
+}

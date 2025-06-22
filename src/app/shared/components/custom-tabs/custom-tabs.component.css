@@ -1,0 +1,87 @@
+:host {
+  --tab-bg-fallback: light-dark(var(--primary-90_light), var(--primary-75_dark));
+  --tab-color-fallback: var(--body-color);
+  --tab-list-bg-hover-fallback: light-dark(var(--primary-80_light), var(--primary-65_dark));
+  --tab-list-hover-color-fallback: light-dark(var(--primary-100_dark), var(--primary-100_light));
+  --tab-list-active-bg-fallback: light-dark(var(--primary-85_dark), var(--primary-85_light));
+  --tab-list-active-color-fallback: light-dark(var(--primary-100_light), var(--primary-100_dark));
+  --tab-list-hovered-bg-fallback: light-dark(var(--primary-90_light), var(--primary-85_dark));
+
+  position: relative;
+  display: flex;
+  width: 100%;
+  background-color: var(--tab-wrapper-bg, transparent);
+
+  .custom-tabs {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--tab-bg, var(--tab-bg-fallback));
+    height: var(--tab-height, var(--common-btn-height));
+    border-start-start-radius: var(--tab-border-radius-start-start, var(--tab-border-radius, var(--border-radius)));
+    border-start-end-radius: var(--tab-border-radius-start-end, var(--tab-border-radius, var(--border-radius)));
+    border-end-start-radius: var(--tab-border-radius-end-start, var(--tab-border-radius, var(--border-radius)));
+    border-end-end-radius: var(--tab-border-radius-end-end, var(--tab-border-radius, var(--border-radius)));
+    padding-inline-start: var(--tab-padding-x-start, var(--tab-padding, 0.32rem));
+    padding-inline-end: var(--tab-padding-x-end, var(--tab-padding, 0.32rem));
+    padding-block-start: var(--tab-padding-y-start, var(--tab-padding, 0.32rem));
+    padding-block-end: var(--tab-padding-y-end, var(--tab-padding, 0.32rem));
+    gap: var(--tab-gap, 0);
+    isolation: isolate;
+    width: var(--tab-width, initial);
+    &:is(.bordered, .bordered-only) {
+      box-shadow: 0 0 0 var(--tab-border-width, 1px) var(--tab-border, var(--border-color));
+    }
+    & .custom-tabs__item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: var(--tab-item-gap, 0.75rem);
+      border-radius: var(--tab-item-border-radius, calc(var(--border-radius) / 1.5));
+      height: var(--tab-list-height, calc(var(--common-btn-height) - 10px));
+      padding-inline-start: var(--tab-padding-x-start, var(--common-padding));
+      padding-inline-end: var(--tab-padding-x-end, var(--common-padding));
+      color: var(--tab-color, var(--tab-color-fallback));
+      transition: var(--transition);
+      text-transform: var(--tab-list-transform, initial);
+      cursor: pointer;
+      min-width: var(--tab-item-width, auto);
+      z-index: 1;
+      &:not(.selected, .active):hover {
+        color: var(--tab-list-color-hover, var(--tab-list-hover-color-fallback));
+      }
+      &:is(.active, .selected) {
+        --outline-bg: light-dark(var(--accent-light), var(--accent-dark));
+        --outline-color: light-dark(var(--accent-light), var(--accent-dark));
+        --outline-text-color: var(--accent-color);
+        transition-delay: 0ms;
+        color: var(--tab-list-color-active, var(--tab-list-active-color-fallback));
+        font-weight: var(--tab-list-active-font-weight, 500);
+        z-index: 2;
+      }
+    }
+    .selected-strip {
+      width: var(--tab-active-item-width, auto);
+      height: var(--tab-list-height, calc(var(--common-btn-height) - 10px));
+      background-color: var(--tab-list-bg-active, var(--tab-list-active-bg-fallback));
+      border-radius: var(--tab-item-border-radius, calc(var(--border-radius) / 1.5));
+      position: absolute;
+      z-index: 0;
+      transition: var(--transition);
+      &[dir="rtl"] {
+        inset-inline-end: var(--tab-active-item-offset-x, 5px);
+      }
+      &[dir="ltr"] {
+        inset-inline-start: var(--tab-active-item-offset-x, 5px);
+      }
+      &:is(.hovered-strip) {
+        background-color: var(--tab-list-bg-hovered, var(--tab-list-hovered-bg-fallback));
+        z-index: -1;
+        &:not(.isActive) {
+          opacity: 0;
+          height: 0;
+        }
+      }
+    }
+  }
+}

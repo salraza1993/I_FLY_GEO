@@ -1,10 +1,10 @@
 import { Component, inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
 import { LoginFormComponent } from "./login-form/login-form.component";
-import { COMMON_IMPORTS } from '../../shared/helpers/common-imports';
-import { FlightWatermarkComponent } from "../components/flight-watermark/flight-watermark.component";
-import { ResponsiveClassDirective } from '../../core/directives/responsive-class.directive';
+import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
+import { FlightWatermarkComponent } from "@auth/_components/flight-watermark/flight-watermark.component";
+import { ResponsiveClassDirective } from '@directives/responsive-class.directive';
 import { TranslateService } from '@ngx-translate/core';
-import { ClientLogoComponent } from '../../shared/components/common/client-logo/client-logo.component';
+import { ClientLogoComponent } from '@sharedComponents/client-logo/client-logo.component';
 
 interface LoginTranslations {
   smallTitle: string;
@@ -12,7 +12,7 @@ interface LoginTranslations {
   text: string;
 }
 @Component({
-  selector: 'login-component',
+  selector: 'login-component, app-login-component',
   imports: [...COMMON_IMPORTS, LoginFormComponent, FlightWatermarkComponent, ResponsiveClassDirective, ClientLogoComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css', '../styles/auth-common-styles.css'],
@@ -21,7 +21,7 @@ interface LoginTranslations {
     'class': 'auth-page-wrapper login-page'
   }
 })
-export default class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit {
   private translate = inject(TranslateService);
   public clientLogoPath = '/assets/client/';
   constructor() {

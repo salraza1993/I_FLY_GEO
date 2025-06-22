@@ -1,6 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { PageLayoutEnum } from '../shared/enums/PageLayoutEnum';
+import { PageLayoutEnum } from '@sharedEnums/PageLayoutEnum';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,5 +11,4 @@ export class LayoutService {
   setLayout(value: PageLayoutEnum): void {
     this.layoutSubject.next(value);
   }
-
 }

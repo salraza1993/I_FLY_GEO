@@ -40,7 +40,7 @@
 
 
   /* ===========[ Tooltip ]=========== */
-  --tooltip-wrapper-bg: light-dark(var(--primary-80_dark), var(--primary-50_light));
+  --tooltip-wrapper-bg: light-dark(var(--primary-80_dark), var(--primary-75_light));
   --tooltip-wrapper-color: var(--body-color_reversed);
 
 

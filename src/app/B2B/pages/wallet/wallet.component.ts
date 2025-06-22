@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './wallet.component.html',
   styleUrl: './wallet.component.css'
 })
-export default class WalletComponent {
+export class WalletComponent {
 
 }

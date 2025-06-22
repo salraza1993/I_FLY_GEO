@@ -1,13 +1,11 @@
 import { importProvidersFrom } from '@angular/core';
-
-// Common Angular Modules
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BodyClassModifierService } from '../../shared/services/body-modifier.service';
-import { LanguageService } from '../../shared/services/language.service';
-import { ViewportService } from '../../shared/services/viewport.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BodyClassModifierService } from '@sharedServices/body-modifier.service';
+import { LanguageService } from '@sharedServices/language.service';
+import { ViewportService } from '@sharedServices/viewport.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { CreateTranslateLoader } from '../i18n/translate-loader.factory';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthCarouselComponent } from '../../auth/components/auth-carousel/auth-carousel.component';
-import { slideIn } from '../../shared/animations/slide.animations';
-import { ResponsiveClassDirective } from '../../core/directives/responsive-class.directive';
-import { BodyClassModifierService } from '../../shared/services/body-modifier.service';
-import { BasicSettingOnAuthComponent } from '../../auth/components/basic-setting-on-auth/basic-setting-on-auth.component';
+import { AuthCarouselComponent } from '@auth/_components/auth-carousel/auth-carousel.component';
+import { slideIn } from '@animations/slide.animations';
+import { ResponsiveClassDirective } from '@directives/responsive-class.directive';
+import { BodyClassModifierService } from '@sharedServices/body-modifier.service';
+import { BasicSettingOnAuthComponent } from '@auth/_components/basic-setting-on-auth/basic-setting-on-auth.component';
 
 @Component({
   selector: 'auth-layout',
@@ -17,7 +17,7 @@ import { BasicSettingOnAuthComponent } from '../../auth/components/basic-setting
   animations: [slideIn]
 })
 export class AuthLayoutComponent implements OnInit {
-  constructor(private bodyClassService: BodyClassModifierService) {}
+  private bodyClassService = inject(BodyClassModifierService);
   ngOnInit() {
     this.bodyClassService.removeBodyClass('default-page')
     this.bodyClassService.addClassToBody('auth-page')

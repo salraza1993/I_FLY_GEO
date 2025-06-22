@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { SectionHeadingComponent } from "../../../shared/components/common/section-heading/section-heading.component";
-import { BlockSpacerComponent } from "../../../shared/components/common/block-spacer/block-spacer.component";
-import { DashboardReportsComponent } from "../../../shared/components/B2B/dashboard/dashboard-reports/dashboard-reports.component";
-import { DashboardGraphComponent } from "../../../shared/components/B2B/dashboard/dashboard-graph/dashboard-graph.component";
-import { LanguageSwitcherComponent } from '../../../shared/components/common/language-switcher/language-switcher.component';
+import { SectionHeadingComponent } from "../../../shared/components/section-heading/section-heading.component";
+import { BlockSpacerComponent } from "../../../shared/components/block-spacer/block-spacer.component";
+import { DashboardReportsComponent } from "./_components/dashboard-reports/dashboard-reports.component";
+import { DashboardGraphComponent } from "./_components/dashboard-graph/dashboard-graph.component";
+import { LanguageSwitcherComponent } from '../../../shared/components/language-switcher/language-switcher.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { ThemeModeChangerComponent } from '../../../shared/components/common/theme-mode-changer/theme-mode-changer.component';
+import { ThemeModeChangerComponent } from '../../../shared/components/theme-mode-changer/theme-mode-changer.component';
 // import { TopPerformedUsersComponent } from '../../../shared/components/B2B/dashboard/top-performed-users/top-performed-users.component';
-import { DataTableComponent } from '../../../shared/components/common/elements/data-table/data-table.component';
+import { DataTableComponent } from '../../../shared/components/elements/data-table/data-table.component';
 
 @Component({
   selector: 'dashboard',
@@ -31,7 +31,7 @@ import { DataTableComponent } from '../../../shared/components/common/elements/d
     'class': 'page-content-wrapper'
   }
 })
-export default class DashboardComponent {
+export class DashboardComponent {
   userData = [
     { name: 'Alice', age: 30, city: 'Paris' },
     { name: 'Bob', age: 25, city: 'Berlin' }

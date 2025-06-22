@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
 import { inject } from '@angular/core';
-import { LayoutService } from '../../layouts/layout.service';
-import { PageLayoutEnum } from '../../shared/enums/PageLayoutEnum';
+import { LayoutService } from '@layouts/layout.service';
+import { PageLayoutEnum } from '@sharedEnums/PageLayoutEnum';
 
 /**
  * Resolver sets the page layout type,
