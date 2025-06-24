@@ -1,5 +1,5 @@
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
-import { Component, inject, output, signal, viewChild } from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 import { CustomTabsComponent, TabDataTypes } from '@/shared/components/custom-tabs/custom-tabs.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -22,9 +22,9 @@ export class SearchServicesTabsComponent {
   public readonly sendSelectedTab = output<string>();
   public servicesTabs = signal<TabDataTypes[]>([
     { id: 'flights', label: 'Flights', icon: 'plane', selected: true, method: this.tabHandler.bind(this) },
-    { id: 'hotels', label: 'Hotels', icon: 'hotel', selected: false, method: this.tabHandler.bind(this) },
-    { id: 'cars', label: 'Cars', icon: 'car', selected: false, method: this.tabHandler.bind(this) },
-    { id: 'activities', label: 'Activities', icon: 'compass', selected: false, method: this.tabHandler.bind(this) }
+    // { id: 'hotels', label: 'Hotels', icon: 'hotel', selected: false, method: this.tabHandler.bind(this) },
+    // { id: 'cars', label: 'Cars', icon: 'car', selected: false, method: this.tabHandler.bind(this) },
+    // { id: 'activities', label: 'Activities', icon: 'compass', selected: false, method: this.tabHandler.bind(this) }
   ]);
   ngOnInit() {
     this.currentLocation.set(this.router.url);

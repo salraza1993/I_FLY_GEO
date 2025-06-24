@@ -1,0 +1,9 @@
+<div class="form-row">
+  <origin-destination [(getData)]="setOriginDestination" />
+</div>
+<div class="form-row">
+  <search-datepicker [isRoundtrip]="roundTrip()" />
+  <passenger-selection />
+  <cabin-selection />
+</div>
+<button>Submit</button>

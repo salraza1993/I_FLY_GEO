@@ -1,0 +1,34 @@
+:host {
+  --color-fg-primary: var(--accent);
+  --border-radius: 4px;
+  --day-width: 40px;
+  --day-height: 30px;
+  --block-inset-margin-x: -50px;
+}
+/* increase start and end */
+.container.range-plugin .calendar>.days-grid>.day.start,
+.container.range-plugin .calendar>.days-grid>.day.end {
+  font-weight: bold;
+  transform: scale(1);
+  z-index: 1;
+}
+.easepick-wrapper {
+  margin-inline-start: 0;
+  display: block;
+}
+.container {
+  top: inherit !important;
+  left: inherit !important;
+  inset-inline-start: var(--block-inset-margin-x) !important;
+  inset-block-start: 3px !important;
+  font-weight: normal;
+  transform: scale(0) !important;
+  border-radius: var(--bs-border-radius);
+  box-shadow: 0 0 0 1px var(--bs-primary), 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25) !important;
+  &:is(.show) {
+    transform: scale(1) !important;
+  }
+}
+.calendar {
+  padding-block-start: 0 !important;
+}

@@ -1,0 +1,11 @@
+:host {
+  --container-gaps: 1rem;
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  .form-row {
+    position: relative;
+    display: flex;
+    gap: var(--container-gaps);
+  }
+}

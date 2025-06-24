@@ -16,7 +16,7 @@
   width: 100%;
   display: flex;
   isolation: isolate;
-  
+  margin-block-start: -1px;
   .custom-tabs-wrapper {
     position: relative;
     margin-block-start: -1px;
@@ -24,32 +24,33 @@
     border-end-start-radius: var(--tab-border-radius);
     border-end-end-radius: var(--tab-border-radius);
     &::before, &::after {
-    content: '';
-    position: absolute;
-    background-color: transparent;
-    width: var(--tab-border-radius);
-    height: var(--tab-border-radius);
-    inset-block-start: 0;
-    z-index: 0;
-    border-block-start: 1px solid var(--tab-border-color);
-  }
-  &::before {
-    inset-inline-end: 100%;
-    border-radius: 0 100vw 0 0;
-    box-shadow: 4px -4px 0 4px var(--tab-bg);
-    border-inline-end: 1px solid var(--tab-border-color);
-  }
-  &::after {
-    inset-inline-start: 100%;
-    border-radius: 100vw 0 0 0;
-    box-shadow: -4px -4px 0 4px var(--tab-bg);
-    border-inline-start: 1px solid var(--tab-border-color);
-  }
+      content: '';
+      position: absolute;
+      background-color: transparent;
+      width: var(--tab-border-radius);
+      height: var(--tab-border-radius);
+      inset-block-start: 0;
+      z-index: 0;
+      border-block-start: 1px solid var(--tab-border-color);
+    }
+    &::before {
+      inset-inline-end: 100%;
+      border-radius: 0 100vw 0 0;
+      box-shadow: 4px -4px 0 4px var(--tab-bg);
+      border-inline-end: 1px solid var(--tab-border-color);
+    }
+    &::after {
+      inset-inline-start: 100%;
+      border-radius: 100vw 0 0 0;
+      box-shadow: -4px -4px 0 4px var(--tab-bg);
+      border-inline-start: 1px solid var(--tab-border-color);
+    }
   }
   .empty-strip {
-    width: 100%;
+    width: 110%;
     height: 6px;
     margin-block-start: -1px;
+    margin-inline-start: -5%;
     position: absolute;
     background-color: light-dark(var(--secondary-light), var(--tab-border-color));
     border-end-start-radius: 10px;

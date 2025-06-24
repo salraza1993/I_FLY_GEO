@@ -1,0 +1,20 @@
+<div class="search-element-block" data-type="origin">
+  <div class="block-label">
+    <small>Depart From</small>
+  </div>
+  <div class="block-body focus-within" aria-label="datepicker" role="datepicker">
+    <div class="icon">
+      <i class="fa-regular fa-calendar"></i>
+    </div>
+    <div class="block-input">
+      <input
+        type="text"
+        name="datepicker"
+        [id]="inputId()"
+        class="form-control"
+        [(ngModel)]="inputSelectedValue"
+        placeholder="Enter City or Airport"
+      />
+    </div>
+  </div>
+</div>

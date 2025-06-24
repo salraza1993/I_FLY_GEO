@@ -32,7 +32,7 @@
   --accent: light-dark(var(--accent-light), var(--accent-dark));
   --accent-color: var(--light);
   --secondary-light: hsl(242, 82%, 38%);
-  --secondary-dark: hsl(242, 82%, 20%);
+  --secondary-dark: hsl(242deg 78.9% 70.15%);
   --secondary-color: var(--light);
   --secondary: light-dark(var(--secondary-light), var(--secondary-dark));
 

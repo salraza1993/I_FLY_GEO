@@ -1,0 +1,50 @@
+<div class="search-element-block" data-type="search-datepicker">
+  <div class="block-label">
+    <small class="start-date-label">Depart Date</small>
+    @if(isRoundtrip()) {
+      <small class="end-date-label">Return Date</small>
+    }
+    <!-- @if(isRoundtrip()) {
+      <small>Depart Date &nbsp;|&nbsp; Return Date</small>
+    } @else {
+      <small>Depart Date</small>
+    } -->
+  </div>
+  <div 
+    class="block-body focus-within" 
+    aria-label="datepicker" 
+    role="datepicker" >
+
+    <div class="icon">
+      <i class="fa-regular fa-calendar"></i>
+    </div>
+    <div class="input-group" [ngClass]="{'roundtrip-active': isRoundtrip()}">
+      <div class="block-input">
+        <input
+          #startDate
+          type="text"
+          name="startDate"
+          id="startDate"
+          class="input-element pointer-events--initial"
+          placeholder="Start Date"
+          autocomplete="off"
+          [(ngModel)]="_startDateValue"
+        />
+        </div>
+        @if(isRoundtrip()) {
+          <div class="block-input">
+            <input
+              #endDate
+              type="text"
+              id="endDate" 
+              name="endDate"
+              class="input-element"
+              placeholder="End Date"
+              autocomplete="off"
+              [(ngModel)]="_endDateValue"
+            />
+        </div>
+      }
+    </div>
+  </div>
+</div>

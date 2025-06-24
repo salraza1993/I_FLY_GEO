@@ -1,13 +1,13 @@
 :host {
   display: block;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100dvh - var(--header-height));
   width: 100%;
   position: relative;
   border-start-start-radius: calc(var(--border-radius) * 2.5);
   background-color: var(--body-bg);
-  border-block-start: 1px solid var(--border-color);
-  border-inline-start: 1px solid var(--border-color);
+  border-block-start: 1px solid light-dark(var(--primary-90_light), var(--primary-75_dark));
+  border-inline-start: 1px solid light-dark(var(--primary-90_light), var(--primary-75_dark));
   .body-content {
     position: relative;
   }
