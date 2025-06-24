@@ -1,6 +1,6 @@
-import { effect, inject, Injectable, signal } from '@angular/core';
+import { effect, inject, Injectable, signal, DOCUMENT } from '@angular/core';
 import { LocalStorageService } from '../../shared/services/localStorage.service';
-import { DOCUMENT } from '@angular/common';
+
 export type ThemeMode = 'light' | 'dark' | 'auto';
 @Injectable({
   providedIn: 'root'

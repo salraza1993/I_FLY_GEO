@@ -1,8 +1,8 @@
-import { Inject, inject, Injectable, Renderer2, RendererFactory2, signal } from '@angular/core';
+import { Inject, inject, Injectable, Renderer2, RendererFactory2, signal, DOCUMENT } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from './localStorage.service';
 import { PreferencesDataTypes } from '../../types/appSettingInterface';
-import { DOCUMENT } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root'
