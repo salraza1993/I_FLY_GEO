@@ -8,12 +8,13 @@
     </div>
     <div class="block-input">
       <input
+        autocomplete="off"
         type="text"
         name="datepicker"
-        [id]="inputId()"
-        class="form-control"
-        [(ngModel)]="inputSelectedValue"
-        placeholder="Enter City or Airport"
+        [id]="datepickerId()"
+        class="datepicker-input {{ datepickerId() }}"
+        placeholder="select date"
+        readonly
       />
     </div>
   </div>

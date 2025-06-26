@@ -10,13 +10,13 @@ import { booleanAttribute, Component, input, signal } from '@angular/core';
     'class': 'button',
     'aria-label': 'button',
     '[attr.role]': 'button',
-    '[attr.index]': '0',
+    '[attr.tabindex]': '0',
   }
 })
 export class CustomButtonComponent {
   public buttonType = input('button', { alias: 'type'});
   public allowTemplate = input(false, { transform: booleanAttribute });
-  public title = input<string>();
+  public buttonTitle = input.required<string>();
   public iconBefore = input<string>();
   public iconAfter = input<string>();
 }

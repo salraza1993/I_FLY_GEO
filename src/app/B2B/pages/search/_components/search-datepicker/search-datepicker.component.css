@@ -1,6 +1,11 @@
 :host {
+  --max-width: calc(350px + 3vw);
+  position: relative;
+  width: 100%;
+  &:is(.roundtrip) {
+    min-width: var(--max-width);
+  }
   .search-element-block {
-    max-width: calc(350px + 5vw);
     .block-label {
       position: relative;
       display: flex;
@@ -24,13 +29,6 @@
           height: 50%;
           background-color: var(--input-block-border-color, var(--block-border-color-fallback));
           margin-inline-start: calc(0px - calc(1rem + 1vw));
-        }
-      }
-      .block-input {
-        .easepick-wrapper {
-          inset-inline-start: 0;
-          width: 100%;
-          background-color: red;
         }
       }
     }

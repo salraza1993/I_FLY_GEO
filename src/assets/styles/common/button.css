@@ -1,11 +1,12 @@
 .button,
 button.button,
 a.button,
-[role="button"] {
+[role="button"], 
+[type="button"] {
   --btn-bg-fallback: light-dark(var(--primary-90_light), var(--primary-75_dark));
   --btn-color-fallback: light-dark(var(--primary-100_dark), var(--primary-90_light));
   --btn-hover-bg-fallback: light-dark(var(--primary-90_dark), var(--primary-90_light));
-  --btn-hover-color-fallback: light-dark(var(--primary-100_dark), var(--primary-100_dark));
+  --btn-hover-color-fallback: light-dark(var(--primary-95_light), var(--primary-100_dark));
 
   --border-color-fallback: light-dark(var(--primary-80_light), var(--primary-70_dark));
   --btn-box-shadow-fallback: light-dark(var(--primary-80_light), var(--primary-80_dark));
@@ -20,7 +21,7 @@ a.button,
   padding-block-end: var(--btn-padding-y-end, 0);
   gap: var(--btn-gap, 1rem);
   font-family: var(--btn-font-family, var(--body-font-family));
-  font-size: var(--btn-font-size, var(--body-font-size));
+  font-size: var(--btn-font-size, calc(var(--body-font-size) * 1.15));
   font-weight: var(--btn-font-weight, 400);
   line-height: var(--btn-line-height, 1.5);
   height: var(--btn-height, var(--common-btn-height));
@@ -33,6 +34,8 @@ a.button,
   border-radius: var(--btn-border-radius, var(--border-radius));
   background-color: var(--btn-bg, var(--btn-bg-fallback));
   transition: var(--transition);
+  min-width: var(--btn-min-width, initial);
+  max-width: var(--btn-max-width, initial);
 
   .text {
     white-space: nowrap;
@@ -148,12 +151,12 @@ a.button,
   }
 
   &:is(.size--extra-small, .extra-small) {
-    --btn-padding-x-start-fallback: 0.75rem;
-    --btn-padding-x-end-fallback: 0.75rem;
-    --btn-height: calc(var(--common-btn-height) / 1.4);
-    --btn-font-size: calc(var(--body-font-size) / 1.15);
+    --btn-padding-x-start-fallback: 0.5rem;
+    --btn-padding-x-end-fallback: 0.5rem;
+    --btn-height: calc(var(--common-btn-height) / 1.65);
+    --btn-font-size: calc(var(--body-font-size) / 1.2);
     --btn-icon-font-size: calc(var(--btn-font-size) * 1.1);
-
+    --btn-line-height: var(--btn-font-size);
     padding-inline-start: var(--btn-padding-x-start-fallback);
     padding-inline-end: var(--btn-padding-x-end-fallback);
     font-size: var(--btn-font-size, var(--body-font-size));

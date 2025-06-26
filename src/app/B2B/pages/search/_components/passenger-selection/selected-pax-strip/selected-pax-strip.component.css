@@ -1,0 +1,19 @@
+:host {
+  position: relative;
+  padding-inline: 0.75rem;
+  position: relative;
+  display: flex;
+  place-items: center;
+  gap: 0.25rem;
+  &:is(.selected) {
+    font-weight: 700;
+  }
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 80%;
+    background-color: var(--block-border-color-fallback);
+    inset-inline-end: 0;
+  }
+}

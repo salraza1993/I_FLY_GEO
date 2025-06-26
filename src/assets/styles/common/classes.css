@@ -63,18 +63,18 @@ body:not(.arabic) {
 }
 
 /* Font Weight Classes */
-.font-weight-100, .font-weight--100, .font-weight-200, .font-weight--200, .font-weight-300, .font-weight--300, .font-weight-400, .font-weight--400, .font-weight-500, .font-weight--500, .font-weight-600, .font-weight--600, .font-weight-700, .font-weight--700, .font-weight-800, .font-weight--800, .font-weight-900, .font-weight--900 {
+.font-weight-100, .font-weight--100, .font-weight-200, .font-weight--200, .font-weight-300, .font-weight--300, .font-weight-400, .font-weight--400, .font-weight-500, .font-weight--500, .font-weight-600, .font-weight--600, .font-weight-700, .font-weight--700, .font-weight--bold, .font-weight-800, .font-weight--800, .font-weight-900, .font-weight--900 {
   font-weight: var(--common-font-weight) !important;
 }
-.font-weight-100, .font-weight--100 { --common-font-weight: 100 !important; }
-.font-weight-200, .font-weight--200 { --common-font-weight: 200 !important; }
-.font-weight-300, .font-weight--300 { --common-font-weight: 300 !important; }
-.font-weight-400, .font-weight--400 { --common-font-weight: 400 !important; }
-.font-weight-500, .font-weight--500 { --common-font-weight: 500 !important; }
-.font-weight-600, .font-weight--600 { --common-font-weight: 600 !important; }
-.font-weight-700, .font-weight--700 { --common-font-weight: 700 !important; }
-.font-weight-800, .font-weight--800 { --common-font-weight: 800 !important; }
-.font-weight-900, .font-weight--900 { --common-font-weight: 900 !important; }
+.font-weight-100, .font-weight--100 { --common-font-weight: 100; }
+.font-weight-200, .font-weight--200 { --common-font-weight: 200; }
+.font-weight-300, .font-weight--300 { --common-font-weight: 300; }
+.font-weight-400, .font-weight--400 { --common-font-weight: 400; }
+.font-weight-500, .font-weight--500 { --common-font-weight: 500; }
+.font-weight-600, .font-weight--600 { --common-font-weight: 600; }
+.font-weight-700, .font-weight--700, .font-weight--bold { --common-font-weight: 700; }
+.font-weight-800, .font-weight--800 { --common-font-weight: 800; }
+.font-weight-900, .font-weight--900 { --common-font-weight: 900; }
 
 .line-height--normal, .line-height-normal { line-height: normal !important; }
 .line-height--auto, .line-height-auto { line-height: auto !important; }

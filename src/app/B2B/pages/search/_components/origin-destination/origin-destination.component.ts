@@ -2,6 +2,10 @@ import { Component, effect, ElementRef, model, output, signal, ViewChild, ViewEn
 import { FormsModule } from '@angular/forms';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
 
+export type OriginDestinationDataType = {
+  origin: string | null, 
+  destination: string | null
+}
 @Component({
   selector: 'app-origin-destination, origin-destination',
   imports: [COMMON_IMPORTS, FormsModule],
@@ -16,15 +20,14 @@ export class OriginDestinationComponent {
   @ViewChild('destinationInput') destinationInput!: ElementRef<HTMLInputElement>;
   origin = signal<string | null>(null);
   destination = signal<string | null>(null);
-  // Optional: Add output for focus change events
   focusChanged = output<string>();
-  getData = model<{}>({
+  getOriginDestination = model<OriginDestinationDataType>({
     origin: this.origin(),
     destination: this.destination(),
   })
   constructor() {
     effect(() => {
-      this.getData.set({
+      this.getOriginDestination.set({
         origin: this.origin(),
         destination: this.destination()
       });

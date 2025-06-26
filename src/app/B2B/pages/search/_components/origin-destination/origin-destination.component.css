@@ -3,8 +3,8 @@
   --blocks-gap: 18px;
   --common-input-height: 50px;
   --input-block-height: var(--common-input-height);
-  --input-block-bg: light-dark(var(--primary-100_light), var(--primary-90_dark));
   --input-block-border-color: var(--border-color);
+  --input-swapper-bg: light-dark(var(--primary-100_light), var(--primary-90_dark));
   --circle-size: calc(var(--input-block-height) - 14px);
   position: relative;
   display: flex;
@@ -63,7 +63,7 @@
           width: calc(var(--circle-size) * 1.0);
           height: calc(var(--circle-size) * 1.0);
           border-radius: var(--circle-size);
-          background-color: var(--input-block-bg);
+          background-color: var(--input-block-bg, var(--block-bg-fallback));
           box-shadow: 0 0 0 1px var(--input-block-border-color);
         }
       }
@@ -126,7 +126,7 @@
       isolation: isolate;
       overflow: clip;
       &:not(:focus-within, &:focus, &:focus-visible) {
-        background-color: var(--input-block-bg);
+        background-color: var(--input-swapper-bg);
       }
       &::after {
         content: '';

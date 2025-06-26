@@ -1,0 +1,55 @@
+:host {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem 0.6rem;
+  z-index: 1;
+  &:not(:first-child) {
+    border-block-start: 1px solid var(--block-border-color-fallback);
+  }
+  &:is(:first-child) {
+    border-start-start-radius: var(--selection-list-border-radius);
+    border-start-end-radius: var(--selection-list-border-radius);
+  }      
+  .pax-type-label {
+    display: grid;
+  }
+  .pax-selector {
+    position: relative;
+    display: flex;
+    .selecter-button, .value {
+      position: relative;
+      width: 35px;
+      height: 35px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .value {
+      font-weight: 600;
+    }
+    .selecter-button {
+      --outline-bg: var(--accent);
+      --outline-text-color: var(--accent-color);
+      --outline-border-color: var(--accent);
+      background-color: var(--selector-btn-bg);
+      transition: var(--transition);
+      border-radius: calc(var(--border-radius) / 1.5);
+      cursor: pointer;
+      &:is(.disabled) {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+      &:not(.disabled):hover {
+        background-color: var(--accent);
+        color: var(--accent-color);
+      }
+    }
+  }
+  &:focus-within {
+    z-index: 2;
+  }
+}

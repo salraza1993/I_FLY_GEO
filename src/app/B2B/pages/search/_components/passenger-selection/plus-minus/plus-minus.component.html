@@ -1,0 +1,27 @@
+<div class="pax-type-label">
+  <p class="m-0 font-weight--600">{{ paxType() }}</p>
+  <small>{{ age() }}</small>
+</div>
+<div class="pax-selector">
+  <div 
+    (click)="onDecrement()?.()"
+    (keydown.enter)="onDecrement()?.()"
+    class="selecter-button minus button-{{ paxType().toLocaleLowerCase() }}" 
+    [ngClass]="{'disabled': isMinusDisabled() }"
+    role="button" 
+    tabindex="0" 
+    aria-label="Remove adult">
+    <i class="fa-solid fa-minus"></i>
+  </div>
+  <div class="value">{{ selectedValue() }}</div>
+  <div 
+    (click)="onIncrement()?.()"
+    (keydown.enter)="onIncrement()?.()"
+    class="selecter-button plus button-{{ paxType().toLocaleLowerCase() }}" 
+    [ngClass]="{'disabled': isPlusDisabled() }"
+    role="button" 
+    tabindex="0" 
+    aria-label="Add adult">
+    <i class="fa-solid fa-plus"></i>
+  </div>
+</div>

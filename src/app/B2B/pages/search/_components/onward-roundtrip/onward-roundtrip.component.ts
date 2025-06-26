@@ -1,10 +1,12 @@
 import { booleanAttribute, Component, input, signal } from '@angular/core';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
-import { OriginDestinationComponent } from '../origin-destination/origin-destination.component';
-import { DatepickerComponent } from "../datepicker/datepicker.component";
+import { OriginDestinationComponent, OriginDestinationDataType } from '../origin-destination/origin-destination.component';
+import { DatepickerComponent } from "../../../../../shared/components/datepicker/datepicker.component";
 import { PassengerSelectionComponent } from "../passenger-selection/passenger-selection.component";
 import { CabinSelectionComponent } from "../cabin-selection/cabin-selection.component";
 import { SearchDatepickerComponent } from "../search-datepicker/search-datepicker.component";
+import { DateTime } from '@easepick/bundle';
+import { CustomButtonComponent } from "../../../../../shared/components/custom-button/custom-button.component";
 
 @Component({
   selector: 'app-onward-roundtrip, onward-roundtrip',
@@ -13,19 +15,15 @@ import { SearchDatepickerComponent } from "../search-datepicker/search-datepicke
     OriginDestinationComponent,
     PassengerSelectionComponent,
     CabinSelectionComponent,
-    SearchDatepickerComponent
+    SearchDatepickerComponent,
+    CustomButtonComponent
 ],
   templateUrl: './onward-roundtrip.component.html',
   styleUrl: './onward-roundtrip.component.css'
 })
 export class OnwardRoundtripComponent {
-  setOriginDestination = {
-    'origin': null,
-    'destination': null,
-  };
+  setOriginDestination! : OriginDestinationDataType;
+  dateRange: { onwardDate?: string; returnDate?: string } | null = null;
+  selectedDate: DateTime | { start: DateTime; end: DateTime } | null = null;
   roundTrip = input(false, { transform: booleanAttribute});
-  // getOriginDestination = signal<any>("Salman")
-  // getOriginDestinationHandler(event: any) {
-  //   this.getOriginDestination.set(event);
-  // }
 }

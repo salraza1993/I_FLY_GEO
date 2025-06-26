@@ -1,14 +1,13 @@
-<div class="search-element-block" data-type="search-datepicker">
+<div 
+  [ngClass]="{'round-trip': isRoundtrip()}"
+  class="search-element-block" 
+  data-type="search-datepicker" 
+  aria-label="search-datepicker">
   <div class="block-label">
     <small class="start-date-label">Depart Date</small>
     @if(isRoundtrip()) {
       <small class="end-date-label">Return Date</small>
     }
-    <!-- @if(isRoundtrip()) {
-      <small>Depart Date &nbsp;|&nbsp; Return Date</small>
-    } @else {
-      <small>Depart Date</small>
-    } -->
   </div>
   <div 
     class="block-body focus-within" 
@@ -28,7 +27,6 @@
           class="input-element pointer-events--initial"
           placeholder="Start Date"
           autocomplete="off"
-          [(ngModel)]="_startDateValue"
         />
         </div>
         @if(isRoundtrip()) {
@@ -41,10 +39,11 @@
               class="input-element"
               placeholder="End Date"
               autocomplete="off"
-              [(ngModel)]="_endDateValue"
             />
         </div>
       }
     </div>
   </div>
 </div>
+
+

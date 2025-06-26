@@ -1,1 +1,40 @@
-<p>cabin-selection works!</p>
+<div 
+  class="search-element-block pax-selection-wrapper" 
+  data-type="cabin-selection" aria-label="Cabin selection">
+  <div class="block-label">
+    <small>Cabin</small>
+  </div>
+  <div 
+    class="block-body cursor--pointer" 
+    aria-label="datepicker" 
+    role="datepicker" 
+    (clickOutside)="dropdownHandler(false)"
+    [ngClass]="{'error': error()}">
+    <div class="icon"><i class="fa-regular fa-seat-airline"></i></div>
+    <div 
+      class="block-input cabin-selection-input" 
+      (click)="dropdownHandler(!dropdownState())"
+      (keydown.enter)="dropdownHandler(!dropdownState())">
+      <div class="selected-cabins">{{ selectedCabins() }}</div>
+    </div>
+    @if(dropdownState()) {
+      <div 
+        (click)="dropdownHandler(!dropdownState())"
+        (keydown.enter)="dropdownHandler(!dropdownState())"
+        class="cabin-selection-list">
+        <ul class="cabin-list-wrapper dropdown-anime-item" [@dropDownMenu]>
+          @for(cabin of cabinList(); track cabin.id) {
+            <li 
+              class="cabin-list dropdown-anime-item" 
+              [ngClass]="{'selected': cabin.selected }" 
+              (click)="selectCabinHandler(cabin.id)">
+              <span><i class="fa-{{cabin.selected ? 'solid' : 'regular'}} fa-{{cabin.selected ? 'check-square' : 'square'}}"></i></span>
+              <span>{{ cabin.label }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+
+  </div>
+</div>

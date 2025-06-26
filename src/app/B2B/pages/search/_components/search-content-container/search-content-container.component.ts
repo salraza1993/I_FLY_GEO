@@ -17,8 +17,4 @@ export class SearchContentContainerComponent {
   public currentTab = signal<string>(''); // Default tab
   public getCurrentTab = input<string>('');
 
-  // ngOnInit() {
-  //   this.currentTab.set(this.activatedRoute.snapshot.firstChild?.url[0]?.path || '');
-  //   console.log('Current Tab:', this.currentTab());
-  // }
 }

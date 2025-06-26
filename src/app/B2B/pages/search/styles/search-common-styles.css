@@ -24,6 +24,7 @@
     background-color: light-dark(var(--primary-85_light), var(--primary-15_light));
     border-end-start-radius: calc(var(--wrapper-border-radius) / 1.5);
     border-end-end-radius: calc(var(--wrapper-border-radius) / 1.5);
+    z-index: -1;
   }
   .search-form-content {
     position: relative;
@@ -60,21 +61,20 @@
   }
 }
 
-
 .search-element-block {
   --common-input-height: 50px;
   --input-block-height-fallback: var(--common-input-height);
-  --block-bg-fallback: light-dark(var(--primary-100_light), var(--primary-90_dark));
+  --block-bg-fallback: light-dark(var(--primary-95_light), var(--primary-75_dark));
   --block-color-fallback: light-dark(var(--primary-100_light), var(--primary-90_dark));
   --block-border-color-fallback: var(--border-color);
   --block-hovered-border-color-fallback: var(--accent);
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--block-gap, 0.5rem); 
+  gap: var(--block-gap, 0.65rem); 
   width: 100%;
   
-  & .block-label { font-weight: 600; }
+  & .block-label { font-weight: 600; display: flex; }
   & .block-body {
     position: relative;
     display: flex;
@@ -92,7 +92,11 @@
     .block-input {
       width: 100%;
       border-radius: inherit;
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
       overflow: clip;
+      display: flex;
+      align-items: center;
       input {
         background-color: transparent;
         outline: none;
@@ -103,7 +107,8 @@
       }
     }
     &:focus-within {
-      --outline-bg: light-dark(var(--primary-95_light), var(--primary-70_dark));
+      --outline-bg: light-dark(var(--primary-95_light), var(--primary-30_dark));
+      --outline-text-color: light-dark(var(--primary-95_dark), var(--primary-100_dark));
       background-color: var(--outline-bg);
     }
     &:hover {
@@ -111,5 +116,6 @@
       z-index: 1;
       overflow: visible;
     }
+    
   }
 }

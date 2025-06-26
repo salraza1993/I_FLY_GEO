@@ -20,7 +20,6 @@ export class SearchComponent {
 
   ngOnInit() {
     this.getActiveTab.set(this.activatedRoute.snapshot.firstChild?.url[0]?.path || '');
-    console.log('Current Tab:', this.getActiveTab());
   }
   public getCurrentTabHandler = (event: string):void => {
     this.getActiveTab.set(event);

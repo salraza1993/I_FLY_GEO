@@ -1,7 +1,9 @@
+import { applyCalenderWrapperStyles } from '@/shared/helpers/easeCalenderWrapperStyles';
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, booleanAttribute, Component, effect, ElementRef, input, model, signal, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { easepick, RangePlugin } from '@easepick/bundle';
+import { DateTime, easepick, LockPlugin, RangePlugin } from '@easepick/bundle';
+// import {  } from '@easepick/datetime';
 
 
 @Component({
@@ -10,71 +12,82 @@ import { easepick, RangePlugin } from '@easepick/bundle';
   templateUrl: './search-datepicker.component.html',
   styleUrl: './search-datepicker.component.css',
   host: {
-    'class': 'search-datepicker-wrapper'
+    'class': 'search-datepicker-wrapper',
+    '[class.roundtrip]': 'isRoundtrip()',
   }
 })
 export class SearchDatepickerComponent implements AfterViewInit {
-  private customCssPath = '@assets/styles/common/customize_sample.css'
+  @ViewChild('easepick') easepick: any;
+  @ViewChild('easepickWrapper') easepickWrapper!: ElementRef<HTMLDivElement>;
   @ViewChild('startDateElement') startDateElement!: ElementRef<HTMLInputElement>;
   @ViewChild('endDateElement') endDateElement!: ElementRef<HTMLInputElement>;
-  public _startDateValue = signal<string | null>(null);
-  public _endDateValue = signal<string | null>(null);
-  public getDate = model<{} | null>(null);
+  protected datePicker!: any;
+  readonly dateStartFrom: DateTime = new DateTime(new Date());
+  readonly dateEndsTo: DateTime = new DateTime(new Date());
+  readonly alignment: string[] = ['y-start', 'x-start'];
+  readonly format: string = 'DD/MM/YYYY';
+  public getDate = model<unknown | null>(null);
   public isRoundtrip = input(true, { transform: booleanAttribute});
-  private easePickObj: any = {};
+  private plugins = signal<any>([LockPlugin]);
+  private pluginConfig = signal<any>({
+    LockPlugin: {
+      minDate: this.dateStartFrom,
+      maxDate: this.dateEndsTo.setMonth(this.dateStartFrom.getMonth() + 11)
+    },
+  });
 
-  constructor() {
-    effect(() => {
-      this.getDate.set({
-        onwardDate: this._startDateValue(),
-        returnDate: this._startDateValue()
-      })
-    }) 
+  private calendarCustomSetup(picker: easepick.Core): void {
+    picker.on('select', (e: any) => {
+      const { start, end, date } = e.detail;
+      if (this.isRoundtrip() && start && end) {
+        this.getDate.set({
+          onwardDate: start.format(this.format),
+          returnDate: end.format(this.format),
+        });
+      } else {
+        this.getDate.set({
+          onwardDate: date.format(this.format),
+        });
+      }
+    });
   }
-  
-  private setupEasePick(): void {
+
+  private initializeCalender(): void {
     const startDateElement = document.getElementById('startDate') as HTMLInputElement;
     const endDateElement = document.getElementById('endDate') as HTMLInputElement;
-    let config: any = {
-      element: startDateElement,
-      css: [
-        'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css',
-        './customize_sample.css',
-      ],
-      zIndex: 10,
-      calendars: this.isRoundtrip() ? 2 : 1,
-      grid: this.isRoundtrip() ? 2 : 1,
-      setup(picker:any) {
-        picker.on('select', (e: any) => {
-          this.valueChange.emit(e);
-          console.log(this.valueChange);
-          const { end, start, date } = e.detail;
-        });
-      },
-    };
-
-    if (this.isRoundtrip()) {
-      config = {
-        ...config,
+    if (this.isRoundtrip() && !this.plugins().includes(RangePlugin)) {
+      this.plugins.update(prev => [...prev, RangePlugin]);
+      this.pluginConfig.update(prev => ({
+        ...prev,
         RangePlugin: {
           elementEnd: endDateElement,
           repick: true,
-        },
-        plugins: [RangePlugin],
-      };
+          tooltip: true
+        }
+      }));
     }
-    if (Object.keys(this.easePickObj).length > 0) {
-      this.easePickObj.destroy();
+    let calendarConfig: any = {
+      element: startDateElement,
+      css: [
+        'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css',
+        '/assets/styles/common/customize_sample.css',
+      ],
+      zIndex: 10,
+      calendars: 2,
+      grid: 2,
+      format: this.format,
+      plugins: this.plugins(),
+      ...this.pluginConfig(),
+      setup: (picker: easepick.Core) => this.calendarCustomSetup(picker),
+    };
+    if (this.datePicker && Object.keys(this.datePicker).length > 0) {
+      this.datePicker.destroy();
     }
-    this.easePickObj = new easepick.create(config);
-    this.easePickObj.clear();
+    this.datePicker = new easepick.create(calendarConfig);
+    applyCalenderWrapperStyles();
   }
-
-  ngOnInit() {
-    console.log(this.getDate())
-  }
+  
   ngAfterViewInit(): void {
-    setTimeout(() => this.setupEasePick(), 1000);
+    setTimeout(() => this.initializeCalender(), 1000);
   }
-
 }

@@ -2,7 +2,7 @@
   --wrapper-width: calc(900px + 5vw);
   display: grid;
   gap: 1rem;
-  position: relative;    
+  position: relative;
 }
 
 

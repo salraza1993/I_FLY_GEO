@@ -9,6 +9,11 @@
 html {
   color-scheme: light dark;
   font-size: var(--base-size);
+  scrollbar-gutter: stable;
+  overflow: auto;
+  scrollbar-color: var(--body-color) var(--body-bg);
+  scrollbar-width: thin;
+
   &[data-theme="light"] {
     color-scheme: light;
   }

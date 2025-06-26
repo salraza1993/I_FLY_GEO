@@ -1,9 +1,10 @@
 <div class="form-row">
-  <origin-destination [(getData)]="setOriginDestination" />
+  <origin-destination [(getOriginDestination)]="setOriginDestination" />
 </div>
 <div class="form-row">
-  <search-datepicker [isRoundtrip]="roundTrip()" />
+  <search-datepicker [isRoundtrip]="roundTrip()" [(getDate)]="dateRange" />
   <passenger-selection />
   <cabin-selection />
 </div>
-<button>Submit</button>
+<custom-button class="button--secondary" buttonTitle="Search Flight" iconBefore="plane-departure"></custom-button>
+{{ dateRange | json}}

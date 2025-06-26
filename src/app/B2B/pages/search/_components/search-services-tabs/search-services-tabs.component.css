@@ -52,7 +52,7 @@
     margin-block-start: -1px;
     margin-inline-start: -5%;
     position: absolute;
-    background-color: light-dark(var(--secondary-light), var(--tab-border-color));
+    background-color: var(--secondary);
     border-end-start-radius: 10px;
     border-end-end-radius: 10px;
   }
