@@ -1,0 +1,9 @@
+<ul class="dropdown">
+  @if(filteredAirport().length > 0 && (searchValue()?.length ?? 0) >= 3) {
+    @for (item of filteredAirport(); track $index) {
+      <li>{{ item.airportCode }}, {{ item.airportCity }}, {{ item.airportName }}</li>
+    }
+  } @else {
+    <small>Enter Airport Code/City/Name. eg: DXB/Dubai</small>
+  }
+</ul>

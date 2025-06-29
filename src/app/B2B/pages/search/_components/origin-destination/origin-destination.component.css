@@ -3,9 +3,9 @@
   --blocks-gap: 18px;
   --common-input-height: 50px;
   --input-block-height: var(--common-input-height);
-  --input-block-border-color: var(--border-color);
   --input-swapper-bg: light-dark(var(--primary-100_light), var(--primary-90_dark));
   --circle-size: calc(var(--input-block-height) - 14px);
+  
   position: relative;
   display: flex;
   flex-shrink: 0;
@@ -17,12 +17,12 @@
 
   .search-element-block {
     width: 100%;
-    &:is(.active) {
-      z-index: 5;
-    }
-    .block-body {
+    z-index: 0;
+    &:is(.active) { z-index: 5; }
+    & .block-body {
       align-items: center;
       .block-body-content {
+        background-color: inherit;
         position: absolute;
         width: 100%;
         height: auto;
@@ -32,7 +32,8 @@
         transition: var(--transition);
         inset-block-start: 0;
         &:is(.active) {
-          width: calc(var(--block-max-width) / 1.5);
+          /* width: calc(var(--block-max-width) / 1.75); */
+          width: calc(100% + 3.5rem);
           z-index: 2;
         }
         .input-wrapper {
@@ -64,12 +65,16 @@
           height: calc(var(--circle-size) * 1.0);
           border-radius: var(--circle-size);
           background-color: var(--input-block-bg, var(--block-bg-fallback));
-          box-shadow: 0 0 0 1px var(--input-block-border-color);
+          box-shadow: 0 0 0 1px var(--input-block-border);
         }
+      }
+      &:hover, &:focus-within, &:is(.active) {
+        --input-block-icon-color: var(--input-block-hover-color)
       }
     }
     &[data-type="origin"] {
-      --icon-color: var(--secondary);
+      &:is(.active) { z-index: 5;}
+      --input-block-icon-color: var(--secondary);
       .block-body-circle { 
         inset-inline-end: 0;
         &::before {
@@ -86,7 +91,7 @@
       }
     }
     &[data-type="destination"] {
-      --icon-color: var(--accent);
+      --input-block-icon-color: var(--accent);
       .block-body-circle { 
         inset-inline-start: 0;
         &::before {
@@ -136,6 +141,9 @@
         transition: inherit;
         scale: 0;
         z-index: -1;
+      }
+      &:is(.swapped) {
+        rotate: 180deg;
       }
       &:hover {
         color: var(--accent-color);

@@ -7,11 +7,11 @@
   padding-inline: 0.75rem 0.6rem;
   z-index: 1;
   &:not(:first-child) {
-    border-block-start: 1px solid var(--block-border-color-fallback);
+    border-block-start: 1px solid var(--input-block-border);
   }
   &:is(:first-child) {
-    border-start-start-radius: var(--selection-list-border-radius);
-    border-start-end-radius: var(--selection-list-border-radius);
+    border-start-start-radius: var(--dropdown-wrapper-radius);
+    border-start-end-radius: var(--dropdown-wrapper-radius);
   }      
   .pax-type-label {
     display: grid;
@@ -27,6 +27,7 @@
       display: grid;
       place-items: center;
       flex-shrink: 0;
+      font-size: 0.8rem;
     }
     .value {
       font-weight: 600;
@@ -36,6 +37,7 @@
       --outline-text-color: var(--accent-color);
       --outline-border-color: var(--accent);
       background-color: var(--selector-btn-bg);
+      color: inherit;
       transition: var(--transition);
       border-radius: calc(var(--border-radius) / 1.5);
       cursor: pointer;

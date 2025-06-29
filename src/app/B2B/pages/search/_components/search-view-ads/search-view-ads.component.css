@@ -1,0 +1,9 @@
+:host {
+  position: relative;
+  display: block;
+  margin-block-start: calc(var(--common-margin-y-end) / 1.5);
+  border-radius: calc(var(--border-radius) * 2);
+  overflow: clip;
+  border: 1px solic var(--wrapper-border-radius);
+  z-index: 0;
+}

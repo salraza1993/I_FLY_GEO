@@ -1,19 +1,19 @@
 :host {
   --wrapper-width: calc(900px + 5vw);
   display: grid;
-  gap: 1rem;
   position: relative;
+  gap: calc(1rem + 1vw);
+  .search-page-content-wrapper {
+    width: 100%;
+    max-width: var(--wrapper-width);
+    margin-inline: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--common-margin-y-end);
+  }
 }
 
 
-.search-page-content-wrapper {
-  width: 100%;
-  max-width: var(--wrapper-width);
-  margin-inline: auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--common-margin-y-end);
-}
 
 

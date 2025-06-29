@@ -10,7 +10,7 @@ import { DateTime, easepick, LockPlugin, RangePlugin } from '@easepick/bundle';
   selector: 'app-search-datepicker, search-datepicker',
   imports: [CommonModule, FormsModule],
   templateUrl: './search-datepicker.component.html',
-  styleUrl: './search-datepicker.component.css',
+  styleUrls: ['./search-datepicker.component.css', './../../styles/search-common-styles.css'],
   host: {
     'class': 'search-datepicker-wrapper',
     '[class.roundtrip]': 'isRoundtrip()',
@@ -21,6 +21,7 @@ export class SearchDatepickerComponent implements AfterViewInit {
   @ViewChild('easepickWrapper') easepickWrapper!: ElementRef<HTMLDivElement>;
   @ViewChild('startDateElement') startDateElement!: ElementRef<HTMLInputElement>;
   @ViewChild('endDateElement') endDateElement!: ElementRef<HTMLInputElement>;
+  isDatePickerActive = signal(false);
   protected datePicker!: any;
   readonly dateStartFrom: DateTime = new DateTime(new Date());
   readonly dateEndsTo: DateTime = new DateTime(new Date());
@@ -36,8 +37,17 @@ export class SearchDatepickerComponent implements AfterViewInit {
     },
   });
 
+  ngOnInit() {
+    this.isDatePickerActive.update(prev => prev = this.datePicker?.isShown())
+  }
+  // just example
+  showDatePicker(value: boolean){
+    if(value) this.datePicker?.show()
+    if(!value) this.datePicker?.hide()
+  }
   private calendarCustomSetup(picker: easepick.Core): void {
     picker.on('select', (e: any) => {
+      this.datePicker = picker; // a reference for datePicker
       const { start, end, date } = e.detail;
       if (this.isRoundtrip() && start && end) {
         this.getDate.set({

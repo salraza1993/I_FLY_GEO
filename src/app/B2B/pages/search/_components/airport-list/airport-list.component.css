@@ -1,0 +1,8 @@
+:host {
+  display: block;
+  border-radius: inherit;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  max-height: 300px;
+  overflow: hidden;
+}

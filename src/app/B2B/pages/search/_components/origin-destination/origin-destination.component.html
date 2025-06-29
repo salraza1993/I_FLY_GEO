@@ -1,27 +1,40 @@
-<div class="search-element-block" data-type="origin">
+<div class="search-element-block" [ngClass]="{'active': enableOriginAirportList()}" data-type="origin">
   <div class="block-label">
     <small>Depart From</small>
   </div>
-  <div class="block-body" role="origin" aria-label="origin">
+  <div 
+    [ngClass]="{'active': enableOriginAirportList()}"
+    class="block-body focus-within" 
+    role="origin" 
+    aria-label="origin">
     <div class="block-body-circle"></div>
-    <div class="block-body-content">
-      <div class="input-wrapper focus-within">
+    <div class="block-body-content" [ngClass]="{'active': enableOriginAirportList()}">
+      <div class="input-wrapper">
         <div class="icon">
           <i class="fa-regular fa-circle-dot"></i>
         </div>
         <div class="block-input">
           <input 
             #originInput
+            autocomplete="off"
+            id="input-origin"
+            name="input-origin"
             type="text"
             class="form-control"
             placeholder="Origin (City, Airport Name/Code)"
             [(ngModel)]="origin"
             (keydown.enter)="focusDestination()"
+            (focus)="onFocused('origin')"
             (blur)="validateAndMoveFocus('origin')"
           />
         </div>
-        <div class="clear-buton icon"><i class="fa-solid fa-xmark"></i></div>
+        @if(enableOriginAirportList()) {
+          <div class="clear-buton icon"><i class="fa-solid fa-xmark"></i></div>
+        }
       </div>
+      @if(enableOriginAirportList()) {
+        <airport-list [searchValue]="origin()" />
+      }
     </div>
   </div>
 </div>
@@ -30,18 +43,23 @@
     class="swapper focus-within" 
     role="swapper" 
     tabindex="0" 
+    [ngClass]="{'swapped': isSwappedValue()}"
     (click)="swapValues()"
     (keydown.enter)="swapValues()">
     <i class="fa-solid fa-arrow-right-arrow-left"></i>
   </span>
 </div>
-<div class="search-element-block" data-type="destination">
+<div class="search-element-block" [ngClass]="{'active': enableDestinationAirportList()}" data-type="destination">
   <div class="block-label">
     <small>Depart To</small>
   </div>
-  <div class="block-body focus-within" role="destination" aria-label="destination">
+  <div 
+    [ngClass]="{'active': enableDestinationAirportList()}"
+    class="block-body focus-within" 
+    role="destination" 
+    aria-label="destination">
     <div class="block-body-circle"></div>
-    <div class="block-body-content focus-within">
+    <div class="block-body-content" [ngClass]="{'active': enableDestinationAirportList()}">
       <div class="input-wrapper">
         <div class="icon">
           <i class="fa-regular fa-circle-stop"></i>
@@ -49,15 +67,22 @@
         <div class="block-input">
           <input
             #destinationInput
+            autocomplete="off"
+            id="input-destination"
+            name="input-destination"
             type="text"
             class="input-control"
             placeholder="Destination (City, Airport Name/Code)"
             [(ngModel)]="destination"
             (keydown.enter)="focusNextField()"
+            (focus)="onFocused('destination')"
             (blur)="validateAndMoveFocus('destination')"
           />
         </div>
       </div>
+      @if(enableDestinationAirportList()) {
+        <airport-list />
+      }
     </div>
   </div>
 </div>

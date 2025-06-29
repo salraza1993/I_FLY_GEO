@@ -1,11 +1,23 @@
 :host {
   --container-gaps: 1rem;
+  --grid-columns: 1;
+
   position: relative;
   display: grid;
   gap: 1rem;
   .form-row {
     position: relative;
-    display: flex;
+    display: grid;
     gap: var(--container-gaps);
+    grid-template-columns: repeat(var(--grid-columns), 1fr);
+    &:is(.data-pax-cabin) {
+      grid-template-columns: 1fr 255px 255px;
+      &:not(.roundtrip) {
+        grid-template-columns: 1fr 300px 300px;
+      }
+    }
+  }
+  .button {
+    margin-inline-start: auto;
   }
 }

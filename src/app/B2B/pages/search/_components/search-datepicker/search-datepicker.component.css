@@ -27,7 +27,7 @@
           position: absolute;
           width: 1px;
           height: 50%;
-          background-color: var(--input-block-border-color, var(--block-border-color-fallback));
+          background-color: var(--input-block-border);
           margin-inline-start: calc(0px - calc(1rem + 1vw));
         }
       }

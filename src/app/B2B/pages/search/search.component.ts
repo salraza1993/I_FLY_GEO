@@ -4,12 +4,13 @@ import { TabDataTypes } from '@sharedComponents/custom-tabs/custom-tabs.componen
 import { SearchServicesTabsComponent } from './_components/search-services-tabs/search-services-tabs.component';
 import { SearchContentContainerComponent } from './_components/search-content-container/search-content-container.component';
 import { ActivatedRoute } from '@angular/router';
+import { SearchViewAdsComponent } from './_components/search-view-ads/search-view-ads.component';
 
 @Component({
   selector: 'search',
-  imports: [COMMON_IMPORTS, SearchServicesTabsComponent, SearchContentContainerComponent ],
+  imports: [COMMON_IMPORTS, SearchServicesTabsComponent, SearchContentContainerComponent, SearchViewAdsComponent ],
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css', './styles/search-common-styles.css'],
+  styleUrls: ['./search.component.css'],
   host: {
     'class': 'search-page-wrapper'
   }

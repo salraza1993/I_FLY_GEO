@@ -1,68 +1,59 @@
 :host {
-  --selected-cabin-bg: light-dark(var(--primary-100_light), var(--primary-85_dark));
-  --selector-btn-bg: light-dark(var(--primary-80_light), var(--primary-85_dark));
-  --selection-list-border-radius: calc(var(--border-radius) * 1.5);
   --selected-cabin-list-bg: light-dark(var(--primary-90_light), var(--primary-90_dark));
+  --selected-cabin-list-color: light-dark(var(--primary-90_dark), var(--primary-90_light));
   --selected-cabin-list-hover-bg: var(--accent);
+  
   position: relative;
-  width: 100%;
-  .cabin-selection-input {
-    position: relative;
-    padding-inline-start: 1px;
-    padding-inline-end: 0.4rem;
-    padding-block: 0.4rem;
-
-    .selected-cabins {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      border-radius: var(--border-radius);
-      background-color: var(--selected-cabin-bg);
-      padding-inline-start: 0.65rem;
-      box-shadow:  0 0 0 1px var(--block-border-color-fallback);
-      font-weight: 600;
+  .block-body {
+    justify-content: space-between;
+  }
+  .selected-cabins {    
+    padding-inline: 0.65rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    .class-types {
+      max-width: 80%;
+      display: block;
+      font-weight: 700;
       white-space: nowrap;
-      overflow: hidden;
-      max-width: 200px;
       text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .icon-ellipsis {
+      flex-shrink: 0;
+      width: 15px;
+      text-align: center;
     }
   }
-  .cabin-selection-list {
-    position: absolute;
-    inset-block-start: calc(100% + 0.25rem);
-    inset-inline-end: 0;
-    background-color: var(--selected-cabin-bg);
-    box-shadow: 0 0 0 1px var(--block-border-color-fallback);
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-width: 250px;
-    border-radius: var(--selection-list-border-radius);
-    .cabin-list-wrapper {
-      position: relative;
-      padding: 0.5rem;
-      display: grid;
-      gap: 0.15rem;
-      .cabin-list {
-        background-color: var(--selected-cabin-list-bg);
-        padding-inline: 0.5rem;
-        padding-block: 0.35rem;
-        border-radius: var(--border-radius);
-        border: 1px solid var(--block-border-color-fallback);
-        display: flex;
-        gap: 0.65rem;
-        transition: var(--transition);
-        &:is(.selected) {
-          font-weight: 700;
-          background-color: var(--secondary);
-          color: var(--secondary-color);
-        }
-        &:not(.selected):hover {
-          background-color: var(--accent);
-          color: var(--accent-color);
-        }
+  .selected-value-wrapper {
+    max-width: calc(var(--selected-value-strip-max-width) - var(--input-block-height) - 0.5rem);
+  }
+  .cabin-list-wrapper {
+    position: relative;
+    padding: 0.5rem;
+    display: grid;
+    gap: 0.15rem;
+    .cabin-list {
+      background-color: var(--selected-cabin-list-bg);
+      color: var(--selected-cabin-list-color);
+      padding-inline: 0.5rem;
+      padding-block: 0.35rem;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--input-block-border);
+      display: flex;
+      gap: 0.65rem;
+      transition: var(--transition);
+      &:focus-within, &:focus-visible, &:focus {
+        z-index: 1;
+      }
+      &:is(.selected) {
+        font-weight: 700;
+        background-color: var(--secondary);
+        color: var(--secondary-color);
+      }
+      &:not(.selected):hover {
+        background-color: var(--accent);
+        color: var(--accent-color);
       }
     }
   }

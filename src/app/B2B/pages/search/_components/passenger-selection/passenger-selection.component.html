@@ -1,22 +1,25 @@
 <div 
   class="search-element-block pax-selection-wrapper" 
-  [ngClass]="{'error': error()}"
+  [ngClass]="{'error': error(), 'active': dropdownState(),}"
   data-type="passenger-selection" aria-label="passenger-selection">
   <div class="block-label">
     <small>Traveler(s)</small>
   </div>
   <div 
-    class="block-body cursor--pointer" 
+    class="block-body contain-dropdown cursor--pointer focus-within" 
     aria-label="datepicker" 
+    data-dropdown="true"
     role="datepicker" 
-    (clickOutside)="dropdownHandler(false)"
-    [ngClass]="{'error': error()}">
+    [ngClass]="{'error': error(), 'selected': dropdownState()}"
+    (clickOutside)="dropdownHandler(false)">
     <div class="icon"><i class="fa-regular fa-family"></i></div>
     <div 
-      class="block-input pax-selection-input" 
+      tabindex="0"
+      class="block-input selected-value-wrapper pax-selection-input not-focused" 
       (click)="dropdownHandler(!dropdownState())"
+      (blur)="dropdownHandler(dropdownState())"
       (keydown.enter)="dropdownHandler(!dropdownState())">
-      <ul class="selected-pax">
+      <ul class="selected-value-strip selected-pax not-focused" [ngClass]="{'selected': dropdownState()}">
         <li class="selected-pax__list">
           <strong>{{ totalAdults() }}</strong><span>Ad</span>
         </li>
@@ -30,31 +33,31 @@
     </div>
     @if(dropdownState()) {
       <div 
-        class="passenger-selection-list dropdown-anime-item" 
-        [ngClass]="{'error': error()}"
+        class="dropdown-wrapper passenger-selection-list" 
+        [ngClass]="{'error': error(), 'opened': dropdownState()}"
         [@dropDownMenu]>
-        <app-plus-minus 
+        <app-plus-minus class="dropdown-wrapper__list" 
           paxType="Adults" 
           age="12+ Years" 
           [(selectedValue)]="totalAdults" 
-          [onIncrement]="paxAddition.bind(this, 'adults')" 
-          [onDecrement]="paxSubstration.bind(this, 'adults')">
+          [onIncrement]="add.bind(this, 'adults')" 
+          [onDecrement]="subtract.bind(this, 'adults')">
         </app-plus-minus>
-        <app-plus-minus 
+        <app-plus-minus class="dropdown-wrapper__list" 
           paxType="Children" 
           age="Aged 2 – 11" 
           [(selectedValue)]="totalChilds" 
-          [onIncrement]="paxAddition.bind(this, 'children')" 
-          [onDecrement]="paxSubstration.bind(this, 'children')">
+          [onIncrement]="add.bind(this, 'children')" 
+          [onDecrement]="subtract.bind(this, 'children')">
         </app-plus-minus>
-        <app-plus-minus 
+        <app-plus-minus class="dropdown-wrapper__list" 
           paxType="Infant(s)" 
           age="below 2 Years" 
           [(selectedValue)]="totalInfants" 
-          [onIncrement]="paxAddition.bind(this, 'infants')" 
-          [onDecrement]="paxSubstration.bind(this, 'infants')">
+          [onIncrement]="add.bind(this, 'infants')" 
+          [onDecrement]="subtract.bind(this, 'infants')">
         </app-plus-minus>
-        <div class="pax-selection__footer dropdown-anime-item" [ngClass]="{'error': error()}">
+        <div class="dropdown-wrapper__list dropdown-wrapper__footer pax-selection__footer dropdown-anime-item" [ngClass]="{'error': error()}">
           @if(error()) {
             <div class="error-message dropdown-anime-item">
               <i class="fa-solid fa-triangle-exclamation error-icon"></i>
@@ -62,7 +65,7 @@
             </div>
           }
           <div class="d-flex justify-content-center dropdown-anime-item">
-            <button type="button" class="extra-small gray text-end reset-values" (click)="paxResetValues()">Reset Values</button>
+            <button (blur)="dropdownHandler(false)" type="button" class="extra-small gray text-end reset-values" (click)="reset()">Reset Values</button>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@
     (keydown.enter)="onDecrement()?.()"
     class="selecter-button minus button-{{ paxType().toLocaleLowerCase() }}" 
     [ngClass]="{'disabled': isMinusDisabled() }"
+    [attr.disabled]="isMinusDisabled()"
     role="button" 
     tabindex="0" 
     aria-label="Remove adult">

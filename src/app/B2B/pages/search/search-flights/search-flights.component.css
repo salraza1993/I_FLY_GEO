@@ -1,5 +1,9 @@
 :host {
-  background-color: blue;
   display: block;
-  
+  --selected-cabin-bg: light-dark(var(--primary-100_light), var(--primary-85_dark));
+  --selector-btn-bg: light-dark(var(--primary-80_light), var(--primary-85_dark));
+  --selection-list-border-radius: calc(var(--border-radius) * 1.5);
+  --selected-cabin-list-bg: light-dark(var(--primary-90_light), var(--primary-90_dark));
+  --selected-cabin-list-hover-bg: var(--accent);
+  --block-max-width: 100%;
 }

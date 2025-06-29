@@ -11,6 +11,32 @@
   border-radius: var(--outline-radius, var(--border-radius));
 }
 
+.not-focused {
+  &:focus-within, &:focus-visible, &:focus {
+    --outline-bg: none;
+    --outline-text-color: none;
+    --outline-border-color: none;
+    --outline-width: 0;
+    --outline-style: none;
+    --outline-color: transparent;
+    --outline-offset: 0;
+    --outline-radius: 0;
+  }
+}
+
+*[data-z-index="-1"] { z-index: -1; }
+*[data-z-index="0"] { z-index: 0; }
+*[data-z-index="1"] { z-index: 1; }
+*[data-z-index="2"] { z-index: 2; }
+*[data-z-index="3"] { z-index: 3; }
+*[data-z-index="4"] { z-index: 4; }
+*[data-z-index="5"] { z-index: 5; }
+*[data-z-index="6"] { z-index: 6; }
+*[data-z-index="7"] { z-index: 7; }
+*[data-z-index="8"] { z-index: 8; }
+*[data-z-index="9"] { z-index: 9; }
+*[data-z-index="10"] { z-index: 10; }
+
 svg {
   --stroke-width-fallback: 3;
   stroke-width: var(--stroke-width, var(--stroke-width-fallback));

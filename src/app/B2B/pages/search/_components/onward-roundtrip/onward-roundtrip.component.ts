@@ -1,12 +1,18 @@
 import { booleanAttribute, Component, input, signal } from '@angular/core';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
-import { OriginDestinationComponent, OriginDestinationDataType } from '../origin-destination/origin-destination.component';
-import { DatepickerComponent } from "../../../../../shared/components/datepicker/datepicker.component";
-import { PassengerSelectionComponent } from "../passenger-selection/passenger-selection.component";
-import { CabinSelectionComponent } from "../cabin-selection/cabin-selection.component";
-import { SearchDatepickerComponent } from "../search-datepicker/search-datepicker.component";
+import {
+  OriginDestinationComponent,
+  OriginDestinationDataType,
+} from '../origin-destination/origin-destination.component';
+import { DatepickerComponent } from '../../../../../shared/components/datepicker/datepicker.component';
+import {
+  PassengerSelectionComponent,
+  PaxSelectionDataType,
+} from '../passenger-selection/passenger-selection.component';
+import { CabinSelectionComponent } from '../cabin-selection/cabin-selection.component';
+import { SearchDatepickerComponent } from '../search-datepicker/search-datepicker.component';
 import { DateTime } from '@easepick/bundle';
-import { CustomButtonComponent } from "../../../../../shared/components/custom-button/custom-button.component";
+import { CustomButtonComponent } from '../../../../../shared/components/custom-button/custom-button.component';
 
 @Component({
   selector: 'app-onward-roundtrip, onward-roundtrip',
@@ -16,14 +22,20 @@ import { CustomButtonComponent } from "../../../../../shared/components/custom-b
     PassengerSelectionComponent,
     CabinSelectionComponent,
     SearchDatepickerComponent,
-    CustomButtonComponent
-],
+    CustomButtonComponent,
+  ],
   templateUrl: './onward-roundtrip.component.html',
-  styleUrl: './onward-roundtrip.component.css'
+  styleUrls: ['./onward-roundtrip.component.css'],
+  host: {
+    class: 'onward-roundtrip-content-wrapper',
+    '[class.roundtrip]': 'roundTrip()',
+  },
 })
 export class OnwardRoundtripComponent {
-  setOriginDestination! : OriginDestinationDataType;
+  setOriginDestination!: OriginDestinationDataType;
   dateRange: { onwardDate?: string; returnDate?: string } | null = null;
   selectedDate: DateTime | { start: DateTime; end: DateTime } | null = null;
-  roundTrip = input(false, { transform: booleanAttribute});
+  selectedCabins = signal<string[]>(['Economy']);
+  selectedPax = signal<PaxSelectionDataType>({ adults: 1, children: 0, infants: 0 });
+  roundTrip = input(false, { transform: booleanAttribute });
 }

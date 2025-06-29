@@ -1,6 +1,7 @@
-import { Component, effect, ElementRef, model, output, signal, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, computed, effect, ElementRef, model, output, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
+import { AirportListComponent } from "../airport-list/airport-list.component";
 
 export type OriginDestinationDataType = {
   origin: string | null, 
@@ -8,42 +9,51 @@ export type OriginDestinationDataType = {
 }
 @Component({
   selector: 'app-origin-destination, origin-destination',
-  imports: [COMMON_IMPORTS, FormsModule],
+  imports: [COMMON_IMPORTS, FormsModule, AirportListComponent],
   templateUrl: './origin-destination.component.html',
   styleUrls: ['./origin-destination.component.css', './../../styles/search-common-styles.css'],
   host: {
-    'class': 'origin-destination-wrapper'
+    'class': 'origin-destination-wrapper',
+    '[attr.data-z-index]': '(enableOriginAirportList() || enableDestinationAirportList()) ? 10 : 1'
   }
 })
 export class OriginDestinationComponent {
   @ViewChild('originInput') originInput!: ElementRef<HTMLInputElement>;
   @ViewChild('destinationInput') destinationInput!: ElementRef<HTMLInputElement>;
-  origin = signal<string | null>(null);
-  destination = signal<string | null>(null);
-  focusChanged = output<string>();
-  getOriginDestination = model<OriginDestinationDataType>({
+
+  public isSwappedValue = signal(false);
+  public origin = signal<string | null>(null);
+  public destination = signal<string | null>(null);
+  public focusChanged = output<string>();
+  public enableOriginAirportList = signal(false);
+  public enableDestinationAirportList = signal(false);
+
+  private originDestinationComputed = computed<OriginDestinationDataType>(() => ({
     origin: this.origin(),
-    destination: this.destination(),
-  })
+    destination: this.destination()
+  }))
+
+  public getOriginDestination = model<OriginDestinationDataType>(this.originDestinationComputed())
+
   constructor() {
     effect(() => {
-      this.getOriginDestination.set({
-        origin: this.origin(),
-        destination: this.destination()
-      });
+      this.getOriginDestination.set(this.originDestinationComputed());
+      // this.enableOriginAirportList.set((this.origin()?.length ?? 0) >= 3)
     });
   }
+
   public swapValues(): void {
-    let originValue = this.origin();
-    let destinationValue = this.destination();
+    const originValue = this.origin();
+    const destinationValue = this.destination();
     this.origin.set(destinationValue);
     this.destination.set(originValue);
-
+    this.isSwappedValue.update(prev => prev = !prev);
     // After swap, focus should stay logical
     if (this.destinationInput.nativeElement === document.activeElement) {
       this.focusOrigin();
     }
   }
+
   clearOrigin(): void {
     this.origin.set(null);
     this.focusOrigin();
@@ -75,12 +85,27 @@ export class OriginDestinationComponent {
     this.focusChanged.emit('next');
   }
 
-  validateAndMoveFocus(field: 'origin' | 'destination'): void {
-    if (field === 'origin' && this.origin() && this.origin()!.length >= 3) {
-      this.focusDestination();
-    } else if (field === 'destination' && this.destination() && this.destination()!.length >= 3) {
-      this.focusNextField();
+  onFocused(field: 'origin' | 'destination'): void {
+    if (field === 'origin') {
+      this.enableOriginAirportList.set(true)
+      this.enableDestinationAirportList.set(false)
+    } else if(field === 'destination') {
+      this.enableDestinationAirportList.set(true)
+      this.enableOriginAirportList.set(false)
+    } else {
+      this.enableOriginAirportList.set(false)
+      this.enableDestinationAirportList.set(false)
     }
   }
-  inputHandler():void {}
+
+  validateAndMoveFocus(field: 'origin' | 'destination'): void {
+    this.enableOriginAirportList.set(false)
+    this.enableDestinationAirportList.set(false)
+    // if (field === 'origin' && this.origin() && this.origin()!.length >= 3) {
+    //   this.focusDestination();
+    // } else if (field === 'destination' && this.destination() && this.destination()!.length >= 3) {
+    //   this.focusNextField();
+    // }
+  }
 }
+

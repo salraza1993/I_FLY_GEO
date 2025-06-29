@@ -4,15 +4,15 @@
   data-type="search-datepicker" 
   aria-label="search-datepicker">
   <div class="block-label">
-    <small class="start-date-label">Depart Date</small>
+    <small class="start-date-label" (click)="showDatePicker(true)">Depart Date</small>
     @if(isRoundtrip()) {
-      <small class="end-date-label">Return Date</small>
+      <small class="end-date-label" (click)="showDatePicker(false)">Return Date</small>
     }
   </div>
   <div 
     class="block-body focus-within" 
     aria-label="datepicker" 
-    role="datepicker" >
+    role="datepicker">
 
     <div class="icon">
       <i class="fa-regular fa-calendar"></i>
@@ -21,29 +21,34 @@
       <div class="block-input">
         <input
           #startDate
+          tabindex="-1"
           type="text"
           name="startDate"
           id="startDate"
-          class="input-element pointer-events--initial"
+          class="input-element user-select pointer-events--initial"
           placeholder="Start Date"
+          readonly
           autocomplete="off"
         />
         </div>
         @if(isRoundtrip()) {
           <div class="block-input">
             <input
+              tabindex="-1"
               #endDate
               type="text"
               id="endDate" 
               name="endDate"
-              class="input-element"
+              class="input-element user-select"
               placeholder="End Date"
               autocomplete="off"
+              readonly
             />
         </div>
       }
     </div>
   </div>
+  <small>Error Message</small>
 </div>
 
 

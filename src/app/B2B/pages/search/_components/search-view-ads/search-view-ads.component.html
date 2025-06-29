@@ -1,0 +1,11 @@
+<swiper-container class="carousel-container" slides-per-view="1" pagination="true">
+  @for (item of [1,2,3]; track $index) {
+    <swiper-slide class="slide">
+      <picture class="images">
+        <source srcset="/assets/images/search-view-banner.png" media="(prefers-color-scheme: light)" />
+        <source srcset="/assets/images/search-view-banner.png" media="(prefers-color-scheme: dark)" />
+        <img src="/assets/images/search-view-banner.png" alt="Client Logo" />
+      </picture>
+    </swiper-slide>
+  }
+</swiper-container>

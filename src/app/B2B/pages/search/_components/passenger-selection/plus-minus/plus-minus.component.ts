@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, input, model, signal } from '@angular/core';
+import { Component, computed, effect, input, model, signal } from '@angular/core';
 
 @Component({
   selector: 'app-plus-minus, plus-minus',
@@ -17,25 +17,12 @@ export class PlusMinusComponent {
   public selectedValue = model<number>(0);
   public onIncrement = input<() => void>();
   public onDecrement  = input<() => void>();
-  public isMinusDisabled = signal(false);
-  public isPlusDisabled = signal(false);
-  constructor() {
-    effect(() => {
-      this.makeDisabled(0, 9);
-    })
-  }
-
-  private makeDisabled(min: number, max: number) {
-    const isAdult = this.paxType().toLocaleLowerCase() === 'adult';
-    if(isAdult && this.selectedValue() <= (min + 1)) {
-      this.isMinusDisabled.update(value => value = true);
-    } else if(this.selectedValue() === min) {
-      this.isMinusDisabled.update(value => value = true);
-    } else if(this.selectedValue() >= max) { 
-      this.isPlusDisabled.update(value => value = true)
-    } else {
-      this.isMinusDisabled.update(value => value = false)
-      this.isPlusDisabled.update(value => value = false)
-    }    
-  }
+  private readonly MIN = 0;
+  private readonly MAX = 9;
+  public isPlusDisabled = computed(() => this.selectedValue() >= this.MAX);
+  public isMinusDisabled = computed(() => {
+    const val = this.selectedValue();
+    const type = this.paxType().toLowerCase();
+    return type === 'adults' ? val <= 1 : val <= this.MIN;
+  });
 }

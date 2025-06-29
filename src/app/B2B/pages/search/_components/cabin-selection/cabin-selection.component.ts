@@ -1,27 +1,27 @@
 import { ClickOutsideDirective } from '@/core/directives/click-outside.directive';
 import { dropDownMenu } from '@/shared/animations/dropdownList.animation';
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, computed, effect, model, signal } from '@angular/core';
 
 type CabinDataListType = {
-  id: string, 
-  label: string, 
-  selected: boolean
-}
+  id: string;
+  label: string;
+  selected: boolean;
+};
 @Component({
   selector: 'app-cabin-selection, cabin-selection',
   imports: [CommonModule, ClickOutsideDirective],
   templateUrl: './cabin-selection.component.html',
-  styleUrl: './cabin-selection.component.css',
+  styleUrls: ['./cabin-selection.component.css', './../../styles/search-common-styles.css'],
   animations: [dropDownMenu],
   host: {
-    'class': 'cabin-selection-wrapper'
-  }
+    class: 'cabin-selection-wrapper',
+  },
 })
 export class CabinSelectionComponent {
-  public error = signal<string|null>(null)
+  public error = signal<string | null>(null);
   public dropdownState = signal<boolean>(false);
-  public selectedCabins = signal<string[]>(['Economy']);
+  public getCabins = model<string[]>(['Economy'])
 
   public cabinList = signal<CabinDataListType[]>([
     { id: 'economy', label: 'Economy', selected: true },
@@ -31,11 +31,56 @@ export class CabinSelectionComponent {
     { id: 'not-preferred', label: 'Not Preferred', selected: false },
   ]);
 
-  
-  dropdownHandler(value: boolean) {
-    this.dropdownState.update(prev => prev = value)
+  public selectedCabins = computed(() =>
+    this.cabinList()
+      .filter(c => c.selected && c.id !== 'not-preferred')
+      .map(c => c.label)
+  );
+
+  public selectedClassLabels = computed(() => {
+    const list = this.cabinList().filter(c => c.selected);
+    return list.map(c => c.label).join(', ');
+  });
+
+  constructor() {
+    // Keep model in sync with internal selection
+    effect(() => {
+      const active = this.cabinList().filter(c => c.selected).map(c => c.label);
+      this.getCabins.set(active);
+    });
   }
-  selectCabinHandler(itemId: string) {
-    // this.cabinList.update((prev)=> [...prev, prev.selected = prev.id === itemId])
+
+  public dropdownHandler(value: boolean) {
+    this.dropdownState.update((prev) => (prev = value));
+  }
+  public selectCabinHandler(itemId: string) {
+    this.cabinList.update(prev =>
+      prev.map(cabin => {
+        if (itemId === 'not-preferred') {
+          return { ...cabin, selected: cabin.id === 'not-preferred' };
+        }
+        if (cabin.id === 'not-preferred') {
+          return { ...cabin, selected: false };
+        }
+        if (cabin.id === itemId) {
+          return { ...cabin, selected: !cabin.selected };
+        }
+        return cabin;
+      })
+    );
+     this.autoSelectNotPreferred();
+  }  
+
+  private autoSelectNotPreferred() {
+    this.cabinList.update(prev => {
+      const hasCabinSelected = prev.some(
+        c => c.selected && c.id !== 'not-preferred'
+      );
+      return prev.map(cabin =>
+        cabin.id === 'not-preferred'
+          ? { ...cabin, selected: !hasCabinSelected }
+          : cabin
+      );
+    });
   }
 }

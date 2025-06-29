@@ -4,15 +4,21 @@ import { SearchFormContentWrapperComponent } from '@search/_components/search-fo
 import { CustomTabsComponent, TabDataTypes } from '@/shared/components/custom-tabs/custom-tabs.component';
 import { OnwardRoundtripComponent } from '@search/_components/onward-roundtrip/onward-roundtrip.component';
 import { MultiCityComponent } from '@search/_components/multi-city/multi-city.component';
+import { SearchViewAdsComponent } from '../_components/search-view-ads/search-view-ads.component';
 
 @Component({
   selector: 'app-search-flights, search-flights',
-  imports: [COMMON_IMPORTS, SearchFormContentWrapperComponent, CustomTabsComponent, OnwardRoundtripComponent, MultiCityComponent],
+  imports: [
+    COMMON_IMPORTS, 
+    SearchFormContentWrapperComponent, 
+    CustomTabsComponent, 
+    OnwardRoundtripComponent, 
+    MultiCityComponent,
+  ],
   templateUrl: './search-flights.component.html',
-  styleUrls: ['./search-flights.component.css', '../styles/search-common-styles.css'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./search-flights.component.css'],
   host: {
-    'class': 'search-form-card-wrapper',
+    'class': 'search-bg',
   }
 })
 export class SearchFlightsComponent {

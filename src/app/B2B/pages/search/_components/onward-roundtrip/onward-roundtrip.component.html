@@ -1,10 +1,24 @@
 <div class="form-row">
-  <origin-destination [(getOriginDestination)]="setOriginDestination" />
+  <origin-destination [(getOriginDestination)]="setOriginDestination" data-z-index="1" />
 </div>
-<div class="form-row">
-  <search-datepicker [isRoundtrip]="roundTrip()" [(getDate)]="dateRange" />
-  <passenger-selection />
-  <cabin-selection />
+<div class="form-row data-pax-cabin {{roundTrip() && 'roundtrip' }}" [style.--grid-columns]="3">
+  <search-datepicker data-z-index="1" [isRoundtrip]="roundTrip()" [(getDate)]="dateRange" />
+  <passenger-selection [(getPax)]="selectedPax" data-z-index="1" />
+  <cabin-selection [(getCabins)]="selectedCabins" data-z-index="1" />
 </div>
-<custom-button class="button--secondary" buttonTitle="Search Flight" iconBefore="plane-departure"></custom-button>
-{{ dateRange | json}}
+<custom-button 
+  data-z-index="0" 
+  class="button button--secondary size--large" 
+  buttonTitle="Search Flight" 
+  iconBefore="plane-departure">
+</custom-button>
+
+<br />
+destination: {{ setOriginDestination | json}}
+<br />
+Data: {{dateRange | json}}
+<br />
+Passengers: {{ selectedPax() | json }}
+<br />
+cabins: {{ selectedCabins() | json }}
+<br />

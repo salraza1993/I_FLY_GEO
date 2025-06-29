@@ -52,6 +52,9 @@
 
 .pointer-event--none { pointer-events: none !important; }
 .pointer-events--initial { pointer-events: initial !important; }
+.user-select {
+  user-select: none !important;
+}
 
 body:not(.arabic) {
   .font--exo, .font-exo {
