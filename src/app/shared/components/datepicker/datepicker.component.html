@@ -2,7 +2,10 @@
   <div class="block-label">
     <small>Depart From</small>
   </div>
-  <div class="block-body focus-within" aria-label="datepicker" role="datepicker">
+  <div 
+    class="block-body focus-within" 
+    [id]="'parent-' + datepickerId()"
+    aria-label="datepicker" role="datepicker">
     <div class="icon">
       <i class="fa-regular fa-calendar"></i>
     </div>
@@ -11,8 +14,8 @@
         autocomplete="off"
         type="text"
         name="datepicker"
-        [id]="datepickerId()"
-        class="datepicker-input {{ datepickerId() }}"
+        [id]="datepickerId() || 'datepicker-id'"
+        class="datepicker-input {{ datepickerId() || 'datepicker-id'}}"
         placeholder="select date"
         readonly
       />

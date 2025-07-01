@@ -1,34 +1,34 @@
 import { applyCalenderWrapperStyles } from '@/shared/helpers/easeCalenderWrapperStyles';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, booleanAttribute, Component, effect, ElementRef, input, model, signal, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, booleanAttribute, Component, effect, ElementRef, input, model, OnDestroy, signal, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DateTime, easepick, LockPlugin, RangePlugin } from '@easepick/bundle';
 // import {  } from '@easepick/datetime';
 
-
+export type SearchDateType = { onwardDate: string; returnDate?: string } | null;
 @Component({
   selector: 'app-search-datepicker, search-datepicker',
   imports: [CommonModule, FormsModule],
   templateUrl: './search-datepicker.component.html',
-  styleUrls: ['./search-datepicker.component.css', './../../styles/search-common-styles.css'],
+  styleUrls: ['./search-datepicker.component.css'],
   host: {
     'class': 'search-datepicker-wrapper',
     '[class.roundtrip]': 'isRoundtrip()',
+    '[attr.data-z-index]': 'datePicker?.isShown() ? 10 : 1'
   }
 })
-export class SearchDatepickerComponent implements AfterViewInit {
-  @ViewChild('easepick') easepick: any;
-  @ViewChild('easepickWrapper') easepickWrapper!: ElementRef<HTMLDivElement>;
-  @ViewChild('startDateElement') startDateElement!: ElementRef<HTMLInputElement>;
-  @ViewChild('endDateElement') endDateElement!: ElementRef<HTMLInputElement>;
+export class SearchDatepickerComponent implements AfterViewInit, OnDestroy {
+  @ViewChild('easepick', { static: false }) easepick: any;
+  @ViewChild('easepickWrapper', { static: false }) easepickWrapper!: ElementRef<HTMLDivElement>;
   isDatePickerActive = signal(false);
+  datepickerParentId = signal('origin-destination-calendar')
   protected datePicker!: any;
   readonly dateStartFrom: DateTime = new DateTime(new Date());
   readonly dateEndsTo: DateTime = new DateTime(new Date());
   readonly alignment: string[] = ['y-start', 'x-start'];
   readonly format: string = 'DD/MM/YYYY';
-  public getDate = model<unknown | null>(null);
-  public isRoundtrip = input(true, { transform: booleanAttribute});
+  public getDate = model<SearchDateType>(null);
+  public isRoundtrip = input(false, { transform: booleanAttribute});
   private plugins = signal<any>([LockPlugin]);
   private pluginConfig = signal<any>({
     LockPlugin: {
@@ -71,7 +71,7 @@ export class SearchDatepickerComponent implements AfterViewInit {
         ...prev,
         RangePlugin: {
           elementEnd: endDateElement,
-          repick: true,
+          repick: false,
           tooltip: true
         }
       }));
@@ -80,8 +80,9 @@ export class SearchDatepickerComponent implements AfterViewInit {
       element: startDateElement,
       css: [
         'https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css',
-        '/assets/styles/common/customize_sample.css',
+        '/assets/styles/common/easepick_customized.css',
       ],
+      autoApply: true,
       zIndex: 10,
       calendars: 2,
       grid: 2,
@@ -93,11 +94,15 @@ export class SearchDatepickerComponent implements AfterViewInit {
     if (this.datePicker && Object.keys(this.datePicker).length > 0) {
       this.datePicker.destroy();
     }
+    this.datePicker?.clear();
     this.datePicker = new easepick.create(calendarConfig);
-    applyCalenderWrapperStyles();
+    applyCalenderWrapperStyles(this.alignment, this.datepickerParentId());
   }
   
   ngAfterViewInit(): void {
     setTimeout(() => this.initializeCalender(), 1000);
+  }
+  ngOnDestroy(): void {
+    // this.datePicker.destroy();
   }
 }

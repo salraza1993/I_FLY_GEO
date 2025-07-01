@@ -2,16 +2,17 @@ import { Component, computed, effect, ElementRef, model, output, signal, ViewChi
 import { FormsModule } from '@angular/forms';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
 import { AirportListComponent } from "../airport-list/airport-list.component";
+import { AirportDataType } from '../../services/airport-list.service';
 
 export type OriginDestinationDataType = {
-  origin: string | null, 
-  destination: string | null
+  origin: any, 
+  destination: any
 }
 @Component({
   selector: 'app-origin-destination, origin-destination',
   imports: [COMMON_IMPORTS, FormsModule, AirportListComponent],
   templateUrl: './origin-destination.component.html',
-  styleUrls: ['./origin-destination.component.css', './../../styles/search-common-styles.css'],
+  styleUrls: ['./origin-destination.component.css'],
   host: {
     'class': 'origin-destination-wrapper',
     '[attr.data-z-index]': '(enableOriginAirportList() || enableDestinationAirportList()) ? 10 : 1'
@@ -25,12 +26,14 @@ export class OriginDestinationComponent {
   public origin = signal<string | null>(null);
   public destination = signal<string | null>(null);
   public focusChanged = output<string>();
-  public enableOriginAirportList = signal(false);
-  public enableDestinationAirportList = signal(false);
+  public enableOriginAirportList = signal<boolean>(false);
+  public enableDestinationAirportList = signal<boolean>(false);
+  public getOriginAirportData = signal<AirportDataType | null>(null);
+  public getDestinationAirportData = signal<AirportDataType | null>(null);
 
   private originDestinationComputed = computed<OriginDestinationDataType>(() => ({
-    origin: this.origin(),
-    destination: this.destination()
+    origin: {...this.getOriginAirportData()},
+    destination: {...this.getDestinationAirportData()}
   }))
 
   public getOriginDestination = model<OriginDestinationDataType>(this.originDestinationComputed())
@@ -38,7 +41,6 @@ export class OriginDestinationComponent {
   constructor() {
     effect(() => {
       this.getOriginDestination.set(this.originDestinationComputed());
-      // this.enableOriginAirportList.set((this.origin()?.length ?? 0) >= 3)
     });
   }
 
@@ -87,9 +89,11 @@ export class OriginDestinationComponent {
 
   onFocused(field: 'origin' | 'destination'): void {
     if (field === 'origin') {
+      this.originInput.nativeElement.select()
       this.enableOriginAirportList.set(true)
       this.enableDestinationAirportList.set(false)
     } else if(field === 'destination') {
+      this.destinationInput.nativeElement.select()
       this.enableDestinationAirportList.set(true)
       this.enableOriginAirportList.set(false)
     } else {
@@ -97,15 +101,28 @@ export class OriginDestinationComponent {
       this.enableDestinationAirportList.set(false)
     }
   }
-
-  validateAndMoveFocus(field: 'origin' | 'destination'): void {
-    this.enableOriginAirportList.set(false)
-    this.enableDestinationAirportList.set(false)
-    // if (field === 'origin' && this.origin() && this.origin()!.length >= 3) {
-    //   this.focusDestination();
-    // } else if (field === 'destination' && this.destination() && this.destination()!.length >= 3) {
-    //   this.focusNextField();
-    // }
+  onSelectedAirportData(field: string) {
+    if(field === 'origin') {
+      this.enableOriginAirportList.set(false)
+      this.focusDestination();
+    } else if(field === 'destination') {
+      this.enableDestinationAirportList.set(false)
+      this.focusNextField();
+    }
+  }
+  validateAndMoveFocus(event: Event, field: 'origin' | 'destination'): void {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+    if (field === 'origin' && this.origin() && this.origin()!.length >= 3) {
+      this.enableOriginAirportList.set(false)
+      this.focusDestination();
+    } else if (field === 'destination' && this.destination() && this.destination()!.length >= 3) {
+      this.enableDestinationAirportList.set(false)
+      this.focusNextField();
+    } else {
+      this.enableOriginAirportList.set(false)
+      this.enableDestinationAirportList.set(false)
+    }
   }
 }
 

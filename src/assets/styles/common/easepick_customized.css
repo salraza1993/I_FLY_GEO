@@ -3,8 +3,6 @@
   --day-width: 40px;
   --day-height: 30px;
   --calendar-border-color: light-dark(var(--primary-75_light), var(--primary-20_dark));
-  --calendar-inset-block-start: 0;
-  --calendar-inset-inline-start: 0;
   --container-position-x: 0;
   --container-position-y: 0;
   --tranform-origin-y: top;
@@ -59,12 +57,9 @@
 }
 /* increase start and end */
 
-
-
 .container {
   top: inherit !important;
   left: inherit !important;
-  inset-block-start: 0 !important;
   font-weight: normal;
   transform: scale(0) !important;
   border-radius: calc(var(--border-radius) * 3);

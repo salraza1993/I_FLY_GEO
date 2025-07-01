@@ -6,7 +6,7 @@ import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
   selector: 'app-search-activities, search-activities',
   imports: [COMMON_IMPORTS, SearchFormContentWrapperComponent],
   templateUrl: './search-activities.component.html',
-  styleUrls: ['./search-activities.component.css', '../styles/search-common-styles.css'],
+  styleUrls: ['./search-activities.component.css'],
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'search-form-card-wrapper',

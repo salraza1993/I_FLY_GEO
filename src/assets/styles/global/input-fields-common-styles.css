@@ -132,7 +132,6 @@
     flex-direction: column;
     width: 100%;
     min-width: var(--dropdown-wrapper-min-width);
-    /* * { color: inherit; } */
     &:is(.error) {
       --input-block-border: light-dark(var(--danger-80_light), var(--danger-100_dark));
     }
@@ -143,4 +142,3 @@
     }
   }
 }
-

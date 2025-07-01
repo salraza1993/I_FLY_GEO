@@ -5,11 +5,13 @@ type DataTypes = {
 }
 // alignments: ['y-start', 'y-end', 'x-start', 'x-end']
 export function applyCalenderWrapperStyles(
+  alignments: string[] = ['y-start', 'x-start'],
+  parentId: string,
   wrapperElementDOMClassOrId: string = '.easepick-wrapper', 
-  wrapperCustomClass: string = 'easepick-custom-wrapper', 
-  alignments: string[] = ['y-start', 'x-start']) {
+  wrapperCustomClass: string = 'easepick-custom-wrapper') {
   setTimeout(() => {
-    const wrapper = document.querySelector(wrapperElementDOMClassOrId) as HTMLElement;
+    const wrapper = document.querySelector("#parent-"+parentId)?.querySelector(wrapperElementDOMClassOrId) as HTMLElement;
+    if(!wrapper) return
     if (wrapper) {
       const shadowRoot = wrapper.shadowRoot;
       const calendarContainer = shadowRoot?.querySelector('.container') as HTMLElement;
@@ -17,11 +19,14 @@ export function applyCalenderWrapperStyles(
       alignments.forEach((className: string) => {
         wrapper.classList.add(className);
         calendarContainer?.classList.add(className);
+        if(className === 'y-start') wrapper.style.setProperty('--calendar-inset-block-start', "0");
+        if(className === 'y-end') wrapper.style.setProperty('--calendar-inset-block-end', "0");
+        if(className === 'x-start') wrapper.style.setProperty('--calendar-inset-inline-start', "0");
+        if(className === 'x-end') wrapper.style.setProperty('--calendar-inset-inline-end', "0");
       });
 
       Object.assign(wrapper.style, {
         zIndex: '9999',
-        borderRadius: 'var(--border-radius)',
         position: 'absolute',
         pointerEvents: 'none',
         insetBlockStart: 'var(--calendar-inset-block-start, initial)',

@@ -1,1 +1,29 @@
-<p>multi-city works!</p>
+@for (segment of segments(); track segment.id; let idx = $index) {
+  <div class="form-row" [style.--grid-columns]="2">
+    <origin-destination 
+      [(getOriginDestination)]="segments()[idx].originDestination"
+      (getOriginDestinationChange)="updateSegment(segment.id, { originDestination: $event })"
+      data-z-index="1" />
+    <datepicker 
+      [alignment]="['y-start', 'x-end']"
+      [(getDate)]="segments()[idx].date"
+      [datepickerId]="'calendar-' + segment.id" 
+      data-z-index="1" />
+  </div>
+}
+<div class="form-row data-pax-cabin " [style.--grid-columns]="3">
+  <passenger-selection [(getPax)]="selectedPax" data-z-index="1" />
+  <cabin-selection [(getCabins)]="selectedCabins" data-z-index="1" />
+</div>
+<custom-button 
+  data-z-index="0" 
+  class="button button--secondary size--large" 
+  buttonTitle="Search Flight" 
+  iconBefore="plane-departure">
+</custom-button>
+
+<!-- smaple | delete below lines after validations -->
+<pre>destination:  {{ setOriginDestination | json}},
+Data: {{selectedDate | json}}
+Passengers: {{ selectedPax() | json }},
+cabins: {{ selectedCabins() | json }}</pre>

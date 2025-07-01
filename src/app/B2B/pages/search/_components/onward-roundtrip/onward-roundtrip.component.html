@@ -13,12 +13,8 @@
   iconBefore="plane-departure">
 </custom-button>
 
-<br />
-destination: {{ setOriginDestination | json}}
-<br />
+<!-- smaple | delete below lines after validations -->
+<pre>destination:  {{ setOriginDestination | json}},
 Data: {{dateRange | json}}
-<br />
-Passengers: {{ selectedPax() | json }}
-<br />
-cabins: {{ selectedCabins() | json }}
-<br />
+Passengers: {{ selectedPax() | json }},
+cabins: {{ selectedCabins() | json }}</pre>

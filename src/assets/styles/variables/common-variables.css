@@ -37,6 +37,11 @@
   --outline-text-color: inherit;
   --outline-offset: 0.2rem;
   --outline-radius: var(--border-radius);
+  --scrollbar-thumb-bg: var(--body-color);
+  --scrollbar-track-bg: var(--body-bg);
+  /* --scrollbar-width: auto | thin | none; */
+  --scrollbar-width: thin;
+  --scrollbar-gutter: stable;
 
 
   /* ===========[ Tooltip ]=========== */

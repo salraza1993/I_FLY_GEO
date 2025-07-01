@@ -12,10 +12,11 @@ type CabinDataListType = {
   selector: 'app-cabin-selection, cabin-selection',
   imports: [CommonModule, ClickOutsideDirective],
   templateUrl: './cabin-selection.component.html',
-  styleUrls: ['./cabin-selection.component.css', './../../styles/search-common-styles.css'],
+  styleUrls: ['./cabin-selection.component.css'],
   animations: [dropDownMenu],
   host: {
     class: 'cabin-selection-wrapper',
+    '[attr.data-z-index]': 'dropdownState() ? 10 : 1'
   },
 })
 export class CabinSelectionComponent {
@@ -45,7 +46,7 @@ export class CabinSelectionComponent {
   constructor() {
     // Keep model in sync with internal selection
     effect(() => {
-      const active = this.cabinList().filter(c => c.selected).map(c => c.label);
+      const active = this.cabinList().filter(c => c.selected).map(c => c.label.replaceAll(' ', ''));
       this.getCabins.set(active);
     });
   }

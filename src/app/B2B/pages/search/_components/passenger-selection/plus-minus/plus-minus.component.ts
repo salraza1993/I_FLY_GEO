@@ -7,7 +7,7 @@ import { Component, computed, effect, input, model, signal } from '@angular/core
   templateUrl: './plus-minus.component.html',
   styleUrl: './plus-minus.component.css',
   host: {
-    'class': 'pax-selection__block dropdown-anime-item focus-within'
+    'class': 'dropdown-wrapper__list dropdown-anime-item focus-within'
   }
 })
 export class PlusMinusComponent {

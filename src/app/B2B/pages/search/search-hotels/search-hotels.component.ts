@@ -7,7 +7,7 @@ import { SearchFormContentWrapperComponent } from '../_components/search-form-co
   selector: 'app-search-hotels, search-hotels',
   imports: [COMMON_IMPORTS, HotelsHeroBgComponent, SearchFormContentWrapperComponent],
   templateUrl: './search-hotels.component.html',
-  styleUrls: ['./search-hotels.component.css', '../styles/search-common-styles.css'],
+  styleUrls: ['./search-hotels.component.css'],
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'search-form-card-wrapper',

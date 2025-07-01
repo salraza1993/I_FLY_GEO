@@ -5,7 +5,9 @@
   --input-block-height: var(--common-input-height);
   --input-swapper-bg: light-dark(var(--primary-100_light), var(--primary-90_dark));
   --circle-size: calc(var(--input-block-height) - 14px);
-  
+  --airport-list-wrapper-bg: light-dark(var(--primary-100_light), var(--primary-100_dark));
+  --body-content-wrapper-bg: light-dark(var(--primary-100_light), var(--primary-100_dark));
+  --body-input-wrapper-bg: light-dark(var(--primary-100_light), var(--primary-10_dark));
   position: relative;
   display: flex;
   flex-shrink: 0;
@@ -22,7 +24,7 @@
     & .block-body {
       align-items: center;
       .block-body-content {
-        background-color: inherit;
+        --box-shadow-size: 14px;
         position: absolute;
         width: 100%;
         height: auto;
@@ -31,10 +33,18 @@
         flex-direction: column;
         transition: var(--transition);
         inset-block-start: 0;
+        gap: 0.35rem;
         &:is(.active) {
-          /* width: calc(var(--block-max-width) / 1.75); */
-          width: calc(100% + 3.5rem);
+          background-color: var(--body-content-wrapper-bg);
+          width: calc(var(--block-max-width) / 2);
           z-index: 2;
+          box-shadow: 
+            0 0 0 var(--box-shadow-size) var(--body-content-wrapper-bg), 
+            0 0 0 calc(var(--box-shadow-size) + 1px) var(--input-block-border);
+          .input-wrapper {
+            background-color: var(--input-block-active-bg);
+            border-radius: inherit;
+          }
         }
         .input-wrapper {
           display: flex;
@@ -101,8 +111,10 @@
       .block-body {
         .block-body-content {
           inset-inline-end: 0;
-          .input-wrapper {
-            padding-inline-start: 0.5rem;
+          &:not(.active) {
+            .input-wrapper {
+              padding-inline-start: 0.5rem;
+            }
           }
         }
       }

@@ -1,0 +1,23 @@
+:host {
+  --container-gaps: 1rem;
+  --grid-columns: 1;
+
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  .form-row {
+    position: relative;
+    display: grid;
+    gap: var(--container-gaps);
+    grid-template-columns: 70% 30%;
+    &:is(.data-pax-cabin) {
+      grid-template-columns: 1fr 255px 255px;
+      &:not(.roundtrip) {
+        grid-template-columns: 1fr 300px 300px;
+      }
+    }
+  }
+  .button {
+    margin-inline-start: auto;
+  }
+}

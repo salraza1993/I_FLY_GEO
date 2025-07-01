@@ -1,4 +1,5 @@
-import { effect, inject, Injectable, signal, DOCUMENT } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { LocalStorageService } from '../../shared/services/localStorage.service';
 
 export type ThemeMode = 'light' | 'dark' | 'auto';

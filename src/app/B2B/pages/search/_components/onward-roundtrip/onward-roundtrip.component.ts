@@ -10,7 +10,7 @@ import {
   PaxSelectionDataType,
 } from '../passenger-selection/passenger-selection.component';
 import { CabinSelectionComponent } from '../cabin-selection/cabin-selection.component';
-import { SearchDatepickerComponent } from '../search-datepicker/search-datepicker.component';
+import { SearchDatepickerComponent, SearchDateType } from '../search-datepicker/search-datepicker.component';
 import { DateTime } from '@easepick/bundle';
 import { CustomButtonComponent } from '../../../../../shared/components/custom-button/custom-button.component';
 
@@ -33,7 +33,7 @@ import { CustomButtonComponent } from '../../../../../shared/components/custom-b
 })
 export class OnwardRoundtripComponent {
   setOriginDestination!: OriginDestinationDataType;
-  dateRange: { onwardDate?: string; returnDate?: string } | null = null;
+  dateRange: SearchDateType = null;
   selectedDate: DateTime | { start: DateTime; end: DateTime } | null = null;
   selectedCabins = signal<string[]>(['Economy']);
   selectedPax = signal<PaxSelectionDataType>({ adults: 1, children: 0, infants: 0 });

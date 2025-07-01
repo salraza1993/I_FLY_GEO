@@ -36,21 +36,21 @@
         class="dropdown-wrapper passenger-selection-list" 
         [ngClass]="{'error': error(), 'opened': dropdownState()}"
         [@dropDownMenu]>
-        <app-plus-minus class="dropdown-wrapper__list" 
+        <app-plus-minus 
           paxType="Adults" 
           age="12+ Years" 
           [(selectedValue)]="totalAdults" 
           [onIncrement]="add.bind(this, 'adults')" 
           [onDecrement]="subtract.bind(this, 'adults')">
         </app-plus-minus>
-        <app-plus-minus class="dropdown-wrapper__list" 
+        <app-plus-minus 
           paxType="Children" 
           age="Aged 2 – 11" 
           [(selectedValue)]="totalChilds" 
           [onIncrement]="add.bind(this, 'children')" 
           [onDecrement]="subtract.bind(this, 'children')">
         </app-plus-minus>
-        <app-plus-minus class="dropdown-wrapper__list" 
+        <app-plus-minus 
           paxType="Infant(s)" 
           age="below 2 Years" 
           [(selectedValue)]="totalInfants" 

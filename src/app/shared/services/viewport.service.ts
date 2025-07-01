@@ -1,5 +1,6 @@
 import { BodyClassModifierService } from '../../shared/services/body-modifier.service';
-import { HostListener, Injectable, inject, signal, DOCUMENT } from '@angular/core';
+import { HostListener, Injectable, inject, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 
 @Injectable({

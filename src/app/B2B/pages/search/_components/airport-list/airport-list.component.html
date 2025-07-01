@@ -1,9 +1,27 @@
-<ul class="dropdown">
-  @if(filteredAirport().length > 0 && (searchValue()?.length ?? 0) >= 3) {
-    @for (item of filteredAirport(); track $index) {
-      <li>{{ item.airportCode }}, {{ item.airportCity }}, {{ item.airportName }}</li>
-    }
+@if((searchValue()?.length ?? 0) === 0 || (searchValue()?.length ?? 0) < 3) {
+  <small class="empty-state" [@fadeIn]>
+    Input must be at leaset 3 charactors. eg: <strong>DXB</strong>
+  </small>
+} @else {
+  @if(showError()) {
+    <small class="error-state" [@fadeIn]>
+      <strong>{{ searchValue() }} :</strong> Not found!, Kindly enter Airport code/city/name...
+    </small>
   } @else {
-    <small>Enter Airport Code/City/Name. eg: DXB/Dubai</small>
+    <ul class="airport-list hasScrollbar">
+      @for (item of filteredAirport(); track $index) {
+      <li 
+        class="airport-list_item" tabindex="0" 
+        (mouseenter)="focusedIndex.set($index)"
+        (click)="onSelect(item)"
+        [ngClass]="{
+          'selected': selectedAirport()?.airportCode === item.airportCode,
+          'focused active': focusedIndex() === $index
+        }">
+        <span class="airport-code">{{ item.airportCode }}</span>
+        <span>{{ item.airportCity }}, {{ item.airportName }}</span>
+      </li>
+      }
+    </ul>
   }
-</ul>
+}

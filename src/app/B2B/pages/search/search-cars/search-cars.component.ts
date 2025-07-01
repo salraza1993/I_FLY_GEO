@@ -6,7 +6,7 @@ import { SearchFormContentWrapperComponent } from '@search/_components/search-fo
   selector: 'app-search-cars, search-cars',
   imports: [COMMON_IMPORTS, SearchFormContentWrapperComponent],
   templateUrl: './search-cars.component.html',
-  styleUrls: ['./search-cars.component.css', '../styles/search-common-styles.css'],
+  styleUrls: ['./search-cars.component.css'],
   encapsulation: ViewEncapsulation.None,
   host: {
     'class': 'search-form-card-wrapper',

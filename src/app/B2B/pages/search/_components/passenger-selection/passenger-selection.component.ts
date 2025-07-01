@@ -19,14 +19,12 @@ export type PaxSelectionDataType = {
     ClickOutsideDirective,
   ],
   templateUrl: './passenger-selection.component.html',
-  styleUrls: [
-    './passenger-selection.component.css',
-    './../../styles/search-common-styles.css',
-  ],
+  styleUrls: ['./passenger-selection.component.css'],
   animations: [dropDownMenu],
   host: {
     class: 'passenger-selection-wrapper',
     '[class.in-focused]': 'dropdownState()',
+    '[attr.data-z-index]': 'dropdownState() ? 10 : 1'
   },
 })
 export class PassengerSelectionComponent {
