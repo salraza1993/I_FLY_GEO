@@ -2,9 +2,8 @@ import { Component, signal, ViewEncapsulation } from '@angular/core';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
 import { SearchFormContentWrapperComponent } from '@search/_components/search-form-content-wrapper/search-form-content-wrapper.component';
 import { CustomTabsComponent, TabDataTypes } from '@/shared/components/custom-tabs/custom-tabs.component';
-import { OnwardRoundtripComponent } from '@search/_components/onward-roundtrip/onward-roundtrip.component';
-import { MultiCityComponent } from '@search/_components/multi-city/multi-city.component';
-import { SearchViewAdsComponent } from '../_components/search-view-ads/search-view-ads.component';
+import { OnwardRoundtripComponent } from '@/B2B/pages/search/_components/flight-search/onward-roundtrip/onward-roundtrip.component';
+import { MultiCityComponent } from '../_components/flight-search/multi-city/multi-city.component';
 
 @Component({
   selector: 'app-search-flights, search-flights',

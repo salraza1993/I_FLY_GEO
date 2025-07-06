@@ -1,0 +1,9 @@
+:host {
+  --content-wrapper-max-width: calc(1100px + 5vw);
+  position: relative;
+  display: block;
+  min-height: calc(100vh - var(--header-height) - 2px);
+  min-height: calc(100dvh - var(--header-height) - 2px);
+  border-start-start-radius: calc(var(--border-radius) * 2.5);
+  
+}

@@ -1,0 +1,73 @@
+:host {
+  --axis-x-margin: calc((100% - var(--content-wrapper-max-width)) / 2);
+  --card-max-width: 200px;
+  --card-bg: light-dark(var(--primary-100_light), var(--primary-60_dark));
+  --card-border: light-dark(var(--primary-85_light), var(--primary-60_dark));
+  --card-height: 60px;
+  --airline-logo-width: 60px;
+
+  position: relative;
+  display: block;
+  margin-block-end: var(--common-margin-y-end);  
+  position: relative;
+  width: 100%;
+  display: block;
+  margin-inline: auto;
+
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    inset-inline-start: 0;
+    padding-block: 2px;
+    padding-inline: 2px;
+    
+    .slide {
+      max-width: var(--card-max-width);
+      height: var(--card-height);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      background-color: var(--card-bg);
+      margin-inline-end: 10px;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+      &:hover {
+        background-color: var(--accent);
+        color: var(--accent-color);
+        border-color: var(--accent);
+      }
+      &:first-child {
+        margin-inline-start: var(--axis-x-margin);
+      }
+      &:last-child {
+        margin-inline-end: var(--axis-x-margin);
+      }
+      .content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: calc(var(--card-max-width) - var(--airline-logo-width) - 1rem);
+        gap: 0.25rem;
+      }
+      
+      .images {
+        width: var(--airline-logo-width);
+        height: calc(var(--card-height) - 2px);
+        flex-shrink: 0;
+        border-start-start-radius: var(--border-radius);
+        border-end-start-radius: var(--border-radius);
+        overflow: clip;
+        padding: 0.35rem;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center;
+        }
+      }
+    }
+  }
+}

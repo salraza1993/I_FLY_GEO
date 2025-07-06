@@ -1,0 +1,16 @@
+<div class="content-wrapper">
+  <swiper-container mousewheel="true"
+    class="carousel-container" slides-per-view="auto" space-between="0" pagination="false">
+    @for (airline of airlines(); track airline.airlineCode) {
+      <swiper-slide class="slide">
+        <picture class="images">
+          <img src="assets/images/airlines/{{airline.airlineCode.toLowerCase()}}.svg" alt="Airline Logo" />
+        </picture>
+        <div class="content">
+          <small class="name text-ellipsis">{{airline.airlineName}}</small>
+          <h6 class="m-0 price text-ellipsis">AED {{airline.amount}}</h6>
+        </div>
+      </swiper-slide>
+    }
+  </swiper-container>
+</div>

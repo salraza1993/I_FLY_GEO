@@ -1,0 +1,110 @@
+:host {
+  --strip-bg: light-dark(var(--primary-100_light), var(--primary-95_dark));
+  --strip-color: light-dark(var(--primary-85_dark), var(--primary-80_light));
+  --strip-border-color: light-dark(var(--primary-90_light), var(--primary-75_dark));
+  --strip-border-radius: calc(var(--border-radius) * 2.5);
+  --strip-padding: 0.5rem;
+  --strip-elem-bg: light-dark(var(--primary-90_light), var(--primary-80_dark));
+  --strip-elem-height: 35px;
+  --border-color: light-dark(var(--primary-80_light), var(--primary-75_dark));
+  --modify-button-bg: light-dark(var(--primary-20_light), var(--primary-25_dark));
+  --modify-button-color: light-dark(var(--primary-90_light), var(--primary-100_dark));
+
+  max-width: var(--content-wrapper-max-width);
+  position: relative;
+  width: 100%;
+  display: block;
+  margin-inline: auto;
+  margin-block-end: var(--common-margin-y-end);
+  .modify-content-wrapper {
+    position: relative;
+    width: 100%;
+    background-color: var(--strip-bg);
+    color: var(--strip-color);
+    border: 1px solid var(--strip-border-color);
+    border-block-start: 0;
+    margin-block-start: -1px;
+    padding: var(--strip-padding);
+    padding-block-start: 1px;
+    border-end-start-radius: var(--strip-border-radius);
+    border-end-end-radius: var(--strip-border-radius);    
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: transparent;
+      width: var(--strip-border-radius);
+      height: var(--strip-border-radius);
+      inset-block-start: 0;
+      z-index: 0;
+      border-block-start: 1px solid var(--strip-border-color);
+    }
+    &::before {
+      inset-inline-end: 100%;
+      border-radius: 0 100vw 0 0;
+      box-shadow: 5px -5px 0 5px var(--strip-bg);
+      border-inline-end: 1px solid var(--strip-border-color);
+    }
+    &::after {
+      inset-inline-start: 100%;
+      border-radius: 100vw 0 0 0;
+      box-shadow: -5px -5px 0 5px var(--strip-bg);
+      border-inline-start: 1px solid var(--strip-border-color);
+    }
+
+
+    .strip-wrapper {
+      position: relative;
+      width: 100%;
+      display: flex;
+      /* justify-content: space-between; */
+      gap: 0.5rem;
+      z-index: 1;     
+
+      .grouped-elements {
+        position: relative;
+        display: flex;
+        gap: 0.5rem;
+        flex-basis: 500px;
+        max-width: 500px;
+        .strip-element-container {
+          max-width: calc(50% - 0.25rem);
+        }
+      }
+      .strip-element {
+        flex-grow: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+        background-color: var(--strip-elem-bg);
+        height: var(--strip-elem-height);
+        padding-inline-end: calc(var(--strip-padding) * 1.25);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-weight: 500;
+        white-space: nowrap;
+        .icon {
+          width: var(--strip-elem-height);
+          aspect-ratio: 1;
+          flex-shrink: 0;
+        }
+        span:not(.icon) {
+          width: 100%;
+          text-align: center;
+        }
+        &:is(.modify-button) {
+          background-color: var(--modify-button-bg);
+          color: var(--modify-button-color);
+          border-color: var(--modify-button-bg);
+          transition: var(--transition);
+          &:hover {
+            background-color: var(--accent);
+            color: var(--accent-color);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,4 @@
+/* theme variables */
 :root {
   /* Secondary Base */
   --secondary-hue: 241;
@@ -27,8 +28,8 @@
   --accent-20: hsl(var(--accent-hue), 83%, 88%);
   --accent-10: hsl(var(--accent-hue), 71%, 93%);
 
-  --accent-light: hsl(24, 100%, 50%);
-  --accent-dark: hsl(24, 100%, 50%);
+  --accent-light: #ff6600;
+  --accent-dark: lch(62.31% 90.08 52.36);
   --accent: light-dark(var(--accent-light), var(--accent-dark));
   --accent-color: var(--light);
   --secondary-light: hsl(242, 82%, 38%);

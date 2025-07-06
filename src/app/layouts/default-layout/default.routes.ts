@@ -1,5 +1,6 @@
 import { SearchContentContainerComponent } from "@search/_components/search-content-container/search-content-container.component";
 import { Routes } from "@angular/router";
+import { FlightShoppingComponent } from "@/B2B/pages/search/search-flights/flight-shopping/flight-shopping.component";
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -25,6 +26,9 @@ export const DASHBOARD_ROUTES: Routes = [
       { path: 'activities', component: SearchContentContainerComponent },
       { path: '', redirectTo: 'flights', pathMatch: 'full' } // Default tab
     ]
+  },
+  { path: 'search/flight-results', 
+    loadComponent: () => import('@/B2B/pages/search/search-flights/flight-shopping/flight-shopping.component').then(m => FlightShoppingComponent) 
   },
   {
     path: 'reports',

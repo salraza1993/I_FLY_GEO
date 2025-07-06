@@ -1,209 +1,231 @@
-body {
-  &[dir=ltr],
-  &:is(.ltr) {
+/* body {
+  &[dir=ltr], &:is(.ltr) {
     --tooltip-translate-x: -50%;
   }
-
-  &[dir=rtl],
-  &:is(.rtl) {
+  &[dir=rtl], &:is(.rtl) {
     --tooltip-translate-x: 50%;
   }
-}
+} */
 .ng-tooltip-container {
-  position: relative;
-  cursor: pointer;
-  --tooltip-inset-y: 0;
+  --tooltip-bg: light-dark(var(--primary-75_dark), var(--primary-80_light));
+  --tooltip-color: light-dark(var(--primary-90_light), var(--primary-100_dark));
+  --tooltip-translate-x: -50%;
+  --tooltip-pointer-width: 7px;
+  --tooltip-z-index: -1;
+  --tooltip-inset-y: 10%;
   --tooltip-inset-x: 50%;
 
+  position: relative;
+  cursor: pointer;
+
   &:hover {
-    z-index: var(--tooltip-z-index);
-    transition-delay: 250;
     --tooltip-opacity: 1;
     --tooltip-visibility: visible;
     --tooltip-z-index: calc(var(--max-z-index) + 1);
-  }
-
-  &:not(.direction--left, .direction--right, .direction--top, .direction--bottom):hover {
-    --tooltip-inset-y: calc(100% + 2px);
-  }
-
-  &.direction {
-    &--left {
-      --tooltip-inset-x: 60%;
-      --tooltip-inset-y: -1px;
-
-      &:hover {
-        --tooltip-inset-x: calc(100% + 2px);
-      }
-    }
-
-    &--right {
-      --tooltip-inset-x: 60%;
-      --tooltip-inset-y: 0;
-
-      &:hover {
-        --tooltip-inset-x: calc(100% + 2px);
-      }
-    }
-
-    &--top {
-      --tooltip-inset-x: 0;
-      --tooltip-inset-y: 0;
-
-      &:hover {
-        --tooltip-inset-y: calc(100% + 2px);
-      }
-    }
-
-    &--bottom {
-      --tooltip-inset-x: 0;
-      --tooltip-inset-y: 0;
-
-      &:hover {
-        --tooltip-inset-y: calc(100% + 2px);
-      }
-    }
-
-    &--center {
-      --tooltip-inset-x: 0;
-      --tooltip-inset-y: 0;
-
-      &:hover {
-        --tooltip-inset-y: calc(100% + 2px);
-        --tooltip-inset-x: 50%;
-      }
-    }
+    z-index: var(--tooltip-z-index);
   }
 }
 
 .ng-tooltip {
-  position: absolute;
-  inset-block-start: var(--tooltip-inset-y);
-  inset-inline-start: var(--tooltip-inset-x);
-  max-width: max-content;
-  padding-inline: var(--tooltip-padding-x);
-  padding-block: var(--tooltip-padding-y);
-  z-index: var(--tooltip-z-index);
-  background-color: var(--tooltip-bg);
   color: var(--tooltip-color);
-  border-radius: var(--tooltip-border-radius);
-  font-size: var(--tooltip-font-size);
-  font-family: var(--tooltip-font-family);
-  line-height: var(--tooltip-line-height);
+  background-color: var(--tooltip-bg);
   backdrop-filter: blur(4px);
-  transition: var(--tooltip-transition);
-  visibility: var(--tooltip-visibility);
-  opacity: var(--tooltip-opacity);
-  max-width: var(--tooltip-max-width);
-  min-width: var(--tooltip-min-width);
-  width: var(--tooltip-width);
+  border-radius: var(--tooltip-border-radius, calc(var(--border-radius) * 1));
+  font-size: var(--tooltip-font-size, 0.85rem);
+  font-family: var(--tooltip-font-family, var(--body-font-family));
+  line-height: var(--tooltip-line-height, 1.25em);
+  opacity: var(--tooltip-opacity, 0);
+  position: absolute;
+  padding-inline: var(--tooltip-padding-x, 0.55rem);
+  padding-block: var(--tooltip-padding-y, 0.4rem);
+  transition: var(--tooltip-transition, var(--transition));
+  visibility: var(--tooltip-visibility, hidden);
+  z-index: var(--tooltip-z-index, -1);
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   white-space: initial;
   text-align: start;
+  min-width: max-content;
+
+  &::after {
+    content: "";
+    position: absolute;
+  }
 
   p:last-child {
     margin-block-end: 0;
   }
 
-  &--template {
-    max-width: var(--tooltip-max-width);
-    width: var(--tooltip-width);
+  &:is(.ng-tooltip--danger, .ng-tooltip--error) {
+    --tooltip-bg: light-dark(var(--danger-50_light), var(--danger-5_dark));
+    --tooltip-color: light-dark(var(--danger-100_light), var(--danger-100_dark));
+  }
+  &:is(.ng-tooltip--success) {
+    --tooltip-bg: light-dark(var(--success-50_light), var(--success-5_dark));
+    --tooltip-color: light-dark(var(--success-100_light), var(--success-100_dark));
+  }
+  &:is(.ng-tooltip--warning) {
+    --tooltip-bg: light-dark(var(--warning-50_light), var(--warning-5_dark));
+    --tooltip-color: light-dark(var(--warning-100_light), var(--warning-100_dark));
+  }
+  &:is(.ng-tooltip--info) {
+    --tooltip-bg: light-dark(var(--info-50_light), var(--info-5_dark));
+    --tooltip-color: light-dark(var(--info-100_light), var(--info-100_dark));
+  }
+  &:is(.ng-tooltip--accent) {
+    --tooltip-bg: var(--accent);
+    --tooltip-color: var(--accent-color);
+  }
+  &:is(.ng-tooltip--secondary) {
+    --tooltip-bg: var(--secondary);
+    --tooltip-color: var(--secondary-color);
+  }
+  &:is(.ng-tooltip--dark, .ng-tooltip--primary) {
+    --tooltip-bg: light-dark(var(--primary-85_dark), var(--primary-85_dark));
+    --tooltip-color: light-dark(var(--primary-100_light), var(--primary-85_light));
+  }
+  &:is(.ng-tooltip--light) {
+    --tooltip-bg: light-dark(var(--primary-95_light), var(--primary-90_light));
+    --tooltip-color: light-dark(var(--primary-100_dark), var(--primary-100_dark));
   }
 
-  &--string {
-    max-width: var(--tooltip-max-width);
-    width: var(--tooltip-width);
+  /* ==========[ Left/Right ]========== */
+  &:is(
+      .ng-tooltip--left,
+      .ng-tooltip--left-top,
+      .ng-tooltip--left-bottom,
+      .ng-tooltip--right,
+      .ng-tooltip--right-top,
+      .ng-tooltip--right-bottom
+    ) {
+    --tooltip-inset-y: -5%;
+    --tooltip-inset-x: 100%;
+    &::after {
+      border-block-start: var(--tooltip-pointer-width) solid transparent;
+      border-block-end: var(--tooltip-pointer-width) solid transparent;
+    }
+  }
+  &:is(.ng-tooltip--left-top, .ng-tooltip--left, .ng-tooltip--left-bottom) {
+    &::after {
+      inset-inline-start: 100%;
+      border-inline-start: var(--tooltip-pointer-width) solid var(--tooltip-bg);
+    }
+  }
+  &:is(.ng-tooltip--right-top, .ng-tooltip--right, .ng-tooltip--right-bottom) {
+    &::after {
+      inset-inline-end: 100%;
+      border-inline-end: var(--tooltip-pointer-width) solid var(--tooltip-bg);
+    }
   }
 
-  &--danger {
-    --tooltip-bg: rgba(var(--bs-danger-rgb), 0.9);
-  }
-
-  &--success {
-    --tooltip-bg: rgba(var(--bs-success-rgb), 0.9);
-  }
-  &--primary {
-    --tooltip-bg: rgba(var(--bs-primary-rgb), 0.9);
-  }
-
-  &--warning {
-    --tooltip-bg: rgba(var(--bs-warning-rgb), 0.9);
-    --tooltip-color: var(--bs-dark);
-  }
-
-  &--left {
-    inset-inline-end: var(--tooltip-inset-x);
+  &:is(.ng-tooltip--left, .ng-tooltip--right) {
+    --tooltip-inset-y: 50%;
     inset-block-start: var(--tooltip-inset-y);
+    translate: 0 calc(0% - var(--tooltip-inset-y));
+  }
+  &:is(.ng-tooltip--left) {
     inset-inline-start: initial;
-    inset-block-end: initial;
+    inset-inline-end: var(--tooltip-inset-x);
   }
-
-  &--right {
-    inset-inline-start: var(--tooltip-inset-x);
-    inset-block-start: var(--tooltip-inset-y);
+  &:is(.ng-tooltip--right) {
     inset-inline-end: initial;
-    inset-block-end: initial;
+    inset-inline-start: var(--tooltip-inset-x);
   }
-
-  &--top {
-    inset-block-start: initial;
+  &:is(.ng-tooltip--left-top, .ng-tooltip--right-top) {
+    inset-block-start: var(--tooltip-inset-y);
+  }
+  &:is(.ng-tooltip--left-bottom, .ng-tooltip--right-bottom) {
     inset-block-end: var(--tooltip-inset-y);
+  }
+  &:is(.ng-tooltip--right-top, .ng-tooltip--right-bottom) {
     inset-inline-start: var(--tooltip-inset-x);
   }
-
-  &--bottom {
-    inset-block-end: initial;
-    inset-block-start: var(--tooltip-inset-y);
-    inset-inline-start: var(--tooltip-inset-x);
+  &:is(.ng-tooltip--left-top, .ng-tooltip--left-bottom) {
+    inset-inline-end: var(--tooltip-inset-x);
   }
 
-  &--center {
-    inset-inline-start: var(--tooltip-inset-x);
-    inset-inline-end: initial;
-    inset-block-start: var(--tooltip-inset-y);
-    inset-block-end: initial;
-    translate: var(--tooltip-translate-x) 0;
-
-    &-top {
-      inset-block-end: var(--tooltip-inset-y);
-      inset-block-start: initial;
+  /* ==========[ Top/Bottom ]========== */
+  &:is(
+      .ng-tooltip--top,
+      .ng-tooltip--top-left,
+      .ng-tooltip--top-right,
+      .ng-tooltip--bottom,
+      .ng-tooltip--bottom-left,
+      .ng-tooltip--bottom-right
+    ) {
+    --tooltip-inset-y: calc(100% + 2px);
+    --tooltip-inset-x: 0;
+    &::after {
+      inset-inline-start: calc(
+        var(--tooltip-inset-x) - var(--tooltip-pointer-width)
+      );
+      border-inline-start: var(--tooltip-pointer-width) solid transparent;
+      border-inline-end: var(--tooltip-pointer-width) solid transparent;
     }
-
-    &-bottom,
-    &-top {
-      translate: var(--tooltip-translate-x) 0;
+  }
+  &:is(.ng-tooltip--top, .ng-tooltip--top-left, .ng-tooltip--top-right) {
+    &::after {
+      inset-block-start: calc(var(--tooltip-inset-y) - 2px);
+      border-block-start: var(--tooltip-pointer-width) solid var(--tooltip-bg);
+    }
+  }
+  &:is(
+      .ng-tooltip--bottom,
+      .ng-tooltip--bottom-left,
+      .ng-tooltip--bottom-right
+    ) {
+    &::after {
+      inset-block-end: calc(var(--tooltip-inset-y) - 2px);
+      border-block-end: var(--tooltip-pointer-width) solid var(--tooltip-bg);
+    }
+  }
+  &:is(.ng-tooltip--top, .ng-tooltip--bottom) {
+    --tooltip-inset-x: 50%;
+    inset-inline-start: var(--tooltip-inset-x);
+    translate: calc(0% - var(--tooltip-inset-x)) 0;
+  }
+  &:is(
+      .ng-tooltip--bottom,
+      .ng-tooltip--bottom-left,
+      .ng-tooltip--bottom-right
+    ) {
+    inset-block-start: var(--tooltip-inset-y);
+  }
+  &:is(.ng-tooltip--top, .ng-tooltip--top-left, .ng-tooltip--top-right) {
+    inset-block-end: var(--tooltip-inset-y);
+  }
+  &:is(.ng-tooltip--top-left, .ng-tooltip--bottom-left) {
+    --tooltip-inset-x: -2%;
+    inset-inline-start: var(--tooltip-inset-x);
+    &::after {
+      inset-inline-start: 5%;
+    }
+  }
+  &:is(.ng-tooltip--top-right, .ng-tooltip--bottom-right) {
+    --tooltip-inset-x: -2%;
+    inset-inline-end: var(--tooltip-inset-x);
+    &::after {
+      inset-inline-start: initial;
+      inset-inline-end: 5%;
     }
   }
 
-  &:not(.ng-tooltip--left, .ng-tooltip--right, .ng-tooltip--top, .ng-tooltip--bottom, .ng-tooltip--center, .ng-tooltip--center-top, .ng-tooltip--center-bottom) {
-    inset-inline-start: 50%;
-    inset-inline-end: initial;
-    translate: var(--tooltip-translate-x) 0;
+  &:is(.max-width-applied) {
+    max-width: var(--tooltip-max-width, 300px);
+    width: max-content;
+    min-width: min-content;
   }
-
-  &:is(.max-width-applied),
   &:is(.min-width-applied) {
-    --tooltip-width: 100%;
-
-    .ng-tooltip {
-
-      &--template,
-      &--string {
-        max-width: 100%;
-      }
-    }
+    min-width: var(--tooltip-min-width, 50px);
+    width: fit-content;
+    max-width: max-content;
   }
-
   &:is(.fixed-width-applied) {
     --tooltip-max-width: var(--tooltip-width);
-
-    .ng-tooltip {
-
-      &--template,
-      &--string {
-        max-width: 100%;
-      }
-    }
+    --tooltip-min-width: var(--tooltip-width);
+    width: var(--tooltip-width, initial);
+    max-width: var(--tooltip-max-width);
+    min-width: var(--tooltip-min-width);
   }
 }

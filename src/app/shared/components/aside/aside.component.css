@@ -40,6 +40,14 @@
     height: 100%;
     & .aside-menu__list {
       user-select: none;
+      .ng-tooltip.ng-tooltip--right,
+      .ng-tooltip.ng-tooltip--right-center {
+        --tooltip-inset-x: calc(100% + var(--aside-block-paddings));
+      }
+      &:is(.active) {
+        --tooltip-bg: var(--secondary);
+        --tooltip-color: var(--secondary-color);
+      }
       &:is(.setting-menu) {
         margin-block-start: auto;
       }
@@ -82,10 +90,7 @@
       &:is(.active) {
         color: var(--aside-active-menu-color);
         font-size: 1.3rem;
-
-        i {
-          font-weight: 900;
-        }
+        i { font-weight: 900; }
 
         &::after {
           visibility: visible;

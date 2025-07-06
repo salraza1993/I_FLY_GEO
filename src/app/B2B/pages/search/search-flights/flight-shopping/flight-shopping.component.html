@@ -1,0 +1,7 @@
+@if(isLoading()) {
+  <search-flight-loader />
+} @else {
+  <search-modify data-z-index="5" />
+  <flight-calender-carousel />
+  <additional-info />
+}

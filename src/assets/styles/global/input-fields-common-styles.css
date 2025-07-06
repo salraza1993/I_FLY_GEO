@@ -60,6 +60,7 @@
         border: none;
         height: var(--input-block-height);
         color: var(--input-block-color);
+        text-overflow: ellipsis;
         &:placeholder-shown {
           color: var(--input-block-color);
         }
@@ -101,6 +102,17 @@
           box-shadow: none;
         }
       }
+    }
+
+    &:is(.error) {
+      --input-block-border: light-dark(var(--danger-60_light), var(--danger-100_dark));
+      --input-block-bg: light-dark(var(--danger-100_light), var(--danger-100_dark));
+    }
+    .error-message {
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-start: calc(100% + 0.35rem);
+      color: var(--input-block-border);
     }
 
     &:hover, &:focus-within, &:is(.selected, .active) {

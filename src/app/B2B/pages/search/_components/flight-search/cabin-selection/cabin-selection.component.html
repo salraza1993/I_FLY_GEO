@@ -1,0 +1,49 @@
+<div 
+  class="search-element-block pax-selection-wrapper" 
+  [ngClass]="{'active': dropdownState()}"
+  data-type="cabin-selection" aria-label="Cabin selection">
+  <div class="block-label">
+    <small>Cabin</small>
+  </div>
+  <div 
+    class="block-body contain-dropdown cursor--pointer focus-within" 
+    aria-label="datepicker" 
+    data-dropdown="true"
+    role="datepicker" 
+    (clickOutside)="dropdownHandler(false)"
+    [ngClass]="{
+      'error': error(),
+      'active': dropdownState()
+    }">
+    <div class="icon"><i class="fa-regular fa-seat-airline"></i></div>
+    <div 
+      tabindex="0"
+      class="block-input selected-value-wrapper cabin-selection-input not-focused" 
+      (click)="dropdownHandler(!dropdownState())"
+      (blur)="dropdownHandler(dropdownState() ? dropdownState() : false)"
+      (keydown.enter)="dropdownHandler(!dropdownState())">
+      <div class="selected-cabins selected-value-strip">
+        <span class="class-types">{{ selectedClassLabels() }}</span>
+        <span class="icon-ellipsis"><i class="fa-solid fa-ellipsis-v"></i></span>
+      </div>
+    </div>
+    @if(dropdownState()) {
+      <div 
+        class="dropdown-wrapper cabin-selection-list" [ngClass]="{'active': dropdownState()}">
+        <ul tabindex="-1" class="cabin-list-wrapper dropdown-anime-item" [@dropDownMenu]>
+          @for(cabin of cabinList(); track cabin.id) {
+            <li 
+              tabindex="0"
+              class="cabin-list dropdown-anime-item" 
+              [ngClass]="{'selected': cabin.selected }" 
+              (keydown.enter)="selectCabinHandler(cabin.id)"
+              (click)="selectCabinHandler(cabin.id)">
+              <span><i class="fa-{{cabin.selected ? 'solid' : 'regular'}} fa-{{cabin.selected ? 'check-square' : 'square'}}"></i></span>
+              <span>{{ cabin.label }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</div>

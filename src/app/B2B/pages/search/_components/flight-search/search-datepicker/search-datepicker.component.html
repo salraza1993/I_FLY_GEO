@@ -1,0 +1,73 @@
+<div 
+  [ngClass]="{
+    'round-trip': isRoundtrip(),
+    'active': isDatePickerActive(),
+    'error': errorMessage()
+  }"
+  class="search-element-block" 
+  data-type="search-datepicker" 
+  aria-label="search-datepicker">
+  <div class="block-label">
+    <small class="start-date-label">Depart Date</small>
+    @if(isRoundtrip()) {
+      <small class="end-date-label">Return Date</small>
+    }
+  </div>
+  <div 
+    [ngClass]="{
+      'error': errorMessage(),
+      'active': isDatePickerActive(),
+    }"
+    class="block-body focus-within" 
+    aria-label="datepicker" 
+    (keydown.enter)="showDatePickerHandler(isDatePickerActive() ? false : true)"
+    role="datepicker">
+    <div class="icon">
+      <i class="fa-regular fa-calendar"></i>
+    </div>
+    <div 
+      [id]="'parent-' + datepickerParentId()"
+      class="input-group not-focused" 
+      [ngClass]="{
+        'roundtrip-active': isRoundtrip(),
+        'active': isDatePickerActive(),
+        'error': errorMessage()
+      }" 
+      tabindex="0"
+      (blur)="onBlur()" 
+      (focus)="showDatePickerHandler(!showCalendar())">
+      <div class="block-input" [ngClass]="{'active': isDatePickerActive()}">
+        <input
+          #startDate
+          type="text"
+          name="startDate"
+          id="startDate"
+          class="input-element user-select pointer-events--initial"
+          placeholder="Start Date"
+          readonly
+          autocomplete="off"
+        />
+      </div>
+      @if(isRoundtrip()) {
+        <div class="block-input" [ngClass]="{'active': isDatePickerActive()}">
+          <input
+            tabindex="-1"
+            #endDate
+            type="text"
+            id="endDate" 
+            name="endDate"
+            class="input-element user-select"
+            placeholder="End Date"
+            autocomplete="off"
+            readonly
+          />
+        </div>
+      }
+    </div>
+    @if(errorMessage()) {
+      <small class="error-message">{{ errorMessage() }}</small>
+    }
+  </div>
+</div>
+
+

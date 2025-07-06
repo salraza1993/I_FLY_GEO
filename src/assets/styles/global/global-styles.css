@@ -1,5 +1,9 @@
 @import url('./input-fields-common-styles.css');
-*:focus-visible, .focus-visible:focus-visible, .focus-within:focus-within {
+*:focus-visible, 
+.focus-visible:focus-visible, 
+.focus-visible:is(.active), 
+.focus-within:focus-within,
+.focus-within:is(.active) {
   --outline-bg-fallback: light-dark(var(--primary-75_light), var(--primary-90_dark));
   --outline-color-fallback: light-dark(var(--primary-75_light), var(--primary-50_dark));
   background-color: var(--outline-bg, var(--outline-bg-fallback));

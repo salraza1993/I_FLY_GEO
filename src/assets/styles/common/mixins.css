@@ -186,3 +186,9 @@
   justify-content: center !important;
   align-items: center !important;
 }
+
+.text-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

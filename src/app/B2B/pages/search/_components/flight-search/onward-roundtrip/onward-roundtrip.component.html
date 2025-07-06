@@ -1,0 +1,43 @@
+<div class="form-row">
+  <origin-destination 
+    (focusNext)="focusHanlder($event)"
+    [(errorStateChanged)]="originDestinationError"
+    [(getOriginDestination)]="setOriginDestination" 
+    data-z-index="1" />
+</div>
+<div class="form-row data-pax-cabin {{roundTrip() && 'roundtrip' }}" [style.--grid-columns]="3">
+  <search-datepicker 
+    data-z-index="1" 
+    [(hasError)]="datePickerError"
+    [(showCalendar)]="showCalendar"
+    (focusNext)="focusHanlder($event)"
+    [isRoundtrip]="roundTrip()" 
+    [(getDate)]="dateRange" />
+  <passenger-selection 
+    [(showPassengerDropdown)]="showPassengers"
+    [(hasError)]="paxError"
+    [(getPax)]="selectedPax" 
+    data-z-index="1" />
+  <cabin-selection 
+    [(showCabinDropdown)]="showCabins"
+    [(getCabins)]="selectedCabins" 
+    data-z-index="1" />
+</div>
+<custom-button 
+  [attr.disabled]="isDisabled()"
+  (click)="searchFlight()"
+  (keydown.enter)="searchFlight()"
+  data-z-index="0" 
+  class="button button--secondary size--large" 
+  buttonTitle="Search Flight" 
+  iconBefore="plane-departure">
+</custom-button>
+
+<br />
+<!-- smaple | delete below lines after validations -->
+<!-- <pre>destination:  {{ setOriginDestination() | json}},
+Data: {{dateRange | json}}
+Passengers: {{ selectedPax() | json }},
+cabins: {{ selectedCabins() | json }}</pre> -->
+
+<!-- data: {{ setOriginDestination() | json }} -->

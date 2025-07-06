@@ -28,7 +28,7 @@
 
 /* Text colors */
 .text--primary { color: var(--primary) !important; }
-.text--secondary { color: var(--accent) !important; }
+.text--secondary { color: var(--secondary) !important; }
 .text--accent { color: var(--accent) !important; }
 .text-hover--primary:hover { color: var(--primary) !important; }
 .text-hover--secondary:hover { color: var(--secondary) !important; }

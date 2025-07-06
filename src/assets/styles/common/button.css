@@ -41,18 +41,18 @@ a.button,
     white-space: nowrap;
   }
 
-  &:not(:disabled, .disabled):hover {
+  &:not(:disabled, .disabled, [disabled="true"]):hover {
     background-color: var(--btn-hover-bg, var(--btn-hover-bg-fallback));
     color: var(--btn-hover-color, var(--btn-hover-color-fallback));
     border-color: var(--btn-hover-border-color, var(--btn-hover-bg-fallback));
   }
 
-  &:not(:disabled, .disabled):is(:focus-visible, &:focus, &:focus-within) {
+  &:not(:disabled, .disabled, [disabled="true"]):is(:focus-visible, &:focus, &:focus-within) {
     /* --btn-bg-fallback: light-dark(var(--primary-100_light), var(--primary-50_dark));
     box-shadow: 0 0 0 var(--box-shadow-size, 0.25rem) var(--btn-box-shadow, var(--btn-box-shadow-fallback)); */
   }
 
-  &:not(:disabled, .disabled):is(:active, &:target) {
+  &:not(:disabled, .disabled, [disabled="true"]):is(:active, &:target) {
     --btn-box-shadow-fallback: light-dark(var(--primary-60_light), var(--primary-50_dark));
     box-shadow: 0 0 0 var(--box-shadow-size, 0.25rem) var(--btn-box-shadow-active, var(--btn-box-shadow-fallback));
   }
@@ -115,6 +115,7 @@ a.button,
   }
 
   &:disabled,
+  &[disabled="true"],
   &.disabled {
     --btn-bg-fallback: light-dark(var(--primary-70_light), var(--primary-80_dark));
     --btn-color-fallback: light-dark(var(--primary-10_light), var(--primary-50_dark));

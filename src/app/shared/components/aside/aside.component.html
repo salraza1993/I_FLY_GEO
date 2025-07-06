@@ -8,8 +8,13 @@
   @for (menu of asideMenus(); track menu) {
     <li
       #menuItem
+      [tooltip]="menu.title"
+      tooltipDirection="right"
+      [tooltipDelay]="300"
       [routerLink]="menu.path"
       routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [ngClass]="{'active': isRouteActive() && menu.title.toLowerCase() === 'search'}"
       class="aside-menu__list {{menu.class && menu.class}}">
       <a
         (click)="updateActiveStrip()"
@@ -17,26 +22,14 @@
         (mouseleave)="onTabUnHover($event)"
         [routerLink]="menu.path"
         routerLinkActive="active"
+        [ngClass]="{'active': isRouteActive() && menu.title.toLowerCase() === 'search'}"
         [routerLinkActiveOptions]="{ exact: true }"
         class="menu-item__link menu-item {{menu.class && menu.class}}">
         <i class="fa-light fa-{{ menu.icon }}"></i>
-        <span class="tooltip-text">{{ menu.title }}</span>
+        <!-- <span class="tooltip-text">{{ menu.title }}</span> -->
       </a>
     </li>
   }
-  <!-- <li 
-    class="menu-item setting-item" 
-    (click)="updateActiveStrip()"
-    (mouseover)="onTabHover($event)"
-    (mouseleave)="onTabUnHover($event)"
-    routerLinkActive="active" 
-    [routerLinkActiveOptions]="{exact: true}">
-    <a [routerLink]="'/settings'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-      class="menu-item__link menu-item">
-      <i class="fa-light fa-gear"></i>
-      <span class="tooltip-text">Settings</span>
-    </a>
-  </li> -->
   <!-- Active menu highlight strip -->
   <span class="selected-strip" [dir]="layoutDirection" [style]="activeStripStyles()"></span>
   <!-- Optional hover strip -->

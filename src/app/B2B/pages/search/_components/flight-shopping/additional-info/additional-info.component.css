@@ -1,0 +1,37 @@
+:host {
+  --strip-bg: light-dark(var(--primary-85_dark), var(--primary-90_dark));
+  --strip-color: light-dark(var(--primary-90_light), var(--primary-85_light));
+  position: relative;
+  display: block;
+  margin-block-end: var(--common-margin-y-end);  
+  
+  .content-wrapper {
+    position: relative;
+    background-color: var(--strip-bg);
+    color: var(--strip-color);
+    border-radius: calc(var(--border-radius) * 1.35);
+    max-width: var(--content-wrapper-max-width);
+    margin-inline: auto;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    .button {
+      --btn-bg: light-dark(var(--primary-50_dark), var(--primary-80_dark));
+      --btn-border-color: light-dark(var(--primary-50_dark), var(--primary-80_dark));
+    }
+
+    .totol-results {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      /* gap: 0.5rem; */
+      padding-inline-start: 0.35rem;
+      margin-inline-end: 0.5rem;
+      .text {
+        font-size: 0.7rem;
+        /* max-width: min-content; */
+      }
+    }
+  }
+}
