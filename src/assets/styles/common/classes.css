@@ -146,3 +146,14 @@ body:not(.arabic) {
 .border-right, .border-x-end { border-inline-end: 1px solid var(--border-color) !important; }
 .border-top, .border-y-start { border-block-start: 1px solid var(--border-color) !important; }
 .border-bottom, .border-y-end { border-block-start: 1px solid var(--border-color) !important; }
+
+.d-flex { display: flex !important; }
+.d-grid { display: grid !important; }
+.gap_25 { gap: 0.25rem !important; }
+.gap_5 { gap: 0.5rem !important; }
+.gap_75 { gap: 0.75rem !important; }
+.gap_1 { gap: 1rem !important; }
+.gap_1_25 { gap: 1.25rem !important; }
+.gap_1_5 { gap: 1.5rem !important; }
+.gap_1_75 { gap: 1.75rem !important; }
+.gap_2 { gap: 2rem !important; }

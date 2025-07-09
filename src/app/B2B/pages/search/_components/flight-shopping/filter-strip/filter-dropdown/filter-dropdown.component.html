@@ -1,0 +1,48 @@
+<div
+  (clickOutside)="onClick(false)"
+  [ngClass]="{'active': isDropdownActive()}"
+  class="filter-dropdown-wrapper">
+  <button
+    [ngClass]="{
+      'active': isDropdownActive(),
+      'selected': selectedValue(),
+    }"
+    class="filter-button-element"
+    (keydwon.enter)="onClick(!isDropdownActive())"
+    (click)="onClick(!isDropdownActive())">
+    @if(iconBefore()) {
+      <span class="icon icon-before">
+        <i class="fa-regular fa-{{ iconBefore() }}"></i>
+      </span>
+    }
+    @if(selectedValue()) {
+      <span class="pills">{{ selectedValue() }}</span>
+    } @else {
+      <span>{{ buttonName() }}</span>
+    }
+    @if(iconAfter() && !selectedValue()) {
+      <span class="icon icon-after">
+        <i class="fa-regular fa-{{ iconAfter() }}"></i>
+      </span>
+    }
+  </button>
+
+  @if(isDropdownActive()) {
+    <div class="filter-dropdown-wrapper">
+      <ul tabindex="-1" class="data-list dropdown-anime-item" [@dropDownMenu]>
+          @for(list of sortingList(); track list.id) {
+            <li
+              tabindex="0"
+              class="data-list-item dropdown-anime-item"
+              [ngClass]="{'selected': list.selected }"
+              (keydown.enter)="onSelect(list)"
+              (click)="onSelect(list)">
+              <span><i class="fa-{{list.selected ? 'solid' : 'regular'}} fa-{{list.selected ? 'check-square' : 'square'}}"></i></span>
+              <span>{{ list.label }}</span>
+            </li>
+          }
+        </ul>
+    </div>
+  }
+</div>
+

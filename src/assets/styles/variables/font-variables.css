@@ -23,7 +23,7 @@
   /* 25.6px - 42.24px */
   --fs-h3: clamp(1.3rem, 3vw, 2.11rem);
   /* 20.8px - 33.76px */
-  --fs-h4: clamp(1rem, 2.5vw, 1.85rem);
+  --fs-h4: clamp(1rem, 2.25vw, 1.6rem);
   /* 16px - 26.88px */
   --fs-h5: clamp(0.85rem, 2vw, 1.34rem);
   /* 13.6px - 21.44px */

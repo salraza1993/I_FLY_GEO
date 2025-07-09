@@ -1,7 +1,7 @@
 @import url('./input-fields-common-styles.css');
-*:focus-visible, 
-.focus-visible:focus-visible, 
-.focus-visible:is(.active), 
+*:focus-visible,
+.focus-visible:focus-visible,
+.focus-visible:is(.active),
 .focus-within:focus-within,
 .focus-within:is(.active) {
   --outline-bg-fallback: light-dark(var(--primary-75_light), var(--primary-90_dark));
@@ -89,7 +89,7 @@ svg {
     picture {
       display: flex;
       width: 100%;
-      height: 100%;  
+      height: 100%;
       img {
         width: 100%;
         height: 100%;

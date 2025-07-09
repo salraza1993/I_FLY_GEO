@@ -3,7 +3,7 @@ import { Component, signal } from '@angular/core';
 import { SearchFlightLoaderComponent } from '../../_components/search-flight-loader/search-flight-loader.component';
 import { SearchModifyComponent } from "../../_components/flight-shopping/search-modify/search-modify.component";
 import { FlightCalenderCarouselComponent } from "../../_components/flight-shopping/flight-calender-carousel/flight-calender-carousel.component";
-import { AdditionalInfoComponent } from "../../_components/flight-shopping/additional-info/additional-info.component";
+import { FilterStripWrapperComponent } from "../../_components/flight-shopping/filter-strip-wrapper/filter-strip-wrapper.component";
 
 @Component({
   selector: 'app-flight-shopping',
@@ -12,7 +12,7 @@ import { AdditionalInfoComponent } from "../../_components/flight-shopping/addit
     SearchFlightLoaderComponent,
     SearchModifyComponent,
     FlightCalenderCarouselComponent,
-    AdditionalInfoComponent
+    FilterStripWrapperComponent
 ],
   templateUrl: './flight-shopping.component.html',
   styleUrl: './flight-shopping.component.css',

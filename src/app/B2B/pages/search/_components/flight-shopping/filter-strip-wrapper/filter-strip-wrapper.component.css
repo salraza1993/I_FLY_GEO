@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  position: sticky;
+  inset-block-start: var(--header-height);
+  z-index: 10;
+  margin-block-end: var(--common-margin-y-end);
+
+  .content-wrapper {
+    position: relative;
+    background-color: var(--strip-bg);
+    color: var(--strip-color);
+    border-radius: calc(var(--border-radius) * 1.35);
+    max-width: var(--content-wrapper-max-width);
+    margin-inline: auto;
+    display: grid;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+}

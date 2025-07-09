@@ -1,10 +1,10 @@
 :host {
   --strip-bg: light-dark(var(--primary-85_dark), var(--primary-90_dark));
   --strip-color: light-dark(var(--primary-90_light), var(--primary-85_light));
+  --strip-border: light-dark(var(--primary-50_light), var(--primary-85_light));
   position: relative;
   display: block;
-  margin-block-end: var(--common-margin-y-end);  
-  
+
   .content-wrapper {
     position: relative;
     background-color: var(--strip-bg);
@@ -17,21 +17,27 @@
     align-items: center;
     gap: 0.5rem;
     .button {
-      --btn-bg: light-dark(var(--primary-50_dark), var(--primary-80_dark));
-      --btn-border-color: light-dark(var(--primary-50_dark), var(--primary-80_dark));
+      --btn-height: 33px;
+      --btn-bg: light-dark(var(--primary-60_dark), var(--primary-80_dark));
+      --btn-border: light-dark(var(--primary-55_dark), var(--primary-80_dark));
     }
 
-    .totol-results {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      /* gap: 0.5rem; */
-      padding-inline-start: 0.35rem;
-      margin-inline-end: 0.5rem;
-      .text {
-        font-size: 0.7rem;
-        /* max-width: min-content; */
-      }
+  }
+  .totol-results {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-inline-start: 0.35rem;
+    padding-inline-end: 0.5rem;
+    &:is(.bordered-right, .bordered-end) {
+      border-inline-end: 1px solid var(--strip-border);
+    }
+    .text {
+      font-size: 0.65rem;
+      line-height: 0.75rem;
+      max-width: min-content;
+      text-transform: uppercase;
     }
   }
 }

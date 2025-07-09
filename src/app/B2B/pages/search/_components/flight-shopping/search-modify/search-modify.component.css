@@ -27,7 +27,7 @@
     padding: var(--strip-padding);
     padding-block-start: 1px;
     border-end-start-radius: var(--strip-border-radius);
-    border-end-end-radius: var(--strip-border-radius);    
+    border-end-end-radius: var(--strip-border-radius);
 
     &::before,
     &::after {
@@ -60,16 +60,37 @@
       display: flex;
       /* justify-content: space-between; */
       gap: 0.5rem;
-      z-index: 1;     
+      z-index: 1;
 
       .grouped-elements {
         position: relative;
         display: flex;
-        gap: 0.5rem;
         flex-basis: 500px;
         max-width: 500px;
         .strip-element-container {
           max-width: calc(50% - 0.25rem);
+          &:is(.origin) {
+            --icon-color: var(--secondary);
+          }
+          &:is(.destination) {
+            --icon-color: var(--accent);
+            .strip-element { padding-inline-start: 0.35rem; }
+          }
+        }
+        .trip-type-icon {
+          position: relative;
+          width: 1rem;
+          z-index: 2;
+          display: grid;
+          place-items: center;
+          .icon {
+            position: absolute;
+            width: calc(var(--strip-elem-height) - 8px);
+            height: calc(var(--strip-elem-height) - 8px);
+            font-size: 0.85rem;
+            background-color: var(--strip-bg);
+            border-radius: 20px;
+          }
         }
       }
       .strip-element {
@@ -86,6 +107,7 @@
         font-weight: 500;
         white-space: nowrap;
         .icon {
+          color: var(--icon-color, inherit);
           width: var(--strip-elem-height);
           aspect-ratio: 1;
           flex-shrink: 0;

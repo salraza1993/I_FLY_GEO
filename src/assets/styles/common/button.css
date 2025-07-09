@@ -1,14 +1,14 @@
 .button,
 button.button,
 a.button,
-[role="button"], 
+[role="button"],
 [type="button"] {
   --btn-bg-fallback: light-dark(var(--primary-90_light), var(--primary-75_dark));
   --btn-color-fallback: light-dark(var(--primary-100_dark), var(--primary-90_light));
   --btn-hover-bg-fallback: light-dark(var(--primary-90_dark), var(--primary-90_light));
   --btn-hover-color-fallback: light-dark(var(--primary-95_light), var(--primary-100_dark));
 
-  --border-color-fallback: light-dark(var(--primary-80_light), var(--primary-70_dark));
+  --border-fallback: light-dark(var(--primary-80_light), var(--primary-70_dark));
   --btn-box-shadow-fallback: light-dark(var(--primary-80_light), var(--primary-80_dark));
   --btn-padding-x-start-fallback: 0.985rem;
   --btn-padding-x-end-fallback: 0.985rem;
@@ -30,7 +30,7 @@ a.button,
   text-decoration: none;
   cursor: pointer;
   user-select: none;
-  border: var(--btn-border-width, var(--border-width)) solid var(--btn-border-color, var(--border-color-fallback));
+  border: var(--btn-border-width, var(--border-width)) solid var(--btn-border, var(--border-fallback));
   border-radius: var(--btn-border-radius, var(--border-radius));
   background-color: var(--btn-bg, var(--btn-bg-fallback));
   transition: var(--transition);
@@ -44,7 +44,7 @@ a.button,
   &:not(:disabled, .disabled, [disabled="true"]):hover {
     background-color: var(--btn-hover-bg, var(--btn-hover-bg-fallback));
     color: var(--btn-hover-color, var(--btn-hover-color-fallback));
-    border-color: var(--btn-hover-border-color, var(--btn-hover-bg-fallback));
+    border-color: var(--btn-hover-border, var(--btn-hover-bg-fallback));
   }
 
   &:not(:disabled, .disabled, [disabled="true"]):is(:focus-visible, &:focus, &:focus-within) {
@@ -119,12 +119,12 @@ a.button,
   &.disabled {
     --btn-bg-fallback: light-dark(var(--primary-70_light), var(--primary-80_dark));
     --btn-color-fallback: light-dark(var(--primary-10_light), var(--primary-50_dark));
-    --border-color-fallback: light-dark(var(--primary-60_light), var(--primary-70_dark));
+    --border-fallback: light-dark(var(--primary-60_light), var(--primary-70_dark));
     cursor: not-allowed;
     pointer-events: painted;
     background-color: var(--btn-disabled-bg, var(--btn-bg-fallback));
     color: var(--btn-disabled-color, var(--btn-color-fallback));
-    border-color: var(--btn-disabled-border-color, var(--border-color-fallback));
+    border-color: var(--btn-disabled-border, var(--border-fallback));
   }
 
   &:is(.size--large, .large) {
@@ -168,25 +168,25 @@ a.button,
     --btn-box-shadow-active: var(--accent-50);
     --btn-disabled-bg: var(--accent-20);
     --btn-disabled-color: var(--accent-70);
-    --btn-disabled-border-color: var(--accent-30);
+    --btn-disabled-border: var(--accent-30);
   }
 
   &:is(.accent, .button--accent) {
     --btn-bg: var(--accent);
     --btn-color: var(--accent-color);
-    --btn-border-color: var(--accent);
+    --btn-border: var(--accent);
     --btn-hover-bg: var(--accent-dark);
     --btn-hover-color: var(--accent-color);
-    --btn-hover-border-color: var(--accent-dark);
+    --btn-hover-border: var(--accent-dark);
   }
 
   &:is(.accent-outline, .button--accent-outline) {
     --btn-bg: var(--transparent);
     --btn-color: var(--accent);
-    --btn-border-color: var(--accent);
+    --btn-border: var(--accent);
     --btn-hover-bg: var(--accent);
     --btn-hover-color: var(--accent-color);
-    --btn-hover-border-color: var(--accent-dark);
+    --btn-hover-border: var(--accent-dark);
   }
 
   &:is(.primary, .button--primary, .primary-outline, .button--primary-outline) {
@@ -194,25 +194,25 @@ a.button,
     --btn-box-shadow-active: light-dark(var(--primary-10_light), var(--primary-30_dark));
     --btn-disabled-bg: light-dark(var(--primary-80_dark), var(--primary-70_dark));
     --btn-disabled-color: light-dark(var(--primary-20_dark), var(--primary-10_dark));
-    --btn-disabled-border-color: light-dark(var(--primary-80_dark), var(--primary-70_dark));
+    --btn-disabled-border: light-dark(var(--primary-80_dark), var(--primary-70_dark));
   }
 
   &:is(.primary, .button--primary) {
     --btn-bg: light-dark(var(--primary-90_dark), var(--primary-40_dark));
     --btn-color: light-dark(var(--primary-90_light), var(--primary-100_light));
-    --btn-border-color: light-dark(var(--primary-90_dark), var(--primary-40_dark));
+    --btn-border: light-dark(var(--primary-90_dark), var(--primary-40_dark));
     --btn-hover-bg: light-dark(var(--primary-70_dark), var(--primary-80_light));
     --btn-hover-color: light-dark(var(--primary-90_light), var(--primary-100_dark));
-    --btn-hover-border-color: light-dark(var(--primary-70_dark), var(--primary-80_light));
+    --btn-hover-border: light-dark(var(--primary-70_dark), var(--primary-80_light));
   }
 
   &:is(.primary-outline, .button--primary-outline) {
     --btn-bg: var(--transparent);
     --btn-color: light-dark(var(--primary-100_dark), var(--primary-100_light));
-    --btn-border-color: light-dark(var(--primary-90_dark), var(--primary-40_dark));
+    --btn-border: light-dark(var(--primary-90_dark), var(--primary-40_dark));
     --btn-hover-bg: light-dark(var(--primary-70_dark), var(--primary-80_light));
     --btn-hover-color: light-dark(var(--primary-90_light), var(--primary-100_dark));
-    --btn-hover-border-color: light-dark(var(--primary-70_dark), var(--primary-80_light));
+    --btn-hover-border: light-dark(var(--primary-70_dark), var(--primary-80_light));
   }
 
   &:is(.secondary, .button--secondary, .secondary-outline, .button--secondary-outline) {
@@ -220,25 +220,25 @@ a.button,
     --btn-box-shadow-active: light-dark(var(--secondary-40), var(--secondary-80));
     --btn-disabled-bg: light-dark(var(--secondary-10), var(--secondary-60));
     --btn-disabled-color: light-dark(var(--secondary-50), var(--secondary-40));
-    --btn-disabled-border-color: light-dark(var(--secondary-20), var(--secondary-40));
+    --btn-disabled-border: light-dark(var(--secondary-20), var(--secondary-40));
   }
 
   &:is(.secondary, .button--secondary) {
     --btn-bg: light-dark(var(--secondary), var(--secondary-80));
     --btn-color: var(--secondary-color);
-    --btn-border-color: light-dark(var(--secondary), var(--secondary-60));
+    --btn-border: light-dark(var(--secondary), var(--secondary-60));
     --btn-hover-bg: var(--secondary-dark);
     --btn-hover-color: var(--secondary-color);
-    --btn-hover-border-color: light-dark(var(--secondary-dark), var(--secondary-80));
+    --btn-hover-border: light-dark(var(--secondary-dark), var(--secondary-80));
   }
 
   &:is(.secondary-outline, .button--secondary-outline) {
     --btn-bg: var(--transparent);
     --btn-color: light-dark(var(--secondary), var(--secondary-color));
-    --btn-border-color: light-dark(var(--secondary), var(--secondary-60));
+    --btn-border: light-dark(var(--secondary), var(--secondary-60));
     --btn-hover-bg: var(--secondary-dark);
     --btn-hover-color: var(--secondary-color);
-    --btn-hover-border-color: light-dark(var(--secondary-dark), var(--secondary-80));
+    --btn-hover-border: light-dark(var(--secondary-dark), var(--secondary-80));
   }
 
   &:is(.dark-gray, .button--dark-gray, .dark-gray-outline, .button--dark-gray-outline) {
@@ -246,25 +246,25 @@ a.button,
     --btn-box-shadow-active: light-dark(var(--primary-20_light), var(--primary-50_dark));
     --btn-disabled-bg: light-dark(var(--primary-10_light), var(--primary-50_dark));
     --btn-disabled-color: light-dark(var(--primary-40_dark), var(--primary-10_dark));
-    --btn-disabled-border-color: light-dark(var(--primary-10_dark), var(--primary-40_dark));
+    --btn-disabled-border: light-dark(var(--primary-10_dark), var(--primary-40_dark));
   }
 
   &:is(.dark-gray, .button--dark-gray) {
     --btn-bg: light-dark(var(--primary-30_dark), var(--primary-20_dark));
     --btn-color: light-dark(var(--primary-100_light), var(--primary-100_light));
-    --btn-border-color: light-dark(var(--primary-20_dark), var(--primary-10_light));
+    --btn-border: light-dark(var(--primary-20_dark), var(--primary-10_light));
     --btn-hover-bg: light-dark(var(--primary-60_dark), var(--black));
     --btn-hover-color: light-dark(var(--primary-100_light), var(--primary-50_light));
-    --btn-hover-border-color: light-dark(var(--primary-60_dark), var(--primary-80_dark));
+    --btn-hover-border: light-dark(var(--primary-60_dark), var(--primary-80_dark));
   }
 
   &:is(.dark-gray-outline, .button--dark-gray-outline) {
     --btn-bg: var(--transparent);
     --btn-color: light-dark(var(--primary-60_dark), var(--primary-50_light));
-    --btn-border-color: light-dark(var(--primary-20_dark), var(--primary-10_light));
+    --btn-border: light-dark(var(--primary-20_dark), var(--primary-10_light));
     --btn-hover-bg: light-dark(var(--primary-60_dark), var(--black));
     --btn-hover-color: light-dark(var(--primary-100_light), var(--primary-50_light));
-    --btn-hover-border-color: light-dark(var(--primary-60_dark), var(--primary-80_dark));
+    --btn-hover-border: light-dark(var(--primary-60_dark), var(--primary-80_dark));
   }
 
   &:is(.light, .button--light, .light-outline, .button--light-outline) {
@@ -272,25 +272,25 @@ a.button,
     --btn-box-shadow-active: light-dark(var(--primary-40_light), var(--primary-20_dark));
     --btn-disabled-bg: light-dark(var(--primary-70_light), var(--primary-50_dark));
     --btn-disabled-color: light-dark(var(--primary-10_light), var(--primary-10_dark));
-    --btn-disabled-border-color: light-dark(var(--primary-50_light), var(--primary-40_dark));
+    --btn-disabled-border: light-dark(var(--primary-50_light), var(--primary-40_dark));
   }
 
   &:is(.light, .button--light) {
     --btn-bg: light-dark(var(--primary-100_light), var(--primary-70_light));
     --btn-color: light-dark(var(--primary-100_dark), var(--primary-100_dark));
-    --btn-border-color: light-dark(var(--primary-100_light), var(--primary-80_light));
+    --btn-border: light-dark(var(--primary-100_light), var(--primary-80_light));
     --btn-hover-bg: light-dark(var(--primary-100_light), var(--primary-100_light));
     --btn-hover-color: light-dark(var(--primary-100_dark), var(--primary-100_dark));
-    --btn-hover-border-color: light-dark(var(--primary-50_light), var(--primary-100_light));
+    --btn-hover-border: light-dark(var(--primary-50_light), var(--primary-100_light));
   }
 
   &:is(.light-outline, .button--light-outline) {
     --btn-bg: var(--transparent);
     --btn-color: light-dark(var(--primary-100_light), var(--primary-100_light));
-    --btn-border-color: light-dark(var(--primary-100_light), var(--primary-80_light));
+    --btn-border: light-dark(var(--primary-100_light), var(--primary-80_light));
     --btn-hover-bg: light-dark(var(--primary-100_light), var(--primary-100_light));
     --btn-hover-color: light-dark(var(--primary-100_dark), var(--primary-100_dark));
-    --btn-hover-border-color: light-dark(var(--primary-50_light), var(--primary-100_light));
+    --btn-hover-border: light-dark(var(--primary-50_light), var(--primary-100_light));
   }
 
   &:is(.dark, .button--dark, .dark-outline, .button--dark-outline) {
@@ -298,25 +298,25 @@ a.button,
     --btn-box-shadow-active: light-dark(var(--primary-20_light), var(--primary-60_dark));
     --btn-disabled-bg: light-dark(var(--primary-70_dark), var(--black));
     --btn-disabled-color: light-dark(var(--primary-10_light), var(--primary-50_dark));
-    --btn-disabled-border-color: light-dark(var(--primary-70_dark), var(--primary-80_dark));
+    --btn-disabled-border: light-dark(var(--primary-70_dark), var(--primary-80_dark));
   }
 
   &:is(.dark, .button--dark) {
     --btn-bg: light-dark(var(--dark), var(--black));
     --btn-color: light-dark(var(--primary-90_light), var(--primary-70_light));
-    --btn-border-color: light-dark(var(--dark), var(--black));
+    --btn-border: light-dark(var(--dark), var(--black));
     --btn-hover-bg: light-dark(var(--primary-80_dark), var(--black));
     --btn-hover-color: light-dark(var(--primary-80_light), var(--primary-100_light));
-    --btn-hover-border-color: light-dark(var(--primary-80_dark), var(--black));
+    --btn-hover-border: light-dark(var(--primary-80_dark), var(--black));
   }
 
   &:is(.dark-outline, .button--dark-outline) {
     --btn-bg: var(--transparent);
     --btn-color: light-dark(var(--primary-100_dark), var(--black));
-    --btn-border-color: light-dark(var(--dark), var(--black));
+    --btn-border: light-dark(var(--dark), var(--black));
     --btn-hover-bg: light-dark(var(--primary-80_dark), var(--black));
     --btn-hover-color: light-dark(var(--primary-80_light), var(--primary-100_light));
-    --btn-hover-border-color: light-dark(var(--primary-80_dark), var(--black));
+    --btn-hover-border: light-dark(var(--primary-80_dark), var(--black));
   }
 
   &:is(.info, .button--info, .info-outline, .button--info-outline) {
@@ -324,25 +324,25 @@ a.button,
     --btn-box-shadow-active: light-dark(var(--info-70_light), var(--info-40_dark));
     --btn-disabled-bg: light-dark(var(--info-10_dark), var(--info-100_dark));
     --btn-disabled-color: light-dark(var(--info-40_dark), var(--info-50_dark));
-    --btn-disabled-border-color: light-dark(var(--info-20_dark), var(--info-90_dark));
+    --btn-disabled-border: light-dark(var(--info-20_dark), var(--info-90_dark));
   }
 
   &:is(.info, .button--info) {
     --btn-bg: light-dark(var(--info-60_light), var(--info-90_dark));
     --btn-color: light-dark(var(--light), var(--light));
-    --btn-border-color: light-dark(var(--info-50_light), var(--info-40_dark));
+    --btn-border: light-dark(var(--info-50_light), var(--info-40_dark));
     --btn-hover-bg: light-dark(var(--info-50_light), var(--info-60_dark));
     --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border-color: light-dark(var(--info-50_light), var(--info-50_dark));
+    --btn-hover-border: light-dark(var(--info-50_light), var(--info-50_dark));
   }
 
   &:is(.info-outline, .button--info-outline) {
     --btn-bg: var(--transparent);
     --btn-color: light-dark(var(--info-50_dark), var(--info-60_light));
-    --btn-border-color: light-dark(var(--info-50_light), var(--info-60_light));
+    --btn-border: light-dark(var(--info-50_light), var(--info-60_light));
     --btn-hover-bg: light-dark(var(--info-50_light), var(--info-60_dark));
     --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border-color: light-dark(var(--info-50_light), var(--info-50_dark));
+    --btn-hover-border: light-dark(var(--info-50_light), var(--info-50_dark));
   }
 
   &:is(.danger, .button--danger, .danger-outline, .button--danger-outline) {
@@ -350,25 +350,25 @@ a.button,
     --btn-box-shadow-active: light-dark(var(--danger-70_light), var(--danger-40_dark));
     --btn-disabled-bg: light-dark(var(--danger-10_dark), var(--danger-100_dark));
     --btn-disabled-color: light-dark(var(--danger-40_dark), var(--danger-50_dark));
-    --btn-disabled-border-color: light-dark(var(--danger-20_dark), var(--danger-90_dark));
+    --btn-disabled-border: light-dark(var(--danger-20_dark), var(--danger-90_dark));
   }
 
   &:is(.danger, .button--danger) {
     --btn-bg: light-dark(var(--danger-50_light), var(--danger-80_dark));
     --btn-color: light-dark(var(--light), var(--light));
-    --btn-border-color: light-dark(var(--danger-50_light), var(--danger-40_dark));
+    --btn-border: light-dark(var(--danger-50_light), var(--danger-40_dark));
     --btn-hover-bg: light-dark(var(--danger-60_light), var(--danger-60_dark));
     --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border-color: light-dark(var(--danger-50_light), var(--danger-50_dark));
+    --btn-hover-border: light-dark(var(--danger-50_light), var(--danger-50_dark));
   }
 
   &:is(.danger-outline, .button--danger-outline) {
     --btn-bg: var(--transparent);
     --btn-color: light-dark(var(--danger-50_light), var(--danger-40_dark));
-    --btn-border-color: light-dark(var(--danger-50_light), var(--danger-40_dark));
+    --btn-border: light-dark(var(--danger-50_light), var(--danger-40_dark));
     --btn-hover-bg: light-dark(var(--danger-50_light), var(--danger-60_dark));
     --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border-color: light-dark(var(--danger-50_light), var(--danger-50_dark));
+    --btn-hover-border: light-dark(var(--danger-50_light), var(--danger-50_dark));
   }
 
   &:is(.success, .button--success, .success-outline, .button--success-outline) {
@@ -376,25 +376,25 @@ a.button,
     --btn-box-shadow-active: light-dark(var(--success-70_light), var(--success-40_dark));
     --btn-disabled-bg: light-dark(var(--success-10_dark), var(--success-100_dark));
     --btn-disabled-color: light-dark(var(--success-40_dark), var(--success-50_dark));
-    --btn-disabled-border-color: light-dark(var(--success-20_dark), var(--success-90_dark));
+    --btn-disabled-border: light-dark(var(--success-20_dark), var(--success-90_dark));
   }
 
   &:is(.success, .button--success) {
     --btn-bg: light-dark(var(--success-50_light), var(--success-80_dark));
     --btn-color: light-dark(var(--light), var(--light));
-    --btn-border-color: light-dark(var(--success-50_light), var(--success-40_dark));
+    --btn-border: light-dark(var(--success-50_light), var(--success-40_dark));
     --btn-hover-bg: light-dark(var(--success-60_light), var(--success-60_dark));
     --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border-color: light-dark(var(--success-50_light), var(--success-50_dark));
+    --btn-hover-border: light-dark(var(--success-50_light), var(--success-50_dark));
   }
 
   &:is(.success-outline, .button--success-outline) {
     --btn-bg: var(--transparent);
     --btn-color: light-dark(var(--success-50_light), var(--success-40_dark));
-    --btn-border-color: light-dark(var(--success-50_light), var(--success-40_dark));
+    --btn-border: light-dark(var(--success-50_light), var(--success-40_dark));
     --btn-hover-bg: light-dark(var(--success-50_light), var(--success-60_dark));
     --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border-color: light-dark(var(--success-50_light), var(--success-50_dark));
+    --btn-hover-border: light-dark(var(--success-50_light), var(--success-50_dark));
   }
 
   &:is(.warning, .button--warning, .warning-outline, .button--warning-outline) {
@@ -402,24 +402,45 @@ a.button,
     --btn-box-shadow-active: light-dark(var(--warning-70_light), var(--warning-80_dark));
     --btn-disabled-bg: light-dark(var(--warning-10_dark), var(--warning-100_dark));
     --btn-disabled-color: light-dark(var(--warning-40_dark), var(--warning-50_dark));
-    --btn-disabled-border-color: light-dark(var(--warning-20_dark), var(--warning-90_dark));
+    --btn-disabled-border: light-dark(var(--warning-20_dark), var(--warning-90_dark));
   }
 
   &:is(.warning, .button--warning) {
     --btn-bg: light-dark(var(--warning-50_light), var(--warning-80_dark));
     --btn-color: light-dark(var(--light), var(--light));
-    --btn-border-color: light-dark(var(--warning-50_light), var(--warning-30_dark));
+    --btn-border: light-dark(var(--warning-50_light), var(--warning-30_dark));
     --btn-hover-bg: light-dark(var(--warning-60_light), var(--warning-60_dark));
     --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border-color: light-dark(var(--warning-50_light), var(--warning-50_dark));
+    --btn-hover-border: light-dark(var(--warning-50_light), var(--warning-50_dark));
   }
 
   &:is(.warning-outline, .button--warning-outline) {
     --btn-bg: var(--transparent);
     --btn-color: light-dark(var(--warning-50_light), var(--warning-30_dark));
-    --btn-border-color: light-dark(var(--warning-50_light), var(--warning-30_dark));
+    --btn-border: light-dark(var(--warning-50_light), var(--warning-30_dark));
     --btn-hover-bg: light-dark(var(--warning-50_light), var(--warning-60_dark));
     --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border-color: light-dark(var(--warning-50_light), var(--warning-50_dark));
+    --btn-hover-border: light-dark(var(--warning-50_light), var(--warning-50_dark));
+  }
+
+  &:is(.accent-on-hover) {
+    --btn-hover-bg: var(--accent) !important;
+    --btn-hover-color: var(--accent-color) !important;
+    --btn-hover-border: var(--accent) !important;
+  }
+  &:is(.secondary-on-hover) {
+    --btn-hover-bg: var(--secondary) !important;
+    --btn-hover-color: var(--secondary-color) !important;
+    --btn-hover-border: var(--secondary) !important;
+  }
+  &:is(.accent-on-active) {
+    --btn-bg: var(--accent) !important;
+    --btn-color: var(--accent-color) !important;
+    --btn-border: var(--accent) !important;
+  }
+  &:is(.secondary-on-active) {
+    --btn-bg: var(--secondary) !important;
+    --btn-color: var(--secondary-color) !important;
+    --btn-border: var(--secondary) !important;
   }
 }

@@ -2,12 +2,12 @@
   --selected-cabin-list-bg: light-dark(var(--primary-90_light), var(--primary-90_dark));
   --selected-cabin-list-color: light-dark(var(--primary-90_dark), var(--primary-90_light));
   --selected-cabin-list-hover-bg: var(--accent);
-  
+
   position: relative;
   .block-body {
     justify-content: space-between;
   }
-  .selected-cabins {    
+  .selected-cabins {
     padding-inline: 0.65rem 0.5rem;
     display: flex;
     justify-content: space-between;

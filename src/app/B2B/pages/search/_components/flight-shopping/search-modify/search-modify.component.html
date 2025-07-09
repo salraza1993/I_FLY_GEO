@@ -5,15 +5,25 @@
       <span>Roundtrip</span>
     </div>
     <div class="grouped-elements">
-      <div class="strip-element-container" [tooltip]="'Dubai (DXB), Dubai International Airport'">
+      <div class="strip-element-container origin"
+        [tooltipMaxWidth]="250"
+        [tooltip]="'Depart From: Dubai (DXB), Dubai International Airport'">
         <div class="strip-element">
-          <span class="icon"><i class="fa-solid fa-circle-dot"></i></span>
+          <span class="icon"><i class="fa-regular fa-circle-dot"></i></span>
           <span class="text-ellipsis">Dubai (DXB), Dubai International Airport</span>
         </div>
       </div>
-      <div class="strip-element-container" [tooltip]="'Delhi (DEL), Indira Gandhi International Airport'">
+      <span class="trip-type-icon">
+        <span class="icon">
+          <i class="fa-solid fa-arrow-right-arrow-left"></i>
+        </span>
+      </span>
+      <div
+        class="strip-element-container destination"
+        [tooltipMaxWidth]="250"
+        [tooltip]="'Depart To: Delhi (DEL), Indira Gandhi International Airport'">
         <div class="strip-element">
-          <span class="icon"><i class="fa-solid fa-circle-stop"></i></span>
+          <span class="icon"><i class="fa-regular fa-circle-stop"></i></span>
           <span class="text-ellipsis">Delhi (DEL), Indira Gandhi International Airport</span>
         </div>
       </div>

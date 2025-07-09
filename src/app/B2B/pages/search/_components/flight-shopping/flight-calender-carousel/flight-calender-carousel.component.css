@@ -8,11 +8,12 @@
 
   position: relative;
   display: block;
-  margin-block-end: var(--common-margin-y-end);  
+  margin-block-end: var(--common-margin-y-end);
   position: relative;
   width: 100%;
   display: block;
   margin-inline: auto;
+  user-select: none;
 
   .carousel-container {
     position: relative;
@@ -20,7 +21,7 @@
     inset-inline-start: 0;
     padding-block: 2px;
     padding-inline: 2px;
-    
+
     .slide {
       max-width: var(--card-max-width);
       height: var(--card-height);
@@ -52,7 +53,7 @@
         max-width: calc(var(--card-max-width) - var(--airline-logo-width) - 1rem);
         gap: 0.25rem;
       }
-      
+
       .images {
         width: var(--airline-logo-width);
         height: calc(var(--card-height) - 2px);

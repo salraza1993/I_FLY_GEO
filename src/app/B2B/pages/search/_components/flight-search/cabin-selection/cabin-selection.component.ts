@@ -89,7 +89,7 @@ export class CabinSelectionComponent {
       })
     );
      this.autoSelectNotPreferred();
-  }  
+  }
 
   private autoSelectNotPreferred() {
     this.cabinList.update(prev => {
