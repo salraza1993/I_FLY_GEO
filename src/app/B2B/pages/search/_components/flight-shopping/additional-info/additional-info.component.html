@@ -1,19 +1,35 @@
-<div class="content-wrapper">
+<div class="content-wrapper" [ngClass]="{'fixed': isSticky() }">
   <div class="block-start d-flex gap_5">
-    <div class="totol-results">
+    <div class="totol-results bordered-right">
       <span class="h4 m-0 font__verbatim--bold text--uppercase">1500</span>
       <small class="text">Results Found</small>
     </div>
+    <button class="button button--dark-gray size--extra-small accent-on-hover" [tooltip]="'Show all filters'">
+      <span class="icon icon-before"><i class="fa-solid fa-sliders"></i></span>
+      <span>All Filters</span>
+    </button>
   </div>
   <div class="block-end margin-x-start--auto d-flex gap_5">
-    <!-- <button class="button button--dark-gray size--extra-small accent-on-hover">
-      <span class="icon icon-before"><i class="fa-solid fa-right-left-large"></i></span>
-      <span>Flexible Calendar</span>
-    </button> -->
     <button class="button button--dark-gray size--extra-small accent-on-hover">
-      <span class="icon icon-before"><i class="fa-solid fa-envelopes"></i></span>
+      <span class="icon icon-before"><i class="fa-regular fa-circle-plus"></i></span>
+      <span>Instant Markup</span>
+      <!-- <span class="icon icon-after"><strong>(5)</strong></span> -->
+    </button>
+    <button class="button button--dark-gray size--extra-small accent-on-hover">
+      <span class="icon icon-before"><i class="fa-regular fa-grid"></i></span>
+      <span>Price Grid</span>
+      <!-- <span class="icon icon-after"><strong>(5)</strong></span> -->
+    </button>
+    <button class="button button--dark-gray size--extra-small accent-on-hover">
+      <span class="icon icon-before"><i class="fa-regular fa-envelopes"></i></span>
       <span>Selected Emails</span>
       <!-- <span class="icon icon-after"><strong>(5)</strong></span> -->
     </button>
+    @if(isSticky()) {
+      <button class="button button--dark-gray size--extra-small accent-on-hover" [tooltip]="'Modify Search'" tooltipDirection="left">
+        <span class="icon icon-before"><i class="fa-regular fa-edit"></i></span>
+        <span>Modify</span>
+      </button>
+    }
   </div>
 </div>

@@ -22,7 +22,7 @@ export class CheckboxRadioGroupedComponent {
   groupName = input.required<string>();
   options = input.required<Option[]>();
 
-  // Separate models for checkbox (array) and radio (string)
+  // Separated models for checkbox (array) and radio (string)
   checkboxModel = model<string[]>([]);
   radioModel = model<string>('');
 
@@ -57,19 +57,21 @@ export class CheckboxRadioGroupedComponent {
       ? this.checkboxModel
       : this.radioModel;
   }
-  // Sample to be used in parent
-  // hobbyOptions = signal([
-  //   { value: 'reading', label: 'Reading' },
-  //   { value: 'sports', label: 'Sports' },
-  //   { value: 'music', label: 'Music' }
-  // ]);
-
-  // genderOptions = signal([
-  //   { value: 'male', label: 'Male' },
-  //   { value: 'female', label: 'Female' },
-  //   { value: 'other', label: 'Other' }
-  // ]);
-
-  // selectedHobbies = signal<string[]>([]);
-  // selectedGender = signal<string>('');
 }
+
+
+// ============== [ Sample to be used in parent ] ============== //
+// hobbyOptions = signal([
+//   { value: 'reading', label: 'Reading' },
+//   { value: 'sports', label: 'Sports' },
+//   { value: 'music', label: 'Music' }
+// ]);
+
+// genderOptions = signal([
+//   { value: 'male', label: 'Male' },
+//   { value: 'female', label: 'Female' },
+//   { value: 'other', label: 'Other' }
+// ]);
+
+// selectedHobbies = signal<string[]>([]);
+// selectedGender = signal<string>('');

@@ -1,67 +1,50 @@
+import { FiltersService } from '@/B2B/pages/search/services/filters.service';
 import { ClickOutsideDirective } from '@/core/directives/click-outside.directive';
-import { dropDownMenu } from '@/shared/animations/dropdownList.animation';
+import { TooltipDirective } from '@/core/directives/tooltip.directive';
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  computed,
-  input,
-  signal,
-  ViewEncapsulation,
-} from '@angular/core';
-import { filter } from 'rxjs/operators';
+import { Component, inject, input, model, signal } from '@angular/core';
 
-type SortingDataType = { label: string; id: string; selected: boolean };
-
+export type DropdownSelectedValueType = string | undefined;
+// TooltipDirective
 @Component({
   selector: 'app-filter-dropdown, filter-dropdown',
   imports: [CommonModule, ClickOutsideDirective],
   templateUrl: './filter-dropdown.component.html',
-  styleUrls: [
-    './filter-dropdown.component.css',
-    '../filter-components-style.css',
-  ],
-  encapsulation: ViewEncapsulation.None,
-  animations: [dropDownMenu],
+  styleUrls: [ './filter-dropdown.component.css', '../filter-components-style.css',],
   host: {
     class: 'filter-dropdown',
-    '[class.active]': 'isDropdownActive()',
-    '[attr.data-z-index]': 'isDropdownActive() ? 10 : 0',
+    '[class.active]': 'showDropdown()',
+    '[class.fixed]': 'isSticky()',
+    '[attr.data-z-index]': 'showDropdown() ? 10 : 0',
   },
 })
 export class FilterDropdownComponent {
-  isDropdownActive = signal(false);
-  buttonName = input('button name');
-  iconBefore = input('');
-  iconAfter = input('');
+  public isSticky = inject(FiltersService).isSticky;
+  public tooltipData = signal<string[] | any | null>(null);
 
-  getSortingList = input<SortingDataType[]>([
-    { label: 'Duration', id: 'duration', selected: false },
-    { label: 'Cheapest', id: 'cheapest', selected: false },
-    { label: 'Earliest', id: 'earliest', selected: false },
-    { label: 'Latest', id: 'latest', selected: false },
-  ]);
+  // inputs from parent two-way-binding
+  showDropdown = model<boolean>(false);
+  selectedValue = model<DropdownSelectedValueType>(undefined);
 
-  // Reactive state
-  sortingList = signal<SortingDataType[]>(this.getSortingList());
-
-  // Computed selected values (as string or array depending on use case)
-  selectedValue = computed<string | undefined>(() => {
-    const selected = this.sortingList().find(item => item.selected);
-    return selected ? selected.label : undefined;
-  });
-
-  onSelect(targetItem: SortingDataType) {
-    this.sortingList.update((list) =>
-      list.map((item) =>
-        item.id === targetItem.id
-          ? { ...item, selected: !item.selected }
-          : { ...item, selected: item.id === targetItem.id }
-      )
-    );
-    this.onClick(false);
-  }
+  // inputs from parent one-way
+  buttonName = input<string | undefined>();
+  iconBefore = input<string | undefined>('');
+  iconAfter = input<string | undefined>('');
+  classToButton = input<string | undefined>('');
+  classToContentWrapper = input<string | undefined>('');
+  onClickMethod = input<(type: boolean) => void | undefined>();
 
   onClick(event: boolean): void {
-    this.isDropdownActive.set(event);
+    this.onClickMethod();
+    this.showDropdown.set(event);
+  }
+
+  get pills():string[] {
+    const value = this.selectedValue();
+    return value ? value.split(', ').map(v => v.trim()) : [];
+  }
+
+  get tooltipText(): string | null | boolean {
+    return this.selectedValue() || (!this.showDropdown() && null);
   }
 }

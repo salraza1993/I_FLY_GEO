@@ -11,16 +11,19 @@
   --filter-elem-pills-bg: light-dark(var(--primary-80_dark), var(--primary-90_dark));
   --filter-elem-pills-color: light-dark(var(--primary-95_light), var(--primary-10_dark));
 
-  --filter-wrapper-min-width: 200px;
-  --filter-wrapper-bg: light-dark(var(--primary-100_light), var(--primary-85_dark));
-  --filter-wrapper-border: light-dark(var(--primary-80_light), var(--primary-70_dark));
-  --selected-list-bg: light-dark(var(--primary-90_light), var(--primary-80_dark));
-  --selected-list-color: light-dark(var(--primary-90_dark), var(--primary-30_dark));
-  --selected-list-hover-bg: var(--accent);
+  --selected-pills-bg: var(--accent);
+  --selected-pills-color: var(--accent-color);
+
+  .ng-tooltip {
+    --tooltip-padding-x: 0.35rem;
+    --tooltip-padding-y: 0.35rem;
+  }
 
   position: relative;
   transition: var(--transition);
   border-radius: var(--filter-elem-border-radius);
+  flex-basis: content;
+  display: flex;
 
   &:is(.active) {
     z-index: 1;
@@ -40,22 +43,27 @@
     transition: var(--transition);
     cursor: pointer;
     font-size: 1rem;
+    flex-grow: 1;
 
     &:is(.filter-all-button) {
       --filter-elem-bg: light-dark(var(--primary-75_light), var(--primary-85_dark));
       --filter-elem-border: light-dark(var(--primary-60_light), var(--primary-85_dark));
     }
+    > * {
+      flex-grow: 1;
+    }
     .pills {
-      flex: 1;
-      display: flex;
-      align-items: center;
+      display: block;
       font-size: 0.95rem;
-      padding-inline: 0.6rem;
+      padding-inline: 0.6rem 0.5rem;
       background-color: var(--filter-elem-pills-bg);
       color: var(--filter-elem-pills-color);
       border-radius: calc(var(--filter-elem-border-radius) / 1.5);
       height: calc(var(--filter-elem-height) - 8px);
+      line-height: calc(var(--filter-elem-height) - 8px);
       transition-delay: 0.0s;
+      text-align: center;
+      max-width: 185px;
     }
 
     &:has(.icon-before, &:not(.icon-after)) {
@@ -70,6 +78,7 @@
       aspect-ratio: 1;
       align-items: center;
       flex-shrink: 0;
+      flex-grow: 0;
     }
     &:is(.selected) {
       padding-inline-end: calc(var(--filter-elem-padding-x) / 3.5);
@@ -89,6 +98,10 @@
       --filter-elem-border: var(--filter-elem-hover-border);
       --outline-color: var(--filter-elem-hover-bg);
     }
+    &:is(.fixed) {
+      --filter-elem-height: 36px;
+      padding-inline-end: calc(var(--filter-elem-padding-x) / 4);
+    }
     &:is(.active) {
       background-color: var(--secondary);
       color: var(--secondary-color);
@@ -97,39 +110,177 @@
       border-end-end-radius: 0;
       --filter-elem-pills-bg: var(--secondary-color);
       --filter-elem-pills-color: var(--secondary);
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        background-color: transparent;
+        width: var(--wrapper-border-radius);
+        height: var(--wrapper-border-radius);
+        inset-block-end: 1px;
+        z-index: -1;
+        border-block-start: 1px solid transparent;
+      }
+      &::before {
+        inset-inline-end: calc(100% + 1px);
+        border-radius: 0 0 100vw 0;
+        box-shadow: 5px 6px 0 5px var(--secondary);
+      }
+      &::after {
+        inset-inline-start: calc(100% + 1px);
+        border-radius: 0 0 0 100vw;
+        box-shadow: -5px 6px 0 5px var(--secondary);
+      }
+    }
+  }
+
+  .selected-pills {
+    position: relative;
+    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    .selected-pill {
+      display: inline-flex;
+      gap: 0.5rem;
+      padding-inline: 0.25rem 0.5rem;
+      padding-block: 0.25rem;
+      align-items: center;
+      background-color: var(--selected-pills-bg);
+      color: var(--selected-pills-color);
+      border-radius: calc(var(--border-radius) / 1.5);
+      &:not(> i) {
+        font-size: 0.95rem;
+      }
+      i {
+        font-size: 1.1rem;
+        width: 16px;
+        line-height: 16px;
+        aspect-ratio: 1;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+      }
     }
   }
 
   .filter-dropdown-wrapper {
+    --filter-wrapper-bg: light-dark(var(--primary-100_light), var(--primary-85_dark));
+    --filter-wrapper-border: light-dark(var(--primary-80_light), var(--primary-70_dark));
     position: absolute;
-    inset-block-start: calc(100% + 8px);
-    inset-inline-start: 0;
-    min-width: var(--filter-wrapper-min-width);
+    inset-block-start: calc(100% + 6px);
+    width: fit-content;
+    min-width: var(--filter-wrapper-min-width, calc(100% + 2rem));
+    max-width: max-content;
     background-color: var(--filter-wrapper-bg);
-    /* border: 1px solid var(--filter-wrapper-border); */
     border-radius: calc(var(--border-radius) / 1.5);
-    padding: 0.15rem 0.15rem;
+    padding: 0.15rem;
     box-shadow: 0 0 0 6px var(--filter-wrapper-bg), 0 0 0 8px var(--secondary);
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    font-size: 0.9rem;
+    &:is(.connecting-airports.selected, .selected-airlines.selected) {
+      --filter-wrapper-min-width: 215px;
+    }
+    &:is(.selected-airlines) {
+      --filter-wrapper-min-width: 180px;
+    }
+    &:is(.pricing-wrapper) {
+      --filter-wrapper-min-width: 230px;
+    }
+  }
+}
+
+.checkbox-wrapper {
+  --checkbox-bg: var(--accent);
+  --checkbox-active-label-color: var(--accent-color);
+  --checkbox-active-color: var(--accent-color);
+  position: relative;
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.data-list-wrapper {
+  --searchbar-height: 37px;
+  --searchbar-bg: light-dark(var(--primary-85_light), var(--primary-85_dark));
+  --searchbar-color: light-dark(var(--primary-85_dark), var(--primary-85_light));
+
+  position: relative;
+  display: grid;
+  gap: 0.5rem;
+  width: 100%;
+
+  .data-list-search {
+    position: relative;
+    display: flex;
+    background-color: var(--searchbar-bg);
+    color: var(--searchbar-color);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    &:focus-within {
+      background-color: var(--searchbar-color);
+      color: var(--searchbar-bg);
+    }
+    .icon {
+      width: var(--searchbar-height);
+      aspect-ratio: 1;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+    }
+    input {
+      background-color: transparent;
+      outline-color: transparent;
+      height: 100%;
+      width: 100%;
+      border: 0;
+      color: inherit;
+      &:placeholder-shown {
+        color: inherit;
+      }
+    }
   }
 }
 .data-list {
+  --list-bg: light-dark(var(--primary-95_light), var(--primary-80_dark));
+  --list-color: light-dark(var(--primary-90_dark), var(--primary-30_dark));
+  --list-hover-bg: var(--accent);
+  --list-border-color: light-dark(var(--primary-80_light), var(--primary-70_dark));
+
   position: relative;
-  display: grid;
-  gap: 0.15rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.1rem;
+
+  &:is(.hasScrollbar) {
+    --scrollbar-width: none;
+    --scrollbar-track-bg: transparent;
+    overflow-x: clip;
+    overflow-y: scroll;
+    max-height: 50vh;
+  }
+
   .data-list-item {
-    background-color: var(--selected-list-bg);
-    color: var(--selected-list-color);
-    padding-inline: 0.5rem;
-    padding-block: 0.35rem;
+    background-color: var(--list-bg);
+    color: var(--list-color);
+    padding-inline: 0.6rem 0.5rem;
+    padding-block: 0.25rem;
     border-radius: var(--border-radius);
     border: 1px solid var(--input-block-border);
     display: flex;
     gap: 0.65rem;
     cursor: pointer;
     transition: var(--transition);
+    width: 100%;
+    white-space: nowrap;
+
     &:focus-within, &:focus-visible, &:focus {
       z-index: 1;
     }
+
     &:is(.selected) {
       font-weight: 700;
       background-color: var(--secondary);
@@ -140,7 +291,26 @@
       color: var(--accent-color);
     }
   }
+  .breaker {
+    background-color: var(--list-border-color);
+    width: 100%;
+    height: 1px;
+    border: 0;
+    margin-block: 0.25rem;
+  }
 }
 
-
-
+.error-state {
+  --error-state-bg: light-dark(var(--danger-100_light), var(--danger-10_dark));
+  --error-state-border: light-dark(var(--danger-80_light), var(--danger-10_dark));
+  --error-state-color: light-dark(var(--danger-100_dark), var(--danger-100_dark));
+  position: relative;
+  padding-inline: 0.65rem;
+  padding-block: 0.5rem;
+  display: block;
+  border-radius: calc(var(--border-radius) / 1);
+  background-color: var(--error-state-bg);
+  color: var(--error-state-color);
+  box-shadow: inset 0 0 0 1px var(--error-state-border);
+  white-space: normal;
+}

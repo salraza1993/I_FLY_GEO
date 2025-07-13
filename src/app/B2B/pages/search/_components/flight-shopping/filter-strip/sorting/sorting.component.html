@@ -1,0 +1,24 @@
+<filter-dropdown
+  [(selectedValue)]="selected"
+  [(showDropdown)]="showDropdown"
+  buttonName="Sorting"
+  iconBefore="arrow-up-arrow-down"
+  iconAfter="ellipsis-v">
+  <ul tabindex="-1" class="data-list dropdown-anime-item">
+    @for(list of sortingList(); track list.id; let oddItem = $odd, lastItem = $last) {
+      <li
+        [@dropdownItemAnimation]
+        tabindex="0"
+        class="data-list-item dropdown-anime-item"
+        [ngClass]="{'selected': list.selected }"
+        (keydown.enter)="onSelect(list)"
+        (click)="onSelect(list)">
+        <span><i class="fa-{{list.selected ? 'solid' : 'regular'}} fa-{{list.selected ? 'check-square' : 'square'}}"></i></span>
+        <span>{{ list.label }}</span>
+      </li>
+      @if(oddItem && oddItem !== lastItem) {
+        <hr class="breaker" />
+      }
+    }
+  </ul>
+</filter-dropdown>

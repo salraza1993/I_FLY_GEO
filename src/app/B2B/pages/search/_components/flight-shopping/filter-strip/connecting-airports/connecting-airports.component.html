@@ -1,0 +1,40 @@
+<filter-dropdown
+  [(showDropdown)]="showDropdown"
+  [(selectedValue)]="selected"
+  classToContentWrapper="connecting-airports"
+  buttonName="Connecting Airports"
+  iconBefore="tower-observation" iconAfter="ellipsis-v">
+  <div class="data-list-wrapper">
+    <div class="data-list-search focus-within" tabindex="-1">
+      <span class="icon"><i class="fa-solid fa-search"></i></span>
+      <input
+        #connectingAirportInputElement
+        autocomplete="off"
+        [(ngModel)]="searchInput"
+        (keydown.enter)="onInputEnterPressed()"
+        type="text"
+        id="searchAirport"
+        name="searchAirport"
+        class="not-focused"
+        placeholder="Enter: Name/Code" />
+    </div>
+    <ul tabindex="-1" class="data-list dropdown-anime-item hasScrollbar">
+      @if(filteredAirports().length > 0) {
+        @for(list of filteredAirports(); track list.id; let index = $index) {
+          <li
+            tabindex="0"
+            class="data-list-item dropdown-anime-item"
+            [ngClass]="{'selected': list.selected }"
+            (keydown.enter)="onSelect(list)"
+            (click)="onSelect(list)">
+            <span><i class="fa-{{list.selected ? 'solid' : 'regular'}} fa-{{list.selected ? 'check-square' : 'square'}}"></i></span>
+            <span>{{ list.name }} ({{ list.code }})</span>
+          </li>
+        }
+      } @else {
+        <small class="error-state">
+          <strong>Not Found!</strong>: Enter valid airport name/code. Eg. <strong>Dubai/DXB</strong></small>
+      }
+    </ul>
+  </div>
+</filter-dropdown>

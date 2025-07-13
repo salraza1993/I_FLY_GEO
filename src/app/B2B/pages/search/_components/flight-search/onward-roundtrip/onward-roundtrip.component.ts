@@ -74,11 +74,5 @@ export class OnwardRoundtripComponent {
   public searchFlight(): void {
     if (this.isDisabled()) return;
     this.router.navigate(['/search/flight-results']);
-    console.log('Searching with:', {
-      originDestination: this.setOriginDestination(),
-      dateRange: this.dateRange(),
-      pax: this.selectedPax(),
-      cabin: this.selectedCabins()
-    });
   }
 }

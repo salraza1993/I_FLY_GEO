@@ -1,48 +1,61 @@
 <div
   (clickOutside)="onClick(false)"
-  [ngClass]="{'active': isDropdownActive()}"
+  [ngClass]="{'active': showDropdown(), 'fixed': isSticky()}"
   class="filter-dropdown-wrapper">
+
+  <!-- [tooltip]="tooltipText ? tooltipTemplate : null"
+  tooltipDirection="top" -->
   <button
-    [ngClass]="{
-      'active': isDropdownActive(),
-      'selected': selectedValue(),
-    }"
-    class="filter-button-element"
-    (keydwon.enter)="onClick(!isDropdownActive())"
-    (click)="onClick(!isDropdownActive())">
+    [ngClass]="{ 'active': showDropdown(), 'selected': selectedValue(), 'fixed': isSticky() }"
+    class="filter-button-element {{ classToButton() }}"
+    (keydown.enter)="onClick(!showDropdown())"
+    (click)="onClick(!showDropdown())">
+
     @if(iconBefore()) {
       <span class="icon icon-before">
         <i class="fa-regular fa-{{ iconBefore() }}"></i>
       </span>
     }
-    @if(selectedValue()) {
-      <span class="pills">{{ selectedValue() }}</span>
+
+    @if(tooltipText) {
+      <span class="pills text-ellipsis">
+        {{ tooltipText }}
+      </span>
     } @else {
-      <span>{{ buttonName() }}</span>
+      <span class="text-ellipsis">{{ buttonName() || 'button name' }}</span>
     }
-    @if(iconAfter() && !selectedValue()) {
+
+    @if(iconAfter() && !tooltipText) {
       <span class="icon icon-after">
         <i class="fa-regular fa-{{ iconAfter() }}"></i>
       </span>
     }
+
   </button>
 
-  @if(isDropdownActive()) {
-    <div class="filter-dropdown-wrapper">
-      <ul tabindex="-1" class="data-list dropdown-anime-item" [@dropDownMenu]>
-          @for(list of sortingList(); track list.id) {
-            <li
-              tabindex="0"
-              class="data-list-item dropdown-anime-item"
-              [ngClass]="{'selected': list.selected }"
-              (keydown.enter)="onSelect(list)"
-              (click)="onSelect(list)">
-              <span><i class="fa-{{list.selected ? 'solid' : 'regular'}} fa-{{list.selected ? 'check-square' : 'square'}}"></i></span>
-              <span>{{ list.label }}</span>
-            </li>
-          }
-        </ul>
+  @if(showDropdown()) {
+    <div
+      [ngClass]="{'active': showDropdown(), 'selected': selectedValue()}"
+      class="filter-dropdown-wrapper {{ classToContentWrapper() }}">
+      <ng-content>
+        {{ tooltipText ||  'Dropdown Content will be here!'}}
+      </ng-content>
     </div>
   }
 </div>
 
+
+<!-- <ng-template #tooltipTemplate>
+  @if (tooltipText) {
+    @if(pills) {
+      <span class="selected-pills">
+        @for(pill of pills; track pill) {
+          <span class="selected-pill">
+            <i class="fa-solid fa-square-check"></i>
+            <span>{{pill}}</span>
+          </span>
+        }
+      </span>
+    }
+  }
+</ng-template> -->

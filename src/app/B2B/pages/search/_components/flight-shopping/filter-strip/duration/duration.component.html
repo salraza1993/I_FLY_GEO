@@ -1,0 +1,9 @@
+<filter-dropdown
+  [(selectedValue)]="selected"
+  [(showDropdown)]="showDropdown"
+  classToContentWrapper="pricing-wrapper"
+  buttonName="Duration"
+  iconBefore="stopwatch"
+  iconAfter="ellipsis-v">
+  <range-slider type="duration" [(rangeValue)]="rangeValue" [min]="minRange()" [max]="maxRange()" />
+</filter-dropdown>

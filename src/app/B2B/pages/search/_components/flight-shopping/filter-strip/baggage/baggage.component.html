@@ -1,0 +1,10 @@
+<filter-dropdown
+  [(showDropdown)]="showDropdown"
+  [(selectedValue)]="selected"
+  buttonName="Baggages"
+  iconBefore="suitcase-rolling"
+  iconAfter="ellipsis-v">
+  <div class="checkbox-wrapper">
+    <checkbox elementName="checkinBag" [container]="true" label="1 - Checkin-Bag" elementId="checkinBag" [(checked)]="checkinBaggage" />
+  </div>
+</filter-dropdown>

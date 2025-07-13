@@ -51,7 +51,7 @@ export class OriginDestinationComponent {
 
   public getOriginAirportData = signal<AirportDataType | null>(null);
   public getDestinationAirportData = signal<AirportDataType | null>(null);
-  public zIndexCalculator = computed(() => 
+  public zIndexCalculator = computed(() =>
     (this.enableOriginAirportList() || this.enableDestinationAirportList()) ? 10 : 1)
 
   private originDestinationComputed = computed<OriginDestinationDataType>(() => ({
@@ -92,7 +92,7 @@ export class OriginDestinationComponent {
     this.origin.set(originValue);
     this.destination.set(destinationValue);
 
-    const temp = this.getOriginAirportData(); 
+    const temp = this.getOriginAirportData();
     this.getOriginAirportData.set(this.getDestinationAirportData());
     this.getDestinationAirportData.set(temp);
     this.isSwappedValue.update(prev => !prev);
@@ -147,6 +147,7 @@ export class OriginDestinationComponent {
     this.isTouched.update(prev => ({ ...prev, [field]: false }));
     this.clearError(field);
   }
+
   public onEnterPressed(field: 'origin' | 'destination') {
     if (field === 'origin') {
       this.focusDestination();
@@ -171,7 +172,7 @@ export class OriginDestinationComponent {
       this.focusDestination();
     }
   }
-  
+
   public onAiportListSelected(field: 'origin' | 'destination', selectedAirport: AirportDataType): void {
     if (field === 'origin') {
       this.getOriginAirportData.set(selectedAirport);
@@ -184,7 +185,7 @@ export class OriginDestinationComponent {
       this.getDestinationAirportData.set(selectedAirport);
       if (this.isValid(this.destination(), selectedAirport)) {
         this.enableDestinationAirportList.set(false);
-        this.destinationInput.nativeElement.blur(); 
+        this.destinationInput.nativeElement.blur();
         this.focusNextField();
       }
     }

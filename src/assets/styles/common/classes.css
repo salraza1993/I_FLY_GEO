@@ -148,6 +148,8 @@ body:not(.arabic) {
 .border-bottom, .border-y-end { border-block-start: 1px solid var(--border-color) !important; }
 
 .d-flex { display: flex !important; }
+.justify-content-between { justify-content: space-between !important; }
+.align-items-center { align-items: center !important; }
 .d-grid { display: grid !important; }
 .gap_25 { gap: 0.25rem !important; }
 .gap_5 { gap: 0.5rem !important; }

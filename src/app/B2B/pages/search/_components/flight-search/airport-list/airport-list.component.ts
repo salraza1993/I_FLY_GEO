@@ -30,12 +30,13 @@ export class AirportListComponent {
   private http = inject(HttpClient);
   public allAirport = signal<AirportDataType[]>([]);
   public focusedIndex = signal<number>(-1);
-  public selectedAirport = model<AirportDataType | null>(null);
   public showError = signal(false);
 
   public elementType = input<string>('origin');
-  public searchValue = model<string | null | undefined>('');
   public onSelected = output<AirportDataType | null | any>()
+  // two-data binding
+  public selectedAirport = model<AirportDataType | null>(null);
+  public searchValue = model<string | null | undefined>('');
   constructor() {
     effect(() => {
       const query = this.searchValue() || '';

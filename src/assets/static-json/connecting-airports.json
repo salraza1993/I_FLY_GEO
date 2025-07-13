@@ -1,0 +1,230 @@
+[
+  {
+    "id": "AUH",
+    "name": "Abu Dhabi",
+    "code": "AUH",
+    "selected": false
+  },
+  {
+    "id": "ADD",
+    "name": "Addis Ababa",
+    "code": "ADD",
+    "selected": false
+  },
+  {
+    "id": "AMD",
+    "name": "Ahmedabad",
+    "code": "AMD",
+    "selected": false
+  },
+  {
+    "id": "ALA",
+    "name": "Almaty",
+    "code": "ALA",
+    "selected": false
+  },
+  {
+    "id": "ATQ",
+    "name": "Amritsar",
+    "code": "ATQ",
+    "selected": false
+  },
+  {
+    "id": "NQZ",
+    "name": "Astana",
+    "code": "NQZ",
+    "selected": false
+  },
+  {
+    "id": "BAH",
+    "name": "Bahrain",
+    "code": "BAH",
+    "selected": false
+  },
+  {
+    "id": "BLR",
+    "name": "Bengaluru",
+    "code": "BLR",
+    "selected": false
+  },
+  {
+    "id": "BHO",
+    "name": "Bhopal",
+    "code": "BHO",
+    "selected": false
+  },
+  {
+    "id": "CAI",
+    "name": "Cairo",
+    "code": "CAI",
+    "selected": false
+  },
+  {
+    "id": "IXC",
+    "name": "Chandigarh",
+    "code": "IXC",
+    "selected": false
+  },
+  {
+    "id": "MAA",
+    "name": "Chennai",
+    "code": "MAA",
+    "selected": false
+  },
+  {
+    "id": "CMB",
+    "name": "Colombo",
+    "code": "CMB",
+    "selected": false
+  },
+  {
+    "id": "DED",
+    "name": "Dehradun",
+    "code": "DED",
+    "selected": false
+  },
+  {
+    "id": "DOH",
+    "name": "Doha",
+    "code": "DOH",
+    "selected": false
+  },
+  {
+    "id": "GOI",
+    "name": "Goa",
+    "code": "GOI",
+    "selected": false
+  },
+  {
+    "id": "GOX",
+    "name": "Goa",
+    "code": "GOX",
+    "selected": false
+  },
+  {
+    "id": "HYD",
+    "name": "Hyderabad",
+    "code": "HYD",
+    "selected": false
+  },
+  {
+    "id": "IDR",
+    "name": "Indore",
+    "code": "IDR",
+    "selected": false
+  },
+  {
+    "id": "IST",
+    "name": "Istanbul",
+    "code": "IST",
+    "selected": false
+  },
+  {
+    "id": "JAI",
+    "name": "Jaipur",
+    "code": "JAI",
+    "selected": false
+  },
+  {
+    "id": "JED",
+    "name": "Jeddah",
+    "code": "JED",
+    "selected": false
+  },
+  {
+    "id": "KTM",
+    "name": "Kathmandu",
+    "code": "KTM",
+    "selected": false
+  },
+  {
+    "id": "COK",
+    "name": "Kochi",
+    "code": "COK",
+    "selected": false
+  },
+  {
+    "id": "CCU",
+    "name": "Kolkata",
+    "code": "CCU",
+    "selected": false
+  },
+  {
+    "id": "LKO",
+    "name": "Lucknow",
+    "code": "LKO",
+    "selected": false
+  },
+  {
+    "id": "IXE",
+    "name": "Mangaluru",
+    "code": "IXE",
+    "selected": false
+  },
+  {
+    "id": "BOM",
+    "name": "Mumbai",
+    "code": "BOM",
+    "selected": false
+  },
+  {
+    "id": "MCT",
+    "name": "Muscat",
+    "code": "MCT",
+    "selected": false
+  },
+  {
+    "id": "PAT",
+    "name": "Patna",
+    "code": "PAT",
+    "selected": false
+  },
+  {
+    "id": "PNQ",
+    "name": "Pune",
+    "code": "PNQ",
+    "selected": false
+  },
+  {
+    "id": "RUH",
+    "name": "Riyadh",
+    "code": "RUH",
+    "selected": false
+  },
+  {
+    "id": "SXR",
+    "name": "Srinagar",
+    "code": "SXR",
+    "selected": false
+  },
+  {
+    "id": "STV",
+    "name": "Surat",
+    "code": "STV",
+    "selected": false
+  },
+  {
+    "id": "TRV",
+    "name": "Thiruvananthapuram",
+    "code": "TRV",
+    "selected": false
+  },
+  {
+    "id": "UDR",
+    "name": "Udaipur",
+    "code": "UDR",
+    "selected": false
+  },
+  {
+    "id": "VNS",
+    "name": "Varanasi",
+    "code": "VNS",
+    "selected": false
+  },
+  {
+    "id": "VGA",
+    "name": "Vijayawada",
+    "code": "VGA",
+    "selected": false
+  }
+]

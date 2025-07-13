@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 export type CheckboxType = 'checkbox' | 'radio';
 
 @Component({
-  selector: 'checkbox-radio',
+  selector: 'app-checkbox-radio, checkbox-radio',
   imports: [COMMON_IMPORTS, CommonModule],
   templateUrl: './checkbox-radio.component.html',
   styleUrl: './checkbox-radio.component.css',

@@ -1,0 +1,32 @@
+<filter-dropdown buttonName="Timing" iconBefore="clock" iconAfter="ellipsis-v">
+  <div class="timing-tab-container">
+    <ul class="timing-tab__list">
+      @for(tab of timingTabs(); track tab.label) {
+        <li (click)="tabHandler(tab)" [ngClass]="{'selected': tab.selected}" class="timing-tab__list__item">
+          {{ tab.label }}
+        </li>
+      }
+    </ul>
+    <div class="timing-tab__data__mask">
+      @if(selectedTab() === 'departure') {
+        <div class="timing-tab__data" [@SlideInLeft]>
+          @for(list of departureTimingList(); track list.id) {
+            <div class="d-flex justify-content-between align-items-center gap-3">
+              <toggle-switch [(toggleValue)]="list.selected" [label]="list.label" />
+              <small>{{ list.duration }}</small>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="timing-tab__data" [@SlideInRight]>
+          @for(list of returnTimingList(); track list.id) {
+            <div class="d-flex justify-content-between align-items-center gap-3">
+              <toggle-switch [(toggleValue)]="list.selected" [label]="list.label" />
+              <small>{{ list.duration }}</small>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</filter-dropdown>

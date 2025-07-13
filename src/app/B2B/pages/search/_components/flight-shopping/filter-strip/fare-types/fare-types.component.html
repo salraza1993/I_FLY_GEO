@@ -1,0 +1,6 @@
+<filter-dropdown buttonName="Fare Types" iconBefore="ticket" iconAfter="ellipsis-v" [(selectedValue)]="selected">
+  <div class="checkbox-wrapper">
+    <checkbox elementName="refunded" [container]="true" label="Refundable" elementId="refunded" [(checked)]="refundable" />
+    <checkbox elementName="nonRefundable" [container]="true" label="Non-Refundable" elementId="nonRefundable" [(checked)]="nonRefundable" />
+  </div>
+</filter-dropdown>

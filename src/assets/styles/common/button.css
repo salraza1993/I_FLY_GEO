@@ -133,9 +133,8 @@ a.button,
     --btn-height: calc(var(--common-btn-height) * 1.15);
     --btn-font-size: calc(var(--body-font-size) * 1.25);
     --btn-icon-font-size: calc(var(--btn-font-size) * 1.15);
-
-    padding-inline-start: var(--btn-padding-x-start-fallback);
-    padding-inline-end: var(--btn-padding-x-end-fallback);
+    /* padding-inline-start: var(--btn-padding-x-start, var(--btn-padding-x-start-fallback)); */
+    /* padding-inline-end: var(--btn-padding-x-end, var(--btn-padding-x-end-fallback)); */
     font-size: var(--btn-font-size, var(--body-font-size));
   }
 
@@ -146,8 +145,8 @@ a.button,
     --btn-font-size: calc(var(--body-font-size) / 1);
     --btn-icon-font-size: calc(var(--btn-font-size) * 1.1);
 
-    padding-inline-start: var(--btn-padding-x-start-fallback);
-    padding-inline-end: var(--btn-padding-x-end-fallback);
+    /* padding-inline-start: var(--btn-padding-x-start, var(--btn-padding-x-start-fallback)); */
+    /* padding-inline-end: var(--btn-padding-x-end, var(--btn-padding-x-end-fallback)); */
     font-size: var(--btn-font-size, var(--body-font-size));
   }
 
@@ -158,8 +157,8 @@ a.button,
     --btn-font-size: calc(var(--body-font-size) / 1.2);
     --btn-icon-font-size: calc(var(--btn-font-size) * 1.1);
     --btn-line-height: var(--btn-font-size);
-    padding-inline-start: var(--btn-padding-x-start-fallback);
-    padding-inline-end: var(--btn-padding-x-end-fallback);
+    /* padding-inline-start: var(--btn-padding-x-start, var(--btn-padding-x-start-fallback)); */
+    /* padding-inline-end: var(--btn-padding-x-end, var(--btn-padding-x-end-fallback)); */
     font-size: var(--btn-font-size, var(--body-font-size));
   }
 

@@ -1,0 +1,21 @@
+<filter-dropdown
+  [(selectedValue)]="selected"
+  [(showDropdown)]="showDropdown"
+  buttonName="Stops"
+  iconBefore="map-pin"
+  iconAfter="ellipsis-v">
+  <ul tabindex="-1" class="data-list dropdown-anime-item" [@dropDownMenu]>
+    @for(list of sortingList(); track list.id; let oddItem = $odd, lastItem = $last) {
+      <li
+        tabindex="0"
+        class="data-list-item dropdown-anime-item"
+        [ngClass]="{'selected': list.selected }"
+        (keydown.enter)="onStopSelect(list)"
+        (click)="onStopSelect(list)">
+        <span><i class="fa-{{list.selected ? 'solid' : 'regular'}} fa-{{list.selected ? 'check-square' : 'square'}}"></i></span>
+        <span>{{ list.label }}</span>
+      </li>
+    }
+  </ul>
+</filter-dropdown>
+

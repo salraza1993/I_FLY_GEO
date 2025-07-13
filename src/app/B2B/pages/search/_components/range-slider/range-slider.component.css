@@ -1,0 +1,93 @@
+:host {
+  --lable-bg: light-dark(var(--primary-100_light), var(--primary-90_dark));
+  --lable-color: light-dark(var(--primary-90_dark), var(--primary-90_light));
+  --line-bg: light-dark(var(--primary-85_light), var(--primary-90_dark));
+  --selected-line-bg: var(--accent);
+  --thumb-width: 20px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: var(--range-slider-max-width, initial);
+  width: 100%;
+  & .range-slider-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & .range-slider-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .range-input-label {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      border-radius: var(--border-radius);
+      padding-block: 0.55rem;
+      padding-inline: 0.75rem;
+      background-color: var(--lable-bg);
+      color: var(--lable-color);
+      width: 100%;
+      border: 1px solid var(--border-color);
+    }
+
+    .range-slider_wrapper {
+      position: relative;
+      width: 88%;
+      height: calc(var(--thumb-width) * 1.75);
+      margin-inline: auto;
+
+      .range-slider_thumb {
+        position: absolute;
+        top: 50%;
+        left: var(--thumb-x-position);
+        transform: translate(-50%, -50%);
+        width: var(--thumb-width);
+        height: var(--thumb-width);
+        background-color: var(--accent);
+        box-shadow: 0 0 0 3px white;
+        border-radius: 50%;
+        z-index: 2;
+        user-select: none;
+        &::after {
+          content: '';
+          position: absolute;
+          border-inline-start: 8px solid transparent;
+          border-inline-end: 8px solid transparent;
+          border-block-start: 8px solid var(--accent);
+          inset-block-end: 100%;
+          inset-inline-start: calc(50% - 8px);
+        }
+      }
+      .range-slider_line {
+        height: 3px;
+        width: 100%;
+        background-color: var(--line-bg);
+        inset-block-start: calc(50% - 2px);
+        inset-inline-start: 0;
+        position: absolute;
+        z-index: 1;
+      }
+      .range-slider_line-fill {
+        position: absolute;
+        height: 3px;
+        width: var(--line-width, 0);
+        background-color: var(--selected-line-bg);
+      }
+      .range-slider_input {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+

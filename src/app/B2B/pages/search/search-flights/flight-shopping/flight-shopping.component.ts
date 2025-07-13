@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { SearchFlightLoaderComponent } from '../../_components/search-flight-loader/search-flight-loader.component';
 import { SearchModifyComponent } from "../../_components/flight-shopping/search-modify/search-modify.component";
 import { FlightCalenderCarouselComponent } from "../../_components/flight-shopping/flight-calender-carousel/flight-calender-carousel.component";
 import { FilterStripWrapperComponent } from "../../_components/flight-shopping/filter-strip-wrapper/filter-strip-wrapper.component";
+import { FiltersService } from '../../services/filters.service';
 
 @Component({
   selector: 'app-flight-shopping',
@@ -13,7 +14,8 @@ import { FilterStripWrapperComponent } from "../../_components/flight-shopping/f
     SearchModifyComponent,
     FlightCalenderCarouselComponent,
     FilterStripWrapperComponent
-],
+  ],
+  providers: [FiltersService],
   templateUrl: './flight-shopping.component.html',
   styleUrl: './flight-shopping.component.css',
   host: {
@@ -21,5 +23,6 @@ import { FilterStripWrapperComponent } from "../../_components/flight-shopping/f
   }
 })
 export class FlightShoppingComponent {
+  private fliterService = inject(FiltersService)
   isLoading = signal(false);
 }

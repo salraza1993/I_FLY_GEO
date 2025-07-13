@@ -11,11 +11,11 @@
 html {
   color-scheme: light dark;
   font-size: var(--base-size);
-  overflow: auto; 
+  overflow: auto;
   scrollbar-color: var(--scrollbar-thumb-bg) var(--scrollbar-track-bg);
   scrollbar-width: var(--scrollbar-width);
   scrollbar-gutter: var(--scrollbar-gutter);
-  
+
   &[data-theme="light"] {
     color-scheme: light;
   }
@@ -23,7 +23,7 @@ html {
     color-scheme: dark;
   }
 }
-*.hasScrollbar {
+*.hasScrollbar, [data-has-scrollbar] {
   scrollbar-color: var(--scrollbar-thumb-bg) var(--scrollbar-track-bg);
   scrollbar-width: var(--scrollbar-width);
   scrollbar-gutter: var(--scrollbar-gutter);
@@ -34,7 +34,7 @@ html {
   }
 
   &::-webkit-scrollbar {
-    width: 6px;
+    width: var(--scrollbar-width);
     background-color: #F5F5F5;
   }
 
@@ -42,6 +42,7 @@ html {
     background-color: #000000;
   }
 }
+
 body {
   color: var(--body-color);
   background-color: var(--body-backdrop-bg);

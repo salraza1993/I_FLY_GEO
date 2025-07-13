@@ -1,0 +1,71 @@
+:host {
+  --tab-list-bg: light-dark(var(--primary-90_light), var(--primary-100_dark));
+  --wrapper-min-with: 260px;
+  .timing-tab-container {
+    position: relative;
+    width: 100%;
+
+    & .timing-tab__list {
+      position: relative;
+      margin: 0;
+      margin-block-end: 1rem;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      gap: 6px;
+      & .timing-tab__list__item {
+        position: relative;
+        width: 100%;
+        min-width: 100px;
+        padding-block: 0.25rem;
+        padding-inline: 0.75rem;
+        background-color: var(--tab-list-bg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: calc(var(--border-radius) / 1.35);
+        transition: var(--transition);
+        isolation: isolate;
+        overflow: clip;
+        cursor: pointer;
+        &::after {
+          content: '';
+          position: absolute;
+          transition: inherit;
+          inset: 0;
+          background-color: var(--accent);
+          scale: 0;
+          z-index: -1;
+        }
+        &:not(.selected, .active):hover {
+          background-color: var(--secondary);
+          color: var(--secondary-color);
+        }
+        &:is(.selected, .active) {
+          font-weight: 700;
+          color: var(--white);
+          &::after { scale: 1;}
+        }
+      }
+    }
+    & .timing-tab__data {
+      position: relative;
+      width: 100%;
+      min-width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      white-space: nowrap;
+      min-width: var(--wrapper-min-with);
+      & .timing-tab__mask {
+        overflow: hidden;
+        display: flex;
+      }
+    }
+    & .timing-tab__data__mask {
+      overflow: clip;
+      display: flex;
+      max-width: var(--wrapper-min-with);
+    }
+  }
+}

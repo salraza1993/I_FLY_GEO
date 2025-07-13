@@ -1,0 +1,25 @@
+<filter-dropdown
+  [(selectedValue)]="selected"
+  [(showDropdown)]="showDropdown"
+  buttonName="Suppliers" iconBefore="plane-up" iconAfter="ellipsis-v">
+  <div class="data-list-wrapper">
+
+    <ul tabindex="-1" class="data-list dropdown-anime-item hasScrollbar">
+      @if(filteredSuppliers().length > 0) {
+        @for(list of filteredSuppliers(); track list.id; let index = $index) {
+          <li
+            tabindex="0"
+            class="data-list-item dropdown-anime-item"
+            [ngClass]="{'selected': list.selected}"
+            (keydown.enter)="onSelect(list)"
+            (click)="onSelect(list)">
+            <span><i class="fa-{{list.selected ? 'solid' : 'regular'}} fa-{{list.selected ? 'check-square' : 'square'}}"></i></span>
+            <span>{{ list.name }}</span>
+          </li>
+        }
+      } @else {
+        <small class="error-state">Not Found!, Enter valid airport name/code. Eg. <strong>Dubai/DXB</strong></small>
+      }
+    </ul>
+  </div>
+</filter-dropdown>

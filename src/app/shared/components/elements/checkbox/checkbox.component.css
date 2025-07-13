@@ -3,13 +3,33 @@
   display: flex;
   max-width: max-content;
 
+  &:is(.container) {
+    position: relative;
+    gap: 0.5rem;
+    padding-block: 0.35rem;
+    padding-inline: 0.4rem 0.6rem;
+    border-radius: var(--border-radius);
+    max-width: 100%;
+    transition: var(--transition);
+    background-color: var(--checkbox-container-bg, transparent);
+    color: var(--checkbox-container-color, inherit);
+
+    &:is(.checked) {
+      --checkbox-active-color: var(--accent-color);
+      background-color: var(--checkbox-bg);
+      color: var(--checkbox-color);
+      background-color: var(--checkbox-container-active-bg, var(--accent));
+      color: var(--checkbox-container-active-color, var(--accent-color));
+    }
+  }
+
   .checkbox-input {
     position: absolute;
     z-index: -1;
     opacity: 0;
-    &:is(:focus-visible, :focus) ~ .checkbox-label {
-    }
+    /* &:is(:focus-visible, :focus) ~ .checkbox-label {} */
   }
+
   .checkbox-label {
     position: relative;
     display: flex;
@@ -17,6 +37,7 @@
     padding-inline-start: calc(var(--checkbox-input-width, 1.25rem) + var(--checkbox-gap, 0.5rem));
     font-weight: var(--checkbox-label-font-weight, 400);
     color: var(--checkbox-label-color, currentColor);
+    cursor: pointer;
     &::before {
       content: var(--checkbox-value, '\f0c8');
       position: absolute;

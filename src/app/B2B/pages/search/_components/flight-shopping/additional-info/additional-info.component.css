@@ -1,7 +1,7 @@
 :host {
-  --strip-bg: light-dark(var(--primary-85_dark), var(--primary-90_dark));
+  --strip-bg: light-dark(var(--primary-85_dark), var(--primary-85_dark));
   --strip-color: light-dark(var(--primary-90_light), var(--primary-85_light));
-  --strip-border: light-dark(var(--primary-50_light), var(--primary-85_light));
+  --strip-border: light-dark(var(--primary-50_light), var(--primary-75_dark));
   position: relative;
   display: block;
 
@@ -16,9 +16,16 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    &:is(.fixed) {
+      padding-inline: 0.25rem 0.3rem;
+      padding-block: 0.25rem;
+      .button { --btn-height: 30px; }
+    }
+    /* &:not(.fixed) {} */
     .button {
+      --btn-padding-x-end: 0.75rem;
       --btn-height: 33px;
-      --btn-bg: light-dark(var(--primary-60_dark), var(--primary-80_dark));
+      --btn-bg: light-dark(var(--primary-60_dark), var(--primary-75_dark));
       --btn-border: light-dark(var(--primary-55_dark), var(--primary-80_dark));
     }
 

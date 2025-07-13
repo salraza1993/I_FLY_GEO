@@ -1,0 +1,9 @@
+<filter-dropdown
+  [(selectedValue)]="selected"
+  [(showDropdown)]="showDropdown"
+  classToContentWrapper="pricing-wrapper"
+  buttonName="Pricing"
+  iconBefore="arrow-up-arrow-down"
+  iconAfter="ellipsis-v">
+  <range-slider [(rangeValue)]="rangeValue" [min]="minRange()" [max]="maxRange()" />
+</filter-dropdown>

@@ -2,4 +2,13 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  transition: var(--transition);
+  > * {
+    /* min-width: 140px; */
+    width: fit-content;
+    max-width: min-content;
+    flex: 1 0 auto;   /* allow grow, prevent shrinking below min-width */
+    white-space: nowrap; /* keep button content in one line */
+    box-sizing: border-box;
+  }
 }

@@ -25,7 +25,6 @@
     z-index: var(--tooltip-z-index);
   }
 }
-
 .ng-tooltip {
   color: var(--tooltip-color);
   background-color: var(--tooltip-bg);
@@ -48,6 +47,8 @@
   text-align: start;
   min-width: max-content;
 
+  &:empty { display: none !important;}
+  .ng-tooltip--template:empty { display: none !important; }
   &::after {
     content: "";
     position: absolute;

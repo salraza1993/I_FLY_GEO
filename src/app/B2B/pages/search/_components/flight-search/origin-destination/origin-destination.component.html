@@ -1,20 +1,20 @@
-<div class="search-element-block" 
+<div class="search-element-block"
   [ngClass]="{
     'active': enableOriginAirportList(),
     'error': errors().origin,
-  }" 
+  }"
   data-type="origin">
   <div class="block-label">
     <small>Depart From</small>
   </div>
-  <div 
+  <div
     (clickOutside)="onOutsideClicked('origin')"
     [ngClass]="{'
       active': enableOriginAirportList(),
       'error': errors().origin,
     }"
-    class="block-body focus-within" 
-    role="origin" 
+    class="block-body focus-within"
+    role="origin"
     aria-label="origin">
     <div class="block-body-circle"></div>
     <div class="block-body-content" [ngClass]="{'active': enableOriginAirportList()}">
@@ -23,7 +23,7 @@
           <i class="fa-regular fa-circle-dot"></i>
         </div>
         <div class="block-input">
-          <input 
+          <input
             #originInput
             autocomplete="off"
             id="input-origin"
@@ -32,7 +32,6 @@
             class="form-control"
             placeholder="Origin (City, Airport Name/Code)"
             [(ngModel)]="origin"
-            (keydown.enter)="focusDestination()"
             (focus)="onFocused('origin')"
           />
         </div>
@@ -41,9 +40,9 @@
         }
       </div>
       @if(enableOriginAirportList()) {
-        <airport-list 
+        <airport-list
           (onSelected)="onAiportListSelected('origin', $event)"
-          [(searchValue)]="origin" 
+          [(searchValue)]="origin"
           [(selectedAirport)]="getOriginAirportData" />
       }
     </div>
@@ -53,36 +52,36 @@
   </div>
 </div>
 <div class="swapper-wrapper">
-  <span 
-    class="swapper focus-within" 
-    role="swapper" 
-    tabindex="0" 
+  <span
+    class="swapper focus-within"
+    role="swapper"
+    tabindex="0"
     [ngClass]="{'swapped': isSwappedValue()}"
     (click)="swapValues()"
     (keydown.enter)="swapValues()">
     <i class="fa-solid fa-arrow-right-arrow-left"></i>
   </span>
 </div>
-<div class="search-element-block" 
+<div class="search-element-block"
   [ngClass]="{
     'active': enableDestinationAirportList(),
     'error': errors().destination,
-  }" 
+  }"
   data-type="destination">
   <div class="block-label">
     <small>Depart To</small>
   </div>
-  <div 
+  <div
     [ngClass]="{
       'active': enableDestinationAirportList(),
       'error': errors().destination,
     }"
-    (clickOutside)="onOutsideClicked('destination')" 
-    class="block-body focus-within" 
-    role="destination" 
+    (clickOutside)="onOutsideClicked('destination')"
+    class="block-body focus-within"
+    role="destination"
     aria-label="destination">
     <div class="block-body-circle"></div>
-    <div class="block-body-content" 
+    <div class="block-body-content"
       [ngClass]="{'active': enableDestinationAirportList()}">
       <div class="input-wrapper">
         <div class="icon">
@@ -108,9 +107,9 @@
         }
       </div>
       @if(enableDestinationAirportList()) {
-        <airport-list 
+        <airport-list
           (onSelected)="onAiportListSelected('destination', $event)"
-          [(searchValue)]="destination" 
+          [(searchValue)]="destination"
           [(selectedAirport)]="getDestinationAirportData" />
       }
     </div>

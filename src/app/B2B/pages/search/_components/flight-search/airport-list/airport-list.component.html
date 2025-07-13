@@ -3,25 +3,28 @@
     Input must be at leaset 3 charactors. eg: <strong>DXB</strong>
   </small>
 } @else {
-  @if(showError()) {
-    <small class="error-state" [@fadeIn]>
-      <strong>{{ searchValue() }} :</strong> Not found!, Kindly enter Airport code/city/name...
-    </small>
-  } @else {
-    <ul class="airport-list hasScrollbar">
-      <!-- 'selected': selectedAirport()?.airportCode === item.airportCode, -->
+  <ul class="airport-list hasScrollbar">
+    <!-- 'selected': selectedAirport()?.airportCode === item.airportCode, -->
+    @if(filteredAirport().length > 0) {
       @for (item of filteredAirport(); track $index) {
-      <li 
-        class="airport-list_item" tabindex="0" 
-        (mouseenter)="focusedIndex.set($index)"
-        (click)="onSelect(item)"
-        [ngClass]="{
-          'focused active': focusedIndex() === $index
-        }">
-        <span class="airport-code">{{ item.airportCode }}</span>
-        <span>{{ item.airportCity }}, {{ item.airportName }}</span>
-      </li>
+        <li
+          class="airport-list_item" tabindex="0"
+          (mouseenter)="focusedIndex.set($index)"
+          (click)="onSelect(item)"
+          [ngClass]="{
+            'focused active': focusedIndex() === $index
+          }">
+          <span class="airport-code">{{ item.airportCode }}</span>
+          <span>{{ item.airportCity }}, {{ item.airportName }}</span>
+        </li>
       }
-    </ul>
-  }
+    } @else {
+      <small class="error-state" [@fadeIn]>
+        <strong>{{ searchValue() }} :</strong> Not found!, Kindly enter Airport code/city/name...
+      </small>
+    }
+  </ul>
+  <!-- @if(showError()) {
+  } @else {
+  } -->
 }

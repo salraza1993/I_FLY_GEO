@@ -54,7 +54,7 @@ export class CustomTabsComponent implements AfterViewInit {
   readonly setTabs = input<any>(this.tabsPlaceholder);
   readonly tabsContainerClass = input<string>('');
   readonly tabsItemClass = input<string>('');
-  
+
   public isOnlyBordered = input(false, { transform: booleanAttribute });
   public isElementHover = signal<boolean>(false)
   public activeStripStyles = signal({
@@ -67,7 +67,7 @@ export class CustomTabsComponent implements AfterViewInit {
   })
 
   private updateActiveStrip(): void {
-    setTimeout(() => { 
+    setTimeout(() => {
       const parent = this.elRef.nativeElement.querySelector('.custom-tabs');
       const tabs = this.elRef.nativeElement.querySelectorAll('.custom-tabs__item');
 

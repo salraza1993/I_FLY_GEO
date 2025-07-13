@@ -1,0 +1,13 @@
+<input
+  class="custom-switch__input"
+  type="checkbox"
+  [(ngModel)]="toggleValue"
+  (ngModelChange)="switchHandler($event)"
+  role="switch"
+  [name]="switcherName()"
+  [id]="switcherId()">
+<label class="custom-switch__label" [for]="switcherId()">
+  @if(label()) {
+    <span class="label-text">{{ label() }}</span>
+  }
+</label>

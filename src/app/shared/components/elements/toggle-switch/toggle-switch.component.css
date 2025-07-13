@@ -1,0 +1,112 @@
+:host {
+  /* $colors: ('success', 'danger', 'primary', 'warning', 'info');
+  $sizes: ('sm', 'md', 'lg', 'xl', 'xxl');
+  $font-sizes: ('0.9', '1', '1.15', '1.3', '1.4');
+  &.switch {
+    &-color {
+      @each $color in $colors {
+        &--#{$color} { --checkbox-checked-bg: var(--bs-#{$color}); }
+      }
+    }
+    &-size {
+      &--sm {
+        .custom-switch__label {
+          --switch-height: 15px;
+          --label-font-size: 0.9rem;
+        }
+      }
+      &--md {
+        .custom-switch__label {
+          --switch-height:
+          18px;  --label-font-size: 1rem;
+        }
+      }
+      &--lg {
+        .custom-switch__label {
+          --switch-height: 21px;
+          --label-font-size: 1.15rem;
+        }
+      }
+      &--xl {
+        .custom-switch__label {
+          --switch-height: 24px;
+          --label-font-size: 1.3rem;
+        }
+      }
+      &--xxl {
+        .custom-switch__label {
+          --switch-height: 27px;
+          --label-font-size: 1.4rem;
+        }
+      }
+    }
+  } */
+  --switch-height: 19px;
+  --switch-width: var(--switch-height);
+  --checkbox-position-x: 0;
+  --label-color: var(--body-color);
+  --label-font-size: 1rem;
+  --label-font-weight: 400;
+  --switch-bg: light-dark(var(--primary-75_light), var(--primary-95_dark));
+  --switch-circle-bg: light-dark(var(--primary-30_light), var(--primary-30_dark));
+  --checkbox-checked-bg: var(--accent);
+  --checkbox-checked-circle: var(--accent-color);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  min-width: var(--switch-height);
+  max-width: max-content;
+  min-height: var(--switch-height);
+  display: flex;
+
+  & .custom-switch__input {
+    position: absolute;
+    z-index: 1;
+    inset-inline-start: calc(var(--switch-width) * 2);
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    &:checked + label {
+      --checkbox-position-x: var(--switch-height);
+      --switch-bg: var(--checkbox-checked-bg);
+      --switch-circle-bg: var(--checkbox-checked-circle);
+      --label-font-weight: 700;
+      --label-color: var(--switch-bg);
+    }
+  }
+  & .custom-switch__label {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    padding-inline-start: calc(var(--switch-height) * 2.35);
+    cursor: pointer;
+    color: var(--label-color);
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      z-index: 0;
+      border-radius: var(--switch-height);
+      transition: var(--transition);
+    }
+    &::before {
+      background-color: var(--switch-bg);
+      inset-inline-start: 0;
+      width: calc(var(--switch-height) * 2);
+      height: var(--switch-height);
+    }
+    &::after {
+      background-color: var(--switch-circle-bg);
+      width: var(--switch-height);
+      height: var(--switch-height);
+      inset-inline-start: var(--checkbox-position-x);
+      scale: 0.75;
+    }
+    .label-text { line-height: normal; }
+  }
+}

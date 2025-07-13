@@ -1,0 +1,26 @@
+<div class="range-slider-body">
+  <label class="range-input-label font-weight--bold" [for]="rangeId()">
+    @if(type() === 'duration') {
+      <span>Up to {{rangeValue()}} hours</span>
+    } @else {
+      <span>{{ currency }} {{min()}}</span>
+      <span><i class="fa-solid fa-arrow-right-long"></i></span>
+      <span>{{ currency }} {{rangeValue()}}</span>
+    }
+  </label>
+  <div class="range-slider_wrapper">
+    <div id="slider_thumb" #rangeThumb class="range-slider_thumb"></div>
+    <div class="range-slider_line">
+      <div id="slider_line" #rangeLine class="range-slider_line-fill"></div>
+    </div>
+    <input
+      #rangeInput
+      class="range-slider_input"
+      [(ngModel)]="rangeValue"
+      type="range"
+      [name]="rangeName()"
+      [id]="rangeId()"
+      [min]="min()"
+      [max]="max()">
+  </div>
+</div>

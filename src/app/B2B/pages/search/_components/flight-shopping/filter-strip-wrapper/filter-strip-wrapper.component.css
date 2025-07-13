@@ -1,4 +1,8 @@
 :host {
+  --wrapper-border-radius: calc(var(--border-radius) * 2.5);
+  --wrapper-bg: light-dark(var(--primary-100_light), var(--primary-95_dark));
+  --wrapper-color: light-dark(var(--primary-85_dark), var(--primary-80_light));
+  --wrapper-border: light-dark(var(--primary-90_light), var(--primary-75_dark));
   display: block;
   position: sticky;
   inset-block-start: var(--header-height);
@@ -7,14 +11,50 @@
 
   .content-wrapper {
     position: relative;
-    background-color: var(--strip-bg);
-    color: var(--strip-color);
-    border-radius: calc(var(--border-radius) * 1.35);
+    color: var(--wrapper-color);
     max-width: var(--content-wrapper-max-width);
     margin-inline: auto;
     display: grid;
     align-items: center;
     gap: 0.6rem;
+    transition: padding 0.3s ease-in-out;
+    isolation: isolate;
+    &:is(.fixed) {
+      background-color: var(--wrapper-bg);
+      padding: 0.5rem;
+      padding-block-start: 0;
+      border-end-start-radius: var(--wrapper-border-radius);
+      border-end-end-radius: var(--wrapper-border-radius);
+      border: 1px solid var(--wrapper-border);
+      border-block-start: 0;
+      margin-block-start: -1px;
+      gap: 0.4rem;
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        background-color: transparent;
+        width: calc(var(--wrapper-border-radius) * 1.5);
+        height: calc(var(--wrapper-border-radius) * 1.5);
+        inset-block-start: 0;
+        z-index: -1;
+        border-block-start: 1px solid var(--wrapper-border);
+      }
+      &::before {
+        inset-inline-end: 100%;
+        border-radius: 0 100vw 0 0;
+        box-shadow: 5px -5px 0 5px var(--wrapper-bg);
+        border-inline-end: 1px solid var(--wrapper-border);
+      }
+      &::after {
+        inset-inline-start: 100%;
+        border-radius: 100vw 0 0 0;
+        box-shadow: -5px -5px 0 5px var(--wrapper-bg);
+        border-inline-start: 1px solid var(--wrapper-border);
+      }
+    }
   }
+
+
 
 }
