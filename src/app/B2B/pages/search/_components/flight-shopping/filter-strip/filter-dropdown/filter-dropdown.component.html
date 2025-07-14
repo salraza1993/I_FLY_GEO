@@ -36,7 +36,7 @@
   @if(showDropdown()) {
     <div
       [ngClass]="{'active': showDropdown(), 'selected': selectedValue()}"
-      class="filter-dropdown-wrapper {{ classToContentWrapper() }}">
+      class="filter-dropdown-data {{ classToContentWrapper() }}">
       <ng-content>
         {{ tooltipText ||  'Dropdown Content will be here!'}}
       </ng-content>

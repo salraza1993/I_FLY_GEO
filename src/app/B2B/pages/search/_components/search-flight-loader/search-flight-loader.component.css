@@ -156,7 +156,6 @@
         .segment-info-list {
           display: flex;
           background-color: var(--card-info-list-bg);
-          /* box-shadow:  0 0 0 1px var(--border-color); */
           padding-block: 0.35rem;
           padding-inline: 0.65rem;
           display: flex;
@@ -179,7 +178,7 @@
   max-width: var(--max-width);
   margin-inline-start: calc(50% - calc(var(--max-width) / 2));
   margin-block-start: 20%;
-  
+
   .dash-line {
     stroke-dasharray: 10 10;
     stroke-dashoffset: 0;
