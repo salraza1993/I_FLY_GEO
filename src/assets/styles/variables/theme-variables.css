@@ -1,5 +1,9 @@
 /* theme variables */
 :root {
+  --accent-light: #ff6600;
+  --accent-dark: #b34700;
+  --secondary-light: #1711b0;
+  --secondary-dark: #625fbe;
   /* Secondary Base */
   --secondary-hue: 241;
   --accent-hue: 24;
@@ -28,15 +32,63 @@
   --accent-20: hsl(var(--accent-hue), 83%, 88%);
   --accent-10: hsl(var(--accent-hue), 71%, 93%);
 
-  --accent-light: #ff6600;
-  --accent-dark: lch(62.31% 90.08 52.36);
   --accent: light-dark(var(--accent-light), var(--accent-dark));
   --accent-color: var(--light);
-  --secondary-light: hsl(242, 82%, 38%);
-  --secondary-dark: hsl(242deg 78.9% 70.15%);
   --secondary-color: var(--light);
   --secondary: light-dark(var(--secondary-light), var(--secondary-dark));
 
   --auth-page-bg-light: hsl(242, 90%, 25%);
   --auth-page-bg-dark: hsl(242, 95%, 2%);
+
+  /* === ACCENT COLORS (Yellow/Orange) - Light colors === */
+  --accent-0_light: color-mix(in var(--color-mode), var(--accent-light), var(--mixture-light) 0%);
+  --accent-10_light: color-mix(in var(--color-mode), var(--accent-light), var(--mixture-light) 85%);
+  --accent-20_light: color-mix(in var(--color-mode), var(--accent-light), var(--mixture-light) 78%);
+  --accent-30_light: color-mix(in var(--color-mode), var(--accent-light), var(--mixture-light) 68%);
+  --accent-40_light: color-mix(in var(--color-mode), var(--accent-light), var(--mixture-light) 58%);
+  --accent-50_light: color-mix(in var(--color-mode), var(--accent-light), var(--mixture-light) 50%);
+  --accent-60_light: color-mix(in var(--color-mode), var(--accent-light), var(--mixture-light) 30%);
+  --accent-70_light: color-mix(in var(--color-mode), var(--accent-light), var(--mixture-light) 10%);
+  --accent-80_light: color-mix(in var(--color-mode), var(--accent-light), var(--mixture-dark) 10%);
+  --accent-90_light: color-mix(in var(--color-mode), var(--accent-light), var(--mixture-dark) 25%);
+  --accent-100_light: color-mix(in var(--color-mode), var(--accent-light), var(--mixture-dark) 40%);
+
+  /* === ACCENT COLORS (Yellow/Orange) - Dark colors === */
+  --accent-0_dark: color-mix(in var(--color-mode), var(--accent-dark), var(--mixture-dark) 0%);
+  --accent-10_dark: color-mix(in var(--color-mode), var(--accent-dark), var(--mixture-dark) 55%);
+  --accent-20_dark: color-mix(in var(--color-mode), var(--accent-dark), var(--mixture-dark) 45%);
+  --accent-30_dark: color-mix(in var(--color-mode), var(--accent-dark), var(--mixture-dark) 35%);
+  --accent-40_dark: color-mix(in var(--color-mode), var(--accent-dark), var(--mixture-dark) 25%);
+  --accent-50_dark: color-mix(in var(--color-mode), var(--accent-dark), var(--mixture-dark) 16%);
+  --accent-60_dark: color-mix(in var(--color-mode), var(--accent-dark), var(--mixture-light) 23%);
+  --accent-70_dark: color-mix(in var(--color-mode), var(--accent-dark), var(--mixture-light) 32%);
+  --accent-80_dark: color-mix(in var(--color-mode), var(--accent-dark), var(--mixture-light) 45%);
+  --accent-90_dark: color-mix(in var(--color-mode), var(--accent-dark), var(--mixture-light) 55%);
+  --accent-100_dark: color-mix(in var(--color-mode), var(--accent-dark), var(--mixture-light) 65%);
+
+  /* === SECONDARY COLORS (Yellow/Orange) - Light colors === */
+  --secondary-0_light: color-mix(in var(--color-mode), var(--secondary-light), var(--mixture-light) 0%);
+  --secondary-10_light: color-mix(in var(--color-mode), var(--secondary-light), var(--mixture-light) 85%);
+  --secondary-20_light: color-mix(in var(--color-mode), var(--secondary-light), var(--mixture-light) 78%);
+  --secondary-30_light: color-mix(in var(--color-mode), var(--secondary-light), var(--mixture-light) 68%);
+  --secondary-40_light: color-mix(in var(--color-mode), var(--secondary-light), var(--mixture-light) 58%);
+  --secondary-50_light: color-mix(in var(--color-mode), var(--secondary-light), var(--mixture-light) 50%);
+  --secondary-60_light: color-mix(in var(--color-mode), var(--secondary-light), var(--mixture-light) 30%);
+  --secondary-70_light: color-mix(in var(--color-mode), var(--secondary-light), var(--mixture-light) 10%);
+  --secondary-80_light: color-mix(in var(--color-mode), var(--secondary-light), var(--mixture-dark) 10%);
+  --secondary-90_light: color-mix(in var(--color-mode), var(--secondary-light), var(--mixture-dark) 25%);
+  --secondary-100_light: color-mix(in var(--color-mode), var(--secondary-light), var(--mixture-dark) 40%);
+
+  /* === SECONDARY COLORS (Yellow/Orange) - Dark colors === */
+  --secondary-0_dark: color-mix(in var(--color-mode), var(--secondary-dark), var(--mixture-dark) 0%);
+  --secondary-10_dark: color-mix(in var(--color-mode), var(--secondary-dark), var(--mixture-dark) 55%);
+  --secondary-20_dark: color-mix(in var(--color-mode), var(--secondary-dark), var(--mixture-dark) 45%);
+  --secondary-30_dark: color-mix(in var(--color-mode), var(--secondary-dark), var(--mixture-dark) 35%);
+  --secondary-40_dark: color-mix(in var(--color-mode), var(--secondary-dark), var(--mixture-dark) 25%);
+  --secondary-50_dark: color-mix(in var(--color-mode), var(--secondary-dark), var(--mixture-dark) 16%);
+  --secondary-60_dark: color-mix(in var(--color-mode), var(--secondary-dark), var(--mixture-light) 23%);
+  --secondary-70_dark: color-mix(in var(--color-mode), var(--secondary-dark), var(--mixture-light) 32%);
+  --secondary-80_dark: color-mix(in var(--color-mode), var(--secondary-dark), var(--mixture-light) 45%);
+  --secondary-90_dark: color-mix(in var(--color-mode), var(--secondary-dark), var(--mixture-light) 55%);
+  --secondary-100_dark: color-mix(in var(--color-mode), var(--secondary-dark), var(--mixture-light) 65%);
 }

@@ -23,6 +23,6 @@ export class RegisterComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    console.log('Register Page is initialized');
+    // console.log('Register Page is initialized');
   }
 }

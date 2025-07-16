@@ -12,6 +12,7 @@ export class ThemeService {
   private localStorage = inject(LocalStorageService);
   private defaultMode: ThemeMode = 'auto';
   private _themeMode = signal<ThemeMode>(this.getStoredTheme());
+
   constructor() {
     this.applyTheme(this._themeMode());
     this.autoModeReactivity()
@@ -35,7 +36,7 @@ export class ThemeService {
     return this._themeMode;
   }
 
-  
+
   private applyTheme(mode: ThemeMode): void {
     this.rootElement.classList.remove('light', 'dark');
     this.rootElement.removeAttribute('data-theme');

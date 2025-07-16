@@ -1,8 +1,9 @@
 :host {
-  --lable-bg: light-dark(var(--primary-100_light), var(--primary-90_dark));
-  --lable-color: light-dark(var(--primary-90_dark), var(--primary-90_light));
-  --line-bg: light-dark(var(--primary-85_light), var(--primary-90_dark));
-  --selected-line-bg: var(--accent);
+  --lable-bg-fallback: light-dark(var(--primary-90_light), var(--primary-75_dark));
+  --lable-color-fallback: light-dark(var(--primary-90_dark), var(--primary-90_light));
+  --lable-border-fallback: light-dark(var(--primary-75_light), var(--primary-65_dark));
+  --line-bg-fallback: light-dark(var(--primary-85_light), var(--primary-100_dark));
+  --slider-thumb-shadow-fallback: light-dark(var(--primary-100_light), var(--primary-85_dark));
   --thumb-width: 20px;
 
   position: relative;
@@ -20,6 +21,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 0.25rem;
     .range-input-label {
       position: relative;
       display: flex;
@@ -27,10 +29,10 @@
       border-radius: var(--border-radius);
       padding-block: 0.55rem;
       padding-inline: 0.75rem;
-      background-color: var(--lable-bg);
-      color: var(--lable-color);
+      background-color: var(--lable-bg, var(--lable-bg-fallback));
+      color: var(--lable-color, var(--lable-color-fallback));
       width: 100%;
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--label-border, var(--lable-border-fallback));
     }
 
     .range-slider_wrapper {
@@ -46,8 +48,8 @@
         transform: translate(-50%, -50%);
         width: var(--thumb-width);
         height: var(--thumb-width);
-        background-color: var(--accent);
-        box-shadow: 0 0 0 3px white;
+        background-color: var(--slider-thumb, var(--accent));
+        box-shadow: 0 0 0 3px var(--slider-thumb-shadow, var(--slider-thumb-shadow-fallback));
         border-radius: 50%;
         z-index: 2;
         user-select: none;
@@ -56,15 +58,15 @@
           position: absolute;
           border-inline-start: 8px solid transparent;
           border-inline-end: 8px solid transparent;
-          border-block-start: 8px solid var(--accent);
-          inset-block-end: 100%;
+          border-block-start: 8px solid var(--lable-color, var(--lable-color-fallback));
+          inset-block-end: calc(100% + 0.25rem);
           inset-inline-start: calc(50% - 8px);
         }
       }
       .range-slider_line {
         height: 3px;
         width: 100%;
-        background-color: var(--line-bg);
+        background-color: var(--line-bg, var(--line-bg-fallback));
         inset-block-start: calc(50% - 2px);
         inset-inline-start: 0;
         position: absolute;
@@ -74,7 +76,7 @@
         position: absolute;
         height: 3px;
         width: var(--line-width, 0);
-        background-color: var(--selected-line-bg);
+        background-color: var(--selected-line-bg, var(--accent));
       }
       .range-slider_input {
         width: 100%;

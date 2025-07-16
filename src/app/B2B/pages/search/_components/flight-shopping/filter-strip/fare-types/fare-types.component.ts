@@ -16,6 +16,10 @@ export class FareTypesComponent {
   refundable = signal<boolean>(false);
   nonRefundable = signal<boolean>(false);
 
+  // tow-way binded
+  showDropdown = signal<boolean>(false);
+  selected = signal<DropdownSelectedValueType>(undefined)
+
   private readonly selectedValues = computed<DropdownSelectedValueType>(() => {
     const isRefundable = this.refundable();
     const isNonRefundable = this.nonRefundable();
@@ -28,13 +32,9 @@ export class FareTypesComponent {
 
     return values.join(', ');
   });
-  // tow-way binded
-  selected = signal<DropdownSelectedValueType>(this.selectedValues())
 
-  constructor() {
-    effect(() => {
-      this.selected.set(this.selectedValues());
-    });
-  }
+  private readonly updateSelected = effect(() => {
+    this.selected.set(this.selectedValues());
+  });
 
 }

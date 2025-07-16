@@ -8,7 +8,7 @@ import { FlightSearchRequestType } from '../models/FlightSearchRequestType.inter
 })
 export class FlightSearchRequestService {
 
-  
+
   requestType: FlightSearchRequestType = {
     supplierCode: '1A',
     passengers: [
@@ -28,15 +28,10 @@ export class FlightSearchRequestService {
   private http = inject(HttpClient);
   private readonly searchRequestData = signal<FlightSearchRequestType | null>(null);
 
-  
+
   public setSearchRequest(data: FlightSearchRequestType):void {
     this.searchRequestData.set(data)
-    // if(!this.searchRequestData()) {
-    //   this.http.post('')
-    // }
-    console.log('insideService: ', this.searchRequestData());
   }
-  
-  
+
   public readonly getSearchRequestData = computed(() => this.searchRequestData())
 }

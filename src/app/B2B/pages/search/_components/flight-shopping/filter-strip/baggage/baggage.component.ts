@@ -13,15 +13,28 @@ import { CheckboxComponent } from "@/shared/components/elements/checkbox/checkbo
   }
 })
 export class BaggageComponent {
-  checkinBaggage = signal<boolean>(false)
-  showDropdown = signal<boolean>(false)
-  selected = signal<DropdownSelectedValueType>(undefined);
-  constructor() {
-    effect(() => {
-      if(this.checkinBaggage()) this.selected.set('1 - Checkin Bag');
-      else this.selected.set(undefined)
-    })
-  }
+  withBag = signal<boolean>(false)
+  withoutBag = signal<boolean>(false)
 
+  // Two-way binded
+  showDropdown = signal<boolean>(false);
+  selected = signal<DropdownSelectedValueType>(undefined);
+
+  private readonly selectedValues = computed<DropdownSelectedValueType>(() => {
+    const withBaggage = this.withBag();
+    const withoutBaggage = this.withoutBag();
+
+    if (!withBaggage && !withoutBaggage) return undefined;
+
+    const values: string[] = [];
+    if (withBaggage) values.push('With Bage');
+    if (withoutBaggage) values.push('Without Bage');
+
+    return values.join(', ');
+  });
+
+  private readonly updateSelected = effect(() => {
+    this.selected.set(this.selectedValues());
+  })
 
 }

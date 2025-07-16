@@ -88,7 +88,8 @@ a.button,
     --btn-padding-x--end: 0;
     padding-inline-start: var(--btn-padding-x-start) !important;
     padding-inline-end: var(--btn-padding-x--end) !important;
-
+    aspect-ratio: 1 / 1;
+    justify-content: center;
     .text {
       display: none !important;
     }
@@ -344,7 +345,16 @@ a.button,
     --btn-hover-border: light-dark(var(--info-50_light), var(--info-50_dark));
   }
 
-  &:is(.danger, .button--danger, .danger-outline, .button--danger-outline) {
+  &:is(
+    .danger,
+    .danger-light,
+    .danger--light,
+    .danger-outline,
+    .danger--outline,
+    .button--danger,
+    .button--danger-light,
+    .button--danger-outline
+  ) {
     --btn-box-shadow: light-dark(var(--danger-90_light), var(--danger-100_dark));
     --btn-box-shadow-active: light-dark(var(--danger-70_light), var(--danger-40_dark));
     --btn-disabled-bg: light-dark(var(--danger-10_dark), var(--danger-100_dark));
@@ -361,7 +371,7 @@ a.button,
     --btn-hover-border: light-dark(var(--danger-50_light), var(--danger-50_dark));
   }
 
-  &:is(.danger-outline, .button--danger-outline) {
+  &:is(.danger-outline, .danger--outline, .button--danger-outline) {
     --btn-bg: var(--transparent);
     --btn-color: light-dark(var(--danger-50_light), var(--danger-40_dark));
     --btn-border: light-dark(var(--danger-50_light), var(--danger-40_dark));
@@ -369,6 +379,16 @@ a.button,
     --btn-hover-color: light-dark(var(--light), var(--light));
     --btn-hover-border: light-dark(var(--danger-50_light), var(--danger-50_dark));
   }
+
+  &:is(.danger-light, .danger--light, .button--danger-light) {
+    --btn-bg: light-dark(var(--danger-90_light), var(--danger-80_dark));
+    --btn-color: light-dark(var(--danger-50_light), var(--danger-40_dark));
+    --btn-border: light-dark(var(--danger-50_light), var(--danger-40_dark));
+    --btn-hover-bg: light-dark(var(--danger-50_light), var(--danger-60_dark));
+    --btn-hover-color: light-dark(var(--light), var(--light));
+    --btn-hover-border: light-dark(var(--danger-50_light), var(--danger-50_dark));
+  }
+
 
   &:is(.success, .button--success, .success-outline, .button--success-outline) {
     --btn-box-shadow: light-dark(var(--success-90_light), var(--success-100_dark));

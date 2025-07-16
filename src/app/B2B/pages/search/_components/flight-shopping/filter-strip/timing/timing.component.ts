@@ -63,7 +63,7 @@ export class TimingComponent {
   ]);
 
   checkValue() {
-    console.log('clicked:', this.departureTimingList());
+    // console.log('clicked:', this.departureTimingList());
   }
 
   public tabHandler(tab: TimingTabType): void {

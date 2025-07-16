@@ -58,3 +58,144 @@
 
 
 }
+
+.color-grid {
+  position: relative;
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(var(--grid-length, 11), 1fr);
+  gap: 0rem;
+  .grid-item {
+    position: relative;
+    height: 80px;
+    background-color: red;
+    display: grid;
+    place-items: center;
+
+    &:is(.primary-100) { background-color: light-dark(var(--primary-100_light), var(--primary-100_dark)); }
+    &:is(.primary-95) { background-color: light-dark(var(--primary-95_light), var(--primary-95_dark)); }
+    &:is(.primary-90) { background-color: light-dark(var(--primary-90_light), var(--primary-90_dark)); }
+    &:is(.primary-85) { background-color: light-dark(var(--primary-85_light), var(--primary-85_dark)); }
+    &:is(.primary-80) { background-color: light-dark(var(--primary-80_light), var(--primary-80_dark)); }
+    &:is(.primary-75) { background-color: light-dark(var(--primary-75_light), var(--primary-75_dark)); }
+    &:is(.primary-70) { background-color: light-dark(var(--primary-70_light), var(--primary-70_dark)); }
+    &:is(.primary-65) { background-color: light-dark(var(--primary-65_light), var(--primary-65_dark)); }
+    &:is(.primary-60) { background-color: light-dark(var(--primary-60_light), var(--primary-60_dark)); }
+    &:is(.primary-55) { background-color: light-dark(var(--primary-55_light), var(--primary-55_dark)); }
+    &:is(.primary-50) { background-color: light-dark(var(--primary-50_light), var(--primary-50_dark)); }
+    &:is(.primary-45) { background-color: light-dark(var(--primary-45_light), var(--primary-45_dark)); }
+    &:is(.primary-40) { background-color: light-dark(var(--primary-40_light), var(--primary-40_dark)); }
+    &:is(.primary-35) { background-color: light-dark(var(--primary-35_light), var(--primary-35_dark)); }
+    &:is(.primary-30) { background-color: light-dark(var(--primary-30_light), var(--primary-30_dark)); }
+    &:is(.primary-25) { background-color: light-dark(var(--primary-25_light), var(--primary-25_dark)); }
+    &:is(.primary-20) { background-color: light-dark(var(--primary-20_light), var(--primary-20_dark)); }
+    &:is(.primary-15) { background-color: light-dark(var(--primary-15_light), var(--primary-15_dark)); }
+    &:is(.primary-10) { background-color: light-dark(var(--primary-10_light), var(--primary-10_dark)); }
+    &:is(.primary-5) { background-color: light-dark(var(--primary-5_light), var(--primary-5_dark)); }
+
+    &:is(.danger-100) { background-color: light-dark(var(--danger-100_light), var(--danger-100_dark)); }
+    &:is(.danger-90) { background-color: light-dark(var(--danger-90_light), var(--danger-90_dark)); }
+    &:is(.danger-80) { background-color: light-dark(var(--danger-80_light), var(--danger-80_dark)); }
+    &:is(.danger-70) { background-color: light-dark(var(--danger-70_light), var(--danger-70_dark)); }
+    &:is(.danger-60) { background-color: light-dark(var(--danger-60_light), var(--danger-60_dark)); }
+    &:is(.danger-50) { background-color: light-dark(var(--danger-50_light), var(--danger-50_dark)); }
+    &:is(.danger-40) { background-color: light-dark(var(--danger-40_light), var(--danger-40_dark)); }
+    &:is(.danger-35) { background-color: light-dark(var(--danger-35_light), var(--danger-35_dark)); }
+    &:is(.danger-30) { background-color: light-dark(var(--danger-30_light), var(--danger-30_dark)); }
+    &:is(.danger-20) { background-color: light-dark(var(--danger-20_light), var(--danger-20_dark)); }
+    &:is(.danger-20) { background-color: light-dark(var(--danger-20_light), var(--danger-20_dark)); }
+    &:is(.danger-10) { background-color: light-dark(var(--danger-10_light), var(--danger-10_dark)); }
+    &:is(.danger-0) { background-color: light-dark(var(--danger-0_light), var(--danger-0_dark)); }
+
+    &:is(.success-100) { background-color: light-dark(var(--success-100_light), var(--success-100_dark)); }
+    &:is(.success-90) { background-color: light-dark(var(--success-90_light), var(--success-90_dark)); }
+    &:is(.success-80) { background-color: light-dark(var(--success-80_light), var(--success-80_dark)); }
+    &:is(.success-70) { background-color: light-dark(var(--success-70_light), var(--success-70_dark)); }
+    &:is(.success-60) { background-color: light-dark(var(--success-60_light), var(--success-60_dark)); }
+    &:is(.success-50) { background-color: light-dark(var(--success-50_light), var(--success-50_dark)); }
+    &:is(.success-40) { background-color: light-dark(var(--success-40_light), var(--success-40_dark)); }
+    &:is(.success-30) { background-color: light-dark(var(--success-30_light), var(--success-30_dark)); }
+    &:is(.success-20) { background-color: light-dark(var(--success-20_light), var(--success-20_dark)); }
+    &:is(.success-20) { background-color: light-dark(var(--success-20_light), var(--success-20_dark)); }
+    &:is(.success-10) { background-color: light-dark(var(--success-10_light), var(--success-10_dark)); }
+    &:is(.success-0) { background-color: light-dark(var(--success-0_light), var(--success-0_dark)); }
+
+    &:is(.info-100) { background-color: light-dark(var(--info-100_light), var(--info-100_dark)); }
+    &:is(.info-90) { background-color: light-dark(var(--info-90_light), var(--info-90_dark)); }
+    &:is(.info-80) { background-color: light-dark(var(--info-80_light), var(--info-80_dark)); }
+    &:is(.info-70) { background-color: light-dark(var(--info-70_light), var(--info-70_dark)); }
+    &:is(.info-60) { background-color: light-dark(var(--info-60_light), var(--info-60_dark)); }
+    &:is(.info-50) { background-color: light-dark(var(--info-50_light), var(--info-50_dark)); }
+    &:is(.info-40) { background-color: light-dark(var(--info-40_light), var(--info-40_dark)); }
+    &:is(.info-30) { background-color: light-dark(var(--info-30_light), var(--info-30_dark)); }
+    &:is(.info-20) { background-color: light-dark(var(--info-20_light), var(--info-20_dark)); }
+    &:is(.info-20) { background-color: light-dark(var(--info-20_light), var(--info-20_dark)); }
+    &:is(.info-10) { background-color: light-dark(var(--info-10_light), var(--info-10_dark)); }
+    &:is(.info-0) { background-color: light-dark(var(--info-0_light), var(--info-0_dark)); }
+
+    &:is(.warning-100) { background-color: light-dark(var(--warning-100_light), var(--warning-100_dark)); }
+    &:is(.warning-90) { background-color: light-dark(var(--warning-90_light), var(--warning-90_dark)); }
+    &:is(.warning-80) { background-color: light-dark(var(--warning-80_light), var(--warning-80_dark)); }
+    &:is(.warning-70) { background-color: light-dark(var(--warning-70_light), var(--warning-70_dark)); }
+    &:is(.warning-60) { background-color: light-dark(var(--warning-60_light), var(--warning-60_dark)); }
+    &:is(.warning-50) { background-color: light-dark(var(--warning-50_light), var(--warning-50_dark)); }
+    &:is(.warning-40) { background-color: light-dark(var(--warning-40_light), var(--warning-40_dark)); }
+    &:is(.warning-30) { background-color: light-dark(var(--warning-30_light), var(--warning-30_dark)); }
+    &:is(.warning-20) { background-color: light-dark(var(--warning-20_light), var(--warning-20_dark)); }
+    &:is(.warning-20) { background-color: light-dark(var(--warning-20_light), var(--warning-20_dark)); }
+    &:is(.warning-10) { background-color: light-dark(var(--warning-10_light), var(--warning-10_dark)); }
+    &:is(.warning-0) { background-color: light-dark(var(--warning-0_light), var(--warning-0_dark)); }
+
+    &:is(.purple-100) { background-color: light-dark(var(--purple-100_light), var(--purple-100_dark)); }
+    &:is(.purple-90) { background-color: light-dark(var(--purple-90_light), var(--purple-90_dark)); }
+    &:is(.purple-80) { background-color: light-dark(var(--purple-80_light), var(--purple-80_dark)); }
+    &:is(.purple-70) { background-color: light-dark(var(--purple-70_light), var(--purple-70_dark)); }
+    &:is(.purple-60) { background-color: light-dark(var(--purple-60_light), var(--purple-60_dark)); }
+    &:is(.purple-50) { background-color: light-dark(var(--purple-50_light), var(--purple-50_dark)); }
+    &:is(.purple-40) { background-color: light-dark(var(--purple-40_light), var(--purple-40_dark)); }
+    &:is(.purple-30) { background-color: light-dark(var(--purple-30_light), var(--purple-30_dark)); }
+    &:is(.purple-20) { background-color: light-dark(var(--purple-20_light), var(--purple-20_dark)); }
+    &:is(.purple-20) { background-color: light-dark(var(--purple-20_light), var(--purple-20_dark)); }
+    &:is(.purple-10) { background-color: light-dark(var(--purple-10_light), var(--purple-10_dark)); }
+    &:is(.purple-0) { background-color: light-dark(var(--purple-0_light), var(--purple-0_dark)); }
+
+    &:is(.yellow-100) { background-color: light-dark(var(--yellow-100_light), var(--yellow-100_dark)); }
+    &:is(.yellow-90) { background-color: light-dark(var(--yellow-90_light), var(--yellow-90_dark)); }
+    &:is(.yellow-80) { background-color: light-dark(var(--yellow-80_light), var(--yellow-80_dark)); }
+    &:is(.yellow-70) { background-color: light-dark(var(--yellow-70_light), var(--yellow-70_dark)); }
+    &:is(.yellow-60) { background-color: light-dark(var(--yellow-60_light), var(--yellow-60_dark)); }
+    &:is(.yellow-50) { background-color: light-dark(var(--yellow-50_light), var(--yellow-50_dark)); }
+    &:is(.yellow-40) { background-color: light-dark(var(--yellow-40_light), var(--yellow-40_dark)); }
+    &:is(.yellow-30) { background-color: light-dark(var(--yellow-30_light), var(--yellow-30_dark)); }
+    &:is(.yellow-20) { background-color: light-dark(var(--yellow-20_light), var(--yellow-20_dark)); }
+    &:is(.yellow-20) { background-color: light-dark(var(--yellow-20_light), var(--yellow-20_dark)); }
+    &:is(.yellow-10) { background-color: light-dark(var(--yellow-10_light), var(--yellow-10_dark)); }
+    &:is(.yellow-0) { background-color: light-dark(var(--yellow-0_light), var(--yellow-0_dark)); }
+
+    &:is(.accent-100) { background-color: light-dark(var(--accent-100_light), var(--accent-100_dark)); }
+    &:is(.accent-90) { background-color: light-dark(var(--accent-90_light), var(--accent-90_dark)); }
+    &:is(.accent-80) { background-color: light-dark(var(--accent-80_light), var(--accent-80_dark)); }
+    &:is(.accent-70) { background-color: light-dark(var(--accent-70_light), var(--accent-70_dark)); }
+    &:is(.accent-60) { background-color: light-dark(var(--accent-60_light), var(--accent-60_dark)); }
+    &:is(.accent-50) { background-color: light-dark(var(--accent-50_light), var(--accent-50_dark)); }
+    &:is(.accent-40) { background-color: light-dark(var(--accent-40_light), var(--accent-40_dark)); }
+    &:is(.accent-30) { background-color: light-dark(var(--accent-30_light), var(--accent-30_dark)); }
+    &:is(.accent-20) { background-color: light-dark(var(--accent-20_light), var(--accent-20_dark)); }
+    &:is(.accent-20) { background-color: light-dark(var(--accent-20_light), var(--accent-20_dark)); }
+    &:is(.accent-10) { background-color: light-dark(var(--accent-10_light), var(--accent-10_dark)); }
+    &:is(.accent-0) { background-color: light-dark(var(--accent-0_light), var(--accent-0_dark)); }
+
+    &:is(.secondary-100) { background-color: light-dark(var(--secondary-100_light), var(--secondary-100_dark)); }
+    &:is(.secondary-90) { background-color: light-dark(var(--secondary-90_light), var(--secondary-90_dark)); }
+    &:is(.secondary-80) { background-color: light-dark(var(--secondary-80_light), var(--secondary-80_dark)); }
+    &:is(.secondary-70) { background-color: light-dark(var(--secondary-70_light), var(--secondary-70_dark)); }
+    &:is(.secondary-60) { background-color: light-dark(var(--secondary-60_light), var(--secondary-60_dark)); }
+    &:is(.secondary-50) { background-color: light-dark(var(--secondary-50_light), var(--secondary-50_dark)); }
+    &:is(.secondary-40) { background-color: light-dark(var(--secondary-40_light), var(--secondary-40_dark)); }
+    &:is(.secondary-30) { background-color: light-dark(var(--secondary-30_light), var(--secondary-30_dark)); }
+    &:is(.secondary-20) { background-color: light-dark(var(--secondary-20_light), var(--secondary-20_dark)); }
+    &:is(.secondary-20) { background-color: light-dark(var(--secondary-20_light), var(--secondary-20_dark)); }
+    &:is(.secondary-10) { background-color: light-dark(var(--secondary-10_light), var(--secondary-10_dark)); }
+    &:is(.secondary-0) { background-color: light-dark(var(--secondary-0_light), var(--secondary-0_dark)); }
+  }
+}

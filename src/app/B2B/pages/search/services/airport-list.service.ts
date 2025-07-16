@@ -24,7 +24,6 @@ export class AirportListService {
   private isLoaded = signal<boolean>(false);
   public filteredAirport = signal<AirportDataType[]>([]);
   constructor() {
-    console.log('AirportListService')
     effect(() => {
       const searchTerm = this.searchTerm().toLowerCase();
       const list = this.allAirport();

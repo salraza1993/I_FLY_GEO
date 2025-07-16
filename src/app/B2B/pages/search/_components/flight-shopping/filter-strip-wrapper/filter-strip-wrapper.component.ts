@@ -20,7 +20,17 @@ export class FilterStripWrapperComponent {
   isSticky = computed(this.fliterService.isSticky);
 
   togglerValue1 = signal(false)
-  togglerValue2 = signal(true)
+  togglerValue2 = signal(true);
+
+  primaryGrid = signal<any>([]);
+  dangerGrid = signal<any>([]);
+  successGrid = signal<any>([]);
+  infoGrid = signal<any>([]);
+  warningGrid = signal<any>([]);
+  purpleGrid = signal<any>([]);
+  yellowGrid = signal<any>([]);
+  accentGrid = signal<any>([]);
+  secondaryGrid = signal<any>([]);
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
@@ -30,5 +40,35 @@ export class FilterStripWrapperComponent {
     } else {
       this.fliterService.setSticky(false)
     }
+  }
+  constructor() {
+    this.primaryGrid.set(this.generateGrid('primary', 100, 5));
+    this.dangerGrid.set(this.generateGrid('danger'));
+    this.successGrid.set(this.generateGrid('success'));
+    this.infoGrid.set(this.generateGrid('info'));
+    this.warningGrid.set(this.generateGrid('warning'));
+    this.purpleGrid.set(this.generateGrid('purple'));
+    this.yellowGrid.set(this.generateGrid('yellow'));
+    this.accentGrid.set(this.generateGrid('accent'));
+    this.secondaryGrid.set(this.generateGrid('secondary'));
+  }
+
+  // generateGrid(type:string, arrayLength: number = 100)  {
+  //   let innerTextValue = arrayLength;
+  //   const array = [];
+  //   while (innerTextValue >= 5) {
+  //     array.push({type: type, label: innerTextValue})
+  //     innerTextValue -= 5;
+  //   }
+  //   return array;
+  // }
+  generateGrid(type:string, arrayLength: number = 100, minusValue: number = 10)  {
+    let innerTextValue = arrayLength;
+    const array = [];
+    while (innerTextValue >= minusValue) {
+      array.unshift({type: type, label: innerTextValue})
+      innerTextValue -= minusValue;
+    }
+    return array;
   }
 }

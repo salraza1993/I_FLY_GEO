@@ -15,7 +15,7 @@ import { BodyClassModifierService } from '@sharedServices/body-modifier.service'
 export class ErrorLayoutComponent {
   constructor(private bodyClassService: BodyClassModifierService) {}
   ngOnInit():void {
-    this.bodyClassService.removeBodyClasses(['auth-page', 'default-page'])
+    this.bodyClassService.removeBodyClass(['auth-page', 'default-page'])
     this.bodyClassService.addClassToBody('error-page')
   }
 }

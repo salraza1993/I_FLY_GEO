@@ -10,26 +10,33 @@ import { AppSettingsService } from './shared/services/appSettings.service';
 import { LocalStorageService } from './shared/services/localStorage.service';
 import { BodyClassModifierService } from './shared/services/body-modifier.service';
 import { TranslateService } from '@ngx-translate/core';
+import { NgModalComponent } from './shared/components/ng-modal/ng-modal.component';
 
 @Component({
   selector: 'root',
-  imports: [RouterOutlet, CommonModule, DefaultLayoutComponent, AuthLayoutComponent, ErrorLayoutComponent],
+  imports: [
+    RouterOutlet,
+    CommonModule,
+    DefaultLayoutComponent,
+    AuthLayoutComponent,
+    ErrorLayoutComponent,
+    NgModalComponent,
+  ],
   template: `
     @switch (LayoutService.layout$ | async) {
       @case (PageLayout.Authorized) {
-        <default-layout><router-outlet /></default-layout>
+        <default-layout><router-outlet /><ng-modal /></default-layout>
       }
 
       @case (PageLayout.UnAuthorized) {
-        <auth-layout><router-outlet /></auth-layout>
+        <auth-layout><router-outlet /><ng-modal /></auth-layout>
       }
-
       @case (PageLayout.Error) {
         <error-layout><router-outlet /></error-layout>
       }
 
       @default {
-        <auth-layout><router-outlet /></auth-layout>
+        <auth-layout><router-outlet /><ng-modal /></auth-layout>
       }
     }
 `,
@@ -52,7 +59,7 @@ export class AppComponent implements OnInit {
     public LayoutService: LayoutService,
     private bodyClassService: BodyClassModifierService,
     private translate: TranslateService
-  ) { 
+  ) {
     this.translate.setDefaultLang('en');
     this.translate.use('en'); // could load from localStorage or browser
   }

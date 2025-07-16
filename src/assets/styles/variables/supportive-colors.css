@@ -1,0 +1,157 @@
+:root {
+  /* === DANGER COLORS (Red) - Light Colors === */
+  --danger-0_light: color-mix(in var(--color-mode), var(--dangerLightHex), var(--mixture-light) 0%);
+  --danger-10_light: color-mix(in var(--color-mode), var(--dangerLightHex), var(--mixture-light) 85%);
+  --danger-20_light: color-mix(in var(--color-mode), var(--dangerLightHex), var(--mixture-light) 78%);
+  --danger-30_light: color-mix(in var(--color-mode), var(--dangerLightHex), var(--mixture-light) 68%);
+  --danger-40_light: color-mix(in var(--color-mode), var(--dangerLightHex), var(--mixture-light) 58%);
+  --danger-50_light: color-mix(in var(--color-mode), var(--dangerLightHex), var(--mixture-light) 50%);
+  --danger-60_light: color-mix(in var(--color-mode), var(--dangerLightHex), var(--mixture-light) 30%);
+  --danger-70_light: color-mix(in var(--color-mode), var(--dangerLightHex), var(--mixture-light) 10%);
+  --danger-80_light: color-mix(in var(--color-mode), var(--dangerLightHex), var(--mixture-dark) 10%);
+  --danger-90_light: color-mix(in var(--color-mode), var(--dangerLightHex), var(--mixture-dark) 25%);
+  --danger-100_light: color-mix(in var(--color-mode), var(--dangerLightHex), var(--mixture-dark) 40%);
+
+  /* === DANGER COLORS (Red) - Dark Colors === */
+  --danger-0_dark: color-mix(in var(--color-mode), var(--dangerDarkHex), var(--mixture-dark) 0%);
+  --danger-10_dark: color-mix(in var(--color-mode), var(--dangerDarkHex), var(--mixture-dark) 55%);
+  --danger-20_dark: color-mix(in var(--color-mode), var(--dangerDarkHex), var(--mixture-dark) 45%);
+  --danger-30_dark: color-mix(in var(--color-mode), var(--dangerDarkHex), var(--mixture-dark) 35%);
+  --danger-40_dark: color-mix(in var(--color-mode), var(--dangerDarkHex), var(--mixture-dark) 25%);
+  --danger-50_dark: color-mix(in var(--color-mode), var(--dangerDarkHex), var(--mixture-dark) 16%);
+  --danger-60_dark: color-mix(in var(--color-mode), var(--dangerDarkHex), var(--mixture-light) 23%);
+  --danger-70_dark: color-mix(in var(--color-mode), var(--dangerDarkHex), var(--mixture-light) 32%);
+  --danger-80_dark: color-mix(in var(--color-mode), var(--dangerDarkHex), var(--mixture-light) 45%);
+  --danger-90_dark: color-mix(in var(--color-mode), var(--dangerDarkHex), var(--mixture-light) 55%);
+  --danger-100_dark: color-mix(in var(--color-mode), var(--dangerDarkHex), var(--mixture-light) 65%);
+
+  /* === SUCCESS COLORS (Green) - Light Colors === */
+  --success-0_light: color-mix(in var(--color-mode), var(--successLightHex), var(--mixture-light) 0%);
+  --success-10_light: color-mix(in var(--color-mode), var(--successLightHex), var(--mixture-light) 85%);
+  --success-20_light: color-mix(in var(--color-mode), var(--successLightHex), var(--mixture-light) 78%);
+  --success-30_light: color-mix(in var(--color-mode), var(--successLightHex), var(--mixture-light) 68%);
+  --success-40_light: color-mix(in var(--color-mode), var(--successLightHex), var(--mixture-light) 58%);
+  --success-50_light: color-mix(in var(--color-mode), var(--successLightHex), var(--mixture-light) 50%);
+  --success-60_light: color-mix(in var(--color-mode), var(--successLightHex), var(--mixture-light) 30%);
+  --success-70_light: color-mix(in var(--color-mode), var(--successLightHex), var(--mixture-light) 10%);
+  --success-80_light: color-mix(in var(--color-mode), var(--successLightHex), var(--mixture-dark) 10%);
+  --success-90_light: color-mix(in var(--color-mode), var(--successLightHex), var(--mixture-dark) 25%);
+  --success-100_light: color-mix(in var(--color-mode), var(--successLightHex), var(--mixture-dark) 40%);
+
+  /* === SUCCESS COLORS (Green) - Dark Colors === */
+  --success-0_dark: color-mix(in var(--color-mode), var(--successDarkHex), var(--mixture-dark) 0%);
+  --success-10_dark: color-mix(in var(--color-mode), var(--successDarkHex), var(--mixture-dark) 55%);
+  --success-20_dark: color-mix(in var(--color-mode), var(--successDarkHex), var(--mixture-dark) 45%);
+  --success-30_dark: color-mix(in var(--color-mode), var(--successDarkHex), var(--mixture-dark) 35%);
+  --success-40_dark: color-mix(in var(--color-mode), var(--successDarkHex), var(--mixture-dark) 25%);
+  --success-50_dark: color-mix(in var(--color-mode), var(--successDarkHex), var(--mixture-dark) 16%);
+  --success-60_dark: color-mix(in var(--color-mode), var(--successDarkHex), var(--mixture-light) 23%);
+  --success-70_dark: color-mix(in var(--color-mode), var(--successDarkHex), var(--mixture-light) 32%);
+  --success-80_dark: color-mix(in var(--color-mode), var(--successDarkHex), var(--mixture-light) 45%);
+  --success-90_dark: color-mix(in var(--color-mode), var(--successDarkHex), var(--mixture-light) 55%);
+  --success-100_dark: color-mix(in var(--color-mode), var(--successDarkHex), var(--mixture-light) 65%);
+
+  /* === INFO COLORS (Blue) - Light Colors === */
+  --info-0_light: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 0%);
+  --info-10_light: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 85%);
+  --info-20_light: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 78%);
+  --info-30_light: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 68%);
+  --info-40_light: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 58%);
+  --info-50_light: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 50%);
+  --info-60_light: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 30%);
+  --info-70_light: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 10%);
+  --info-80_light: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-dark) 10%);
+  --info-90_light: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-dark) 25%);
+  --info-100_light: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-dark) 40%);
+
+  /* === INFO COLORS (Blue) - Dark Colors === */
+  --info-0_dark: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-dark) 0%);
+  --info-10_dark: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-dark) 55%);
+  --info-20_dark: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-dark) 45%);
+  --info-30_dark: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-dark) 35%);
+  --info-40_dark: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-dark) 25%);
+  --info-50_dark: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-dark) 16%);
+  --info-60_dark: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 23%);
+  --info-70_dark: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 32%);
+  --info-80_dark: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 45%);
+  --info-90_dark: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 55%);
+  --info-100_dark: color-mix(in var(--color-mode), var(--infoHex), var(--mixture-light) 65%);
+
+  /* === WARNING COLORS (Yellow/Orange) - Light colors === */
+  --warning-0_light: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 0%);
+  --warning-10_light: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 85%);
+  --warning-20_light: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 78%);
+  --warning-30_light: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 68%);
+  --warning-40_light: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 58%);
+  --warning-50_light: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 50%);
+  --warning-60_light: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 30%);
+  --warning-70_light: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 10%);
+  --warning-80_light: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-dark) 10%);
+  --warning-90_light: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-dark) 25%);
+  --warning-100_light: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-dark) 40%);
+
+  /* === WARNING COLORS (Yellow/Orange) - Dark colors === */
+  --warning-0_dark: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-dark) 0%);
+  --warning-10_dark: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-dark) 55%);
+  --warning-20_dark: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-dark) 45%);
+  --warning-30_dark: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-dark) 35%);
+  --warning-40_dark: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-dark) 25%);
+  --warning-50_dark: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-dark) 16%);
+  --warning-60_dark: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 23%);
+  --warning-70_dark: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 32%);
+  --warning-80_dark: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 45%);
+  --warning-90_dark: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 55%);
+  --warning-100_dark: color-mix(in var(--color-mode), var(--warningHex), var(--mixture-light) 65%);
+
+  /* === PURPLE COLORS (Yellow/Orange) - Light colors === */
+  --purple-0_light: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 0%);
+  --purple-10_light: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 85%);
+  --purple-20_light: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 78%);
+  --purple-30_light: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 68%);
+  --purple-40_light: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 58%);
+  --purple-50_light: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 50%);
+  --purple-60_light: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 30%);
+  --purple-70_light: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 10%);
+  --purple-80_light: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-dark) 10%);
+  --purple-90_light: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-dark) 25%);
+  --purple-100_light: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-dark) 40%);
+
+  /* === PURPLE COLORS (Yellow/Orange) - Dark colors === */
+  --purple-0_dark: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-dark) 0%);
+  --purple-10_dark: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-dark) 55%);
+  --purple-20_dark: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-dark) 45%);
+  --purple-30_dark: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-dark) 35%);
+  --purple-40_dark: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-dark) 25%);
+  --purple-50_dark: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-dark) 16%);
+  --purple-60_dark: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 23%);
+  --purple-70_dark: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 32%);
+  --purple-80_dark: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 45%);
+  --purple-90_dark: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 55%);
+  --purple-100_dark: color-mix(in var(--color-mode), var(--purpleHex), var(--mixture-light) 65%);
+
+  /* === YELLOW COLORS (Yellow/Orange) - Light colors === */
+  --yellow-0_light: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 0%);
+  --yellow-10_light: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 85%);
+  --yellow-20_light: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 78%);
+  --yellow-30_light: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 68%);
+  --yellow-40_light: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 58%);
+  --yellow-50_light: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 50%);
+  --yellow-60_light: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 30%);
+  --yellow-70_light: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 10%);
+  --yellow-80_light: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-dark) 10%);
+  --yellow-90_light: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-dark) 25%);
+  --yellow-100_light: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-dark) 40%);
+
+  /* === YELLOW COLORS (Yellow/Orange) - Dark colors === */
+  --yellow-0_dark: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-dark) 0%);
+  --yellow-10_dark: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-dark) 55%);
+  --yellow-20_dark: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-dark) 45%);
+  --yellow-30_dark: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-dark) 35%);
+  --yellow-40_dark: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-dark) 25%);
+  --yellow-50_dark: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-dark) 16%);
+  --yellow-60_dark: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 23%);
+  --yellow-70_dark: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 32%);
+  --yellow-80_dark: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 45%);
+  --yellow-90_dark: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 55%);
+  --yellow-100_dark: color-mix(in var(--color-mode), var(--yellowHex), var(--mixture-light) 65%);
+}

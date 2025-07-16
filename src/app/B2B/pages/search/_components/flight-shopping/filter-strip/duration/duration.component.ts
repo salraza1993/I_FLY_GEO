@@ -13,11 +13,14 @@ import { RangeSliderComponent } from "../../../range-slider/range-slider.compone
   }
 })
 export class DurationComponent {
-  showDropdown = signal<boolean>(false);
   minRange = signal<number>(0);
   maxRange = signal<number>(32);
   rangeValue = signal<number>(this.maxRange());
+
+  // Two-way binded
+  showDropdown = signal<boolean>(false);
   selected = signal<DropdownSelectedValueType>(undefined);
+
   private readonly updateSelected = effect(() => {
     if(this.rangeValue() === this.maxRange()) this.selected.set(undefined);
     else this.selected.set(`${this.minRange()} - ${this.rangeValue()} hrs`)

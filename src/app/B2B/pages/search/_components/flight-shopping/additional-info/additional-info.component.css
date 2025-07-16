@@ -4,6 +4,7 @@
   --strip-border: light-dark(var(--primary-50_light), var(--primary-75_dark));
   position: relative;
   display: block;
+  --modal-container-min-width: 0;
 
   .content-wrapper {
     position: relative;

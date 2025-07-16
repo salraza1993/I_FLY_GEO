@@ -7,16 +7,16 @@ import { DOCUMENT } from '@angular/common';
   providedIn: 'root',
 })
 export class ViewportService {
-  private BodyClassModifierService = inject(BodyClassModifierService);
+  private BodyClassModifier = inject(BodyClassModifierService);
   private document = inject(DOCUMENT);
   private rootBodyElement: HTMLElement = this.document.body;
 
   private mobileMax = 767;
   private tabletMax = 1024;
 
-  isMobile = signal(window.innerWidth <= this.mobileMax);
-  isTablet = signal(window.innerWidth > this.mobileMax && window.innerWidth <= this.tabletMax);
-  isDesktop = signal(window.innerWidth > this.tabletMax);
+  isMobile = signal<boolean>(window.innerWidth <= this.mobileMax);
+  isTablet = signal<boolean>(window.innerWidth > this.mobileMax && window.innerWidth <= this.tabletMax);
+  isDesktop = signal<boolean>(window.innerWidth > this.tabletMax);
 
   constructor() {
     this.updateBodyClass();
@@ -35,16 +35,16 @@ export class ViewportService {
 
   public updateBodyClass() {
     const width = window.innerWidth;
-    this.BodyClassModifierService.removeBodyClasses(['mobile-view', 'tablet-view', 'desktop-view']);
+    this.BodyClassModifier.removeBodyClass(['mobile-view', 'tablet-view', 'desktop-view']);
     this.removeAttribute('data-viewport');
     if (width <= this.mobileMax) {
-      this.BodyClassModifierService.addClassToBody('mobile-view');
+      this.BodyClassModifier.addClassToBody('mobile-view');
       this.addAttribute('data-viewport', 'mobile-view');
     } else if (width > this.mobileMax && width <= this.tabletMax) {
-      this.BodyClassModifierService.addClassToBody('tablet-view');
+      this.BodyClassModifier.addClassToBody('tablet-view');
       this.addAttribute('data-viewport', 'tablet-view');
     } else {
-      this.BodyClassModifierService.addClassToBody('desktop-view');
+      this.BodyClassModifier.addClassToBody('desktop-view');
       this.addAttribute('data-viewport', 'desktop-view');
     }
   }

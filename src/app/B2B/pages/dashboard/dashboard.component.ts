@@ -43,8 +43,4 @@ export class DashboardComponent {
     { key: 'city', label: 'City' }
   ];
 
-  onEdit(row: any) { console.log('Edit:', row); }
-  onDelete(row: any) { console.log('Delete:', row); }
-  onInfo(row: any) { console.log('Info:', row); }
-
 }

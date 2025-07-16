@@ -1,5 +1,7 @@
 
 @import url('./common-variables.css');
+@import url('./primary-colors.css');
 @import url('./colors-variables.css');
+@import url('./supportive-colors.css');
 @import url('./font-variables.css');
 @import url('./theme-variables.css');

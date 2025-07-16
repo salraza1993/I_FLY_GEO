@@ -4,7 +4,7 @@
       <span class="h4 m-0 font__verbatim--bold text--uppercase">1500</span>
       <small class="text">Results Found</small>
     </div>
-    <button class="button button--dark-gray size--extra-small accent-on-hover" [tooltip]="'Show all filters'">
+    <button (click)="showFilterModal()" class="button button--dark-gray size--extra-small accent-on-hover" [tooltip]="'Show all filters'">
       <span class="icon icon-before"><i class="fa-solid fa-sliders"></i></span>
       <span>All Filters</span>
     </button>
@@ -20,7 +20,7 @@
       <span>Price Grid</span>
       <!-- <span class="icon icon-after"><strong>(5)</strong></span> -->
     </button>
-    <button class="button button--dark-gray size--extra-small accent-on-hover">
+    <button (click)="showEmailModal()" class="button button--dark-gray size--extra-small accent-on-hover">
       <span class="icon icon-before"><i class="fa-regular fa-envelopes"></i></span>
       <span>Selected Emails</span>
       <!-- <span class="icon icon-after"><strong>(5)</strong></span> -->

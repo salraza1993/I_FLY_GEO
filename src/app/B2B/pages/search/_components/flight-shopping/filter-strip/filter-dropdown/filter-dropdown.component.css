@@ -4,9 +4,6 @@
   --filter-elem-bg: light-dark(var(--primary-100_light), var(--primary-70_dark));
   --filter-elem-color: light-dark(var(--primary-90_dark), var(--primary-20_dark));
   --filter-elem-border: light-dark(var(--primary-80_light), var(--primary-70_dark));
-  --filter-elem-hover-bg: light-dark(var(--primary-80_dark), var(--primary-30_dark));
-  --filter-elem-hover-color: light-dark(var(--primary-95_light), var(--primary-90_dark));
-  --filter-elem-hover-border: light-dark(var(--primary-100_light), var(--primary-30_light));
   --filter-elem-border-radius: var(--border-radius);
   --filter-elem-pills-bg: light-dark(var(--primary-80_dark), var(--primary-90_dark));
   --filter-elem-pills-color: light-dark(var(--primary-95_light), var(--primary-10_dark));
@@ -88,18 +85,19 @@
     }
     &:not(.selecte, .active, :focus-visible, :focus):hover {
       --filter-elem-pills-bg: light-dark(var(--primary-35_light), var(--primary-90_dark));
-      background-color: var(--filter-elem-hover-bg);
-      color: var(--filter-elem-hover-color);
-      border-color: var(--filter-elem-hover-border);
+      --filter-elem-bg: light-dark(var(--primary-80_dark), var(--primary-30_dark));
+      --filter-elem-color: light-dark(var(--primary-95_light), var(--primary-90_dark));
+      --filter-elem-border: light-dark(var(--primary-95_light), var(--primary-90_dark));
     }
     &:is(:focus-visible, :focus) {
-      --filter-elem-bg: var(--filter-elem-hover-bg);
-      --filter-elem-color: var(--filter-elem-hover-color);
-      --filter-elem-border: var(--filter-elem-hover-border);
-      --outline-color: var(--filter-elem-hover-bg);
+      --filter-elem-bg: light-dark(var(--primary-80_dark), var(--primary-30_dark));
+      --filter-elem-color: light-dark(var(--primary-95_light), var(--primary-90_dark));
+      --filter-elem-border: light-dark(var(--primary-95_light), var(--primary-90_dark));
+      --outline-color: light-dark(var(--primary-80_dark), var(--primary-30_dark));
     }
     &:is(.fixed) {
       --filter-elem-height: 36px;
+      --filter-elem-bg: light-dark(var(--primary-90_light), var(--primary-70_dark));
       padding-inline-end: calc(var(--filter-elem-padding-x) / 4);
     }
     &:is(.active) {

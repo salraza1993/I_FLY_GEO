@@ -16,6 +16,7 @@
   --transition-duration: 0.35s;
   --cubic-bezier: cubic-bezier(0.88, 0.22, 0.1, 0.89);
   --transition: var(--transition-property) var(--transition-duration) var(--transition-type);
+  --transparent: transparent;
 
   --input-color: inherit;
   --input-fw: inherit;
@@ -37,11 +38,9 @@
   --outline-text-color: inherit;
   --outline-offset: 0.2rem;
   --outline-radius: var(--border-radius);
-  --scrollbar-thumb-bg: var(--body-color);
-  --scrollbar-track-bg: var(--body-bg);
-  /* --scrollbar-width: auto | thin | none; */
-  --scrollbar-width: thin;
-  --scrollbar-gutter: stable;
+  --scrollbar-bg-thumb: var(--body-color);
+  --scrollbar-bg-track: transparent;
+  --scrollbar-width: 5px;
 
 
   /* ===========[ Tooltip ]=========== */

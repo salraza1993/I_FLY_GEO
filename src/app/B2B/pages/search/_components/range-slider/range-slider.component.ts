@@ -46,7 +46,6 @@ export class RangeSliderComponent implements AfterViewInit {
   }
   // Re-apply styles after view init
   ngAfterViewInit(): void {
-    console.log(this.min())
     queueMicrotask(() => {
       this.updateStylesHandler(this.rangeValue());
     });
