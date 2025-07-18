@@ -42,7 +42,7 @@
         <span>0 Inf</span>
       </span>
     </div>
-    <div class="strip-element modify-button" tabindex="0" [tooltip]="'Modify Search'" tooltipDirection="left">
+    <div (click)="showFilterModal()" (keydown.enter)="showFilterModal()" class="strip-element modify-button" tabindex="0" [tooltip]="'Modify Search'" tooltipDirection="left">
       <span class="icon"><i class="fa-solid fa-edit"></i></span>
       <span>Modify</span>
     </div>

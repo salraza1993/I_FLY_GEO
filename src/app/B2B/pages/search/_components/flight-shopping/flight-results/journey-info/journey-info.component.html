@@ -1,0 +1,41 @@
+<div class="airline" [tooltip]="airlineTooltip">
+  <div class="airline-logo">
+    <img src="assets/images/airlines/ai.svg" alt="Air India" />
+  </div>
+  <div class="airline-name">
+    <p class="m-0 text-ellipsis-multiline">Air India</p>
+    <small class="text-ellipsis"><strong>AI - 1265</strong></small>
+  </div>
+</div>
+<ng-template #airlineTooltip>
+  <div class="airline-name">
+    <p class="m-0">Srinkan Airline</p>
+    <small><strong>Airbus - 265</strong></small>
+  </div>
+</ng-template>
+<div class="line-breaker vertical"></div>
+<div class="timeline">
+  <div class="airport-time origin">
+    <h6 class="m-0">
+      <span class="airport-code">DXB</span>
+      <span>&nbsp;-&nbsp;</span>
+      <span class="time">11:30</span>
+    </h6>
+    <small class="date">31 Mar 2025</small>
+  </div>
+  <div class="duration">
+    <div class="layover-strip">
+      <span class="pill" [tooltip]="'Bombay Airport'">BOM</span>
+      <span class="pill" [tooltip]="'Delhi Airport'">DEL</span>
+    </div>
+    <p class="m-0">3h 45m</p>
+  </div>
+  <div class="airport-time destination">
+    <h6 class="m-0">
+      <span class="airport-code">DEL</span>
+      <span>&nbsp;-&nbsp;</span>
+      <span class="time">11:30</span>
+    </h6>
+    <small class="date">31 Mar 2025</small>
+  </div>
+</div>

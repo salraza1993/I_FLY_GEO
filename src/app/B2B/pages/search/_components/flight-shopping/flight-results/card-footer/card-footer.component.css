@@ -1,0 +1,40 @@
+:host {
+  --card-footer-bg: var(--card-border);
+  --card-button-height: 35px;
+  display: block;
+  padding-inline: calc(var(--card-padding) * 1.0);
+
+  .card-footer-content {
+    position: relative;
+    width: 100%;
+    background-color: var(--card-footer-bg);
+    padding-block: 0.5rem;
+    padding-inline: 0.5rem;
+    border-end-start-radius: calc(var(--border-radius) * 2);
+    border-end-end-radius: calc(var(--border-radius) * 2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .block-content {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .card-footer-button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: var(--card-button-height);
+      border-radius: var(--border-radius);
+      outline-color: transparent;
+      border: 0;
+      padding-inline-end: var(--card-padding);
+      font-weight: 600;
+      gap: 0.35rem;
+      .icon {
+        width: var(--card-button-height);
+        aspect-ratio: 1;
+      }
+    }
+  }
+}

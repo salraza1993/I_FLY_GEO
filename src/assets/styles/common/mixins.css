@@ -186,9 +186,23 @@
   justify-content: center !important;
   align-items: center !important;
 }
+.flex-column { flex-direction: column !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.flex-nowrap { flex-wrap: nowrap !important; }
+.flex-wrap-reverse { flex-wrap: wrap-reverse !important; }
 
 .text-ellipsis {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
+.text-ellipsis-multiline {
+  --line-clamp: 2;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line-clamp);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.text-ellipsis-multiline-3 { --line-clamp: 3;}
+.text-ellipsis-multiline-4 { --line-clamp: 4;}
+.text-ellipsis-multiline-5 { --line-clamp: 5;}

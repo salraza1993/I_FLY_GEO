@@ -154,17 +154,17 @@
     .selected-strip {
       width: var(--aside-menu-size);
       height: var(--tab-active-item-height, var(--aside-menu-size));
-      background-color: var(
-        --tab-list-bg-active,
-        var(--tab-list-active-bg-fallback)
-      );
-      border-radius: var(
-        --tab-item-border-radius,
-        calc(var(--border-radius) / 1.5)
-      );
+      background-color: var(--tab-list-bg-active, var(--tab-list-active-bg-fallback));
+      border-radius: var(--tab-item-border-radius, calc(var(--border-radius) / 1.5));
       position: absolute;
       z-index: 0;
       transition: var(--transition);
+
+      &:is(#selected-strip) {
+        opacity: 0;
+        visibility: hidden;
+      }
+
       &[dir="rtl"] {
         inset-block-end: var(--menu-strip-offset-y, 0px);
       }
@@ -172,14 +172,19 @@
         inset-block-start: var(--menu-strip-offset-y, 0px);
       }
       &:is(.hovered-strip) {
-        background-color: var(
-          --tab-list-bg-active,
-          var(--tab-list-hovered-bg-fallback)
-        );
+        background-color: var(--tab-list-bg-active, var(--tab-list-hovered-bg-fallback));
         z-index: -1;
+        scale: 1;
         &:not(.isActive) {
           opacity: 0;
+          scale: 0;
         }
+      }
+    }
+    &:has(*.aside-menu__list:is(.active)) {
+      #selected-strip {
+        opacity: 1;
+        visibility: visible;
       }
     }
   }

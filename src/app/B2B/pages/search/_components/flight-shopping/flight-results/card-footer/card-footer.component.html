@@ -1,0 +1,26 @@
+<div class="card-footer-content">
+  <div class="block-content block-start">
+    @if(tripType()) {
+      <button type="button" class="card-footer-button not-inherit">
+        <span class="icon icon-before">
+          @if(tripType()?.toLowerCase() === 'roundtrip') {
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          } @else {
+            <i class="fa-solid fa-arrow-right"></i>
+          }
+        </span>
+        <span>{{ tripType() }}</span>
+      </button>
+    }
+    <button type="button" class="card-footer-button">
+      <span class="icon icon-before"><i class="fa-solid fa-list"></i></span>
+      <span>Fare Rules</span>
+    </button>
+  </div>
+  <div class="block-content block-end">
+    <button type="button" class="card-footer-button">
+      <span class="icon icon-before"><i class="fa-solid fa-list"></i></span>
+      <span>Fare Rules</span>
+    </button>
+  </div>
+</div>

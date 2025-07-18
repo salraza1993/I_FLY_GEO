@@ -1,6 +1,6 @@
 <div class="search-form-card-wrapper">
   <search-form-content-wrapper [headingSmall]="'search'" [headingBig]="'Flights'">
-    <custom-tabs [setTabs]="flightTabs()"></custom-tabs>
+    <custom-tabs [setTabs]="flightTabs()" />
     @switch (selectedTab()) {
       @case ('multi-city') {
         <multi-city></multi-city>

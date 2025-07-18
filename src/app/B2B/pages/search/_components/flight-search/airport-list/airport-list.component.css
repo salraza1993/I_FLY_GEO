@@ -1,7 +1,7 @@
 :host {
-  --empty-state-bg: light-dark(var(--warning-100_light), var(--warning-10_dark));
-  --empty-state-border: light-dark(var(--warning-80_light), var(--warning-10_dark));
-  --empty-state-color: light-dark(var(--warning-100_dark), var(--warning-100_dark));
+  --empty-state-bg: light-dark(var(--warning-20_light), var(--warning-100_dark));
+  --empty-state-border: light-dark(var(--warning-50_light), var(--warning-50_dark));
+  --empty-state-color: light-dark(var(--warning-90_light), var(--warning-10_dark));
   --error-state-bg: light-dark(var(--danger-100_light), var(--danger-10_dark));
   --error-state-border: light-dark(var(--danger-80_light), var(--danger-10_dark));
   --error-state-color: light-dark(var(--danger-100_dark), var(--danger-100_dark));
@@ -35,8 +35,8 @@
     gap: 0.25rem;
     max-height: 30lvh;
     max-height: 30vh;
-    --scrollbar-width: 0; 
-    --scrollbar-gutter: unset; 
+    --scrollbar-width: 0;
+    --scrollbar-gutter: unset;
     & .airport-list_item {
       background-color: var(--aiport-list-bg);
       color: var(--aiport-list-color);

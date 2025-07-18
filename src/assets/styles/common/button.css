@@ -1,8 +1,8 @@
-.button,
-button.button,
-a.button,
-[role="button"],
-[type="button"] {
+.button:not(.not-inherit),
+button.button:not(.not-inherit),
+a.button:not(.not-inherit),
+[role="button"]:not(.not-inherit),
+[type="button"]:not(.not-inherit) {
   --btn-bg-fallback: light-dark(var(--primary-90_light), var(--primary-75_dark));
   --btn-color-fallback: light-dark(var(--primary-100_dark), var(--primary-90_light));
   --btn-hover-bg-fallback: light-dark(var(--primary-90_dark), var(--primary-90_light));
@@ -145,9 +145,6 @@ a.button,
     --btn-height: calc(var(--common-btn-height) / 1.15);
     --btn-font-size: calc(var(--body-font-size) / 1);
     --btn-icon-font-size: calc(var(--btn-font-size) * 1.1);
-
-    /* padding-inline-start: var(--btn-padding-x-start, var(--btn-padding-x-start-fallback)); */
-    /* padding-inline-end: var(--btn-padding-x-end, var(--btn-padding-x-end-fallback)); */
     font-size: var(--btn-font-size, var(--body-font-size));
   }
 
@@ -158,8 +155,6 @@ a.button,
     --btn-font-size: calc(var(--body-font-size) / 1.2);
     --btn-icon-font-size: calc(var(--btn-font-size) * 1.1);
     --btn-line-height: var(--btn-font-size);
-    /* padding-inline-start: var(--btn-padding-x-start, var(--btn-padding-x-start-fallback)); */
-    /* padding-inline-end: var(--btn-padding-x-end, var(--btn-padding-x-end-fallback)); */
     font-size: var(--btn-font-size, var(--body-font-size));
   }
 
@@ -278,10 +273,10 @@ a.button,
   &:is(.light, .button--light) {
     --btn-bg: light-dark(var(--primary-100_light), var(--primary-70_light));
     --btn-color: light-dark(var(--primary-100_dark), var(--primary-100_dark));
-    --btn-border: light-dark(var(--primary-100_light), var(--primary-80_light));
-    --btn-hover-bg: light-dark(var(--primary-100_light), var(--primary-100_light));
+    --btn-border: light-dark(var(--primary-85_light), var(--primary-15_dark));
+    --btn-hover-bg: light-dark(var(--transparent), var(--primary-100_light));
     --btn-hover-color: light-dark(var(--primary-100_dark), var(--primary-100_dark));
-    --btn-hover-border: light-dark(var(--primary-50_light), var(--primary-100_light));
+    --btn-hover-border: light-dark(var(--primary-30_light), var(--primary-100_light));
   }
 
   &:is(.light-outline, .button--light-outline) {
@@ -303,9 +298,9 @@ a.button,
 
   &:is(.dark, .button--dark) {
     --btn-bg: light-dark(var(--dark), var(--black));
-    --btn-color: light-dark(var(--primary-90_light), var(--primary-70_light));
+    --btn-color: light-dark(var(--primary-90_light), var(--primary-20_dark));
     --btn-border: light-dark(var(--dark), var(--black));
-    --btn-hover-bg: light-dark(var(--primary-80_dark), var(--black));
+    --btn-hover-bg: light-dark(var(--primary-80_dark), var(--primary-75_dark));
     --btn-hover-color: light-dark(var(--primary-80_light), var(--primary-100_light));
     --btn-hover-border: light-dark(var(--primary-80_dark), var(--black));
   }
@@ -317,32 +312,6 @@ a.button,
     --btn-hover-bg: light-dark(var(--primary-80_dark), var(--black));
     --btn-hover-color: light-dark(var(--primary-80_light), var(--primary-100_light));
     --btn-hover-border: light-dark(var(--primary-80_dark), var(--black));
-  }
-
-  &:is(.info, .button--info, .info-outline, .button--info-outline) {
-    --btn-box-shadow: light-dark(var(--info-90_light), var(--info-100_dark));
-    --btn-box-shadow-active: light-dark(var(--info-70_light), var(--info-40_dark));
-    --btn-disabled-bg: light-dark(var(--info-10_dark), var(--info-100_dark));
-    --btn-disabled-color: light-dark(var(--info-40_dark), var(--info-50_dark));
-    --btn-disabled-border: light-dark(var(--info-20_dark), var(--info-90_dark));
-  }
-
-  &:is(.info, .button--info) {
-    --btn-bg: light-dark(var(--info-60_light), var(--info-90_dark));
-    --btn-color: light-dark(var(--light), var(--light));
-    --btn-border: light-dark(var(--info-50_light), var(--info-40_dark));
-    --btn-hover-bg: light-dark(var(--info-50_light), var(--info-60_dark));
-    --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border: light-dark(var(--info-50_light), var(--info-50_dark));
-  }
-
-  &:is(.info-outline, .button--info-outline) {
-    --btn-bg: var(--transparent);
-    --btn-color: light-dark(var(--info-50_dark), var(--info-60_light));
-    --btn-border: light-dark(var(--info-50_light), var(--info-60_light));
-    --btn-hover-bg: light-dark(var(--info-50_light), var(--info-60_dark));
-    --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border: light-dark(var(--info-50_light), var(--info-50_dark));
   }
 
   &:is(
@@ -363,12 +332,12 @@ a.button,
   }
 
   &:is(.danger, .button--danger) {
-    --btn-bg: light-dark(var(--danger-50_light), var(--danger-80_dark));
-    --btn-color: light-dark(var(--light), var(--light));
-    --btn-border: light-dark(var(--danger-50_light), var(--danger-40_dark));
-    --btn-hover-bg: light-dark(var(--danger-60_light), var(--danger-60_dark));
-    --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border: light-dark(var(--danger-50_light), var(--danger-50_dark));
+    --btn-bg: light-dark(var(--danger-0_light), var(--danger-100_dark));
+    --btn-color: light-dark(var(--light), var(--danger-30_dark));
+    --btn-border: light-dark(var(--danger-0_light), var(--danger-100_dark));
+    --btn-hover-bg: light-dark(var(--danger-10_light), var(--danger-0_dark));
+    --btn-hover-color: light-dark(var(--danger-80_light), var(--light));
+    --btn-hover-border: light-dark(var(--danger-0_light), var(--danger-0_dark));
   }
 
   &:is(.danger-outline, .danger--outline, .button--danger-outline) {
@@ -381,14 +350,13 @@ a.button,
   }
 
   &:is(.danger-light, .danger--light, .button--danger-light) {
-    --btn-bg: light-dark(var(--danger-90_light), var(--danger-80_dark));
-    --btn-color: light-dark(var(--danger-50_light), var(--danger-40_dark));
-    --btn-border: light-dark(var(--danger-50_light), var(--danger-40_dark));
-    --btn-hover-bg: light-dark(var(--danger-50_light), var(--danger-60_dark));
+    --btn-bg: light-dark(var(--danger-20_light), var(--danger-90_dark));
+    --btn-color: light-dark(var(--danger-0_light), var(--danger-0_dark));
+    --btn-border: light-dark(var(--danger-30_light), var(--danger-90_dark));
+    --btn-hover-bg: light-dark(var(--danger-0_light), var(--danger-0_dark));
     --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border: light-dark(var(--danger-50_light), var(--danger-50_dark));
+    --btn-hover-border: light-dark(var(--danger-0_light), var(--danger-0_dark));
   }
-
 
   &:is(.success, .button--success, .success-outline, .button--success-outline) {
     --btn-box-shadow: light-dark(var(--success-90_light), var(--success-100_dark));
@@ -399,12 +367,12 @@ a.button,
   }
 
   &:is(.success, .button--success) {
-    --btn-bg: light-dark(var(--success-50_light), var(--success-80_dark));
-    --btn-color: light-dark(var(--light), var(--light));
-    --btn-border: light-dark(var(--success-50_light), var(--success-40_dark));
-    --btn-hover-bg: light-dark(var(--success-60_light), var(--success-60_dark));
-    --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border: light-dark(var(--success-50_light), var(--success-50_dark));
+    --btn-bg: light-dark(var(--success-0_light), var(--success-100_dark));
+    --btn-color: light-dark(var(--light), var(--success-10_dark));
+    --btn-border: light-dark(var(--success-0_light), var(--success-100_dark));
+    --btn-hover-bg: light-dark(var(--success-10_light), var(--success-0_dark));
+    --btn-hover-color: light-dark(var(--success-80_light), var(--light));
+    --btn-hover-border: light-dark(var(--success-0_light), var(--success-0_dark));
   }
 
   &:is(.success-outline, .button--success-outline) {
@@ -416,6 +384,32 @@ a.button,
     --btn-hover-border: light-dark(var(--success-50_light), var(--success-50_dark));
   }
 
+  &:is(.info, .button--info, .info-outline, .button--info-outline) {
+    --btn-box-shadow: light-dark(var(--info-90_light), var(--info-100_dark));
+    --btn-box-shadow-active: light-dark(var(--info-70_light), var(--info-40_dark));
+    --btn-disabled-bg: light-dark(var(--info-10_dark), var(--info-100_dark));
+    --btn-disabled-color: light-dark(var(--info-40_dark), var(--info-50_dark));
+    --btn-disabled-border: light-dark(var(--info-20_dark), var(--info-90_dark));
+  }
+
+  &:is(.info, .button--info) {
+    --btn-bg: light-dark(var(--info-0_light), var(--info-100_dark));
+    --btn-color: light-dark(var(--light), var(--info-10_dark));
+    --btn-border: light-dark(var(--info-0_light), var(--info-100_dark));
+    --btn-hover-bg: light-dark(var(--info-10_light), var(--info-0_dark));
+    --btn-hover-color: light-dark(var(--info-80_light), var(--light));
+    --btn-hover-border: light-dark(var(--info-0_light), var(--info-0_dark));
+  }
+
+  &:is(.info-outline, .button--info-outline) {
+    --btn-bg: var(--transparent);
+    --btn-color: light-dark(var(--info-50_dark), var(--info-60_light));
+    --btn-border: light-dark(var(--info-50_light), var(--info-60_light));
+    --btn-hover-bg: light-dark(var(--info-50_light), var(--info-60_dark));
+    --btn-hover-color: light-dark(var(--light), var(--light));
+    --btn-hover-border: light-dark(var(--info-50_light), var(--info-50_dark));
+  }
+
   &:is(.warning, .button--warning, .warning-outline, .button--warning-outline) {
     --btn-box-shadow: light-dark(var(--warning-90_light), var(--warning-100_dark));
     --btn-box-shadow-active: light-dark(var(--warning-70_light), var(--warning-80_dark));
@@ -425,12 +419,12 @@ a.button,
   }
 
   &:is(.warning, .button--warning) {
-    --btn-bg: light-dark(var(--warning-50_light), var(--warning-80_dark));
-    --btn-color: light-dark(var(--light), var(--light));
-    --btn-border: light-dark(var(--warning-50_light), var(--warning-30_dark));
-    --btn-hover-bg: light-dark(var(--warning-60_light), var(--warning-60_dark));
-    --btn-hover-color: light-dark(var(--light), var(--light));
-    --btn-hover-border: light-dark(var(--warning-50_light), var(--warning-50_dark));
+    --btn-bg: light-dark(var(--warning-0_light), var(--warning-100_dark));
+    --btn-color: light-dark(var(--light), var(--warning-20_dark));
+    --btn-border: light-dark(var(--warning-0_light), var(--warning-100_dark));
+    --btn-hover-bg: light-dark(var(--warning-10_light), var(--warning-0_dark));
+    --btn-hover-color: light-dark(var(--warning-80_light), var(--light));
+    --btn-hover-border: light-dark(var(--warning-0_light), var(--warning-0_dark));
   }
 
   &:is(.warning-outline, .button--warning-outline) {

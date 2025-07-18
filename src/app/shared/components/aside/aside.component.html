@@ -26,14 +26,13 @@
         [routerLinkActiveOptions]="{ exact: true }"
         class="menu-item__link menu-item {{menu.class && menu.class}}">
         <i class="fa-light fa-{{ menu.icon }}"></i>
-        <!-- <span class="tooltip-text">{{ menu.title }}</span> -->
       </a>
     </li>
   }
   <!-- Active menu highlight strip -->
-  <span class="selected-strip" [dir]="layoutDirection" [style]="activeStripStyles()"></span>
+  <span class="selected-strip" id="selected-strip" [dir]="layoutDirection" [style]="activeStripStyles()"></span>
   <!-- Optional hover strip -->
-  <span class="selected-strip hovered-strip" [ngClass]="{ 'isActive': isElementHover() }" [dir]="layoutDirection" [style]="hoveredStripStyles()"></span>
+  <span class="selected-strip hovered-strip" id="hovered-strip" [ngClass]="{ 'isActive': isElementHover() }" [dir]="layoutDirection" [style]="hoveredStripStyles()"></span>
 
 </ul>
 

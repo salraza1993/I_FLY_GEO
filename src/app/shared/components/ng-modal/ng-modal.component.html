@@ -3,20 +3,15 @@
     @if(modal.config.overlay) {
       <div class="modal-overlay" (click)="modal.config.overlayClose !== false && modalService.close(modal.id)"></div>
     }
-    <div
-      [ngClass]="{'no-gap': classes()?.includes('no-gap')}"
-      class="modal-container {{ classes() }}"
-      [@slideIn]="getAnimationParams(modal)" (click)="$event.stopPropagation()">
-      @if(heading()) {
-        <div class="modal-header">
-          <h4 class="font__verbatim--bold">{{ heading() }}</h4>
-          <button class="button icon-only danger--light size--small">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-      }
-      <ng-container
-        *ngComponentOutlet="modal.config.component; inputs: modal.config.inputs" />
+    <!-- <div class="modal-container {{ modalService.getCurrentModalId() }}" (click)="$event.stopPropagation()"> -->
+    <div class="modal-container container-{{ modal.id }}">
+      <div class="top-strip"></div>
+      <div
+        [@slideIn]="getAnimationParams(modal)"
+        [ngClass]="{'no-gap': classes()?.includes('no-gap')}"
+        class="modal-content hasScrollbar {{ classes() }} content-{{ modal.id }}">
+        <ng-container *ngComponentOutlet="modal.config.component; inputs: modal.config.inputs" />
+      </div>
     </div>
   </div>
 }

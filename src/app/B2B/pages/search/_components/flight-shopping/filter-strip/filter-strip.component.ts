@@ -25,9 +25,7 @@ import { FilterDropdownComponent } from "./filter-dropdown/filter-dropdown.compo
     DurationComponent,
     AirlinesComponent,
     SuplliersComponent,
-    BaggageComponent,
-    ConnectingAirportsComponent,
-    FareTypesComponent,
+    BaggageComponent
 ],
   templateUrl: './filter-strip.component.html',
   styleUrls: ['./filter-strip.component.css', './filter-components-style.css'],

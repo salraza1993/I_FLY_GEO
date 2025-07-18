@@ -1,0 +1,26 @@
+:host {
+  --content-wrapper-max-width: calc(1100px + 5vw);
+  display: block;
+  position: relative;
+
+  .separator-line, .line-breaker {
+    position: relative;
+    width: 100%;
+    background-color: var(--border-color);
+    height: 1px;
+    border: 0;
+    /* margin-block-end: calc(var(--common-margin-y-end) * 1); */
+  }
+  .content-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: var(--content-wrapper-max-width);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-block-end: calc(1rem + 1vw);
+  }
+}
+
+

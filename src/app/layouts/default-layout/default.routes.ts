@@ -27,8 +27,8 @@ export const DASHBOARD_ROUTES: Routes = [
       { path: '', redirectTo: 'flights', pathMatch: 'full' } // Default tab
     ]
   },
-  { path: 'search/flight-results', 
-    loadComponent: () => import('@/B2B/pages/search/search-flights/flight-shopping/flight-shopping.component').then(m => FlightShoppingComponent) 
+  { path: 'search/flight-results',
+    loadComponent: () => import('@/B2B/pages/search/search-flights/flight-shopping/flight-shopping.component').then(m => FlightShoppingComponent)
   },
   {
     path: 'reports',
@@ -49,5 +49,9 @@ export const DASHBOARD_ROUTES: Routes = [
   {
     path: 'change-password',
     loadComponent: () => import('@/B2B/pages/change-password/change-password.component').then(m => m.ChangePasswordComponent)
+  },
+  {
+    path: 'elements',
+    loadComponent: () => import('@/B2B/pages/static-elements/static-elements.component').then(m => m.StaticElementsComponent)
   }
 ];

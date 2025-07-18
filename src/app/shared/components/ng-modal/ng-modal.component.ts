@@ -33,12 +33,12 @@ import { Component, computed, inject, input } from '@angular/core';
   }
 })
 export class NgModalComponent {
-  heading = input<string>('Salman')
-  classes = input<'no-gap' | string>();
   modalService = inject(NgModalService);
+  heading = input<string>('Salman');
+  topStrip = input<boolean>(true);
+  classes = input<'no-gap' | string>();
 
   getAnimationParams(modal: any) {
-    // this.modalService.open
     return {
       value: modal.isOpen,
       params: {

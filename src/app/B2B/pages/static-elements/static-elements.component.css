@@ -1,0 +1,22 @@
+:host {
+  --content-wrapper-max-width: calc(1100px + 5vw);
+
+  position: relative;
+  display: block;
+  padding-block: calc(1rem + 1vw);
+
+  .content-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: var(--content-wrapper-max-width);
+    margin-inline: auto;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}
+
+

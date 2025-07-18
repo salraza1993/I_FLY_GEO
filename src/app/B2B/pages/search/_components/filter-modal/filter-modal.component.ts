@@ -1,5 +1,6 @@
+import { NgModalService } from '@/shared/services/ng-modal.service';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-filter-modal, filter-modal',
@@ -11,5 +12,10 @@ import { Component } from '@angular/core';
   }
 })
 export class FilterModalComponent {
+  private readonly modalService = inject(NgModalService);
 
+  onClose() {
+    console.log('clicked')
+    this.modalService.close('filter-modal')
+  }
 }

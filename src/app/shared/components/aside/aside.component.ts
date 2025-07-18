@@ -35,13 +35,13 @@ export class AsideComponent implements AfterViewInit {
   private router = inject(Router);
   private elRef = inject(ElementRef);
   private zone = inject(NgZone);
-  private activatedRoute = inject(ActivatedRoute);
   private _languageService = inject(LanguageService);
   layoutDirection: 'ltr' | 'rtl' = this._languageService.getLayoutDirection;
   public isRouteActive = signal<boolean>(false);
   private activeRoute = signal<string>('');
 
   public isElementHover = signal<boolean>(false);
+  private lastHorevedOffest = signal<number>(0);
   public activeStripStyles = signal({ '--menu-strip-offset-y': '0px' });
   public hoveredStripStyles = signal({ '--menu-strip-offset-y': '0px' });
 
@@ -79,7 +79,7 @@ export class AsideComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.updateActiveStrip()
-    }, 0);    
+    }, 0);
   }
 
   public updateActiveStrip(): void {
@@ -104,8 +104,10 @@ export class AsideComponent implements AfterViewInit {
     this.isElementHover.set(true);
     const hoveredTab = event.currentTarget as HTMLElement;
     const parent = this.elRef.nativeElement.querySelector('.aside-menu');
+    this.lastHorevedOffest.set(hoveredTab.offsetTop)
     if (!hoveredTab || !parent) return;
     const offsetY = hoveredTab.offsetTop;
+    // console.log(this.lastHorevedOffest(), offsetY)
     this.hoveredStripStyles.set({'--menu-strip-offset-y': `${offsetY}px`,});
   }
   public onTabUnHover(event: MouseEvent): void {
