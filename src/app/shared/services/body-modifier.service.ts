@@ -1,6 +1,6 @@
 
-import { DOCUMENT } from '@angular/common';
-import { inject, Injectable, Renderer2, RendererFactory2, signal } from '@angular/core';
+
+import { inject, Injectable, Renderer2, RendererFactory2, signal, DOCUMENT } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 

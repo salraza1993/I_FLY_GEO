@@ -8,7 +8,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { ThemeModeChangerComponent } from '../../../shared/components/theme-mode-changer/theme-mode-changer.component';
 // import { TopPerformedUsersComponent } from '../../../shared/components/B2B/dashboard/top-performed-users/top-performed-users.component';
-import { DataTableComponent } from '../../../shared/components/elements/data-table/data-table.component';
 
 @Component({
   selector: 'dashboard',
@@ -21,7 +20,6 @@ import { DataTableComponent } from '../../../shared/components/elements/data-tab
     TranslateModule,
     CommonModule,
     ThemeModeChangerComponent,
-    DataTableComponent
     // TopPerformedUsersComponent,
 
   ],

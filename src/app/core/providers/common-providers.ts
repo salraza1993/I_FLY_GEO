@@ -8,7 +8,6 @@ import { LanguageService } from '@sharedServices/language.service';
 import { ViewportService } from '@sharedServices/viewport.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { CreateTranslateLoader } from '../i18n/translate-loader.factory';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 export const COMMON_PROVIDERS = [
   importProvidersFrom(
@@ -20,7 +19,6 @@ export const COMMON_PROVIDERS = [
     ViewportService,
     LanguageService,
     BodyClassModifierService,
-    NgxDatatableModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
