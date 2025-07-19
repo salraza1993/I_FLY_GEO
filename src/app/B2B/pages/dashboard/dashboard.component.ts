@@ -7,7 +7,6 @@ import { LanguageSwitcherComponent } from '../../../shared/components/language-s
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { ThemeModeChangerComponent } from '../../../shared/components/theme-mode-changer/theme-mode-changer.component';
-// import { TopPerformedUsersComponent } from '../../../shared/components/B2B/dashboard/top-performed-users/top-performed-users.component';
 
 @Component({
   selector: 'dashboard',
@@ -20,8 +19,6 @@ import { ThemeModeChangerComponent } from '../../../shared/components/theme-mode
     TranslateModule,
     CommonModule,
     ThemeModeChangerComponent,
-    // TopPerformedUsersComponent,
-
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',

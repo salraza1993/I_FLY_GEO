@@ -4,7 +4,6 @@ import { SearchFlightLoaderComponent } from '../../_components/search-flight-loa
 import { SearchModifyStripComponent } from "../../_components/flight-shopping/search-modify-strip/search-modify-strip.component";
 import { FlightCalenderCarouselComponent } from "../../_components/flight-shopping/flight-calender-carousel/flight-calender-carousel.component";
 import { FilterStripWrapperComponent } from "../../_components/flight-shopping/filter-strip-wrapper/filter-strip-wrapper.component";
-import { FiltersService } from '../../services/filters.service';
 import { FlightResultsComponent } from "../../_components/flight-shopping/flight-results/flight-results.component";
 
 @Component({
@@ -17,7 +16,6 @@ import { FlightResultsComponent } from "../../_components/flight-shopping/flight
     SearchModifyStripComponent,
     FlightResultsComponent
 ],
-  providers: [FiltersService],
   templateUrl: './flight-shopping.component.html',
   styleUrl: './flight-shopping.component.css',
   host: {
@@ -25,6 +23,5 @@ import { FlightResultsComponent } from "../../_components/flight-shopping/flight
   }
 })
 export class FlightShoppingComponent {
-  private fliterService = inject(FiltersService)
-  isLoading = signal(false);
+  isLoading = signal(true);
 }

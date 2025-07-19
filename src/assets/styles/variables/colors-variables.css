@@ -21,7 +21,9 @@
   --body-color: light-dark(var(--primary-100_dark), var(--primary-100_light));
   --body-color_reversed: light-dark(var(--primary-100_light), var(--primary-100_dark));
 
-  --border-color: light-dark(var(--primary-85_light), var(--primary-70_dark));
+  --border-color-light: var(--primary-85_light);
+  --border-color-dark: var(--primary-70_dark);
+  --border-color: light-dark(var(--border-color-light), var(--border-color-dark));
 
   --link-color: var(--body-color);
   --link-hover-color: light-dark(var(--accent-light), var(--accent-dark));

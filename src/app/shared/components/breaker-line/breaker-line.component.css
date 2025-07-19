@@ -1,0 +1,25 @@
+:host {
+  clear: both;
+  margin-inline: calc(var(--breaker-line-margin-y) / 2);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: var(--breaker-line-height);
+  .breaker-line {
+    flex-grow: 1;
+    display: block;
+    height: 80%;
+    background-color: light-dark(var(--breaker-line-color-light), var(--breaker-line-color-dark));
+  }
+  /* &:is(.type-danger) {
+
+  }
+  &.type {
+    $types: ('danger', 'warning', 'info', 'success', 'primary', 'dark', 'white');
+    @each $type in $types {
+      &--#{$type} {
+        --breaker-line-bg-rgb: var(--bs-#{$type}-rgb);
+      }
+    }
+  } */
+}

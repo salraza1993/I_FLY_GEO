@@ -5,6 +5,14 @@
 .text--unset { text-transform: unset !important; }
 .text--inherit { text-transform: inherit !important; }
 
+
+.text--danger, .text-danger { color: light-dark(var(--danger-0_light), var(--danger-0_dark)) !important; }
+.text--success, .text-success { color: light-dark(var(--success-0_light), var(--success-0_dark)) !important; }
+.text--info, .text-info { color: light-dark(var(--info-0_light), var(--info-0_dark)) !important; }
+.text--warning, .text-warning { color: light-dark(var(--warning-0_light), var(--warning-0_dark)) !important; }
+.text--purple, .text-purple { color: light-dark(var(--purple-0_light), var(--purple-0_dark)) !important; }
+.text--yellow, .text-yellow { color: light-dark(var(--yellow-0_light), var(--yellow-0_dark)) !important; }
+
 .link, .anchor-link, .anchor--link {
   text-decoration: none;
   color: var(--link-color);

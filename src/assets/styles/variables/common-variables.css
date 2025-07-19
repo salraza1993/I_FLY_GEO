@@ -58,9 +58,10 @@
   --checkbox-checked-bg: var(--primary);
   --checkbox-checked-circle: var(--white);
 
-  --breaker-line-height: 5px;
-  --breaker-line-opacity: 0.5;
-  --breaker-line-bg-rgb: var(--border-color-rgb);
+  --breaker-line-height: 1px;
+  --breaker-line-opacity: 0.15;
   --breaker-line-margin-y: 1rem;
   --breaker-line-padding-y: 0.45rem;
+  --breaker-line-color-light: hsl(var(--primary-hue) 0% 0% / var(--breaker-line-opacity));
+  --breaker-line-color-dark: hsl(var(--primary-hue) 0% 100% / var(--breaker-line-opacity));
 }

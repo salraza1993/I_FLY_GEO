@@ -1,39 +1,88 @@
 :host {
-  --card-footer-bg: var(--card-border);
-  --card-button-height: 35px;
+  --card-footer-bg: light-dark(var(--primary-90_light), var(--primary-90_dark));
+  --card-footer-elem-bg: light-dark(var(--primary-85_light), var(--primary-85_dark));
+  --card-button-height: 30px;
+
+  --wrapper-border-radius: calc(var(--border-radius) * 2.5);
+  --wrapper-bg: light-dark(var(--danger-100_light), var(--danger-90_dark));
+  --wrapper-color: light-dark(var(--primary-85_dark), var(--primary-80_light));
+  --wrapper-border: light-dark(var(--primary-90_light), var(--primary-75_dark));
+  --line-border: light-dark(var(--primary-50_dark), var(--primary-60_dark));
+
   display: block;
-  padding-inline: calc(var(--card-padding) * 1.0);
+  width: 100%;
 
   .card-footer-content {
     position: relative;
-    width: 100%;
+    max-width: var(--card-footer-width);
+    margin-inline: auto;
     background-color: var(--card-footer-bg);
-    padding-block: 0.5rem;
-    padding-inline: 0.5rem;
+    border: 1px solid var(--card-footer-border);
+    border-block-start: 0;
+    margin-block-start: -1px;
+    padding: calc(var(--card-padding) * 0.4);
     border-end-start-radius: calc(var(--border-radius) * 2);
     border-end-end-radius: calc(var(--border-radius) * 2);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    isolation: isolate;
+
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: transparent;
+      width: calc(var(--wrapper-border-radius) * 1);
+      height: calc(var(--wrapper-border-radius) * 1);
+      inset-block-start: 0;
+      z-index: -2;
+      border-block-start: 1px solid var(--card-footer-border);
+    }
+    &::before {
+      inset-inline-end: 100%;
+      border-radius: 0 100vw 0 0;
+      box-shadow: 5px -5px 0 5px var(--card-footer-bg);
+      border-inline-end: 1px solid var(--card-footer-border);
+    }
+    &::after {
+      inset-inline-start: 100%;
+      border-radius: 100vw 0 0 0;
+      box-shadow: -5px -5px 0 5px var(--card-footer-bg);
+      border-inline-start: 1px solid var(--card-footer-border);
+    }
+
     .block-content {
       display: flex;
-      gap: 1rem;
+      /* align-items: center; */
     }
 
     .card-footer-button {
+      color: var(--card-color);
       position: relative;
       display: flex;
       align-items: center;
       height: var(--card-button-height);
       border-radius: var(--border-radius);
-      outline-color: transparent;
       border: 0;
-      padding-inline-end: var(--card-padding);
-      font-weight: 600;
-      gap: 0.35rem;
+      padding-inline-end: calc(var(--card-padding) * 0.65);
+      font-size: 0.8rem;
+      transition: var(--transition);
+      flex-shrink: 0;
+
+      &[type=button] {
+        background-color: var(--card-footer-elem-bg);
+        font-weight: 600;
+        &:hover {
+          background-color: var(--card-color);
+          color: var(--card-bg);
+        }
+      }
       .icon {
         width: var(--card-button-height);
         aspect-ratio: 1;
+        font-size: 1rem;
       }
     }
   }

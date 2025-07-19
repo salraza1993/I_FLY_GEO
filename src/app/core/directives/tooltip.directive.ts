@@ -1,4 +1,4 @@
-import { Directive, effect, ElementRef, HostListener, inject, input, Input, OnDestroy, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
+import { booleanAttribute, Directive, effect, ElementRef, HostListener, inject, input, Input, OnDestroy, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
 
 type DirectionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'left-top' | 'left-bottom' | 'right' | 'right-top' | 'right-bottom';
 type TooltipType = 'info' | 'warning' | 'error' | 'success' | 'danger' | 'primary' | 'accent' | 'secondary' | 'dark' | 'light' | 'auto';
@@ -17,13 +17,14 @@ export class TooltipDirective implements OnDestroy {
   customClasess = input<string[] | string | null>(null);
   tooltipMaxWidth = input<StylesTypes>(null);
   tooltipMinWidth = input<StylesTypes>(null);
+  tooltipOnClick = input(false, { transform: booleanAttribute});
 
   private tooltip?: HTMLElement;
-  private offset?: number = 0;
-  private parentElement = inject(ElementRef);
-  private renderer = inject(Renderer2);
-  private viewContainer = inject(ViewContainerRef);
+  protected readonly parentElement = inject(ElementRef);
+  protected readonly renderer = inject(Renderer2);
+  protected readonly viewContainer = inject(ViewContainerRef);
   private destroyListeners: (() => void)[] = [];
+  private documentClickListener: (() => void) | null = null;
 
   private getTooltipClassMap(): string[] {
     return [
@@ -35,23 +36,27 @@ export class TooltipDirective implements OnDestroy {
     ];
   }
 
-  constructor() {
-    effect(() => () => this.cleanup());
-  }
+  private readonly onCleanup = effect(() => this.cleanup());
 
   ngOnDestroy(): void { this.cleanup(); }
 
+  protected initializeTooltip(): void {
+    this.showTooltip();
+    const timer = setTimeout(() => {
+      this.renderer.addClass(this.parentElement.nativeElement, 'ng-tooltip-container');
+    }, this.tooltipDelay());
+    this.destroyListeners.push(() => clearTimeout(timer));
+  }
+
   @HostListener('mouseover') onMouseEnter() {
-    if (!this.tooltip) {
-      this.showTooltip();
-      const timer = setTimeout(() => {
-        this.renderer.addClass(this.parentElement.nativeElement, 'ng-tooltip-container');
-      }, this.tooltipDelay());
-      this.destroyListeners.push(() => clearTimeout(timer));
+    if (!this.tooltip && !this.tooltipOnClick()) {
+      this.initializeTooltip();
     }
   }
 
   @HostListener('mouseleave') onMouseLeave() {
+    if (!this.tooltip || this.tooltipOnClick()) return;
+
     const timer = setTimeout(() => {
       const classes = this.getTooltipClassMap();
       this.removeClasses(this.parentElement.nativeElement, classes);
@@ -61,7 +66,44 @@ export class TooltipDirective implements OnDestroy {
     this.destroyListeners.push(() => clearTimeout(timer));
   }
 
-  private createTooltip(): void {
+  @HostListener('click', ['$event.target'])
+  onClick(event?: any): void {
+    const clickedInside = this.parentElement.nativeElement.contains(event);
+
+    if (this.tooltipOnClick()) {
+      if (!this.tooltip) {
+        this.initializeTooltip();
+        this.addDocumentClickListener();
+      } else {
+        if (!clickedInside) {
+          this.hideTooltip();
+          this.removeDocumentClickListener();
+          return;
+        }
+      }
+    }
+  }
+
+  protected addDocumentClickListener() {
+    if (this.documentClickListener) return;
+    const handler = (event: MouseEvent) => {
+      if (!this.parentElement.nativeElement.contains(event.target)) {
+        this.hideTooltip();
+        this.removeDocumentClickListener();
+      }
+    };
+    document.addEventListener('click', handler, true);
+    this.documentClickListener = () => document.removeEventListener('click', handler, true);
+  }
+
+  protected removeDocumentClickListener() {
+    if (this.documentClickListener) {
+      this.documentClickListener();
+      this.documentClickListener = null;
+    }
+  }
+
+  protected createTooltip(): void {
     if (this.tooltip) return;
     this.tooltip = this.renderer.createElement('div') as HTMLDivElement;
 
@@ -84,7 +126,7 @@ export class TooltipDirective implements OnDestroy {
     this.renderer.appendChild(this.parentElement.nativeElement, this.tooltip);
   }
 
-  private appendTemplateContent(): void {
+  protected appendTemplateContent(): void {
     if (!this.tooltip || !(this.tooltipContent instanceof TemplateRef)) return;
 
     this.viewContainer.clear();
@@ -100,23 +142,24 @@ export class TooltipDirective implements OnDestroy {
     this.renderer.appendChild(this.tooltip, container);
   }
 
-  private showTooltip(): void {
+  protected showTooltip(): void {
     this.createTooltip();
     this.tooltip?.classList.add('ng-tooltip--shown');
   }
 
-  private hideTooltip(): void {
+  protected hideTooltip(): void {
     if (this.tooltip) {
       const classes = this.getTooltipClassMap();
       this.removeClasses(this.tooltip, classes);
       this.removeClasses(this.parentElement.nativeElement, classes);
       this.renderer.removeChild(this.parentElement.nativeElement, this.tooltip);
       this.tooltip = undefined;
-        setTimeout(() => this.cleanup(), 300);
+      setTimeout(() => this.cleanup(), 300);
+      this.removeDocumentClickListener();
     }
   }
 
-  private setTooltipDimensions(): void {
+  protected setTooltipDimensions(): void {
     if (!this.tooltip) return;
 
     const cssVariablesMap: [string, StylesTypes, string][] = [
@@ -138,12 +181,12 @@ export class TooltipDirective implements OnDestroy {
     this.renderer.setAttribute(this.tooltip, 'style', stylesArray.join('; '));
   }
 
-  private normalizeCssValue(value: StylesTypes): string {
+  protected normalizeCssValue(value: StylesTypes): string {
     if (value === null || value === 0) return '';
     return typeof value === 'number' ? `${value}px` : value;
   }
 
-  private addonClasses(element: HTMLElement, classes: string[] | string | null) : void {
+  protected addonClasses(element: HTMLElement, classes: string[] | string | null) : void {
     if(!classes) return;
     if(Array.isArray(classes)) {
       classes.forEach(item => this.renderer.addClass(element, item));
@@ -151,10 +194,10 @@ export class TooltipDirective implements OnDestroy {
       this.renderer.addClass(element, classes);
     }
   }
-  private removeClasses(htmlElement: HTMLElement, classes: string[]):void {
+  protected removeClasses(htmlElement: HTMLElement, classes: string[]):void {
     classes.forEach(element => this.renderer.removeClass(htmlElement, element))
   }
-  private cleanup(): void {
+  protected cleanup(): void {
     if (!this.tooltip && this.destroyListeners.length === 0) return;
     this.destroyListeners.forEach(fn => fn());
     this.destroyListeners = [];

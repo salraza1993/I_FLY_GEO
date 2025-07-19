@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { COMMON_IMPORTS } from '../../../../../shared/helpers/common-imports';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+// import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 @Component({
   selector: 'app-top-performed-users, top-performed-users',
-  imports: [COMMON_IMPORTS, NgxDatatableModule],
+  imports: [COMMON_IMPORTS],
   templateUrl: './top-performed-users.component.html',
   styleUrl: './top-performed-users.component.css'
 })
