@@ -59,9 +59,8 @@ export class OriginDestinationComponent {
     destination: { ...this.getDestinationAirportData() },
   }));
 
-  public getOriginDestination = model<OriginDestinationDataType>(
-    this.originDestinationComputed()
-  );
+  // Two-way binding data
+  public getOriginDestination = model<OriginDestinationDataType>(this.originDestinationComputed());
 
   public errors = signal<{ origin: string | null; destination: string | null }>({
     origin: null,
@@ -80,12 +79,11 @@ export class OriginDestinationComponent {
     return (touched.origin && !!errors.origin) || (touched.destination && !!errors.destination);
   });
 
-  constructor() {
-    effect(() => {
-      this.getOriginDestination.set(this.originDestinationComputed());
-      this.errorStateChanged.set(this.haveError());
-    });
-  }
+  private checkEffectsOnUpdate = effect(() => {
+    this.getOriginDestination.set(this.originDestinationComputed());
+    this.errorStateChanged.set(this.haveError());
+  })
+
 
   public swapValues(): void {
     const [originValue, destinationValue] = [this.origin(), this.destination()];
@@ -127,6 +125,7 @@ export class OriginDestinationComponent {
         isOrigin ? this.getOriginAirportData.set(null) : this.getDestinationAirportData.set(null);
       } else if (isSame) {
         this.setError(field, 'Origin and destination cannot be the same.');
+        this.getOriginDestination.set({origin: null, destination: null });
       } else {
         this.clearError(field);
         if (document.activeElement === inputRef.nativeElement) {

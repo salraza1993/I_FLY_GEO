@@ -22,13 +22,13 @@
   --selected-value-active-bg: light-dark(var(--primary-100_light), var(--primary-85_dark));
   --selected-value-active-color: light-dark(var(--primary-100_dark), var(--primary-85_light));
   --selected-pax-active-border: light-dark(var(--primary-50_light), var(--primary-85_light));
-  
+
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--block-gap, 0.65rem); 
+  gap: var(--block-gap, 0.65rem);
   width: 100%;
-  
+
   & .block-label { font-weight: 600; display: flex; }
   & .block-body {
     position: relative;
@@ -105,14 +105,14 @@
     }
 
     &:is(.error) {
-      --input-block-border: light-dark(var(--danger-60_light), var(--danger-100_dark));
-      --input-block-bg: light-dark(var(--danger-100_light), var(--danger-100_dark));
+      --input-block-border: light-dark(var(--danger-60_light), var(--danger-70_dark));
+      --input-block-bg: light-dark(var(--danger-20_light), var(--danger-40_dark));
     }
     .error-message {
       position: absolute;
       inset-inline-start: 0;
       inset-block-start: calc(100% + 0.35rem);
-      color: var(--input-block-border);
+      color: light-dark(var(--danger-0_light), var(--danger-60_dark));
     }
 
     &:hover, &:focus-within, &:is(.selected, .active) {
@@ -147,7 +147,7 @@
     &:is(.error) {
       --input-block-border: light-dark(var(--danger-80_light), var(--danger-100_dark));
     }
-    
+
     &:is(.opened) {
       background-color: var(--selected-value-active-bg);
       color: var(--selected-value-active-color);

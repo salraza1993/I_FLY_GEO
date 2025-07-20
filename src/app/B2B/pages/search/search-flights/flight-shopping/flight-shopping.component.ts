@@ -26,7 +26,7 @@ import { FlightSearchService } from '../../services/flight-search.service';
   },
 })
 export class FlightShoppingComponent {
-  private fliterService = inject(FiltersService)
+  private fliterService = inject(FiltersService);
   private flightSearchService = inject(FlightSearchService)
   isLoading = computed(() => this.flightSearchService.isLoading());
 }

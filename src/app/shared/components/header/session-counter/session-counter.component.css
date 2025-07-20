@@ -1,0 +1,27 @@
+:host {
+  --state-bg: light-dark(var(--info-0_light), var(--info-100_dark));
+  --state-color: var(--light);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(var(--header-height) + 20px);
+  padding-inline: 0.75rem;
+  padding-block: 0.5rem 0.60rem;
+  text-align: center;
+  gap: 0.5rem;
+  border-end-start-radius: calc(var(--border-radius) * 1.75);
+  border-end-end-radius: calc(var(--border-radius) * 1.75);
+  background-color: var(--state-bg);
+  color: var(--state-color);
+  border-block-start: 0;
+
+  &:is(.warning) {
+    --state-bg: light-dark(var(--warning-0_light), var(--info-100_dark));
+  }
+  &:is(.danger) {
+    --state-bg: light-dark(var(--danger-0_light), var(--info-100_dark));
+  }
+
+}

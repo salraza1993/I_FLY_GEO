@@ -1,12 +1,11 @@
 :host {
-  --empty-state-bg: light-dark(var(--warning-20_light), var(--warning-100_dark));
-  --empty-state-border: light-dark(var(--warning-50_light), var(--warning-50_dark));
-  --empty-state-color: light-dark(var(--warning-90_light), var(--warning-10_dark));
-  --error-state-bg: light-dark(var(--danger-100_light), var(--danger-10_dark));
-  --error-state-border: light-dark(var(--danger-80_light), var(--danger-10_dark));
-  --error-state-color: light-dark(var(--danger-100_dark), var(--danger-100_dark));
+  --state-bg: light-dark(var(--primary-90_light), var(--primary-80_dark));
+  --state-border: light-dark(var(--primary-80_light), var(--primary-70_dark));
+  --state-color: light-dark(var(--primary-20_light), var(--primary-20_dark));
+
   --aiport-list-bg: light-dark(var(--primary-90_light), var(--primary-70_dark));
   --aiport-list-color: light-dark(var(--primary-90_dark), var(--primary-100_light));
+
   display: block;
   border-radius: inherit;
 
@@ -16,15 +15,19 @@
     padding-block: 0.5rem;
     display: block;
     border-radius: calc(var(--border-radius) / 1);
+    background-color: var(--state-bg);
+    color: var(--state-color);
+    box-shadow: inset 0 0 0 1px var(--state-border);
+
     &:is(.empty-state) {
-      background-color: var(--empty-state-bg);
-      color: var(--empty-state-color);
-      box-shadow: inset 0 0 0 1px var(--empty-state-border);
+      --state-bg: light-dark(var(--warning-20_light), var(--warning-100_dark));
+      --state-border: light-dark(var(--warning-50_light), var(--warning-60_dark));
+      --state-color: light-dark(var(--warning-90_light), var(--warning-30_dark));
     }
     &:is(.error-state) {
-      background-color: var(--error-state-bg);
-      color: var(--error-state-color);
-      box-shadow: inset 0 0 0 1px var(--error-state-border);
+      --state-bg: light-dark(var(--danger-10_light), var(--danger-90_dark));
+      --state-border: light-dark(var(--danger-30_light), var(--danger-70_dark));
+      --state-color: light-dark(var(--danger-0_dark), var(--danger-0_dark));
     }
   }
 

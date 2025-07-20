@@ -13,7 +13,7 @@ import {
 
 import { HttpClient } from '@angular/common/http';
 import { fadeIn } from '@/shared/animations/fade.animations';
-import { AirportDataType } from '../../../services/airport-list.service';
+import { AirportDataType, AirportListService } from '../../../services/airport-list.service';
 
 @Component({
   selector: 'app-airport-list, airport-list',
@@ -21,28 +21,32 @@ import { AirportDataType } from '../../../services/airport-list.service';
   templateUrl: './airport-list.component.html',
   styleUrl: './airport-list.component.css',
   animations: [fadeIn],
+  providers: [AirportListService],
   host: {
     class: 'aiport-list-wrapper',
   },
 })
 export class AirportListComponent {
-  private readonly AIRPORT_LIST_JSON_URL = 'assets/static-json/airports.json';
-  private http = inject(HttpClient);
-  public allAirport = signal<AirportDataType[]>([]);
+  private airportListService = inject(AirportListService);
+  public allAirport = computed<AirportDataType[]>(() => this.airportListService.allAirport());
+  public filteredAirport = computed<AirportDataType[]>(() => this.airportListService.filteredAirport());
   public focusedIndex = signal<number>(-1);
   public showError = signal(false);
 
   public elementType = input<string>('origin');
   public onSelected = output<AirportDataType | null | any>()
-  // two-data binding
   public selectedAirport = model<AirportDataType | null>(null);
   public searchValue = model<string | null | undefined>('');
-  constructor() {
-    effect(() => {
-      const query = this.searchValue() || '';
-      this.evaluateError(query);
-    });
-  }
+
+  private checkError = effect(() => {
+    const query = this.searchValue() || '';
+    this.evaluateError(query);
+  });
+
+  public updateSearchValue = effect(() => {
+    this.airportListService.updateSearch(this.searchValue() || '');
+  });
+
 
   // keyboard based selection
   @HostListener('document:keydown', ['$event'])
@@ -74,11 +78,11 @@ export class AirportListComponent {
     const focused = results[this.focusedIndex()];
     this.allAirport().forEach(item => {
       if(
-        item.airportCode.toLowerCase() === this.searchValue()?.toLowerCase().trim() ||
-        item.airportCity.toLowerCase() === this.searchValue()?.toLowerCase().trim()
+        item.IATA.toLowerCase() === this.searchValue()?.toLowerCase().trim() ||
+        item.City.toLowerCase() === this.searchValue()?.toLowerCase().trim()
       ) {
         this.selectedAirport.set(item);
-        const displayText = `${item.airportCity} (${item.airportCode}), ${item.airportName}`;
+        const displayText = `${item.City} (${item.IATA}), ${item.AirportName}`;
         this.searchValue.set(displayText);
         this.focusedIndex.set(-1);
         this.onSelected.emit(this.selectedAirport());
@@ -87,43 +91,25 @@ export class AirportListComponent {
     })
     if (focused) {
       this.selectedAirport.set(focused);
-      const displayText = `${focused.airportCity} (${focused.airportCode}), ${focused.airportName}`;
+      const displayText = `${focused.City} (${focused.IATA}), ${focused.AirportName}`;
       this.searchValue.set(displayText);
       this.focusedIndex.set(-1);
       this.onSelected.emit(this.selectedAirport());
     }
   }
 
-  ngOnInit() {
-    this.http
-      .get<AirportDataType[]>(this.AIRPORT_LIST_JSON_URL)
-      .subscribe((data) => {
-        this.allAirport.set(data);
-      });
-  }
-
-  public filteredAirport = computed(() => {
-    const query = (this.searchValue() || '').toLowerCase().trim();
-    if (query.length < 3) return [];
-
-    return this.allAirport().filter((airport) =>
-      JSON.stringify(airport).toLowerCase().includes(query)
-    ).splice(0, 5);
-  })
   public onSelect(selectedItem: AirportDataType):void {
-    const foundItem = this.allAirport().findIndex(item => item.airportCode === selectedItem.airportCode)
+    const foundItem = this.allAirport().findIndex(item => item.IATA === selectedItem.IATA)
     this.selectedAirport.set(this.allAirport()[foundItem]);
-    const displayText = `${this.allAirport()[foundItem].airportCity} (${this.allAirport()[foundItem].airportCode}), ${this.allAirport()[foundItem].airportName}`;
+    const displayText = `${this.allAirport()[foundItem].City} (${this.allAirport()[foundItem].IATA}), ${this.allAirport()[foundItem].AirportName}`;
     this.searchValue.set(displayText);
     this.focusedIndex.set(-1);
     this.onSelected.emit(this.selectedAirport());
   }
 
   private evaluateError(query: string) {
-    const hasMatch = this.allAirport().filter((airport) =>
-      JSON.stringify(airport).toLowerCase().includes(query)
-    );
-    const shouldShow = query.length >= 3 && !hasMatch;
+    const hasMatch = this.filteredAirport();
+    const shouldShow = query.length >= 3 && !hasMatch.length;
     this.showError.set(shouldShow);
   }
 }
