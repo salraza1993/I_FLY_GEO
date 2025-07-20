@@ -1,7 +1,10 @@
 <div class="content-wrapper">
   <hr class="separator-line" />
-  <onway-result-card />
-  <onway-result-card />
+  @for (flight of flightData(); track flight) {
+    <onway-result-card [data]="flight" />
+
+  }
+  <!-- <onway-result-card />
   <onway-result-card />
   <onway-result-card />
   <onway-result-card />
@@ -9,5 +12,6 @@
   <roundtrip-result-card />
   <roundtrip-result-card />
   <roundtrip-result-card />
-  <roundtrip-result-card />
+  <roundtrip-result-card /> -->
+  <!-- <roundtrip-result-card /> -->
 </div>

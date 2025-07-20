@@ -1,12 +1,12 @@
 <div class="card-body">
   <div class="journey-wrapper">
-    <journey />
+    <segment [segementData]="data().journeys" />
   </div>
   <div class="line-breaker vertical"></div>
   <div class="price-and-buttons">
     <div class="price">
       <small>Starting From</small>
-      <h4 class="m-0">AED 1,56056</h4>
+      <h4 class="m-0">{{getPrice().currencyCode}} {{ getPrice().totalAmount }}</h4>
     </div>
     <div class="buttons">
       <button class="button size--small">
