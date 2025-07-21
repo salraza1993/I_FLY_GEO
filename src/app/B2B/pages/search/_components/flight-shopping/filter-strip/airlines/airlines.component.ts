@@ -34,7 +34,7 @@ export class AirlinesComponent {
     return this.airlines().filter(airline => airline.selected)
   })
 
-  readonly filteredAirlins = computed<AirlineType[]>(() => {
+  readonly filteredAirlines = computed<AirlineType[]>(() => {
     const query = (this.searchInput() || '').toLowerCase().trim();
     if (query.length < 3) return this.airlines();
     return this.airlines()?.filter(airport => airport.name.toLowerCase().includes(query));

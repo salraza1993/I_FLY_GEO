@@ -26,8 +26,8 @@ export class SearchDatepickerComponent implements AfterViewInit, OnDestroy {
   readonly dateStartFrom: DateTime = new DateTime(new Date());
   readonly dateEndsTo: DateTime = new DateTime(new Date());
   readonly alignment: string[] = ['y-start', 'x-start'];
-  readonly format: string = 'DD/MM/YYYY';
-  
+  readonly format: string = 'YYYY-MM-DD';
+
   public showCalendar = model<boolean>(false);
   public focusNext = output<string>();
   isDatePickerActive = signal<boolean>(false);
@@ -49,6 +49,7 @@ export class SearchDatepickerComponent implements AfterViewInit, OnDestroy {
 
   public getDate = model<SearchDateType>(null);
   public isRoundtrip = input(false, { transform: booleanAttribute});
+
   private plugins = signal<any>([LockPlugin]);
   private pluginConfig = signal<any>({
     LockPlugin: {
@@ -101,7 +102,7 @@ export class SearchDatepickerComponent implements AfterViewInit, OnDestroy {
       this.validateDate();
     });
   }
-  
+
 
   private initializeCalender(): void {
     const startDateElement = document.getElementById('startDate') as HTMLInputElement;
@@ -140,7 +141,7 @@ export class SearchDatepickerComponent implements AfterViewInit, OnDestroy {
     this.datePicker = new easepick.create(calendarConfig);
     applyCalenderWrapperStyles(this.alignment, this.datepickerParentId());
   }
-  
+
   ngAfterViewInit(): void {
     setTimeout(() => this.initializeCalender(), 1000);
   }

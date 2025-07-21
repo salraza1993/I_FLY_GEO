@@ -36,20 +36,20 @@
     public focusNext = output<string>();
     public touched = signal<boolean>(false);
     private hasInteracted = signal<boolean>(false);
-    public hasError = model(!!this.error());
+    public hasError = model(false);
     public showPassengerDropdown = model<boolean>(false);
-    
+
     private getPaxComputed = computed<PaxSelectionDataType>(() => ({
       adults: this.totalAdults(),
       children: this.totalChilds(),
       infants: this.totalInfants(),
     }))
-  
+
     private totalPax = computed(() => {
       const pax = this.getPaxComputed();
       return pax.adults + pax.children + pax.infants;
     });
-    
+
 
     public getPax = model<PaxSelectionDataType>({
       adults: this.totalAdults(),
@@ -57,33 +57,39 @@
       infants: this.totalInfants(),
     });
 
-    constructor() {
-      effect(() => {
-        if (this.showPassengerDropdown() && this.touched()) {
-          this.dropdownHandler(true);
-          queueMicrotask(() => this.showPassengerDropdown.set(false));
-        }
-      });
-      effect(() => {
-        if (!this.touched()) return;
-        const total = this.totalPax();
+    protected showDropdownEffect = effect(() => {
+      if (this.showPassengerDropdown() && this.touched()) {
+        this.dropdownHandler(true);
+        queueMicrotask(() => this.showPassengerDropdown.set(false));
+      }
+    });
 
-        if (total > 9) {
-          this.error.set('We do not support more than 9 passengers.');
-        } else if (this.totalAdults() < 1) {
-          this.error.set('At least one adult must be selected.');
-        } else if (this.totalInfants() > this.totalAdults()) {
-          this.error.set('Infants cannot exceed the number of adults.');
-        } else {
-          this.error.set(null);
-        }
-      });
+    protected errorHandling = effect(() => {
+      if (!this.touched()) return;
+      const total = this.totalPax();
+
+      if (total > 9) {
+        this.error.set('We do not support more than 9 passengers.');
+        this.hasError.set(true)
+      } else if (this.totalAdults() < 1) {
+        this.error.set('At least one adult must be selected.');
+        this.hasError.set(true)
+      } else if (this.totalInfants() > this.totalAdults()) {
+        this.error.set('Infants cannot exceed the number of adults.');
+        this.hasError.set(true)
+      } else {
+        this.error.set(null);
+        this.hasError.set(false)
+      }
+    });
+
+    protected updatingPax = effect(() => {
       this.getPax.set({
         adults: this.totalAdults(),
         children: this.totalChilds(),
         infants: this.totalInfants(),
       })
-    }
+    })
 
     public add(type: string): void {
       this.hasInteracted.set(true);

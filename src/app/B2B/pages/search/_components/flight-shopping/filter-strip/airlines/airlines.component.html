@@ -19,8 +19,8 @@
         placeholder="Enter: Name/Code" />
     </div>
     <ul tabindex="-1" class="data-list dropdown-anime-item hasScrollbar">
-      @if(filteredAirlins().length > 0) {
-        @for(list of filteredAirlins(); track list.id; let index = $index) {
+      @if(filteredAirlines().length > 0) {
+        @for(list of filteredAirlines(); track list.id; let index = $index) {
           <li
             tabindex="0"
             class="data-list-item dropdown-anime-item"

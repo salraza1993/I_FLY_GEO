@@ -28,7 +28,7 @@ export const DASHBOARD_ROUTES: Routes = [
     ]
   },
   { path: 'search/flight-results',
-    loadComponent: () => import('@/B2B/pages/search/search-flights/flight-shopping/flight-shopping.component').then(m => FlightShoppingComponent)
+    loadComponent: () => import('@/B2B/pages/search/search-flights/flight-shopping/flight-shopping.component').then(m => FlightShoppingComponent),
   },
   {
     path: 'reports',

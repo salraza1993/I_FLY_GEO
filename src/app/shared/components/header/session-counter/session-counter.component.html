@@ -1,2 +1,10 @@
-<small>Session Counter</small>
-<h4>{{formatTime(timeLeft())}}</h4>
+<!-- <small>Session Counter</small> -->
+<!-- <h4 class="m-0">{{formatTime(minutesLeft())}}</h4> -->
+@if (sessionTimeLeft().minutes > 0 || sessionTimeLeft().seconds > 0) {
+  <h4 class="m-0">
+    {{ sessionTimeLeft().minutes.toString().padStart(2, '0') }}:{{ sessionTimeLeft().seconds.toString().padStart(2, '0') }}
+  </h4>
+} @else {
+  <small>Session expired</small>
+}
+

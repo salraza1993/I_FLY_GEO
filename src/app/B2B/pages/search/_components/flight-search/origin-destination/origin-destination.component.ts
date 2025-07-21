@@ -16,8 +16,8 @@ import { AirportDataType } from '../../../services/airport-list.service';
 import { fadeIn } from '@/shared/animations/fade.animations';
 
 export type OriginDestinationDataType = {
-  origin: string | object | null;
-  destination: string | object | null;
+  origin: AirportDataType | null;
+  destination: AirportDataType | null;
 };
 
 @Component({
@@ -55,8 +55,8 @@ export class OriginDestinationComponent {
     (this.enableOriginAirportList() || this.enableDestinationAirportList()) ? 10 : 1)
 
   private originDestinationComputed = computed<OriginDestinationDataType>(() => ({
-    origin: { ...this.getOriginAirportData() },
-    destination: { ...this.getDestinationAirportData() },
+    origin: this.getOriginAirportData(),
+    destination: this.getDestinationAirportData(),
   }));
 
   // Two-way binding data

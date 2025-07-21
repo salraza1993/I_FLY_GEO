@@ -2,14 +2,17 @@
   --state-bg: light-dark(var(--info-0_light), var(--info-100_dark));
   --state-color: var(--light);
 
-  position: relative;
+  position: fixed;
+  inset-block-start: var(--header-height);
+  inset-inline-end: 1rem;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(var(--header-height) + 20px);
   padding-inline: 0.75rem;
-  padding-block: 0.5rem 0.60rem;
+  padding-block: 0.35rem;
   text-align: center;
+  min-width: 100px;
   gap: 0.5rem;
   border-end-start-radius: calc(var(--border-radius) * 1.75);
   border-end-end-radius: calc(var(--border-radius) * 1.75);

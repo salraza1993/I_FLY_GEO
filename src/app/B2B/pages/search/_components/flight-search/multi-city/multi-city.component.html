@@ -1,12 +1,12 @@
 @for (segment of segments(); track segment.id; let idx = $index) {
   <div class="form-row" [style.--grid-columns]="2">
-    <origin-destination 
+    <!-- <origin-destination
       [(getOriginDestination)]="segments()[idx].originDestination"
-      data-z-index="1" />
-    <datepicker 
+      data-z-index="1" /> -->
+    <datepicker
       [alignment]="['y-start', 'x-end']"
       [(getDate)]="segments()[idx].date"
-      [datepickerId]="'calendar-' + segment.id" 
+      [datepickerId]="'calendar-' + segment.id"
       data-z-index="1" />
   </div>
 }
@@ -14,10 +14,10 @@
   <passenger-selection [(getPax)]="selectedPax" data-z-index="1" />
   <cabin-selection [(getCabins)]="selectedCabins" data-z-index="1" />
 </div>
-<custom-button 
-  data-z-index="0" 
-  class="button button--secondary size--large" 
-  buttonTitle="Search Flight" 
+<custom-button
+  data-z-index="0"
+  class="button button--secondary size--large"
+  buttonTitle="Search Flight"
   iconBefore="plane-departure">
 </custom-button>
 

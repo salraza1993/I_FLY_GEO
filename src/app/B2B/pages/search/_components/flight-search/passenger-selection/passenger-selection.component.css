@@ -1,11 +1,11 @@
 :host {
   --selector-btn-bg: light-dark(var(--primary-80_light), var(--primary-50_dark));
-  
-  position: relative;  
+
+  position: relative;
   width: 100%;
 
   .search-element-block {
-    .selected-value-strip {      
+    .selected-value-strip {
       .selected-pax__list {
         width: 100%;
         position: relative;
@@ -42,7 +42,8 @@
         position: relative;
         padding: 0.35rem;
         padding-inline-start: 0.65rem;
-        background-color: light-dark(var(--danger-100_light), var(--danger-60_dark));
+        inset-block-start: 0;
+        background-color: light-dark(var(--danger-10_light), var(--danger-10_dark));
         box-shadow: 0 0 0 1px light-dark(var(--danger-80_light), var(--danger-80_dark));
         display: flex;
         align-items: center;
@@ -51,7 +52,7 @@
         small { font-size: 0.75rem;}
         .error-icon {
           font-size: 1.25rem;
-          color: light-dark(var(--danger-60_light), var(--danger-10_dark));
+          color: light-dark(var(--danger-0_light), var(--danger-10_dark));
         }
       }
     }

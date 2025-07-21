@@ -1,40 +1,20 @@
-import { SessionManagerService } from '@/B2B/pages/search/services/session-manager.service';
-import { CommonModule } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit, ViewContainerRef, signal, computed } from '@angular/core';
+import { Component, computed, effect, inject, OnDestroy, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DateTime, Duration } from 'luxon';
+import { SessionManagerService } from '../../services/session-manager.service';
+import { DateTime } from 'luxon';
 
 @Component({
-  selector: 'app-session-counter, session-counter',
-  imports: [CommonModule],
+  selector: 'session-counter',
+  standalone: true,
   templateUrl: './session-counter.component.html',
-  styleUrl: './session-counter.component.css',
-  host: {
-    class: 'session-counter-wrapper',
-    '[class.normal]': 'manageStages() === "normal"',
-    '[class.warning]': 'manageStages() === "warning"',
-    '[class.danger]': 'manageStages() === "danger"',
-  },
 })
+
 export class SessionCounterComponent implements OnDestroy {
   private route = inject(ActivatedRoute);
   private sessionManager = inject(SessionManagerService);
-  initiatedTime = signal<number>(20);
-  timeLeft =  signal<number>(this.initiatedTime());
   public minutesLeft = signal(0);
   private intervalId: ReturnType<typeof setInterval> | null = null;
-  private viewContainerRef = inject(ViewContainerRef);
   private sessionId: string | null = null;
-
-  manageStages = computed<string>(() => {
-    const remaining = this.minutesLeft();
-    const total = this.initiatedTime();
-    const third = Math.round(total / 3);
-
-    if (remaining <= third) return 'danger';
-    if (remaining < third * 2) return 'warning';
-    return 'normal';
-  });
 
   constructor() {
     // Get sessionId from query params
@@ -64,11 +44,6 @@ export class SessionCounterComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     if (this.intervalId) clearInterval(this.intervalId);
-  }
-
-  // Formating the time left in mm:ss format
-  formatTime(totalSeconds: number): string {
-    return Duration.fromObject({ seconds: totalSeconds }).toFormat('mm:ss');
   }
 
   public sessionTimeLeft() {

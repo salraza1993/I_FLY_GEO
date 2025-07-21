@@ -1,0 +1,7 @@
+@if (sessionTimeLeft().minutes > 0 || sessionTimeLeft().seconds > 0) {
+  <div>
+    Session expires in: <b>{{ sessionTimeLeft().minutes.toString().padStart(2, '0') }}:{{ sessionTimeLeft().seconds.toString().padStart(2, '0') }}</b>
+  </div>
+} @else {
+  <div>Session expired</div>
+}

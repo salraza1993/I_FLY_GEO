@@ -3,43 +3,83 @@
     <img src="assets/images/airlines/ai.svg" alt="Air India" />
   </div>
   <div class="airline-name">
-    <p class="m-0 text-ellipsis-multiline">{{segementData()[0].segments[0].operatingCarrierInfo.CarrierName}}</p>
-    <small class="text-ellipsis"><strong>{{ segementData()[0].segments[0].operatingCarrierInfo.CarrierDesigName }}</strong></small>
+    <p class="m-0 text-ellipsis-multiline text--capitalize">
+      {{
+        segementData()[0].segments[0].operatingCarrierInfo.CarrierName.toLowerCase()
+      }}
+    </p>
+    <small class="text-ellipsis">
+      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierCode }} -
+      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierDesigCode }}
+    </small>
   </div>
 </div>
 <ng-template #airlineTooltip>
-  <div class="airline-name">
-    <p class="m-0">{{segementData()[0].segments[0].operatingCarrierInfo.CarrierName}}</p>
-    <small><strong>{{ segementData()[0].segments[0].operatingCarrierInfo.CarrierDesigName }}</strong></small>
+  <div class="airline-name text--capitalize">
+    <p class="m-0">
+      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierName.toLowerCase() }}
+    </p>
+    <small>
+      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierCode }} -
+      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierDesigCode }}
+    </small>
   </div>
 </ng-template>
 <div class="line-breaker vertical"></div>
 <div class="timeline">
   <div class="airport-time origin">
     <h6 class="m-0">
-      <span class="airport-code">{{ segementData()[0].segments[0].dep.IATALocationCode}}</span>
+      <span class="airport-code">{{
+        segementData()[0].segments[0].dep.IATALocationCode
+      }}</span>
       <span>&nbsp;-&nbsp;</span>
-      <span class="time">{{ dateFormat(segementData()[0].segments[0].dep.AircraftScheduledDateTime, 'time')}}</span>
+      <span class="time">{{
+        dateFormat(
+          segementData()[0].segments[0].dep.AircraftScheduledDateTime,
+          "time"
+        )
+      }}</span>
     </h6>
-    <small class="date">{{ dateFormat(segementData()[0].segments[0].dep.AircraftScheduledDateTime, 'date')}}</small>
+    <small class="date">{{
+      dateFormat(
+        segementData()[0].segments[0].dep.AircraftScheduledDateTime,
+        "date"
+      )
+    }}</small>
   </div>
   <div class="duration">
     <div class="layover-strip">
       @for(segment of segmentLength; track segment) {
-        <span class="pill" [tooltip]="segment.arrival.IATALocationCode" [tooltipOnClick]="true">
-          {{segment.arrival.IATALocationCode}}
-        </span>
+      <span
+        class="pill"
+        [tooltip]="segment.arrival.IATALocationCode"
+        [tooltipOnClick]="true"
+      >
+        {{ segment.arrival.IATALocationCode }}
+      </span>
       }
     </div>
-    <p class="m-0">{{ this.segementData().duration || 'NA' }}</p>
+    <p class="m-0">{{ this.segementData().duration || "NA" }}</p>
   </div>
   <div class="airport-time destination">
     <h6 class="m-0">
-      <span class="airport-code">{{ segementData()[0].segments[lastIndex].arrival.IATALocationCode}}</span>
+      <span class="airport-code">{{
+        segementData()[0].segments[lastIndex].arrival.IATALocationCode
+      }}</span>
       <span>&nbsp;-&nbsp;</span>
-      <span class="time">{{ dateFormat(segementData()[0].segments[0].arrival.AircraftScheduledDateTime, 'time')}}</span>
+      <span class="time">{{
+        dateFormat(
+          segementData()[0].segments[0].arrival.AircraftScheduledDateTime,
+          "time"
+        )
+      }}</span>
     </h6>
-    <small class="date">{{ dateFormat(segementData()[0].segments[0].arrival.AircraftScheduledDateTime, 'date')}}</small>
+    <small class="date">{{
+      dateFormat(
+        segementData()[0].segments[0].arrival.AircraftScheduledDateTime,
+        "date"
+      )
+    }}</small>
   </div>
 </div>
 <!-- {{segmentLength | json}} -->

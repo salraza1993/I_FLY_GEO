@@ -4,10 +4,20 @@ import { toSignal } from '@angular/core/rxjs-interop';
 // @Injectable({
 //   providedIn: 'root'
 // })
+
+export type FlightSearchRequestBodyType = {
+  supplierCode: string;
+  passengers: { type: string }[];
+  originDestinationsCriteria: {
+    destArrival_IATA_LocationCode: string;
+    originDepature_IATA_LocationCode: string;
+    date: string;
+  }[];
+}
 export class FlightSearchService {
   private BASE_API_URL = "https://iflygeo-api-supplier.azurewebsites.net/api/flights/search";
   private http = inject(HttpClient);
-  private requestBody = {
+  private requestBody: FlightSearchRequestBodyType = {
     supplierCode: '1A',
     passengers: [{ type: 'adult' }],
     originDestinationsCriteria: [
@@ -18,6 +28,7 @@ export class FlightSearchService {
       }
     ],
   };
+
   getFlights = signal<any>([]);
   isLoading = signal<boolean>(true);
   isError = signal<boolean>(false);
@@ -29,11 +40,29 @@ export class FlightSearchService {
 
   // requestData = signal<any>(null);
   // Create the resource
-  constructor() {
-    this.http.post(this.BASE_API_URL, this.requestBody).subscribe({
+  // constructor() {
+  //   this.http.post(this.BASE_API_URL, this.requestBody).subscribe({
+  //     next: (response) => {
+  //       this.getFlights.set(response);
+  //       this.isLoading.set(false);
+  //       this.isError.set(false);
+  //       this.isErrorMessage.set(null);
+  //     },
+  //     error: (error) => {
+  //       this.isLoading.set(false);
+  //       this.isError.set(true);
+  //       this.isErrorMessage.set(error.message || 'An error occurred while fetching flight data.');
+  //     }
+  //   })
+  // }
+
+  searchHandler(requestBody: FlightSearchRequestBodyType): void {
+    this.isLoading.set(true);
+    this.http.post(this.BASE_API_URL, requestBody).subscribe({
       next: (response) => {
         this.getFlights.set(response);
         this.isLoading.set(false);
+        console.log('inside: ', this.isLoading())
         this.isError.set(false);
         this.isErrorMessage.set(null);
       },
@@ -42,7 +71,7 @@ export class FlightSearchService {
         this.isError.set(true);
         this.isErrorMessage.set(error.message || 'An error occurred while fetching flight data.');
       }
-    })
+    });
   }
 
 }

@@ -4,11 +4,10 @@ import { HeaderProfileComponent } from "./header-profile/header-profile.componen
 import { HeaderWalletComponent } from "./header-wallet/header-wallet.component";
 import { NotificationComponent } from "./notification/notification.component";
 import { ClientLogoComponent } from '../client-logo/client-logo.component';
-import { SessionCounterComponent } from "./session-counter/session-counter.component";
 
 @Component({
   selector: 'main-header',
-  imports: [GlobalSearchComponent, HeaderProfileComponent, HeaderWalletComponent, NotificationComponent, ClientLogoComponent, SessionCounterComponent],
+  imports: [GlobalSearchComponent, HeaderProfileComponent, HeaderWalletComponent, NotificationComponent, ClientLogoComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   // encapsulation: ViewEncapsulation.None,

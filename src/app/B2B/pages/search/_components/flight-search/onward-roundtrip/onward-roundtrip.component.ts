@@ -4,6 +4,7 @@ import {
   computed,
   inject,
   input,
+  linkedSignal,
   signal
 } from '@angular/core';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
@@ -13,6 +14,10 @@ import { CustomButtonComponent } from '@sharedComponents/custom-button/custom-bu
 import { OriginDestinationComponent, OriginDestinationDataType } from '../origin-destination/origin-destination.component';
 import { PassengerSelectionComponent, PaxSelectionDataType } from '../passenger-selection/passenger-selection.component';
 import { Router } from '@angular/router';
+import { FlightSearchService } from '../../../services/flight-search.service';
+import { DateTime } from 'luxon';
+import { LocalStorageService } from '../../../../../../shared/services/localStorage.service';
+import { SessionManagerService } from '../../../services/session-manager.service';
 
 @Component({
   selector: 'app-onward-roundtrip, onward-roundtrip',
@@ -33,6 +38,9 @@ import { Router } from '@angular/router';
   },
 })
 export class OnwardRoundtripComponent {
+  private flightSearchService = inject(FlightSearchService);
+  private sessionManager = inject(SessionManagerService);
+  private localStorage = inject(LocalStorageService);
   router = inject(Router);
   roundTrip = input(false, { transform: booleanAttribute });
 
@@ -48,21 +56,21 @@ export class OnwardRoundtripComponent {
   showCabins = signal(false);
 
   // Error signals (can be used visually)
-  originDestinationError = signal(false);
-  datePickerError = signal(false);
-
+  originDestinationError = signal(true);
+  datePickerError = signal(true);
   paxError = signal(false);
 
   focusNext = signal<string | null>(null);
 
-  // Disable button unless all required fields are filled
-  public isDisabled = computed(() => {
-    const originDest = this.setOriginDestination();
-    const hasOrigin = !!originDest.origin;
-    const hasDestination = !!originDest.destination;
-    const hasDate = !!this.dateRange();
-
-    return !(hasOrigin && hasDestination && hasDate);
+  // Button disabled logic
+  isDisabled = computed(() => {
+    const origin = this.setOriginDestination().origin;
+    const destination = this.setOriginDestination().destination;
+    const date = this.dateRange();
+    return (
+      !origin || !destination || !date ||
+      this.originDestinationError() || this.datePickerError()
+    );
   });
 
   public focusHanlder(nextField: string | null): void {
@@ -74,6 +82,34 @@ export class OnwardRoundtripComponent {
 
   public searchFlight(): void {
     if (this.isDisabled()) return;
-    this.router.navigate(['/search/flight-results']);
+    // this.localStorage.setItem('search-criteria', JSON.stringify(this.setRequestBody()));
+    this.sessionManager.autoDeleteExpiredSessions();
+    const sessionId = this.sessionManager.createSessionWithData(JSON.stringify(this.setRequestBody()));
+    this.router.navigate(['/search/flight-results'], {
+      queryParams: { session: sessionId }
+    });
+  }
+
+  public setRequestBody() {
+    const { origin, destination } = this.setOriginDestination();
+    const requestBody = {
+      supplierCode: '1A',
+      passengers: [{ type: 'adult' }],
+      originDestinationsCriteria: [
+        {
+          destArrival_IATA_LocationCode: destination?.IATA || '',
+          originDepature_IATA_LocationCode: origin?.IATA || '',
+          date: this.dateRange()?.onwardDate || '',
+        }
+      ],
+    }
+    if(this.roundTrip()) {
+      requestBody.originDestinationsCriteria.push({
+        destArrival_IATA_LocationCode: origin?.IATA || '',
+        originDepature_IATA_LocationCode: destination?.IATA || '',
+        date: this.dateRange()?.returnDate || '',
+      });
+    }
+    return requestBody;
   }
 }
