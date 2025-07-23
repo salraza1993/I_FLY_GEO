@@ -42,6 +42,7 @@ export class SearchFlightsComponent implements OnDestroy {
   }
 
   onInit(): void {
+    this.sessionManagerService.autoDeleteExpiredSessions();
   }
 
   ngOnDestroy(): void {

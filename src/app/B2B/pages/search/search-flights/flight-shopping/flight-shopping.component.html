@@ -1,5 +1,5 @@
 @if(isLoading()) {
-  <search-flight-loader />
+  <search-flight-loader [searchParams]="getSearchCriteria()" />
 } @else {
   <search-modify-strip data-z-index="5" />
   <flight-calender-carousel />

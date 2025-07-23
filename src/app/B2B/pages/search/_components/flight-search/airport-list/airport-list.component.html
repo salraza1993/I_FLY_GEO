@@ -19,12 +19,11 @@
         </li>
       }
     } @else {
-      <small class="error-state" [@fadeIn]>
-        <strong>{{ searchValue() }} :</strong> Not found!, Kindly enter Airport code/city/name...
-      </small>
+      @if(showError()) {
+        <small class="error-state" [@fadeIn]>
+          <strong>{{ searchValue() }} :</strong> Not found!, Kindly enter Airport code/city/name...
+        </small>
+      }
     }
   </ul>
-  <!-- @if(showError()) {
-  } @else {
-  } -->
 }

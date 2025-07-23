@@ -2,6 +2,7 @@
 import { LocalStorageService } from '@/shared/services/localStorage.service';
 import { inject, Injectable, signal, computed, effect } from '@angular/core';
 import { DateTime } from 'luxon';
+import { FlightSearchRequestBodyType } from './flight-search.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class SessionManagerService {
   private SESSION_KEY = 'sessions-list';
   private LocalStorage = inject(LocalStorageService);
   protected sessionList = signal<{ [key: string]: string }>({});
-  public SESSION_DURATION_MINUTES = 10;
+  public SESSION_DURATION_MINUTES = 2;
   public activeSessionId = signal<string | null>(null);
   public sessionTimeLeft = signal<{ minutes: number, seconds: number }>({ minutes: 0, seconds: 0 }); // in min:sec
   private timer: any = null;
@@ -23,9 +24,9 @@ export class SessionManagerService {
   /**
    * Create a new session, set all related keys, and return its ID.
    */
-  public createSessionWithData(data: any): string {
+  public createSessionWithData(bodyParams: FlightSearchRequestBodyType, searchCriteria: any): string {
     const token = this.createSession();
-    this.setSessionData(token, data);
+    this.setSessionData(token, bodyParams, searchCriteria);
     this.activeSessionId.set(token);
     this.startSessionTimer(token);
     return token;
@@ -34,11 +35,9 @@ export class SessionManagerService {
   /**
    * Set all related localStorage keys for a session
    */
-  public setSessionData(token: string, data: any) {
-    this.setLocalStorage(token, 'flight-search', { someObj: 'OK value' });
-    this.setLocalStorage(token, 'flight-offer', { someObj: 'OK value' });
-    this.setLocalStorage(token, 'flight-seat-map', { someObj: 'OK value' });
-    this.setLocalStorage(token, 'search-criteria', data);
+  public setSessionData(token: string, bodyParams: FlightSearchRequestBodyType, searchCriteria: any): void {
+    this.setLocalStorage(token, 'search-criteria', searchCriteria);
+    this.setLocalStorage(token, 'body-params', bodyParams);
   }
   /**
    * Get the session end time as a Date object

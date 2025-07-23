@@ -32,19 +32,6 @@ export class AirportListService {
   })
 
   constructor() {
-    // effect(() => {
-    //   const searchTerm = this.searchTerm().toLowerCase();
-    //   const list = this.allAirport();
-    //   this.filteredAirport.set(
-    //     list.filter(
-    //       (airport) =>
-    //         airport.IATA?.toLowerCase().includes(searchTerm) ||
-    //         airport.AirportName?.toLowerCase().includes(searchTerm)  ||
-    //         airport.AirportName?.toLowerCase().includes(searchTerm)
-    //     )
-    //   );
-    // });
-
     this.http
       .get<AirportDataType[]>(this.AIRPORT_LIST_JSON_URL).subscribe({
         next: (data) => {

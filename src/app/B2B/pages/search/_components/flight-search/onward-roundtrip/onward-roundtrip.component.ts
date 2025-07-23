@@ -14,7 +14,7 @@ import { CustomButtonComponent } from '@sharedComponents/custom-button/custom-bu
 import { OriginDestinationComponent, OriginDestinationDataType } from '../origin-destination/origin-destination.component';
 import { PassengerSelectionComponent, PaxSelectionDataType } from '../passenger-selection/passenger-selection.component';
 import { Router } from '@angular/router';
-import { FlightSearchService } from '../../../services/flight-search.service';
+import { FlightSearchRequestBodyType, FlightSearchService } from '../../../services/flight-search.service';
 import { DateTime } from 'luxon';
 import { LocalStorageService } from '../../../../../../shared/services/localStorage.service';
 import { SessionManagerService } from '../../../services/session-manager.service';
@@ -82,15 +82,29 @@ export class OnwardRoundtripComponent {
 
   public searchFlight(): void {
     if (this.isDisabled()) return;
-    // this.localStorage.setItem('search-criteria', JSON.stringify(this.setRequestBody()));
+
     this.sessionManager.autoDeleteExpiredSessions();
-    const sessionId = this.sessionManager.createSessionWithData(JSON.stringify(this.setRequestBody()));
+    const sessionId = this.sessionManager.createSessionWithData(this.setRequestBody(), this.setSearchCriteria());
     this.router.navigate(['/search/flight-results'], {
       queryParams: { session: sessionId }
     });
   }
 
-  public setRequestBody() {
+  private setSearchCriteria() {
+    const searchCriteria = {
+      tripType: this.roundTrip() ? 'Roundtrip' : 'Oneway',
+      origin: this.setOriginDestination().origin,
+      destination: this.setOriginDestination().destination,
+      dateRange: this.dateRange(),
+      selectedCabins: this.selectedCabins(),
+      passengers: this.selectedPax(),
+      isDirectOnly: false,
+      suppliers: ['1A', 'MS', '6E', 'G9', 'AI'],
+    }
+    return searchCriteria;
+  }
+
+  private setRequestBody(): FlightSearchRequestBodyType {
     const { origin, destination } = this.setOriginDestination();
     const requestBody = {
       supplierCode: '1A',

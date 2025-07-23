@@ -10,7 +10,7 @@ export class ThemeService {
   private document = inject(DOCUMENT);
   private rootElement: HTMLElement = this.document.documentElement;
   private localStorage = inject(LocalStorageService);
-  private defaultMode: ThemeMode = 'auto';
+  private DEFAULT_MODE: ThemeMode = 'auto';
   private _themeMode = signal<ThemeMode>(this.getStoredTheme());
 
   constructor() {
@@ -22,7 +22,7 @@ export class ThemeService {
   }
 
   private getStoredTheme(): ThemeMode {
-    return (this.localStorage.getInnerItem('appSettings', 'preferences')?.appearanceMode || this.defaultMode) as ThemeMode;
+    return (this.localStorage.getInnerItem('appSettings', 'preferences')?.appearanceMode || this.DEFAULT_MODE) as ThemeMode;
   }
 
   public setThemeMode(mode: ThemeMode): void {

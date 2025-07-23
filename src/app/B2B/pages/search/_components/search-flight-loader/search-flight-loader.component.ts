@@ -1,17 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, input, effect, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlightsLoaderIllustrationComponent } from "./flights-loader-illustration/flights-loader-illustration.component";
-import { FlightsLoaderAircraftComponent } from "./flights-loader-aircraft/flights-loader-aircraft.component";
+import { FlightsLoaderIllustrationComponent } from './flights-loader-illustration/flights-loader-illustration.component';
+import { FlightsLoaderAircraftComponent } from './flights-loader-aircraft/flights-loader-aircraft.component';
 
 @Component({
   selector: 'app-search-flight-loader, search-flight-loader',
-  imports: [CommonModule, FlightsLoaderIllustrationComponent, FlightsLoaderAircraftComponent],
+  imports: [
+    CommonModule,
+    FlightsLoaderIllustrationComponent,
+    FlightsLoaderAircraftComponent,
+  ],
   templateUrl: './search-flight-loader.component.html',
   styleUrl: './search-flight-loader.component.css',
   host: {
-    'class': 'search-flight-loader-wrapper'
-  }
+    class: 'search-flight-loader-wrapper',
+  },
 })
 export class SearchFlightLoaderComponent {
+  searchParams = input<any>(null);
 
+  // Use computed to ensure we have valid data
+  protected searchData = computed(() => {
+    const params = this.searchParams();
+    return params || null;
+  });
+
+
+  get familyIcon() {
+    const data = this.searchData();
+    return data?.passengers?.children > 0 || data?.passengers?.infants > 0;
+  }
 }

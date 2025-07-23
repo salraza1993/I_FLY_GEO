@@ -22,9 +22,9 @@ export class SearchServicesTabsComponent {
   public readonly sendSelectedTab = output<string>();
   public servicesTabs = signal<TabDataTypes[]>([
     { id: 'flights', label: 'Flights', icon: 'plane', selected: true, method: this.tabHandler.bind(this) },
-    { id: 'hotels', label: 'Hotels', icon: 'hotel', selected: false, method: this.tabHandler.bind(this) },
-    { id: 'cars', label: 'Cars', icon: 'car', selected: false, method: this.tabHandler.bind(this) },
-    { id: 'activities', label: 'Activities', icon: 'compass', selected: false, method: this.tabHandler.bind(this) }
+    // { id: 'hotels', label: 'Hotels', icon: 'hotel', selected: false, method: this.tabHandler.bind(this) },
+    // { id: 'cars', label: 'Cars', icon: 'car', selected: false, method: this.tabHandler.bind(this) },
+    // { id: 'activities', label: 'Activities', icon: 'compass', selected: false, method: this.tabHandler.bind(this) }
   ]);
   ngOnInit() {
     this.currentLocation.set(this.router.url);

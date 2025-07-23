@@ -62,7 +62,6 @@ export class FlightSearchService {
       next: (response) => {
         this.getFlights.set(response);
         this.isLoading.set(false);
-        console.log('inside: ', this.isLoading())
         this.isError.set(false);
         this.isErrorMessage.set(null);
       },

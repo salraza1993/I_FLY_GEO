@@ -1,53 +1,113 @@
 <div class="loader-content-wrapper">
   <div class="content-wrapper">
-    <div class="segment-card-content">
-      <div class="segments">
-        <div class="segment">
-          <h5 class="font__verbatim--bold m-0 text--secondary">DXB</h5>
-          <div class="date-wrapper">
-            <span class="strip"></span>
-            <strong class="date">31 Mar 2025</strong>
+    @if (searchData()) {
+      <div class="segment-card-content">
+        <div class="segments">
+          <div class="segment">
+            <h5 class="font__verbatim--bold m-0 text--secondary">
+              {{ searchData()?.origin?.IATA }}
+            </h5>
+            <div class="date-wrapper">
+              <span class="strip"></span>
+              <strong class="date">{{
+                searchData()?.dateRange?.onwardDate | date : "dd MMM yyyy"
+              }}</strong>
+            </div>
+            <h5 class="font__verbatim--bold m-0 text--accent">
+              {{ searchData()?.destination?.IATA }}
+            </h5>
           </div>
-          <h5 class="font__verbatim--bold m-0 text--accent">DEL</h5>
-        </div>
-        <div class="segment">
-          <h5 class="font__verbatim--bold m-0 text--secondary">DXB</h5>
-          <div class="date-wrapper">
-            <span class="strip"></span>
-            <strong class="date">31 Mar 2025</strong>
+          @if(searchData()?.tripType?.toLocaleLowerCase() === 'roundtrip') {
+          <div class="segment">
+            <h5 class="font__verbatim--bold m-0 text--secondary">
+              {{ searchData()?.destination?.IATA }}
+            </h5>
+            <div class="date-wrapper">
+              <span class="strip"></span>
+              <strong class="date">{{
+                searchData()?.dateRange?.returnDate | date : "dd MMM yyyy"
+              }}</strong>
+            </div>
+            <h5 class="font__verbatim--bold m-0 text--accent">
+              {{ searchData()?.origin?.IATA }}
+            </h5>
           </div>
-          <h5 class="font__verbatim--bold m-0 text--accent">DEL</h5>
+          }
         </div>
       </div>
-    </div>
-    <ul class="segment-info">
-      <li class="segment-info-list">
-        <span class="icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></span>
-        <span>Roundtrip</span>
-      </li>
-      <li class="segment-info-list" title="Passengers" aria-readonly="true" aria-label="Passengers">
-        <span class="icon"><i class="fa-solid fa-user"></i></span>
-        <span>01 Adult</span>
-      </li>
-      <li class="segment-info-list" title="class" aria-readonly="true" aria-label="class">
-        <span class="icon"><i class="fa-solid fa-seat-airline"></i></span>
-        <span>Economy</span>
-      </li>
-      <li class="segment-info-list" title="Direct Only" aria-readonly="true" aria-label="Direct Only">
-        <span class="icon"><i class="fa-solid fa-square-check"></i></span>
-        <span>Direct Only</span>
-      </li>
-      <li class="segment-info-list" title="Suppliers" aria-readonly="true" aria-label="Suppliers">
-        <span class="icon"><i class="fa-solid fa-plane"></i></span>
-        <span>SM, MS, SU</span>
-      </li>
-    </ul>
-    <div class="aircraft-loader-wrapper">
-      <svg viewBox="0 0 150 2">
-        <line x1="0" y1="2" x2="200" y2="2" stroke="#ccc" stroke-width="10" class="dash-line"></line>
-      </svg>
-      <flights-loader-aircraft />
-    </div>
+      <ul class="journey-info">
+        <li class="journey-info-list">
+          <span class="icon">
+            @if(searchData()?.tripType.toLowerCase() === 'roundtrip') {
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+            } @else {
+              <i class="fa-solid fa-arrow-right"></i>
+            }
+          </span>
+          <span>{{ searchData()?.tripType }}</span>
+        </li>
+        <li
+          class="journey-info-list"
+          title="Passengers"
+          aria-readonly="true"
+          aria-label="Passengers"
+        >
+          <span class="icon">
+            <i class="fa-solid fa-{{ familyIcon ? 'family' : 'user' }}"></i>
+          </span>
+          <span>{{ searchData()?.passengers.adults }} Ad</span>
+          @if(searchData()?.passengers.children){
+          <span>{{ searchData()?.passengers.children }} Ch</span>
+          } @if(searchData()?.passengers.infants){
+          <span>{{ searchData()?.passengers.infants }} Inf</span>
+          }
+        </li>
+        <li
+          class="journey-info-list"
+          title="class"
+          aria-readonly="true"
+          aria-label="class"
+        >
+          <span class="icon"><i class="fa-solid fa-seat-airline"></i></span>
+          <span>{{ searchData()?.selectedCabins?.join(", ") }}</span>
+        </li>
+        @if(searchData()?.isDirectOnly) {
+        <li
+          class="journey-info-list"
+          title="Direct Only"
+          aria-readonly="true"
+          aria-label="Direct Only"
+        >
+          <span class="icon"><i class="fa-solid fa-square-check"></i></span>
+          <span>{{ searchData()?.isDirectOnly }}</span>
+        </li>
+        } @if(searchData()?.suppliers) {
+        <li
+          class="journey-info-list"
+          title="Suppliers"
+          aria-readonly="true"
+          aria-label="Suppliers"
+        >
+          <span class="icon"><i class="fa-solid fa-plane"></i></span>
+          <span>{{ searchData()?.suppliers?.join(", ") }}</span>
+        </li>
+        }
+      </ul>
+      <div class="aircraft-loader-wrapper">
+        <svg viewBox="0 0 150 2">
+          <line
+            x1="0"
+            y1="2"
+            x2="200"
+            y2="2"
+            stroke="#ccc"
+            stroke-width="10"
+            class="dash-line"
+          ></line>
+        </svg>
+        <flights-loader-aircraft />
+      </div>
+    }
   </div>
 </div>
 <flights-loader-illustration />

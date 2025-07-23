@@ -28,25 +28,35 @@ import { AirportDataType, AirportListService } from '../../../services/airport-l
 })
 export class AirportListComponent {
   private airportListService = inject(AirportListService);
-  public allAirport = computed<AirportDataType[]>(() => this.airportListService.allAirport());
-  public filteredAirport = computed<AirportDataType[]>(() => this.airportListService.filteredAirport());
-  public focusedIndex = signal<number>(-1);
-  public showError = signal(false);
+  protected allAirport = computed<AirportDataType[]>(() => this.airportListService.allAirport());
+  protected filteredAirport = computed<AirportDataType[]>(() => this.airportListService.filteredAirport());
+  protected focusedIndex = signal<number>(-1);
 
-  public elementType = input<string>('origin');
-  public onSelected = output<AirportDataType | null | any>()
-  public selectedAirport = model<AirportDataType | null>(null);
-  public searchValue = model<string | null | undefined>('');
+  elementType = input<string>('origin');
+  onSelected = output<AirportDataType | null | any>()
 
-  private checkError = effect(() => {
-    const query = this.searchValue() || '';
-    this.evaluateError(query);
-  });
+  // Two-way binded
+  searchValue = model<string | null | undefined>('');
+  selectedAirport = model<AirportDataType | null>(null);
 
-  public updateSearchValue = effect(() => {
+  protected updateSearchValue = effect(() => {
     this.airportListService.updateSearch(this.searchValue() || '');
   });
 
+  private hasValidMatch = computed(() => {
+    const searchValue = this.searchValue();
+    if (!searchValue || searchValue.length < 3) return false;
+
+    const inputValue = searchValue.toLowerCase().replace(/[(),]/g, '').split(' ');
+    const hasValidMatch = this.allAirport().some(airport =>
+      inputValue.includes(airport.IATA.toLowerCase()) ||
+      inputValue.includes(airport.City.toLowerCase()) ||
+      inputValue.includes(airport.AirportName.toLowerCase())
+    );
+    return hasValidMatch;
+  })
+
+  protected showError = computed(() => !this.hasValidMatch());
 
   // keyboard based selection
   @HostListener('document:keydown', ['$event'])
@@ -105,11 +115,5 @@ export class AirportListComponent {
     this.searchValue.set(displayText);
     this.focusedIndex.set(-1);
     this.onSelected.emit(this.selectedAirport());
-  }
-
-  private evaluateError(query: string) {
-    const hasMatch = this.filteredAirport();
-    const shouldShow = query.length >= 3 && !hasMatch.length;
-    this.showError.set(shouldShow);
   }
 }

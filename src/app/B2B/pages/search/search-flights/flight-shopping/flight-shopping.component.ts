@@ -6,10 +6,12 @@ import { FlightCalenderCarouselComponent } from '../../_components/flight-shoppi
 import { FilterStripWrapperComponent } from '../../_components/flight-shopping/filter-strip-wrapper/filter-strip-wrapper.component';
 import { FlightResultsComponent } from '../../_components/flight-shopping/flight-results/flight-results.component';
 import { FiltersService } from '../../services/filters.service';
-import { FlightSearchService } from '../../services/flight-search.service';
+import { FlightSearchRequestBodyType, FlightSearchService } from '../../services/flight-search.service';
 import { LocalStorageService } from '../../../../../shared/services/localStorage.service';
 import { SessionCounterComponent } from '@/shared/components/header/session-counter/session-counter.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SessionManagerService } from '../../services/session-manager.service';
+import { single } from 'rxjs';
 
 @Component({
   selector: 'app-flight-shopping',
@@ -30,11 +32,15 @@ import { ActivatedRoute, Router } from '@angular/router';
   },
 })
 export class FlightShoppingComponent {
+  private fliterService = inject(FiltersService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  private fliterService = inject(FiltersService);
   private flightSearchService = inject(FlightSearchService);
-  private localStorage = inject(LocalStorageService);
+  private sessionManager = inject(SessionManagerService);
+  private localStorageService = inject(LocalStorageService);
+  protected getSearchCriteria = signal<any>(null);
+
+  // isLoading = signal(true);
   isLoading = computed(() => this.flightSearchService.isLoading());
   sessionId = signal<string | null>(null);
 
@@ -45,10 +51,18 @@ export class FlightShoppingComponent {
   }
 
   protected sendRequest() {
-    const searchCriteria = this.localStorage.getItem(`${this.sessionId()}-search-criteria`);
-    console.log(JSON.parse(JSON.stringify(searchCriteria)))
-    if(this.sessionId()) {
-      this.flightSearchService.searchHandler(searchCriteria ? JSON.parse(this.localStorage.getItem('search-criteria') || '{}') : null);
+    const isSessionIdExists = this.sessionManager.isSessionValid(this.sessionId()!);
+
+    if(isSessionIdExists) {
+      const bodyParams = this.localStorageService.getItem(`${this.sessionId()}-body-params`)!;
+      const searchCriteria = this.localStorageService.getItem(`${this.sessionId()}-search-criteria`) || {};
+
+      // Parse the search criteria if it's a string, otherwise use it directly
+      const parsedSearchCriteria = typeof searchCriteria === 'string' ? JSON.parse(searchCriteria) : searchCriteria;
+      this.getSearchCriteria.set(parsedSearchCriteria);
+      console.log('check: ', this.getSearchCriteria())
+
+      this.flightSearchService.searchHandler(JSON.parse(bodyParams));
     } else {
       this.router.navigate(['/search/flights']);
     }

@@ -2,8 +2,7 @@ export interface PreferencesDataTypes {
   appearanceMode: string,
   language: string,
   layoutDirection: string,
-  baseCurrency: string,
-  selectedCurrency: string
+  posCurrency: string
 }
 
 export interface BrandingDataTypes {

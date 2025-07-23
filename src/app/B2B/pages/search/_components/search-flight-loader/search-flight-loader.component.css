@@ -85,6 +85,9 @@
             padding-block: 0.8rem;
             padding-inline: 1.2rem;
             border-radius: var(--border-radius);
+
+            h5 {min-width: 60px;}
+
             .date-wrapper {
               width: 100%;
               text-align: center;
@@ -134,7 +137,7 @@
           }
         }
       }
-      .segment-info {
+      .journey-info {
         position: relative;
         display: flex;
         gap: 0.75rem;
@@ -153,7 +156,7 @@
           border-end-end-radius: calc(var(--card-border-radius) / 1.5);
           z-index: -1;
         }
-        .segment-info-list {
+        .journey-info-list {
           display: flex;
           background-color: var(--card-info-list-bg);
           padding-block: 0.35rem;

@@ -87,8 +87,8 @@ export class OriginDestinationComponent {
 
   public swapValues(): void {
     const [originValue, destinationValue] = [this.origin(), this.destination()];
-    this.origin.set(originValue);
-    this.destination.set(destinationValue);
+    this.origin.set(destinationValue);
+    this.destination.set(originValue);
 
     const temp = this.getOriginAirportData();
     this.getOriginAirportData.set(this.getDestinationAirportData());

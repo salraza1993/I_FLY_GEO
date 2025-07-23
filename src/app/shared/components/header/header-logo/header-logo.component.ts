@@ -1,5 +1,5 @@
+import { ThemeService } from '@/shared/services/theme.service';
 import { Component, inject } from '@angular/core';
-import { ThemeService } from '../../../../../core/services/theme.service';
 
 @Component({
   selector: 'header-logo',
@@ -13,4 +13,5 @@ import { ThemeService } from '../../../../../core/services/theme.service';
 export class HeaderLogoComponent {
   public clientLogoPath = '/assets/client/';
   public readonly themeService = inject(ThemeService);
+  // not-in-use
 }

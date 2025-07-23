@@ -16,10 +16,6 @@ import { DateTime } from 'luxon';
 export class SegementComponent {
   segementData = input<any>([]);
 
-  check = effect(() => {
-    console.log(this.segementData())
-  })
-
   dateFormat(dateString: string, type: string): string {
     const luxonObj = DateTime.fromISO(dateString);
     const date = luxonObj.toFormat('dd-MM-yyyy');
