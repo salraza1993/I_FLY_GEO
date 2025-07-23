@@ -2,6 +2,7 @@ import { Component, input, effect, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlightsLoaderIllustrationComponent } from './flights-loader-illustration/flights-loader-illustration.component';
 import { FlightsLoaderAircraftComponent } from './flights-loader-aircraft/flights-loader-aircraft.component';
+import { LoaderSegmentComponent } from "./loader-segment/loader-segment.component";
 
 @Component({
   selector: 'app-search-flight-loader, search-flight-loader',
@@ -9,7 +10,8 @@ import { FlightsLoaderAircraftComponent } from './flights-loader-aircraft/flight
     CommonModule,
     FlightsLoaderIllustrationComponent,
     FlightsLoaderAircraftComponent,
-  ],
+    LoaderSegmentComponent
+],
   templateUrl: './search-flight-loader.component.html',
   styleUrl: './search-flight-loader.component.css',
   host: {
@@ -29,5 +31,9 @@ export class SearchFlightLoaderComponent {
   get familyIcon() {
     const data = this.searchData();
     return data?.passengers?.children > 0 || data?.passengers?.infants > 0;
+  }
+  get tripType():string {
+    const data = this.searchData();
+    return data?.tripType?.toLocaleLowerCase();
   }
 }

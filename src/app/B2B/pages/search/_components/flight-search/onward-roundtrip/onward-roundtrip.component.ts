@@ -5,16 +5,28 @@ import {
   inject,
   input,
   linkedSignal,
-  signal
+  signal,
 } from '@angular/core';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
 import { CabinSelectionComponent } from '../cabin-selection/cabin-selection.component';
-import { SearchDatepickerComponent, SearchDateType } from '../search-datepicker/search-datepicker.component';
+import {
+  SearchDatepickerComponent,
+  SearchDateType,
+} from '../search-datepicker/search-datepicker.component';
 import { CustomButtonComponent } from '@sharedComponents/custom-button/custom-button.component';
-import { OriginDestinationComponent, OriginDestinationDataType } from '../origin-destination/origin-destination.component';
-import { PassengerSelectionComponent, PaxSelectionDataType } from '../passenger-selection/passenger-selection.component';
+import {
+  OriginDestinationComponent,
+  OriginDestinationDataType,
+} from '../origin-destination/origin-destination.component';
+import {
+  PassengerSelectionComponent,
+  PaxSelectionDataType,
+} from '../passenger-selection/passenger-selection.component';
 import { Router } from '@angular/router';
-import { FlightSearchRequestBodyType, FlightSearchService } from '../../../services/flight-search.service';
+import {
+  FlightSearchRequestBodyType,
+  FlightSearchService,
+} from '../../../services/flight-search.service';
 import { DateTime } from 'luxon';
 import { LocalStorageService } from '../../../../../../shared/services/localStorage.service';
 import { SessionManagerService } from '../../../services/session-manager.service';
@@ -45,10 +57,17 @@ export class OnwardRoundtripComponent {
   roundTrip = input(false, { transform: booleanAttribute });
 
   // Signals
-  setOriginDestination = signal<OriginDestinationDataType>({ origin: null, destination: null });
+  setOriginDestination = signal<OriginDestinationDataType>({
+    origin: null,
+    destination: null,
+  });
   dateRange = signal<SearchDateType>(null);
   selectedCabins = signal<string[]>(['Economy']);
-  selectedPax = signal<PaxSelectionDataType>({ adults: 1, children: 0, infants: 0 });
+  selectedPax = signal<PaxSelectionDataType>({
+    adults: 1,
+    children: 0,
+    infants: 0,
+  });
 
   // Dropdown visibility
   showCalendar = signal(false);
@@ -68,8 +87,11 @@ export class OnwardRoundtripComponent {
     const destination = this.setOriginDestination().destination;
     const date = this.dateRange();
     return (
-      !origin || !destination || !date ||
-      this.originDestinationError() || this.datePickerError()
+      !origin ||
+      !destination ||
+      !date ||
+      this.originDestinationError() ||
+      this.datePickerError()
     );
   });
 
@@ -84,9 +106,14 @@ export class OnwardRoundtripComponent {
     if (this.isDisabled()) return;
 
     this.sessionManager.autoDeleteExpiredSessions();
-    const sessionId = this.sessionManager.createSessionWithData(this.setRequestBody(), this.setSearchCriteria());
+    const data = {
+      bodyParams: { ...this.setRequestBody() },
+      searchCriteria: {...this.setSearchCriteria()},
+    }
+    const sessionId = this.sessionManager.createSessionWithData(data);
+    this.flightSearchService.searchHandler(data.bodyParams);
     this.router.navigate(['/search/flight-results'], {
-      queryParams: { session: sessionId }
+      queryParams: { session: sessionId },
     });
   }
 
@@ -100,7 +127,7 @@ export class OnwardRoundtripComponent {
       passengers: this.selectedPax(),
       isDirectOnly: false,
       suppliers: ['1A', 'MS', '6E', 'G9', 'AI'],
-    }
+    };
     return searchCriteria;
   }
 
@@ -114,10 +141,10 @@ export class OnwardRoundtripComponent {
           destArrival_IATA_LocationCode: destination?.IATA || '',
           originDepature_IATA_LocationCode: origin?.IATA || '',
           date: this.dateRange()?.onwardDate || '',
-        }
+        },
       ],
-    }
-    if(this.roundTrip()) {
+    };
+    if (this.roundTrip()) {
       requestBody.originDestinationsCriteria.push({
         destArrival_IATA_LocationCode: origin?.IATA || '',
         originDepature_IATA_LocationCode: destination?.IATA || '',

@@ -3,6 +3,7 @@ import {
   computed,
   effect,
   ElementRef,
+  inject,
   model,
   output,
   signal,
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
 import { AirportListComponent } from '../airport-list/airport-list.component';
 import { ClickOutsideDirective } from '@/core/directives/click-outside.directive';
-import { AirportDataType } from '../../../services/airport-list.service';
+import { AirportDataType, AirportListService } from '../../../services/airport-list.service';
 import { fadeIn } from '@/shared/animations/fade.animations';
 
 export type OriginDestinationDataType = {
@@ -31,6 +32,7 @@ export type OriginDestinationDataType = {
   templateUrl: './origin-destination.component.html',
   styleUrls: ['./origin-destination.component.css'],
   animations: [fadeIn],
+  providers: [AirportListService],
   host: {
     class: 'origin-destination-wrapper',
     '[class.error]': 'errors().origin || errors().destination',
@@ -38,9 +40,11 @@ export type OriginDestinationDataType = {
   },
 })
 export class OriginDestinationComponent {
+  private airportListService = inject(AirportListService);
   @ViewChild('originInput') originInput!: ElementRef<HTMLInputElement>;
   @ViewChild('destinationInput') destinationInput!: ElementRef<HTMLInputElement>;
 
+  protected allAirport = computed<AirportDataType[]>(() => this.airportListService.allAirport());
   public isSwappedValue = signal(false);
   public origin = signal<string | null>(null);
   public destination = signal<string | null>(null);
@@ -134,6 +138,28 @@ export class OriginDestinationComponent {
       }
     }
   }
+
+  private isInputValueValid(field: 'origin' | 'destination') {
+    const userInput = field === 'origin' ? this.origin() : this.destination();
+
+    const inputValue = userInput?.toLowerCase().replace(/[(),!:""]/g, '').split(' ');
+    if(!inputValue) return false;
+    const hasValidMatch = this.allAirport().some(airport =>
+      inputValue.includes(airport.IATA.toLowerCase()) ||
+      inputValue.includes(airport.City.toLowerCase()) ||
+      inputValue.includes(airport.AirportName.toLowerCase())
+    );
+    if(!hasValidMatch) {
+      this.setError(field, 'Please select a valid airport.');
+      if(field === 'origin') {
+        this.origin.set(null);
+      } else {
+        this.destination.set(null);
+      }
+    }
+    return hasValidMatch;
+  }
+
   private setError(field: 'origin' | 'destination', message: string) {
     this.errors.update(prev => ({...prev, [field]: message }));
   }

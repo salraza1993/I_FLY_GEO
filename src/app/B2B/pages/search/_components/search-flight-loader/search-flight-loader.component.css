@@ -1,25 +1,16 @@
 :host {
   --card-bg: light-dark(var(--primary-100_light), var(--primary-100_dark));
-  --card-segment-bg: light-dark(
-    var(--primary-95_light),
-    var(--primary-95_dark)
-  );
+  --card-segment-bg: light-dark(var(--primary-95_light),var(--primary-95_dark));
   --card-border-radius: calc(var(--border-radius) * 2.5);
-  --card-info-list-bg: light-dark(
-    var(--primary-85_light),
-    var(--primary-95_dark)
-  );
+  --card-info-list-bg: light-dark(var(--primary-85_light),var(--primary-95_dark));
   --card-min-width: calc(650px + 5vw);
+
   position: relative;
   display: flex;
   position: absolute;
   inset: 0;
   border-start-start-radius: calc(var(--border-radius) * 2.5);
-  background-image: linear-gradient(
-    to top,
-    light-dark(var(--primary-100_light), var(--primary-80_dark)),
-    light-dark(var(--primary-95_light), var(--primary-80_dark))
-  );
+  background-image: linear-gradient( to top, light-dark(var(--primary-100_light), var(--primary-80_dark)), light-dark(var(--primary-95_light), var(--primary-80_dark)));
 
   .loader-content-wrapper {
     position: relative;
@@ -45,7 +36,8 @@
         border-block-start: 0;
         margin-block-start: -1px;
         border-radius: var(--card-border-radius);
-        padding: 1rem;
+        padding: var(--common-padding);
+        padding-block-start: 0;
 
         &::before,
         &::after {
@@ -61,82 +53,24 @@
         &::before {
           inset-inline-end: 100%;
           border-radius: 0 100vw 0 0;
-          box-shadow: 5px -5px 0 5px var(--card-bg);
+          box-shadow: 8px -8px 0 8px var(--card-bg);
           border-inline-end: 1px solid var(--border-color);
         }
         &::after {
           inset-inline-start: 100%;
           border-radius: 100vw 0 0 0;
-          box-shadow: -5px -5px 0 5px var(--card-bg);
+          box-shadow: -8px -8px 0 8px var(--card-bg);
           border-inline-start: 1px solid var(--border-color);
         }
-
         .segments {
           position: relative;
           display: grid;
           align-items: center;
           gap: 0.5rem;
           width: 100%;
-          .segment {
-            background-color: var(--card-segment-bg);
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding-block: 0.8rem;
-            padding-inline: 1.2rem;
-            border-radius: var(--border-radius);
-
-            h5 {min-width: 60px;}
-
-            .date-wrapper {
-              width: 100%;
-              text-align: center;
-              position: relative;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              isolation: isolate;
-              .strip {
-                position: absolute;
-                width: 100%;
-                height: 2px;
-                background-color: var(--border-color);
-                background-image: linear-gradient(
-                  to right,
-                  var(--secondary),
-                  var(--accent)
-                );
-                display: flex;
-                align-items: center;
-                z-index: -1;
-                &::before,
-                &::after {
-                  content: "";
-                  position: absolute;
-                  width: 8px;
-                  aspect-ratio: 1;
-                  z-index: 1;
-                }
-                &::before {
-                  inset-inline-start: 0;
-                  background-color: var(--secondary);
-                  border-radius: 10px;
-                }
-                &::after {
-                  inset-inline-end: 0;
-                  background-color: var(--accent);
-                }
-              }
-              .date {
-                display: block;
-                z-index: 1;
-                background-color: var(--card-segment-bg);
-                padding-inline: 1rem;
-              }
-            }
-          }
         }
       }
+
       .journey-info {
         position: relative;
         display: flex;
@@ -171,39 +105,5 @@
     }
   }
 }
-.aircraft-loader-wrapper {
-  --max-width: 300px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-  max-width: var(--max-width);
-  margin-inline-start: calc(50% - calc(var(--max-width) / 2));
-  margin-block-start: 20%;
 
-  .dash-line {
-    stroke-dasharray: 10 10;
-    stroke-dashoffset: 0;
-    animation: dashmove 500ms linear infinite;
-  }
 
-  .container {
-    position: relative;
-    width: 100%;
-    height: 100px;
-  }
-
-  .aircraft-loader {
-    position: absolute;
-    width: 75px;
-    inset-block-start: 0;
-    inset-inline-start: calc(50% - 40px);
-    svg { width: 100%; height: auto;}
-  }
-}
-@keyframes dashmove {
-  to {
-    stroke-dashoffset: -20;
-  }
-}

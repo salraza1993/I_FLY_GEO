@@ -3,42 +3,40 @@
     @if (searchData()) {
       <div class="segment-card-content">
         <div class="segments">
-          <div class="segment">
-            <h5 class="font__verbatim--bold m-0 text--secondary">
-              {{ searchData()?.origin?.IATA }}
-            </h5>
-            <div class="date-wrapper">
-              <span class="strip"></span>
-              <strong class="date">{{
-                searchData()?.dateRange?.onwardDate | date : "dd MMM yyyy"
-              }}</strong>
-            </div>
-            <h5 class="font__verbatim--bold m-0 text--accent">
-              {{ searchData()?.destination?.IATA }}
-            </h5>
-          </div>
-          @if(searchData()?.tripType?.toLocaleLowerCase() === 'roundtrip') {
-          <div class="segment">
-            <h5 class="font__verbatim--bold m-0 text--secondary">
-              {{ searchData()?.destination?.IATA }}
-            </h5>
-            <div class="date-wrapper">
-              <span class="strip"></span>
-              <strong class="date">{{
-                searchData()?.dateRange?.returnDate | date : "dd MMM yyyy"
-              }}</strong>
-            </div>
-            <h5 class="font__verbatim--bold m-0 text--accent">
-              {{ searchData()?.origin?.IATA }}
-            </h5>
-          </div>
+          <loader-segment
+            [tripType]="'oneway'"
+            [from]="searchData()?.origin?.IATA"
+            [date]="searchData()?.dateRange?.onwardDate"
+            [to]="searchData()?.destination?.IATA"
+          />
+          @if(tripType === 'roundtrip') {
+            <loader-segment
+              [tripType]="'roundtrip'"
+              [from]="searchData()?.destination?.IATA"
+              [date]="searchData()?.dateRange?.returnDate"
+              [to]="searchData()?.origin?.IATA"
+            />
+            <!-- <div class="segment" [ngClass]="{'segement-2': tripType === 'roundtrip'}">
+              <h5 class="font__verbatim--bold m-0 text--secondary">
+                {{ searchData()?.destination?.IATA }}
+              </h5>
+              <div class="date-wrapper">
+                <span class="strip"></span>
+                <strong class="date">{{
+                  searchData()?.dateRange?.returnDate | date : "dd MMM yyyy"
+                }}</strong>
+              </div>
+              <h5 class="font__verbatim--bold m-0 text--accent">
+                {{ searchData()?.origin?.IATA }}
+              </h5>
+            </div> -->
           }
         </div>
       </div>
       <ul class="journey-info">
         <li class="journey-info-list">
           <span class="icon">
-            @if(searchData()?.tripType.toLowerCase() === 'roundtrip') {
+            @if(tripType === 'roundtrip') {
               <i class="fa-solid fa-arrow-right-arrow-left"></i>
             } @else {
               <i class="fa-solid fa-arrow-right"></i>
@@ -93,20 +91,7 @@
         </li>
         }
       </ul>
-      <div class="aircraft-loader-wrapper">
-        <svg viewBox="0 0 150 2">
-          <line
-            x1="0"
-            y1="2"
-            x2="200"
-            y2="2"
-            stroke="#ccc"
-            stroke-width="10"
-            class="dash-line"
-          ></line>
-        </svg>
-        <flights-loader-aircraft />
-      </div>
+      <flights-loader-aircraft />
     }
   </div>
 </div>

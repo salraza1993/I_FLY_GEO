@@ -11,7 +11,6 @@ import {
   signal,
 } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
 import { fadeIn } from '@/shared/animations/fade.animations';
 import { AirportDataType, AirportListService } from '../../../services/airport-list.service';
 
@@ -21,7 +20,6 @@ import { AirportDataType, AirportListService } from '../../../services/airport-l
   templateUrl: './airport-list.component.html',
   styleUrl: './airport-list.component.css',
   animations: [fadeIn],
-  providers: [AirportListService],
   host: {
     class: 'aiport-list-wrapper',
   },
@@ -44,7 +42,7 @@ export class AirportListComponent {
   });
 
   private hasValidMatch = computed(() => {
-    const searchValue = this.searchValue();
+    const searchValue = this.searchValue()?.trim();
     if (!searchValue || searchValue.length < 3) return false;
 
     const inputValue = searchValue.toLowerCase().replace(/[(),]/g, '').split(' ');
@@ -95,7 +93,7 @@ export class AirportListComponent {
         const displayText = `${item.City} (${item.IATA}), ${item.AirportName}`;
         this.searchValue.set(displayText);
         this.focusedIndex.set(-1);
-        this.onSelected.emit(this.selectedAirport());
+        this.sendDataToParent();
         return
       }
     })
@@ -104,16 +102,21 @@ export class AirportListComponent {
       const displayText = `${focused.City} (${focused.IATA}), ${focused.AirportName}`;
       this.searchValue.set(displayText);
       this.focusedIndex.set(-1);
-      this.onSelected.emit(this.selectedAirport());
+      this.sendDataToParent();
     }
   }
 
-  public onSelect(selectedItem: AirportDataType):void {
+  protected onSelect(selectedItem: AirportDataType):void {
     const foundItem = this.allAirport().findIndex(item => item.IATA === selectedItem.IATA)
     this.selectedAirport.set(this.allAirport()[foundItem]);
     const displayText = `${this.allAirport()[foundItem].City} (${this.allAirport()[foundItem].IATA}), ${this.allAirport()[foundItem].AirportName}`;
     this.searchValue.set(displayText);
     this.focusedIndex.set(-1);
+    this.sendDataToParent();
+  }
+
+  private sendDataToParent(): void {
     this.onSelected.emit(this.selectedAirport());
   }
+
 }

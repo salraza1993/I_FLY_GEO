@@ -1,0 +1,6 @@
+<h5 class="font__verbatim--bold m-0 text--{{tripType() === 'roundtrip' ? 'accent' : 'secondary'}}">{{ from() }}</h5>
+<div class="date-wrapper">
+  <span class="strip {{ tripType() }}"></span>
+  <strong class="date">{{dateFormat}}</strong>
+</div>
+<h5 class="font__verbatim--bold m-0 text--{{tripType() === 'roundtrip' ? 'secondary' : 'accent'}}">{{ to() }}</h5>

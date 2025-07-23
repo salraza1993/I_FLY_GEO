@@ -8,10 +8,8 @@ import { FlightResultsComponent } from '../../_components/flight-shopping/flight
 import { FiltersService } from '../../services/filters.service';
 import { FlightSearchRequestBodyType, FlightSearchService } from '../../services/flight-search.service';
 import { LocalStorageService } from '../../../../../shared/services/localStorage.service';
-import { SessionCounterComponent } from '@/shared/components/header/session-counter/session-counter.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionManagerService } from '../../services/session-manager.service';
-import { single } from 'rxjs';
 
 @Component({
   selector: 'app-flight-shopping',
@@ -22,7 +20,6 @@ import { single } from 'rxjs';
     FilterStripWrapperComponent,
     SearchModifyStripComponent,
     FlightResultsComponent,
-    SessionCounterComponent
 ],
   providers: [FiltersService, FlightSearchService],
   templateUrl: './flight-shopping.component.html',
@@ -54,15 +51,11 @@ export class FlightShoppingComponent {
     const isSessionIdExists = this.sessionManager.isSessionValid(this.sessionId()!);
 
     if(isSessionIdExists) {
-      const bodyParams = this.localStorageService.getItem(`${this.sessionId()}-body-params`)!;
-      const searchCriteria = this.localStorageService.getItem(`${this.sessionId()}-search-criteria`) || {};
+      const data = this.localStorageService.getItem(`${this.sessionId()}-search-criteria`);
+      const searchCriteria = typeof data === 'string' ? JSON.parse(data) : data;
 
-      // Parse the search criteria if it's a string, otherwise use it directly
-      const parsedSearchCriteria = typeof searchCriteria === 'string' ? JSON.parse(searchCriteria) : searchCriteria;
-      this.getSearchCriteria.set(parsedSearchCriteria);
-      console.log('check: ', this.getSearchCriteria())
-
-      this.flightSearchService.searchHandler(JSON.parse(bodyParams));
+      this.getSearchCriteria.set(searchCriteria.searchCriteria);
+      this.flightSearchService.searchHandler(searchCriteria.bodyParams as FlightSearchRequestBodyType);
     } else {
       this.router.navigate(['/search/flights']);
     }

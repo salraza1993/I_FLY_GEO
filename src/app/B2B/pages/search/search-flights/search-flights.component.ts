@@ -46,6 +46,6 @@ export class SearchFlightsComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this.sessionManagerService.removeSession();
+    // this.sessionManagerService.removeAllSessions();
   }
 }

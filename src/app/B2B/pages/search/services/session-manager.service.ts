@@ -11,22 +11,22 @@ export class SessionManagerService {
   private SESSION_KEY = 'sessions-list';
   private LocalStorage = inject(LocalStorageService);
   protected sessionList = signal<{ [key: string]: string }>({});
-  public SESSION_DURATION_MINUTES = 2;
+  public SESSION_DURATION_MINUTES = 20;
   public activeSessionId = signal<string | null>(null);
   public sessionTimeLeft = signal<{ minutes: number, seconds: number }>({ minutes: 0, seconds: 0 }); // in min:sec
   private timer: any = null;
 
   constructor() {
     this.initializeSession();
-    this.autoDeleteExpiredSessions(); // Clean up expired sessions on service init
+    this.autoDeleteExpiredSessions();
   }
 
   /**
    * Create a new session, set all related keys, and return its ID.
    */
-  public createSessionWithData(bodyParams: FlightSearchRequestBodyType, searchCriteria: any): string {
+  public createSessionWithData(data: any): string {
     const token = this.createSession();
-    this.setSessionData(token, bodyParams, searchCriteria);
+    this.setSessionData(token, data);
     this.activeSessionId.set(token);
     this.startSessionTimer(token);
     return token;
@@ -35,9 +35,8 @@ export class SessionManagerService {
   /**
    * Set all related localStorage keys for a session
    */
-  public setSessionData(token: string, bodyParams: FlightSearchRequestBodyType, searchCriteria: any): void {
-    this.setLocalStorage(token, 'search-criteria', searchCriteria);
-    this.setLocalStorage(token, 'body-params', bodyParams);
+  public setSessionData(token: string, data: any): void {
+    this.setLocalStorage(token, 'search-criteria', data);
   }
   /**
    * Get the session end time as a Date object
@@ -172,6 +171,15 @@ export class SessionManagerService {
     let allSessionsRaw = this.LocalStorage.getItem(this.SESSION_KEY);
     return allSessionsRaw ? JSON.parse(allSessionsRaw) : {};
   }
+
+  /**
+   * Remove all sessions
+   */
+  public removeAllSessions(): void {
+    this.LocalStorage.removeItem(this.SESSION_KEY);
+    this.sessionList.set({});
+  }
+
 
   private initializeSession(): void {
     const sessionData = this.LocalStorage.getItem(this.SESSION_KEY);

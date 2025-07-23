@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   templateUrl: './flights-loader-aircraft.component.html',
   styleUrl: './flights-loader-aircraft.component.css',
   host: {
-    'class': 'aircraft-loader'
+    'class': 'aircraft-loader-wrapper'
   }
 })
 export class FlightsLoaderAircraftComponent {
