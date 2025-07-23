@@ -1,4 +1,4 @@
-import { effect, inject, Injectable, signal, DOCUMENT } from '@angular/core';
+import { effect, inject, Injectable, signal, DOCUMENT, computed } from '@angular/core';
 
 import { LocalStorageService } from '../../shared/services/localStorage.service';
 
@@ -32,10 +32,7 @@ export class ThemeService {
     this.localStorage.setInnerItem('appSettings', 'preferences', updatedPreferences);
   }
 
-  public get themeModeSignal() {
-    return this._themeMode;
-  }
-
+  public themeModeSignal = computed(() => this._themeMode());
 
   private applyTheme(mode: ThemeMode): void {
     this.rootElement.classList.remove('light', 'dark');

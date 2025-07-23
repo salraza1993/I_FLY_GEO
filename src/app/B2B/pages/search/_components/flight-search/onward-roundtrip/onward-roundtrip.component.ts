@@ -30,6 +30,7 @@ import {
 import { DateTime } from 'luxon';
 import { LocalStorageService } from '../../../../../../shared/services/localStorage.service';
 import { SessionManagerService } from '../../../services/session-manager.service';
+import { SearchCriteriaDataType } from '@/shared/models/SearchCriteria.interface';
 
 @Component({
   selector: 'app-onward-roundtrip, onward-roundtrip',
@@ -117,27 +118,44 @@ export class OnwardRoundtripComponent {
     });
   }
 
-  private setSearchCriteria() {
-    const searchCriteria = {
+  private setSearchCriteria(): SearchCriteriaDataType {
+    const origin = this.setOriginDestination().origin;
+    const destination = this.setOriginDestination().destination;
+
+    if (!origin || !destination) {
+      throw new Error('Origin and Destination must not be null');
+    }
+
+    const dateRangeValue = this.dateRange() ?? { onwardDate: '', returnDate: undefined };
+    const data: SearchCriteriaDataType = {
       tripType: this.roundTrip() ? 'Roundtrip' : 'Oneway',
-      origin: this.setOriginDestination().origin,
-      destination: this.setOriginDestination().destination,
-      dateRange: this.dateRange(),
+      origin: origin,
+      destination: destination,
+      dateRange: dateRangeValue,
       selectedCabins: this.selectedCabins(),
       passengers: this.selectedPax(),
       isDirectOnly: false,
       suppliers: ['1A', 'MS', '6E', 'G9', 'AI'],
     };
-    return searchCriteria;
+    return data;
   }
 
   private setRequestBody(): FlightSearchRequestBodyType {
     const { origin, destination } = this.setOriginDestination();
     const requestBody = {
       supplierCode: '1A',
+      haveBaggage: false,
+      haveSeats: false,
+      haveOffers: false,
+      isDirectOnly: [true, 1, 2],
       passengers: [{ type: 'adult' }],
       originDestinationsCriteria: [
         {
+          haveBaggage: false,
+          haveSeats: false,
+          haveOffers: false,
+          isDirectOnly: [true, 1, 2],
+          haveFareRules: false,
           destArrival_IATA_LocationCode: destination?.IATA || '',
           originDepature_IATA_LocationCode: origin?.IATA || '',
           date: this.dateRange()?.onwardDate || '',
@@ -146,6 +164,11 @@ export class OnwardRoundtripComponent {
     };
     if (this.roundTrip()) {
       requestBody.originDestinationsCriteria.push({
+        haveBaggage: false,
+        haveSeats: false,
+        haveOffers: false,
+        isDirectOnly: [true, 1, 2],
+        haveFareRules: false,
         destArrival_IATA_LocationCode: origin?.IATA || '',
         originDepature_IATA_LocationCode: destination?.IATA || '',
         date: this.dateRange()?.returnDate || '',

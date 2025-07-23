@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'camelCase',
-  standalone: true
 })
 export class CamelCasePipe implements PipeTransform {
   // Not Working: Need to work

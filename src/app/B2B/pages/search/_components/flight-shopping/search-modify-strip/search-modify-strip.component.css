@@ -67,8 +67,15 @@
         display: flex;
         flex-basis: 500px;
         max-width: 500px;
+        &:is(.oneway) {
+          flex-basis: calc(650px + 5vw);
+          max-width: calc(650px + 5vw);
+        }
         .strip-element-container {
           max-width: calc(50% - 0.25rem);
+          &:is(.oneway) {
+            flex-grow: 1;
+          }
           &:is(.origin) {
             --icon-color: var(--secondary);
           }
@@ -106,6 +113,7 @@
         cursor: pointer;
         font-weight: 500;
         white-space: nowrap;
+        flex-basis: content;
         .icon {
           color: var(--icon-color, inherit);
           width: var(--strip-elem-height);

@@ -14,13 +14,13 @@ import { DateTime } from 'luxon';
   },
 })
 export class LoaderSegmentComponent {
-  tripType = input.required<string>();
-  from = input.required<string>();
-  date = input.required<string>();
-  to = input.required<string>();
+  tripType = input.required<string | undefined>();
+  from = input.required<string | undefined>();
+  date = input.required<string | undefined>();
+  to = input.required<string | undefined>();
 
   get dateFormat():string {
     const date = this.date();
-    return DateTime.fromISO(date).toFormat('dd MMM yyyy');
+    return DateTime.fromISO(date ?? '').toFormat('dd MMM yyyy');
   }
 }

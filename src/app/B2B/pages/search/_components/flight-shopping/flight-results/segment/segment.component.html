@@ -1,16 +1,35 @@
 <div class="airline" [tooltip]="airlineTooltip">
-  <div class="airline-logo">
-    <img src="assets/images/airlines/ai.svg" alt="Air India" />
-  </div>
+  <picture class="airline-logo">
+    @if(themeService.themeModeSignal() === 'light') {
+      <img
+        [src]="segementData()[0].segments[0].operatingCarrierInfo.CarrierCode | airlineLogo:'70px':'light'"
+        [alt]="segementData()[0].segments[0].operatingCarrierInfo.CarrierName" />
+    } @else if(themeService.themeModeSignal() === 'dark') {
+      <img [src]="segementData()[0].segments[0].operatingCarrierInfo.CarrierCode | airlineLogo:'70px':'dark'"
+      [alt]="segementData()[0].segments[0].operatingCarrierInfo.CarrierName" />
+    } @else {
+      <source
+        srcset="segementData()[0].segments[0].operatingCarrierInfo.CarrierCode | airlineLogo:'70px':'light'"
+        media="(prefers-color-scheme: light)" />
+      <source srcset="segementData()[0].segments[0].operatingCarrierInfo.CarrierCode | airlineLogo:'70px':'dark'"
+        media="(prefers-color-scheme: dark)" />
+      <img
+      [src]="segementData()[0].segments[0].operatingCarrierInfo.CarrierCode | airlineLogo:'70px':'light'"
+      [alt]="segementData()[0].segments[0].operatingCarrierInfo.CarrierName" />
+    }
+  </picture>
+
   <div class="airline-name">
-    <p class="m-0 text-ellipsis-multiline text--capitalize">
+    <p class="m-0 airline-full-name text-ellipsis-multiline text--capitalize">
       {{
         segementData()[0].segments[0].operatingCarrierInfo.CarrierName.toLowerCase()
       }}
     </p>
-    <small class="text-ellipsis">
-      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierCode }} -
-      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierDesigCode }}
+    <small class="text-ellipsis airline-code">
+      <strong>
+        {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierCode }} -
+        {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierDesigCode }}
+      </strong>
     </small>
   </div>
 </div>
@@ -20,8 +39,8 @@
       {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierName.toLowerCase() }}
     </p>
     <small>
-      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierCode }} -
-      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierDesigCode }}
+      <strong>{{ segementData()[0].segments[0].operatingCarrierInfo.CarrierCode }} -
+      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierDesigCode }}</strong>
     </small>
   </div>
 </ng-template>
@@ -34,17 +53,11 @@
       }}</span>
       <span>&nbsp;-&nbsp;</span>
       <span class="time">{{
-        dateFormat(
-          segementData()[0].segments[0].dep.AircraftScheduledDateTime,
-          "time"
-        )
+        segementData()[0].segments[0].dep.AircraftScheduledDateTime | dateFormat: "time"
       }}</span>
     </h6>
     <small class="date">{{
-      dateFormat(
-        segementData()[0].segments[0].dep.AircraftScheduledDateTime,
-        "date"
-      )
+      segementData()[0].segments[0].dep.AircraftScheduledDateTime | dateFormat: "date"
     }}</small>
   </div>
   <div class="duration">
@@ -68,17 +81,11 @@
       }}</span>
       <span>&nbsp;-&nbsp;</span>
       <span class="time">{{
-        dateFormat(
-          segementData()[0].segments[0].arrival.AircraftScheduledDateTime,
-          "time"
-        )
+        segementData()[0].segments[0].arrival.AircraftScheduledDateTime | dateFormat: "time"
       }}</span>
     </h6>
     <small class="date">{{
-      dateFormat(
-        segementData()[0].segments[0].arrival.AircraftScheduledDateTime,
-        "date"
-      )
+      segementData()[0].segments[0].arrival.AircraftScheduledDateTime | dateFormat: "date"
     }}</small>
   </div>
 </div>

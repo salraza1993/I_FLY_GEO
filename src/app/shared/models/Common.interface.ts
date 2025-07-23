@@ -13,3 +13,6 @@ export interface BookingCardInterface {
   path: string,
   iconName: string,
 }
+
+export type StringOfArray = string[];
+export type StringOfObject = { [key: string]: string | number | boolean | StringOfArray | StringOfObject };

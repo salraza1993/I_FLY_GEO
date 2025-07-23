@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, computed, inject, input, ViewEncapsulation } from '@angular/core';
 import { CardFooterComponent } from "../card-footer/card-footer.component";
 import { SegementComponent } from '../segment/segment.component';
+import { FlightSearchService } from '@/B2B/pages/search/services/flight-search.service';
 
 @Component({
   selector: 'app-roundtrip-result-card, roundtrip-result-card',
@@ -14,5 +15,12 @@ import { SegementComponent } from '../segment/segment.component';
   }
 })
 export class RoundtripResultCardComponent {
+  private flightSearchService = inject(FlightSearchService);
+  data = input<any>();
+  pricing = input<any>();
 
+  protected readonly offers = computed<any>(() => this.flightSearchService.getFlights()?.data?.offers || []);
+  getPrice = computed(() => {
+    return this.offers()?.find((item: any) => item.offerId === this.data().C_offers[0])
+  });
 }

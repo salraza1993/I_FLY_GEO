@@ -8,6 +8,7 @@ import { FlightSearchRequestBodyType } from './flight-search.service';
   providedIn: 'root'
 })
 export class SessionManagerService {
+  public SESSION_KEY_VALUE = 'search-criteria';
   private SESSION_KEY = 'sessions-list';
   private LocalStorage = inject(LocalStorageService);
   protected sessionList = signal<{ [key: string]: string }>({});

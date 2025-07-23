@@ -53,11 +53,11 @@
           <span class="icon">
             <i class="fa-solid fa-{{ familyIcon ? 'family' : 'user' }}"></i>
           </span>
-          <span>{{ searchData()?.passengers.adults }} Ad</span>
-          @if(searchData()?.passengers.children){
-          <span>{{ searchData()?.passengers.children }} Ch</span>
-          } @if(searchData()?.passengers.infants){
-          <span>{{ searchData()?.passengers.infants }} Inf</span>
+          <span>{{ searchData()?.passengers?.adults }} Ad</span>
+          @if(searchData()?.passengers?.children){
+          <span>{{ searchData()?.passengers?.children }} Ch</span>
+          } @if(searchData()?.passengers?.infants){
+          <span>{{ searchData()?.passengers?.infants }} Inf</span>
           }
         </li>
         <li

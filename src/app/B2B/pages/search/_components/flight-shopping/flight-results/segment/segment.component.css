@@ -2,6 +2,7 @@
   --layover-strip-height: 23px;
   --pill-bg: light-dark(var(--primary-90_light),var(--primary-80_dark));
   --pill-border: light-dark(var(--primary-80_light),var(--primary-80_dark));
+  --ailine-box-bg: light-dark(var(--primary-95_light),var(--primary-75_dark));
   display: block;
   position: relative;
   display: flex;
@@ -11,18 +12,19 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    flex-basis: 130px;
-    max-width: 130px;
+    flex-basis: 155px;
+    max-width: 155px;
     gap: calc(var(--card-padding) / 1.5);
 
     & .airline-logo {
-      width: 45px;
-      height: 45px;
+      width: 60px;
+      height: 48px;
       aspect-ratio: 1;
       flex-shrink: 0;
-      background-color: var(--card-border);
+      background-color: var(--ailine-box-bg);
       border-radius: var(--border-radius);
       overflow: clip;
+      padding: 0.0rem;
 
       img {
         width: 100%;
@@ -35,7 +37,13 @@
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
-      max-width: 75px;
+      max-width: 100px;
+      & .airline-full-name {
+        font-size: 0.8rem;
+      }
+      & .airline-code {
+        font-size: 0.75rem;
+      }
     }
   }
 

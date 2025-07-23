@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlightsLoaderIllustrationComponent } from './flights-loader-illustration/flights-loader-illustration.component';
 import { FlightsLoaderAircraftComponent } from './flights-loader-aircraft/flights-loader-aircraft.component';
 import { LoaderSegmentComponent } from "./loader-segment/loader-segment.component";
+import { SearchCriteriaDataType } from '@/shared/models/SearchCriteria.interface';
 
 @Component({
   selector: 'app-search-flight-loader, search-flight-loader',
@@ -19,7 +20,7 @@ import { LoaderSegmentComponent } from "./loader-segment/loader-segment.componen
   },
 })
 export class SearchFlightLoaderComponent {
-  searchParams = input<any>(null);
+  searchParams = input<SearchCriteriaDataType | null>(null);
 
   // Use computed to ensure we have valid data
   protected searchData = computed(() => {
@@ -30,10 +31,10 @@ export class SearchFlightLoaderComponent {
 
   get familyIcon() {
     const data = this.searchData();
-    return data?.passengers?.children > 0 || data?.passengers?.infants > 0;
+    return ((data?.passengers?.children ?? 0) > 0 || (data?.passengers?.infants ?? 0) > 0);
   }
   get tripType():string {
     const data = this.searchData();
-    return data?.tripType?.toLocaleLowerCase();
+    return data?.tripType?.toLocaleLowerCase() || '';
   }
 }

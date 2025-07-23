@@ -1,7 +1,12 @@
 <div class="content-wrapper">
   <hr class="separator-line" />
   @for (flight of flightData(); track flight) {
-    <onway-result-card [data]="flight" />
+    @if (tripType === 'roundtrip') {
+      <roundtrip-result-card [data]="flight" />
+    } @else {
+      <onway-result-card [data]="flight" />
+    }
+    <!-- <onway-result-card [data]="flight" /> -->
   }
   <!-- <onway-result-card />
   <onway-result-card />

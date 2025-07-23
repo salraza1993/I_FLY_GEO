@@ -10,6 +10,7 @@ import { FlightSearchRequestBodyType, FlightSearchService } from '../../services
 import { LocalStorageService } from '../../../../../shared/services/localStorage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionManagerService } from '../../services/session-manager.service';
+import { SearchCriteriaDataType } from '@/shared/models/SearchCriteria.interface';
 
 @Component({
   selector: 'app-flight-shopping',
@@ -35,7 +36,7 @@ export class FlightShoppingComponent {
   private flightSearchService = inject(FlightSearchService);
   private sessionManager = inject(SessionManagerService);
   private localStorageService = inject(LocalStorageService);
-  protected getSearchCriteria = signal<any>(null);
+  protected getSearchCriteria = signal<SearchCriteriaDataType | null>(null);
 
   // isLoading = signal(true);
   isLoading = computed(() => this.flightSearchService.isLoading());

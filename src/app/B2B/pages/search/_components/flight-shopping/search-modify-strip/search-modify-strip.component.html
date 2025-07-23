@@ -1,46 +1,66 @@
 <div class="modify-content-wrapper">
   <div class="strip-wrapper">
     <div class="strip-element">
-      <span class="icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></span>
-      <span>Roundtrip</span>
+      <span class="icon">
+        @if(tripType === 'roundtrip') {
+          <i class="fa-solid fa-arrow-right-arrow-left"></i>
+        } @else {
+          <i class="fa-solid fa-arrow-right"></i>
+        }
+      </span>
+      <span>{{ searchedData()?.tripType }}</span>
     </div>
-    <div class="grouped-elements">
-      <div class="strip-element-container origin"
+    <div class="grouped-elements {{ tripType }}">
+      <div
+        class="strip-element-container origin {{ tripType }}"
         [tooltipMaxWidth]="250"
-        [tooltip]="'Depart From: Dubai (DXB), Dubai International Airport'">
+        [tooltip]="`Depart From: ${ setOriginDestinationString('origin') }`">
         <div class="strip-element">
           <span class="icon"><i class="fa-regular fa-circle-dot"></i></span>
-          <span class="text-ellipsis">Dubai (DXB), Dubai International Airport</span>
+          <span class="text-ellipsis">{{ setOriginDestinationString('origin') }}</span>
         </div>
       </div>
       <span class="trip-type-icon">
         <span class="icon">
-          <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          @if(tripType === 'roundtrip') {
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          } @else {
+            <i class="fa-solid fa-arrow-right"></i>
+          }
         </span>
       </span>
       <div
-        class="strip-element-container destination"
+        class="strip-element-container destination {{ tripType }}"
         [tooltipMaxWidth]="250"
-        [tooltip]="'Depart To: Delhi (DEL), Indira Gandhi International Airport'">
+        [tooltip]="`Depart To: ${ setOriginDestinationString('destination') }`">
         <div class="strip-element">
           <span class="icon"><i class="fa-regular fa-circle-stop"></i></span>
-          <span class="text-ellipsis">Delhi (DEL), Indira Gandhi International Airport</span>
+          <span class="text-ellipsis">{{ setOriginDestinationString('destination') }}</span>
         </div>
       </div>
     </div>
-    <div class="strip-element">
+    <div class="strip-element {{ tripType }}">
       <span class="icon"><i class="fa-solid fa-calendar"></i></span>
-      <span>31/03/2025</span>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <span>30/04/2025</span>
+      <span>{{searchedData()?.dateRange?.onwardDate | dateFormat: "date"}}</span>
+      @if(tripType === 'roundtrip') {
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <span>{{searchedData()?.dateRange?.returnDate | dateFormat: "date"}}</span>
+      }
     </div>
     <div class="strip-element">
-      <span class="icon"><i class="fa-solid fa-family"></i></span>
-      <span>
-        <span>01 Ad</span>&nbsp;|&nbsp;
-        <span>0 Ch</span> &nbsp;|&nbsp;
-        <span>0 Inf</span>
-      </span>
+      <span class="icon">
+        <i class="fa-solid fa-{{ isFamily ? 'family' : 'user' }}"></i>
+        </span>
+        <span>
+          {{ searchedData()?.passengers?.adults }}
+          @if(isFamily) { Ad }
+          @else { Adult }
+        </span>
+        @if(searchedData()?.passengers?.children){
+          <span>{{ searchedData()?.passengers?.children }} Ch</span>
+          } @if(searchedData()?.passengers?.infants){
+          <span>{{ searchedData()?.passengers?.infants }} Inf</span>
+          }
     </div>
     <div (click)="showFilterModal()" (keydown.enter)="showFilterModal()" class="strip-element modify-button" tabindex="0" [tooltip]="'Modify Search'" tooltipDirection="left">
       <span class="icon"><i class="fa-solid fa-edit"></i></span>

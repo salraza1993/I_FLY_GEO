@@ -4,7 +4,6 @@ import { LanguageService } from '../../shared/services/language.service';
 
 @Pipe({
   name: 'languageDirection',
-  standalone: true,
 })
 export class LanguageDirectionPipe implements PipeTransform {
   private _languageService = inject(LanguageService);

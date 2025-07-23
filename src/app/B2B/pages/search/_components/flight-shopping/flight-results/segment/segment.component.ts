@@ -1,12 +1,14 @@
 import { TooltipDirective } from '@/core/directives/tooltip.directive';
 import { DateUtils } from '@/core/utilities/date-utils';
+import { DateFormatPipe } from '@/core/pipes/date-format.pipe';
 import { CommonModule } from '@angular/common';
-import { Component, effect, input } from '@angular/core';
-import { DateTime } from 'luxon';
+import { Component, computed, effect, inject, input } from '@angular/core';
+import { ThemeService } from '@shared/services/theme.service';
+import { AirlinesLogoPipe } from '@/core/pipes/airlines-logo.pipe';
 
 @Component({
   selector: 'app-segment, segment',
-  imports: [CommonModule, TooltipDirective],
+  imports: [CommonModule, TooltipDirective, DateFormatPipe, AirlinesLogoPipe],
   templateUrl: './segment.component.html',
   styleUrls: ['./segment.component.css', '../flight-results-common.css'],
   host: {
@@ -14,28 +16,29 @@ import { DateTime } from 'luxon';
   },
 })
 export class SegementComponent {
+  public readonly themeService = inject(ThemeService);
   segementData = input<any>([]);
-
-  dateFormat(dateString: string, type: string): string {
-    const luxonObj = DateTime.fromISO(dateString);
-    const date = luxonObj.toFormat('dd-MM-yyyy');
-    const time = luxonObj.toFormat('HH:MM');
-    if (type === 'date') return date;
-    if (type === 'time') return time;
-    return `${date}, ${time}`;
-  }
+  data = computed(() => this.segementData());
 
   get segmentLength() {
-    const data = this.segementData()[0].segments;
+    const data = this.segementData()[0]?.segments;
     return Array.isArray(data) && data.length > 1 ? data.slice(0, -1) : [];
   }
 
   get lastIndex() {
-    const data = this.segementData()[0].segments;
-    return data.length -1;
+    const data = this.segementData()[0]?.segments;
+    return data?.length - 1 || 0;
   }
-  get duration():string {
-    const formattedDuration = DateUtils.formatDuration(this.segementData().duration);
-    return formattedDuration
+
+  get duration(): string {
+    const formattedDuration = DateUtils.formatDuration(this.segementData()?.duration);
+    return formattedDuration;
+  }
+
+  onImageError(event: Event): void {
+    const target = event.target as HTMLImageElement;
+    if (target) {
+      target.src = 'assets/images/airlines/default.png';
+    }
   }
 }
