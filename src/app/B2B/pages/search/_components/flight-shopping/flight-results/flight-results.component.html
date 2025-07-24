@@ -1,21 +1,10 @@
 <div class="content-wrapper">
   <hr class="separator-line" />
-  @for (flight of flightData(); track flight) {
-    @if (tripType === 'roundtrip') {
-      <roundtrip-result-card [data]="flight" />
-    } @else {
-      <onway-result-card [data]="flight" />
+  @for (flight of flightsData(); track flight) {
+    @defer (on viewport){
+      <result-card [cardData]="flight" [offers]="getOffers()" [tripType]="tripType" />
+    } @placeholder {
+      <result-card-skeleton [tripType]="tripType" />
     }
-    <!-- <onway-result-card [data]="flight" /> -->
   }
-  <!-- <onway-result-card />
-  <onway-result-card />
-  <onway-result-card />
-  <onway-result-card />
-  <roundtrip-result-card />
-  <roundtrip-result-card />
-  <roundtrip-result-card />
-  <roundtrip-result-card />
-  <roundtrip-result-card /> -->
-  <!-- <roundtrip-result-card /> -->
 </div>

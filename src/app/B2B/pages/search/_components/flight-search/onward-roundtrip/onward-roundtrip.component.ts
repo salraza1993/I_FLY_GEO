@@ -144,18 +144,9 @@ export class OnwardRoundtripComponent {
     const { origin, destination } = this.setOriginDestination();
     const requestBody = {
       supplierCode: '1A',
-      haveBaggage: false,
-      haveSeats: false,
-      haveOffers: false,
-      isDirectOnly: [true, 1, 2],
       passengers: [{ type: 'adult' }],
       originDestinationsCriteria: [
         {
-          haveBaggage: false,
-          haveSeats: false,
-          haveOffers: false,
-          isDirectOnly: [true, 1, 2],
-          haveFareRules: false,
           destArrival_IATA_LocationCode: destination?.IATA || '',
           originDepature_IATA_LocationCode: origin?.IATA || '',
           date: this.dateRange()?.onwardDate || '',
@@ -164,11 +155,6 @@ export class OnwardRoundtripComponent {
     };
     if (this.roundTrip()) {
       requestBody.originDestinationsCriteria.push({
-        haveBaggage: false,
-        haveSeats: false,
-        haveOffers: false,
-        isDirectOnly: [true, 1, 2],
-        haveFareRules: false,
         destArrival_IATA_LocationCode: origin?.IATA || '',
         originDepature_IATA_LocationCode: destination?.IATA || '',
         date: this.dateRange()?.returnDate || '',

@@ -51,9 +51,13 @@
           aria-label="Passengers"
         >
           <span class="icon">
-            <i class="fa-solid fa-{{ familyIcon ? 'family' : 'user' }}"></i>
+            <i class="fa-solid fa-{{ isFamily ? 'family' : 'user' }}"></i>
           </span>
-          <span>{{ searchData()?.passengers?.adults }} Ad</span>
+          <span>
+            {{ searchData()?.passengers?.adults }}
+            @if(isFamily) { Ad }
+            @else { Adult }
+          </span>
           @if(searchData()?.passengers?.children){
           <span>{{ searchData()?.passengers?.children }} Ch</span>
           } @if(searchData()?.passengers?.infants){

@@ -41,10 +41,10 @@
     </div>
     <div class="strip-element {{ tripType }}">
       <span class="icon"><i class="fa-solid fa-calendar"></i></span>
-      <span>{{searchedData()?.dateRange?.onwardDate | dateFormat: "date"}}</span>
+      <span>{{searchedData()?.dateRange?.onwardDate | dateFormat: "preset": "DATE_MED"}}</span>
       @if(tripType === 'roundtrip') {
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <span>{{searchedData()?.dateRange?.returnDate | dateFormat: "date"}}</span>
+        <span>{{searchedData()?.dateRange?.returnDate | dateFormat: "preset": "DATE_MED"}}</span>
       }
     </div>
     <div class="strip-element">

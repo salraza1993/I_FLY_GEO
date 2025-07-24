@@ -1,10 +1,11 @@
+import { DateFormatPipe } from '@/core/pipes/date-format.pipe';
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { DateTime } from 'luxon';
 
 @Component({
   selector: 'app-loader-segment, loader-segment',
-  imports: [CommonModule],
+  imports: [CommonModule, DateFormatPipe],
   templateUrl: './loader-segment.component.html',
   styleUrl: './loader-segment.component.css',
   host: {
@@ -19,8 +20,8 @@ export class LoaderSegmentComponent {
   date = input.required<string | undefined>();
   to = input.required<string | undefined>();
 
-  get dateFormat():string {
-    const date = this.date();
-    return DateTime.fromISO(date ?? '').toFormat('dd MMM yyyy');
-  }
+  // get dateFormat():string {
+  //   const date = this.date();
+  //   return DateTime.fromISO(date ?? '').toFormat('dd MMM yyyy');
+  // }
 }

@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal, ViewEncapsulation } from '@angular/core';
+import { Component, computed, input, ViewEncapsulation } from '@angular/core';
 import { CardFooterComponent } from "../card-footer/card-footer.component";
 import { SegementComponent } from '../segment/segment.component';
-import { FlightSearchService } from '@/B2B/pages/search/services/flight-search.service';
-
 @Component({
   selector: 'app-onway-result-card, onway-result-card',
   imports: [CommonModule, SegementComponent, CardFooterComponent],
@@ -15,13 +13,15 @@ import { FlightSearchService } from '@/B2B/pages/search/services/flight-search.s
   }
 })
 export class OnwayResultCardComponent {
-  private flightSearchService = inject(FlightSearchService);
-  data = input<any>();
+  cardData = input<any>();
+  offers = input<any>();
   pricing = input<any>();
 
-  protected readonly offers = computed<any>(() => this.flightSearchService.getFlights()?.data?.offers || []);
+  private readonly allOffers = computed<any[]>(() => this.offers());
+  protected readonly journeys = computed<any[]>(() => this.cardData().journeys || []);
+
   getPrice = computed(() => {
-    return this.offers()?.find((item: any) => item.offerId === this.data().C_offers[0])
+    return this.allOffers()?.find((item: any) => item.offerId === this.cardData().C_offers[0])
   });
 
 }

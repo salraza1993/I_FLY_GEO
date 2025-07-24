@@ -1,16 +1,17 @@
 <div class="card-body">
   <div class="journey-wrapper">
-    <segment [segementData]="data().journeys[0]" />
-    <div class="line-breaker"></div>
-    <segment [segementData]="data().journeys[1]" />
+    @for (journey of journeys(); track $index; let index = $index) {
+      @if(index > 0) {
+        <div class="line-breaker"></div>
+      }
+      <segment [segementData]="journey.segments" [journeyTime]="journey.duration" />
+    }
   </div>
   <div class="line-breaker vertical"></div>
-  <div class="price-and-buttons">
-  </div>
+  <!-- <div class="price-and-buttons"></div> -->
   <div class="price">
-
     <small>Starting From</small>
-    <h4 class="m-0">AED 1,560</h4>
+    <h5 class="m-0">{{getPrice()?.currencyCode}} {{ getPrice().totalAmount }}</h5>
   </div>
   <div class="buttons flex-column-reverse">
     <button class="button size--small">

@@ -1,11 +1,11 @@
-<div 
+<div
   [ngClass]="{
     'round-trip': isRoundtrip(),
     'active': isDatePickerActive(),
     'error': errorMessage()
   }"
-  class="search-element-block" 
-  data-type="search-datepicker" 
+  class="search-element-block"
+  data-type="search-datepicker"
   aria-label="search-datepicker">
   <div class="block-label">
     <small class="start-date-label">Depart Date</small>
@@ -13,28 +13,25 @@
       <small class="end-date-label">Return Date</small>
     }
   </div>
-  <div 
-    [ngClass]="{
-      'error': errorMessage(),
-      'active': isDatePickerActive(),
-    }"
-    class="block-body focus-within" 
-    aria-label="datepicker" 
+  <div
+    [ngClass]="{ 'error': errorMessage(), 'active': isDatePickerActive()}"
+    class="block-body focus-within"
+    aria-label="datepicker"
     (keydown.enter)="showDatePickerHandler(isDatePickerActive() ? false : true)"
     role="datepicker">
     <div class="icon">
       <i class="fa-regular fa-calendar"></i>
     </div>
-    <div 
+    <div
       [id]="'parent-' + datepickerParentId()"
-      class="input-group not-focused" 
+      class="input-group not-focused"
       [ngClass]="{
         'roundtrip-active': isRoundtrip(),
         'active': isDatePickerActive(),
         'error': errorMessage()
-      }" 
+      }"
       tabindex="0"
-      (blur)="onBlur()" 
+      (blur)="onBlur()"
       (focus)="showDatePickerHandler(!showCalendar())">
       <div class="block-input" [ngClass]="{'active': isDatePickerActive()}">
         <input
@@ -42,6 +39,7 @@
           type="text"
           name="startDate"
           id="startDate"
+          [value]="getDate()?.onwardDate | dateFormat: 'preset': 'DATE_MED'"
           class="input-element user-select pointer-events--initial"
           placeholder="Start Date"
           readonly
@@ -54,8 +52,9 @@
             tabindex="-1"
             #endDate
             type="text"
-            id="endDate" 
+            id="endDate"
             name="endDate"
+            [value]="getDate()?.returnDate | dateFormat: 'preset': 'DATE_MED'"
             class="input-element user-select"
             placeholder="End Date"
             autocomplete="off"

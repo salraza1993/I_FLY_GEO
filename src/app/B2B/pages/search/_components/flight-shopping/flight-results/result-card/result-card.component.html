@@ -1,14 +1,21 @@
 <div class="card-body">
   <div class="journey-wrapper">
-    @for (journey of journeys(); track $index;) {
+    @for (journey of journeys(); track $index; let index = $index) {
+      @if(index > 0) {
+        <div class="line-breaker"></div>
+      }
       <segment [segementData]="journey.segments" [journeyTime]="journey.duration" />
     }
   </div>
   <div class="line-breaker vertical"></div>
-  <div class="price-and-buttons">
+  <div class="price-and-buttons" [ngClass]="{'flex-column': tripType() === 'roundtrip'}">
     <div class="price">
       <small>Starting From</small>
-      <h5 class="m-0">{{getPrice()?.currencyCode}} {{ getPrice().totalAmount }}</h5>
+      @if(tripType() === 'roundtrip') {
+        <h4 class="m-0">{{getPrice()?.currencyCode}} {{ getPrice().totalAmount }}</h4>
+      } @else {
+        <h5 class="m-0">{{getPrice()?.currencyCode}} {{ getPrice().totalAmount }}</h5>
+      }
     </div>
     <div class="buttons">
       <button class="button size--small">

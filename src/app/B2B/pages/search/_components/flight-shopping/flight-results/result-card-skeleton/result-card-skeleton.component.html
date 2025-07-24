@@ -1,0 +1,12 @@
+<div class="airline card"></div>
+<div class="timelines">
+  <div class="timeline card"></div>
+  @if(tripType() === 'roundtrip') {
+    <div class="timeline card"></div>
+  }
+</div>
+<div class="buttons-price" [ngClass]="{'roundtrip': tripType() === 'roundtrip' }">
+  <div class="price card"></div>
+  <div class="card button font-weight--bold"><small>More Fare</small></div>
+  <div class="card button font-weight--bold button-book"><small>Book Now</small></div>
+</div>

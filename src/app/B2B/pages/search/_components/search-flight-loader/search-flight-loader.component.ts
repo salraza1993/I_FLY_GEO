@@ -29,7 +29,7 @@ export class SearchFlightLoaderComponent {
   });
 
 
-  get familyIcon() {
+  get isFamily() {
     const data = this.searchData();
     return ((data?.passengers?.children ?? 0) > 0 || (data?.passengers?.infants ?? 0) > 0);
   }

@@ -6,10 +6,10 @@ export type AirportDataType = {
   City: string
   Country: string
   IATA: string
-  ICAO: string
-  Lat: string
-  Long: string
-  TimeZone: string
+  ICAO?: string
+  Lat?: string
+  Long?: string
+  TimeZone?: string
 };
 
 // @Injectable({
@@ -48,5 +48,11 @@ export class AirportListService {
 
   public updateSearch(searchValue: string) {
     this.searchTerm.set(searchValue);
+  }
+
+  public getAirport(airportCode: string): AirportDataType | null {
+    if (!this.isLoaded()) return null;
+    const airport = this.allAirport().find(airport => airport.IATA.toLowerCase() === airportCode.toLowerCase());
+    return airport || null;
   }
 }

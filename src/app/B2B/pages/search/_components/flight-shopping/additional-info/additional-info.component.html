@@ -1,7 +1,7 @@
 <div class="content-wrapper" [ngClass]="{'fixed': isSticky() }">
   <div class="block-start d-flex gap_5">
     <div class="totol-results bordered-right">
-      <span class="h4 m-0 font__verbatim--bold text--uppercase">1500</span>
+      <span class="h4 m-0 font__verbatim--bold text--uppercase">{{ totalResults() }}</span>
       <small class="text">Results Found</small>
     </div>
     <button (click)="showFilterModal()" class="button button--dark-gray size--extra-small accent-on-hover" [tooltip]="'Show all filters'">

@@ -2,50 +2,10 @@
   --layover-strip-height: 23px;
   --pill-bg: light-dark(var(--primary-90_light),var(--primary-80_dark));
   --pill-border: light-dark(var(--primary-80_light),var(--primary-80_dark));
-  --ailine-box-bg: light-dark(var(--primary-95_light),var(--primary-75_dark));
+  --airline-box-bg: light-dark(var(--primary-95_light),var(--primary-80_dark));
   display: block;
   position: relative;
   display: flex;
-
-  & .airline {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    flex-basis: 155px;
-    max-width: 155px;
-    gap: calc(var(--card-padding) / 1.5);
-
-    & .airline-logo {
-      width: 60px;
-      height: 48px;
-      aspect-ratio: 1;
-      flex-shrink: 0;
-      background-color: var(--ailine-box-bg);
-      border-radius: var(--border-radius);
-      overflow: clip;
-      padding: 0.0rem;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        object-position: center;
-      }
-    }
-    & .airline-name {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      max-width: 100px;
-      & .airline-full-name {
-        font-size: 0.8rem;
-      }
-      & .airline-code {
-        font-size: 0.75rem;
-      }
-    }
-  }
 
   & .timeline {
     position: relative;
@@ -59,11 +19,12 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: calc(var(--card-padding) / 2);
+      gap: calc(var(--card-padding) / 1.5);
       flex-shrink: 0;
       z-index: 1;
-
+      min-width: 110px;
     }
+
     .duration {
       position: relative;
       width: 100%;
@@ -123,6 +84,21 @@
         height: 1px;
         inset-block-start: calc(var(--layover-strip-height) / 2);
       }
+    }
+  }
+  .line-breaker {
+    position: relative;
+    width: 100%;
+    border: 0;
+
+    &:not(.vertical) {
+      margin-block: calc(var(--card-padding) / 1.15);
+      border-block-start: 1px solid var(--line-border);
+    }
+    &:is(.vertical) {
+      width: 1px;
+      margin-inline: calc(var(--card-padding) / 1);
+      border-inline-start: 1px solid var(--line-border);
     }
   }
 }

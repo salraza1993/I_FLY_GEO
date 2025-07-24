@@ -1,0 +1,38 @@
+<div class="airline-wrapper" [tooltip]="airlineTooltip" [tooltipDirection]="'top-left'" [tooltipMaxWidth]="300">
+  <picture class="airline-logo">
+    <!-- @if(themeService.themeModeSignal() === 'light') {
+      <img
+        [src]="airlineCode | airlineLogo:'duffel'"
+        [alt]="segementData()[0].segments[0].operatingCarrierInfo.CarrierName" />
+    } @else if(themeService.themeModeSignal() === 'dark') {
+      <img [src]="airlineCode | airlineLogo:'duffel'"
+      [alt]="segementData()[0].segments[0].operatingCarrierInfo.CarrierName" />
+    } @else {
+      <source
+        srcset="airlineCode | airlineLogo:'duffel'"
+        media="(prefers-color-scheme: light)" />
+      <source srcset="airlineCode | airlineLogo:'duffel'"
+        media="(prefers-color-scheme: dark)" />
+      <img
+      [src]="airlineCode | airlineLogo:'duffel'"
+      [alt]="segementData()[0].segments[0].operatingCarrierInfo.CarrierName" />
+    } -->
+    <img [src]="airlineLogoCode | airlineLogo:'duffel'" [alt]="airlineName" />
+  </picture>
+
+  <div class="airline-name">
+    <p class="m-0 airline-full-name text-ellipsis-multiline">{{ airlineName | textTransform:'capitalize' }}</p>
+    <small class="text-ellipsis airline-code">
+      <strong>{{ airlineCode }} - {{ airlineDesigCode }}</strong>
+    </small>
+  </div>
+</div>
+
+<!-- <div class="airline" >
+</div> -->
+<ng-template #airlineTooltip>
+  <p class="m-0">{{ airlineName | textTransform:'capitalize' }}</p>
+  <small>
+    <strong>{{ airlineCode }} - {{ airlineDesigCode }}</strong>
+  </small>
+</ng-template>

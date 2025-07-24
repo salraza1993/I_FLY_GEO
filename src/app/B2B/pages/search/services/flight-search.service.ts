@@ -14,6 +14,7 @@ export type FlightSearchRequestBodyType = {
     date: string;
   }[];
 }
+
 export class FlightSearchService {
   private BASE_API_URL = "https://iflygeo-api-supplier.azurewebsites.net/api/flights/search";
   private http = inject(HttpClient);
@@ -29,7 +30,13 @@ export class FlightSearchService {
     ],
   };
 
-  getFlights = signal<any>([]);
+  private getResponse = signal<any>(null);
+
+  getFlights = computed<any>(() => this.getResponse().data.flights || []);
+  getOffers = computed<any>(() => this.getResponse().data.offers || []);
+  totalResults = computed<number>(() => this.getFlights().length || 0);
+  totalOffers = computed<number>(() => this.getOffers().length || 0);
+
   isLoading = signal<boolean>(true);
   isError = signal<boolean>(false);
   isErrorMessage = signal<string | null>(null);
@@ -60,7 +67,7 @@ export class FlightSearchService {
     this.isLoading.set(true);
     this.http.post(this.BASE_API_URL, requestBody).subscribe({
       next: (response) => {
-        this.getFlights.set(response);
+        this.getResponse.set(response);
         this.isLoading.set(false);
         this.isError.set(false);
         this.isErrorMessage.set(null);

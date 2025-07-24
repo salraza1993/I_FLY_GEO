@@ -1,0 +1,83 @@
+:host {
+  --card-bg: light-dark(var(--primary-90_light),var(--primary-85_dark));
+  --skeleton-bg: light-dark(var(--primary-80_light), var(--primary-75_dark));
+  position: relative;
+  background-color: var(--card-bg);
+  border-radius: calc(var(--border-radius) * 2);
+  padding: var(--common-padding);
+  display: flex;
+  gap: calc(var(--common-padding) / 1.5);
+  border: 1px solid light-dark(var(--primary-85_light), var(--primary-75_dark));
+  &:after {
+    content: '';
+    position: absolute;
+    height: 8px;
+    width: 97%;
+    inset-block-start: 100%;
+    inset-inline-start: 1.5%;
+    background-color: light-dark(var(--primary-85_light), var(--primary-75_dark));
+    border-end-start-radius: 10px;
+    border-end-end-radius: 10px;
+  }
+  .card {
+    background-color: var(--skeleton-bg);
+    padding: 1rem;
+    flex-grow: 1;
+    background-size: 200% 100%;
+    border-radius: var(--border-radius);
+    animation: opacityAnime 2.5s infinite;
+    &:is(.airline) {
+      flex: 0 0 120px;
+      /* max-width: 100px; */
+    }
+  }
+  .timelines {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: inherit;
+
+    .timeline {
+      min-height: 65px;
+    }
+  }
+
+  .buttons-price {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    gap: 0.5rem;
+    &:is(.roundtrip) {
+      grid-template-columns: 1fr 1fr;
+      .price {
+        grid-column: span 2 / span 2;
+        height: 80px;
+      }
+      .button-book {
+        grid-row-start: 2;
+      }
+    }
+    .button {
+      min-height: 50px;
+      padding-block: 0.5rem;
+    }
+    .card {
+      height: 100%;
+    }
+  }
+}
+
+@keyframes opacityAnime {
+  0% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.25;
+  }
+}
+

@@ -1,6 +1,7 @@
 import { applyCalenderWrapperStyles } from '@/shared/helpers/easeCalenderWrapperStyles';
+import { DateFormatPipe } from '@/core/pipes/date-format.pipe';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, booleanAttribute, Component, computed, effect, ElementRef, input, model, OnDestroy, output, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, booleanAttribute, Component, computed, effect, ElementRef, inject, input, model, OnDestroy, output, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DateTime, easepick, KbdPlugin, LockPlugin, RangePlugin } from '@easepick/bundle';
 // import {  } from '@easepick/datetime';
@@ -8,7 +9,7 @@ import { DateTime, easepick, KbdPlugin, LockPlugin, RangePlugin } from '@easepic
 export type SearchDateType = { onwardDate: string; returnDate?: string } | null;
 @Component({
   selector: 'app-search-datepicker, search-datepicker',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, DateFormatPipe],
   templateUrl: './search-datepicker.component.html',
   styleUrls: ['./search-datepicker.component.css'],
   host: {
@@ -28,12 +29,22 @@ export class SearchDatepickerComponent implements AfterViewInit, OnDestroy {
   readonly alignment: string[] = ['y-start', 'x-start'];
   readonly format: string = 'YYYY-MM-DD';
 
-  public showCalendar = model<boolean>(false);
-  public focusNext = output<string>();
   isDatePickerActive = signal<boolean>(false);
 
   public touched = signal<boolean>(false);
+  public showCalendar = model<boolean>(false);
   public hasError = model<boolean>(false);
+  public focusNext = output<string>();
+  public getDate = model<SearchDateType>(null);
+  public isRoundtrip = input(false, { transform: booleanAttribute});
+
+  private plugins = signal<any>([LockPlugin]);
+  private pluginConfig = signal<any>({
+    LockPlugin: {
+      minDate: this.dateStartFrom,
+      maxDate: this.dateEndsTo.setMonth(this.dateStartFrom.getMonth() + 11)
+    },
+  });
 
   public errorMessage = computed<string | false | null>(() => {
     if (!this.touched()) return null;
@@ -47,16 +58,6 @@ export class SearchDatepickerComponent implements AfterViewInit, OnDestroy {
     }
   });
 
-  public getDate = model<SearchDateType>(null);
-  public isRoundtrip = input(false, { transform: booleanAttribute});
-
-  private plugins = signal<any>([LockPlugin]);
-  private pluginConfig = signal<any>({
-    LockPlugin: {
-      minDate: this.dateStartFrom,
-      maxDate: this.dateEndsTo.setMonth(this.dateStartFrom.getMonth() + 11)
-    },
-  });
 
   constructor() {
     effect(() => {

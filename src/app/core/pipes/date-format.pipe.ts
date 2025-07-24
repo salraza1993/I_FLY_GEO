@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DateTime } from 'luxon';
+import { DateTime, Duration } from 'luxon';
 
 @Pipe({
   name: 'dateFormat',
@@ -7,14 +7,17 @@ import { DateTime } from 'luxon';
 })
 export class DateFormatPipe implements PipeTransform {
 
-  transform(value: string | Date | null | undefined, format: string = 'date'): string {
+  transform(
+    value: string | Date | null | undefined,
+    type: string = 'date',
+    format?: string | null
+  ): string {
     if (!value) return '';
 
     try {
-      // Handle different input types
-      let luxonObj: DateTime;
-
-      if (typeof value === 'string') {
+      // Handle different input types for dates
+      let luxonObj: DateTime | null = null;
+      if (typeof value === 'string' && type.toLowerCase() !== 'duration') {
         // Try ISO format first, then fallback to other formats
         luxonObj = DateTime.fromISO(value);
         if (!luxonObj.isValid) {
@@ -22,39 +25,75 @@ export class DateFormatPipe implements PipeTransform {
         }
       } else if (value instanceof Date) {
         luxonObj = DateTime.fromJSDate(value);
-      } else {
-        return '';
-      }
-
-      if (!luxonObj.isValid) {
-        console.warn('DateFormatPipe: Invalid date provided:', value);
-        return '';
       }
 
       // Predefined format shortcuts
-      switch (format.toLowerCase()) {
+      switch (type.toLowerCase()) {
+        case 'duration': {
+          if (typeof value === 'string' && value.startsWith('PT')) {
+            const duration = Duration.fromISO(value);
+            if (duration.isValid) {
+              switch (format?.toLowerCase()) {
+                case 'hours':
+                  return Math.floor(duration.as('hours')).toString();
+                case 'minutes':
+                  return Math.floor(duration.as('minutes')).toString();
+                case 'seconds':
+                  return Math.floor(duration.as('seconds')).toString();
+                case 'hm':
+                  return `${Math.floor(duration.as('hours'))}h ${duration.minutes}m`;
+                case 'hms':
+                  const totalHours = Math.floor(duration.as('hours'));
+                  return `${totalHours}h ${duration.minutes}m ${duration.seconds}s`;
+                default:
+                  // Default HH:mm format
+                  const hours = Math.floor(duration.as('hours'));
+                  const minutes = duration.minutes;
+                  return `${hours.toString().padStart(2, '0')} h : ${minutes.toString().padStart(2, '0')} m`;
+              }
+            }
+          }
+          return '';
+        }
         case 'date':
-          return luxonObj.toFormat('dd-MM-yyyy');
+          if (!luxonObj || !luxonObj.isValid) return '';
+          return luxonObj.toFormat(format || 'dd-MM-yyyy');
         case 'time':
-          return luxonObj.toFormat('HH:mm');
+          if (!luxonObj || !luxonObj.isValid) return '';
+          return luxonObj.toFormat(format || 'HH:mm');
+        case 'timeseconds':
+          if (!luxonObj || !luxonObj.isValid) return '';
+          return luxonObj.toFormat(format || 'HH:mm:ss');
         case 'datetime':
-          return luxonObj.toFormat('dd-MM-yyyy, HH:mm');
+          if (!luxonObj || !luxonObj.isValid) return '';
+          return luxonObj.toFormat(format || 'dd-MM-yyyy, HH:mm');
         case 'short':
-          return luxonObj.toFormat('dd MMM yyyy');
+          if (!luxonObj || !luxonObj.isValid) return '';
+          return luxonObj.toFormat(format || 'dd MMM yyyy');
         case 'long':
+          if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toFormat('dd MMMM yyyy');
         case 'iso':
+          if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toISO() || '';
         case 'relative':
+          if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toRelative() || '';
         case 'relativeshort':
+          if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toRelative({ style: 'short' }) || '';
         case 'relativenarrow':
+          if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toRelative({ style: 'narrow' }) || '';
         case 'relativefrom':
-          // Relative from now (e.g., "5 minutes ago", "in 2 hours")
+          if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toRelativeCalendar() || luxonObj.toRelative() || '';
-        case 'ago':
+        case 'preset':
+          if (!luxonObj || !luxonObj.isValid) return '';
+          // For Luxon presets like DATE_MED, DATE_SHORT, etc.
+          return luxonObj.toLocaleString(format ? (DateTime as any)[format] : DateTime.DATE_MED);
+        case 'ago': {
+          if (!luxonObj || !luxonObj.isValid) return '';
           // Custom "ago" format for past dates
           const now = DateTime.now();
           const diff = now.diff(luxonObj, ['years', 'months', 'days', 'hours', 'minutes', 'seconds']).toObject();
@@ -72,7 +111,9 @@ export class DateFormatPipe implements PipeTransform {
           } else {
             return 'just now';
           }
-        case 'fromnow':
+        }
+        case 'fromnow': {
+          if (!luxonObj || !luxonObj.isValid) return '';
           // Custom "from now" format for future dates
           const nowTime = DateTime.now();
           const diffFromNow = luxonObj.diff(nowTime, ['years', 'months', 'days', 'hours', 'minutes', 'seconds']).toObject();
@@ -90,7 +131,9 @@ export class DateFormatPipe implements PipeTransform {
           } else {
             return 'now';
           }
-        case 'smart':
+        }
+        case 'smart': {
+          if (!luxonObj || !luxonObj.isValid) return '';
           // Smart relative time - shows different formats based on time difference
           const smartNow = DateTime.now();
           const smartDiff = smartNow.diff(luxonObj, ['days']).days;
@@ -108,19 +151,26 @@ export class DateFormatPipe implements PipeTransform {
             // More than a year - show full date
             return luxonObj.toFormat('dd MMM yyyy');
           }
+        }
         case 'weekday':
+          if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toFormat('cccc');
         case 'month':
+          if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toFormat('MMMM');
         case 'year':
+          if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toFormat('yyyy');
         case 'daymonth':
+          if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toFormat('dd MMM');
         case 'timeampm':
+          if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toFormat('h:mm a');
         default:
+          if (!luxonObj || !luxonObj.isValid) return '';
           // If it's not a predefined format, use it as a custom Luxon format
-          return luxonObj.toFormat(format);
+          return luxonObj.toFormat(format || 'dd / MM / yyyy');
       }
     } catch (error) {
       console.error('DateFormatPipe: Error formatting date:', error);

@@ -1,92 +1,49 @@
-<div class="airline" [tooltip]="airlineTooltip">
-  <picture class="airline-logo">
-    @if(themeService.themeModeSignal() === 'light') {
-      <img
-        [src]="segementData()[0].segments[0].operatingCarrierInfo.CarrierCode | airlineLogo:'70px':'light'"
-        [alt]="segementData()[0].segments[0].operatingCarrierInfo.CarrierName" />
-    } @else if(themeService.themeModeSignal() === 'dark') {
-      <img [src]="segementData()[0].segments[0].operatingCarrierInfo.CarrierCode | airlineLogo:'70px':'dark'"
-      [alt]="segementData()[0].segments[0].operatingCarrierInfo.CarrierName" />
-    } @else {
-      <source
-        srcset="segementData()[0].segments[0].operatingCarrierInfo.CarrierCode | airlineLogo:'70px':'light'"
-        media="(prefers-color-scheme: light)" />
-      <source srcset="segementData()[0].segments[0].operatingCarrierInfo.CarrierCode | airlineLogo:'70px':'dark'"
-        media="(prefers-color-scheme: dark)" />
-      <img
-      [src]="segementData()[0].segments[0].operatingCarrierInfo.CarrierCode | airlineLogo:'70px':'light'"
-      [alt]="segementData()[0].segments[0].operatingCarrierInfo.CarrierName" />
-    }
-  </picture>
-
-  <div class="airline-name">
-    <p class="m-0 airline-full-name text-ellipsis-multiline text--capitalize">
-      {{
-        segementData()[0].segments[0].operatingCarrierInfo.CarrierName.toLowerCase()
-      }}
-    </p>
-    <small class="text-ellipsis airline-code">
-      <strong>
-        {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierCode }} -
-        {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierDesigCode }}
-      </strong>
-    </small>
-  </div>
-</div>
-<ng-template #airlineTooltip>
-  <div class="airline-name text--capitalize">
-    <p class="m-0">
-      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierName.toLowerCase() }}
-    </p>
-    <small>
-      <strong>{{ segementData()[0].segments[0].operatingCarrierInfo.CarrierCode }} -
-      {{ segementData()[0].segments[0].operatingCarrierInfo.CarrierDesigCode }}</strong>
-    </small>
-  </div>
-</ng-template>
+@let tooltipWidth = 180;
+<airline-logo [getAirline]="segment()[0].operatingCarrierInfo" />
 <div class="line-breaker vertical"></div>
 <div class="timeline">
   <div class="airport-time origin">
-    <h6 class="m-0">
-      <span class="airport-code">{{
-        segementData()[0].segments[0].dep.IATALocationCode
-      }}</span>
+    <h6 class="m-0" [tooltip]="departFromTemplate" [tooltipMaxWidth]="tooltipWidth" [tooltipDirection]="'top'">
+      <span class="airport-code">{{departFrom().dep.IATALocationCode}}</span>
       <span>&nbsp;-&nbsp;</span>
-      <span class="time">{{
-        segementData()[0].segments[0].dep.AircraftScheduledDateTime | dateFormat: "time"
-      }}</span>
+      <span class="time">{{ departFrom().dep.AircraftScheduledDateTime | dateFormat: "time" }}</span>
     </h6>
-    <small class="date">{{
-      segementData()[0].segments[0].dep.AircraftScheduledDateTime | dateFormat: "date"
-    }}</small>
+    <small class="date">{{ departFrom().dep.AircraftScheduledDateTime | dateFormat: "preset": "DATE_MED"}}</small>
+    <ng-template #departFromTemplate>
+      @let data = airportList.getAirport(departFrom().dep.IATALocationCode);
+      {{ data?.City }}, ({{ data?.IATA }}) {{ data?.AirportName }}
+    </ng-template>
   </div>
   <div class="duration">
     <div class="layover-strip">
-      @for(segment of segmentLength; track segment) {
-      <span
-        class="pill"
-        [tooltip]="segment.arrival.IATALocationCode"
-        [tooltipOnClick]="true"
-      >
-        {{ segment.arrival.IATALocationCode }}
-      </span>
+        @for(segment of layoverSegments(); track segment) {
+        <span class="pill" [tooltip]="layoverTooltipData" [tooltipOnClick]="true" [tooltipDirection]="'top'" [tooltipMaxWidth]="tooltipWidth">
+          {{ segment.arrival.IATALocationCode }}
+        </span>
       }
+      <ng-template #layoverTooltipData>
+        @for (layover of layoverAirportDetails(); track layover) {
+          <span class="airport-name">
+            {{ layover?.City }}, ({{ layover?.IATA }}) {{ layover?.AirportName }}
+          </span>
+        }
+      </ng-template>
     </div>
-    <p class="m-0">{{ this.segementData().duration || "NA" }}</p>
+    <p class="m-0">{{ totalDuration }}</p>
   </div>
   <div class="airport-time destination">
-    <h6 class="m-0">
-      <span class="airport-code">{{
-        segementData()[0].segments[lastIndex].arrival.IATALocationCode
-      }}</span>
+    <h6 class="m-0" [tooltip]="departFromTemplate" [tooltipMaxWidth]="tooltipWidth" [tooltipDirection]="'top'">
+      <span class="airport-code">{{ departTo().arrival.IATALocationCode }}</span>
       <span>&nbsp;-&nbsp;</span>
-      <span class="time">{{
-        segementData()[0].segments[0].arrival.AircraftScheduledDateTime | dateFormat: "time"
-      }}</span>
+      <span class="time">{{ departTo().arrival.AircraftScheduledDateTime | dateFormat: "time" }}</span>
     </h6>
-    <small class="date">{{
-      segementData()[0].segments[0].arrival.AircraftScheduledDateTime | dateFormat: "date"
-    }}</small>
+    <small class="date">{{ departTo().arrival.AircraftScheduledDateTime | dateFormat: "preset": "DATE_MED" }}</small>
+
+    <ng-template #departToTemplate>
+      @let data = airportList.getAirport(departTo().arrival.IATALocationCode);
+      {{ data?.City }}, ({{ data?.IATA }}) {{ data?.AirportName }}
+    </ng-template>
   </div>
 </div>
+
 <!-- {{segmentLength | json}} -->

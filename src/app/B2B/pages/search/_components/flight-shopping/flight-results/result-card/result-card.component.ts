@@ -1,22 +1,23 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, effect, input, ViewEncapsulation } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { SegementComponent } from "../segment/segment.component";
 import { CardFooterComponent } from "../card-footer/card-footer.component";
-import { SegementComponent } from '../segment/segment.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-roundtrip-result-card, roundtrip-result-card',
+  selector: 'app-result-card, result-card',
   imports: [CommonModule, SegementComponent, CardFooterComponent],
-  templateUrl: './roundtrip-result-card.component.html',
-  styleUrls: ['./roundtrip-result-card.component.css', '../flight-results-common.css'],
-  encapsulation: ViewEncapsulation.None,
+  templateUrl: './result-card.component.html',
+  styleUrl: './result-card.component.css',
   host: {
-    'class': 'roundtrip-result-card-wrapper result-card'
-  }
+    'class': 'result-card-wrapper result-card',
+    '[attr.data-card-type]': 'tripType()',
+  },
 })
-export class RoundtripResultCardComponent {
+export class ResultCardComponent {
   cardData = input<any>();
   offers = input<any>();
   pricing = input<any>();
+  tripType = input<string>();
 
   private readonly allOffers = computed<any[]>(() => this.offers());
   protected readonly journeys = computed<any[]>(() => this.cardData().journeys || []);
