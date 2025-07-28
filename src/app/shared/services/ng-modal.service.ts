@@ -15,6 +15,7 @@ export interface ModalConfig<T = any> {
   position?: 'center' | 'top' | 'bottom' | 'left' | 'right';
   overlay?: boolean;
   overlayClose?: boolean;
+  props?: any,
 }
 
 @Injectable({ providedIn: 'root' })

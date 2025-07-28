@@ -3,8 +3,6 @@
   [ngClass]="{'active': showDropdown(), 'fixed': isSticky()}"
   class="filter-dropdown-wrapper">
 
-  <!-- [tooltip]="tooltipText ? tooltipTemplate : null"
-  tooltipDirection="top" -->
   <button
     [ngClass]="{ 'active': showDropdown(), 'selected': selectedValue(), 'fixed': isSticky() }"
     class="filter-button-element {{ classToButton() }}"
@@ -43,19 +41,3 @@
     </div>
   }
 </div>
-
-
-<!-- <ng-template #tooltipTemplate>
-  @if (tooltipText) {
-    @if(pills) {
-      <span class="selected-pills">
-        @for(pill of pills; track pill) {
-          <span class="selected-pill">
-            <i class="fa-solid fa-square-check"></i>
-            <span>{{pill}}</span>
-          </span>
-        }
-      </span>
-    }
-  }
-</ng-template> -->

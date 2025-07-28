@@ -2,6 +2,8 @@ import { Component, computed, input, inject, model, effect } from '@angular/core
 import { SegmentComponent } from "../segment/segment.component";
 import { CardFooterComponent } from "../card-footer/card-footer.component";
 import { CommonModule } from '@angular/common';
+import { NgModalService } from '@/shared/services/ng-modal.service';
+import { FlightDetailsComponent } from '../flight-details/flight-details.component';
 
 @Component({
   selector: 'app-result-card, result-card',
@@ -28,9 +30,4 @@ export class ResultCardComponent {
   getPrice = computed(() => {
     return this.allOffers()?.find((item: any) => item.offerId === this.cardData().C_offers[0])
   });
-
-  showDialog() {
-    this.isDialogActive.set(true);
-  }
-
 }

@@ -42,11 +42,15 @@ export class NgDialogComponent {
   // Effects
   private readonly bodyClassEffect = effect(() => {
     if (this.isDialogActive()) {
-      this.bodyClassModifier.addClassToBody(['freez', 'modal-actived']);
-      this.bodyClassModifier.addClassToRoot(['freez', 'modal-actived']);
+      setTimeout(() => {
+        this.bodyClassModifier.addClassToBody(['freez', 'modal-actived']);
+        this.bodyClassModifier.addClassToRoot(['freez', 'modal-actived']);
+      }, this.animationDuration());
     } else {
-      this.bodyClassModifier.removeBodyClass(['freez', 'modal-actived']);
-      this.bodyClassModifier.removeClassToRoot(['freez', 'modal-actived']);
+      setTimeout(() => {
+        this.bodyClassModifier.removeBodyClass(['freez', 'modal-actived']);
+        this.bodyClassModifier.removeClassToRoot(['freez', 'modal-actived']);
+      }, this.animationDuration() * 1.5);
     }
   });
 

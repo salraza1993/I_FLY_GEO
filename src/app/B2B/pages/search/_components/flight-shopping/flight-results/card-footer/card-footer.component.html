@@ -28,7 +28,7 @@
     </span>
   </div>
   <div class="block-content block-end">
-    <button type="button" class="card-footer-button active">
+    <button type="button" class="card-footer-button">
       <span class="icon icon-before"><i class="fa-regular fa-square"></i></span>
       <span>Email</span>
     </button>
@@ -38,9 +38,17 @@
       <span>Fare Rules</span>
     </button>
     <separator-line />
-    <button type="button" class="card-footer-button active">
+    <button type="button" class="card-footer-button" [ngClass]="{'active': isDialogActive()}" (click)="showFlightDetails()">
       <span class="icon icon-before"><i class="fa-solid fa-circle-info"></i></span>
       <span>Flight Details</span>
     </button>
   </div>
 </div>
+
+<ng-dialog
+  [dialogTitle]="'Flight Details'"
+  [animationType]="'slide-in--down'"
+  dialogId="flight-details"
+  [(isDialogActive)]="isDialogActive">
+  <flight-details />
+</ng-dialog>

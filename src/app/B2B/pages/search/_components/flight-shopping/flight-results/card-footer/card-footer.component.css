@@ -74,7 +74,7 @@
       &[type=button] {
         background-color: var(--card-footer-elem-bg);
         font-weight: 600;
-        &:hover {
+        &:hover, &:is(.active) {
           background-color: var(--card-color);
           color: var(--card-bg);
         }

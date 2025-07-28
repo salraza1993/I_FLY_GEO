@@ -3,7 +3,6 @@
     @if(modal.config.overlay) {
       <div class="modal-overlay" (click)="modal.config.overlayClose !== false && modalService.close(modal.id)"></div>
     }
-    <!-- <div class="modal-container {{ modalService.getCurrentModalId() }}" (click)="$event.stopPropagation()"> -->
     <div class="modal-container container-{{ modal.id }}">
       <div class="top-strip"></div>
       <div

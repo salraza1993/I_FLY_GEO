@@ -6,6 +6,7 @@
   --ng-modal-container-radius: calc(var(--border-radius) * 3);
   --ng-modal-container-padding: calc(var(--common-padding) * 1.5);
 }
+
 .ng-modal-wrapper {
   position: fixed;
   inset: 0;
@@ -32,6 +33,7 @@
     position: relative;
     z-index: 1;
     max-width: max-content;
+
     .top-strip {
       content: '';
       position: absolute;
@@ -43,30 +45,39 @@
       transform: translateX(-50%);
       border-end-start-radius: var(--ng-modal-container-radius);
       border-end-end-radius: var(--ng-modal-container-radius);
-      z-index: 1;
+      z-index: 5;
     }
+
     .modal-content {
       max-width: var(--ng-modal-container-max-width);
       min-width: var(--ng-modal-container-min-width);
       overflow: auto;
       height: auto;
-      max-height: 95vh;
-      max-height: 95dvh;
+      max-height: 97vh;
+      max-height: 97dvh;
       position: relative;
       background-color: var(--ng-modal-container-bg);
       border-end-start-radius: var(--ng-modal-container-radius);
       border-end-end-radius: var(--ng-modal-container-radius);
 
       .modal-header {
-        position: relative;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: var(--common-padding);
         padding: var(--ng-modal-container-padding);
         padding-block-end: 0;
+        inset-block-start: 0;
+        position: sticky;
+        z-index: 3;
+        backdrop-filter: blur(30px);
       }
       .modal-body {
         padding: var(--ng-modal-container-padding);
+        padding-block-start: calc(var(--ng-modal-container-padding) / 1.5);
+        display: flex;
+        flex-direction: column;
+        gap: var(--common-padding);
       }
     }
   }

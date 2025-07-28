@@ -4,6 +4,7 @@
   class="dialog-wrapper hasScrollbar {{ animationType() }}"
   [attr.aria-label]="'Dialog: ' + dialogId()"
 >
+@if(dialogVisible()) {
 @if(!hideHeader() || dialogTitle()) {
   <div class="dialog-header">
     <h4 class="m-0">{{ dialogTitle() }}</h4>
@@ -18,6 +19,5 @@
     Body Content
   </ng-content>
 </div>
-<!-- @if(dialogVisible()) {
-} -->
+}
 </dialog>

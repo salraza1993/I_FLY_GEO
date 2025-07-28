@@ -143,13 +143,13 @@ dialog {
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    position: sticky;
     inset-block-start: 0;
+    position: sticky;
     z-index: 3;
+    backdrop-filter: blur(30px);
     padding-inline: var(--dialog-padding, var(--dialog-padding-fallback));
     padding-block-start: calc(var(--dialog-padding, var(--dialog-padding-fallback)) / 1.25);
     padding-block-end: calc(var(--dialog-padding, var(--dialog-padding-fallback)) / 2.5);
-    backdrop-filter: blur(30px);
   }
 
   .dialog-body {
