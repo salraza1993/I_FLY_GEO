@@ -1,4 +1,4 @@
-import { TooltipDirective } from '@/core/directives/tooltip.directive';
+import { DirectionTypes, TooltipDirective } from '@/core/directives/tooltip.directive';
 import { AirlinesLogoPipe } from '@/core/pipes/airlines-logo.pipe';
 import { TextTransformPipe } from '@/core/pipes/text-transform.pipe';
 import { CommonModule } from '@angular/common';
@@ -25,8 +25,9 @@ export type OperatingCarrierTypes = {
 export class AirlineLogoComponent {
   getAirline = input.required<OperatingCarrierTypes | undefined>();
   airlineLineInfo = computed(() => this.getAirline());
+  tooltipDirection = input<DirectionTypes>('top-left');
 
-  airlinesLogoNotFound = ['X1'];
+  airlinesLogoNotFound = ['X1', 'VF'];
 
   get airlineLogoCode() : string  {
     const airline = this.getAirline()?.CarrierCode;

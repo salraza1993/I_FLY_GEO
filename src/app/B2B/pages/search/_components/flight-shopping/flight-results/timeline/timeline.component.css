@@ -1,0 +1,98 @@
+:host {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+
+  & .airport-time {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--card-padding) / 1.5);
+    flex-shrink: 0;
+    z-index: 1;
+    min-width: 110px;
+  }
+
+  .duration {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .total-duration {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: var(--layover-strip-height);
+
+      span {
+        background-color: var(--card-bg);
+        display: inline-flex;
+        padding-inline: 0.5rem;
+      }
+
+      &::before,
+      &::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        background-color: var(--secondary);
+        position: absolute;
+        inset-block-start: calc(50% - 4px);
+      }
+      &::before {
+        inset-inline-start: 0;
+        border-radius: 10px;
+      }
+      &::after {
+        background-color: var(--accent);
+        inset-inline-end: 0;
+      }
+    }
+
+    .layover-strip {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.4rem;
+
+      .pill {
+        background-color: var(--pill-bg);
+        box-shadow: 0 0 0 1px var(--pill-border);
+        padding-inline: 0.3rem;
+        padding-block: 0.1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border-radius: calc(var(--border-radius) / 2);
+        transition: var(--transition);
+        &:hover {
+          --pill-bg: var(--accent);
+          --pill-border: var(--accent);
+          color: var(--accent-color);
+        }
+      }
+    }
+
+    &::before {
+      content: "";
+      width: 100%;
+      position: absolute;
+      border-block-start: 1px dashed var(--pill-border);
+      height: 1px;
+      inset-block-start: calc(var(--layover-strip-height) / 2);
+    }
+  }
+  .ng-tooltip {
+    white-space: pre-line;
+  }
+}

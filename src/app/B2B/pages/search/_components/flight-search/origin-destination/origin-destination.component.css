@@ -1,5 +1,5 @@
 :host {
-  --block-max-width: calc(1000px + 5vw);
+  --block-max-width: 100%;
   --blocks-gap: 18px;
   --common-input-height: 50px;
   --input-block-height: var(--common-input-height);
@@ -16,8 +16,8 @@
   max-width: var(--block-max-width);
   justify-content: center;
   width: 100%;
-  
-  &:is(.error) { 
+
+  &:is(.error) {
     margin-block-end: 1rem;
   }
   .search-element-block {
@@ -39,10 +39,10 @@
         gap: 0.35rem;
         &:is(.active) {
           background-color: var(--body-content-wrapper-bg);
-          width: calc(var(--block-max-width) / 2);
+          width: calc(var(--block-max-width) + 1rem);
           z-index: 2;
-          box-shadow: 
-            0 0 0 var(--box-shadow-size) var(--body-content-wrapper-bg), 
+          box-shadow:
+            0 0 0 var(--box-shadow-size) var(--body-content-wrapper-bg),
             0 0 0 calc(var(--box-shadow-size) + 1px) var(--input-block-border);
           .input-wrapper {
             background-color: var(--input-block-active-bg);
@@ -88,7 +88,7 @@
     &[data-type="origin"] {
       &:is(.active) { z-index: 5;}
       --input-block-icon-color: var(--secondary);
-      .block-body-circle { 
+      .block-body-circle {
         inset-inline-end: 0;
         &::before {
           inset-inline-start: calc(50% + 4px);
@@ -106,7 +106,7 @@
     }
     &[data-type="destination"] {
       --input-block-icon-color: var(--accent);
-      .block-body-circle { 
+      .block-body-circle {
         inset-inline-start: 0;
         &::before {
           inset-inline-end: calc(50% + 4px);
@@ -166,7 +166,7 @@
         color: var(--accent-color);
         &::after {
           background-color: var(--accent);
-          scale: 0.9; 
+          scale: 0.9;
         }
       }
     }

@@ -57,11 +57,11 @@ export class CustomTabsComponent implements AfterViewInit {
 
   public isOnlyBordered = input(false, { transform: booleanAttribute });
   public isElementHover = signal<boolean>(false)
-  public activeStripStyles = signal({
+  protected activeStripStyles = signal({
     '--tab-active-item-offset-x': '5px',
     '--tab-active-item-width': '60px',
   })
-  public hoveredStripStyles = signal({
+  protected hoveredStripStyles = signal({
     '--tab-active-item-offset-x': '5px',
     '--tab-active-item-width': '60px',
   })

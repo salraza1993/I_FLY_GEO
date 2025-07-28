@@ -1,10 +1,12 @@
+
+
 <div class="card-body">
   <div class="journey-wrapper">
     @for (journey of journeys(); track $index; let index = $index) {
       @if(index > 0) {
         <div class="line-breaker"></div>
       }
-      <segment [segementData]="journey.segments" [journeyTime]="journey.duration" />
+      <segment [segmentData]="journey.segments" [journeyTime]="journey.duration" />
     }
   </div>
   <div class="line-breaker vertical"></div>
@@ -18,7 +20,7 @@
       }
     </div>
     <div class="buttons">
-      <button class="button size--small">
+      <button class="button size--small" (click)="showDialog()">
         <span class="icon icon-before"><i class="fa-solid fa-list"></i></span>
         <span>More Fare</span>
       </button>
@@ -30,3 +32,10 @@
   </div>
 </div>
 <card-footer />
+
+<ng-dialog
+  dialogId="more-fares-dialog"
+  [overlayClose]="true"
+  [(isDialogActive)]="isDialogActive">
+  More Fare
+</ng-dialog>

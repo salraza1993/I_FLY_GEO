@@ -1,11 +1,12 @@
-import { Component, computed, input } from '@angular/core';
-import { SegementComponent } from "../segment/segment.component";
+import { Component, computed, input, inject, model } from '@angular/core';
+import { SegmentComponent } from "../segment/segment.component";
 import { CardFooterComponent } from "../card-footer/card-footer.component";
 import { CommonModule } from '@angular/common';
+import { NgDialogComponent } from "../../../ng-dialog/ng-dialog.component";
 
 @Component({
   selector: 'app-result-card, result-card',
-  imports: [CommonModule, SegementComponent, CardFooterComponent],
+  imports: [CommonModule, CardFooterComponent, NgDialogComponent, SegmentComponent],
   templateUrl: './result-card.component.html',
   styleUrl: './result-card.component.css',
   host: {
@@ -14,6 +15,8 @@ import { CommonModule } from '@angular/common';
   },
 })
 export class ResultCardComponent {
+  protected isDialogActive = model<boolean>(false);
+
   cardData = input<any>();
   offers = input<any>();
   pricing = input<any>();
@@ -26,4 +29,9 @@ export class ResultCardComponent {
   getPrice = computed(() => {
     return this.allOffers()?.find((item: any) => item.offerId === this.cardData().C_offers[0])
   });
+
+  showDialog() {
+    this.isDialogActive.set(true);
+  }
+
 }

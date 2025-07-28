@@ -12,4 +12,12 @@
   <dashboard-graph />
   <block-spacer [marginStart]="2.5" class="grid-wrapper" />
 </div>
+<button (click)="showDialog()">Click Me</button>
+<ng-dialog
+[dialogTitle]="'Flight Details'"
+[animationType]="'slide-in--down'"
+dialogId="flight-details"
+[(isDialogActive)]="isDialogActive">
+  <flight-details />
+</ng-dialog>
 

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, model, signal } from '@angular/core';
 import { SectionHeadingComponent } from "../../../shared/components/section-heading/section-heading.component";
 import { BlockSpacerComponent } from "../../../shared/components/block-spacer/block-spacer.component";
 import { DashboardReportsComponent } from "./_components/dashboard-reports/dashboard-reports.component";
@@ -7,6 +7,8 @@ import { LanguageSwitcherComponent } from '../../../shared/components/language-s
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { ThemeModeChangerComponent } from '../../../shared/components/theme-mode-changer/theme-mode-changer.component';
+import { NgDialogComponent } from "../search/_components/ng-dialog/ng-dialog.component";
+import { FlightDetailsComponent } from '../search/_components/flight-shopping/flight-results/flight-details/flight-details.component';
 
 @Component({
   selector: 'dashboard',
@@ -19,7 +21,9 @@ import { ThemeModeChangerComponent } from '../../../shared/components/theme-mode
     TranslateModule,
     CommonModule,
     ThemeModeChangerComponent,
-  ],
+    NgDialogComponent,
+    FlightDetailsComponent,
+],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
   host: {
@@ -37,5 +41,11 @@ export class DashboardComponent {
     { key: 'age', label: 'Age' },
     { key: 'city', label: 'City' }
   ];
+
+  protected isDialogActive = model<boolean>(false);
+
+  showDialog() {
+    this.isDialogActive.set(true);
+  }
 
 }

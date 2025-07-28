@@ -1,8 +1,8 @@
 import { booleanAttribute, Directive, effect, ElementRef, HostListener, inject, input, Input, OnDestroy, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
 
-type DirectionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'left-top' | 'left-bottom' | 'right' | 'right-top' | 'right-bottom';
-type TooltipType = 'info' | 'warning' | 'error' | 'success' | 'danger' | 'primary' | 'accent' | 'secondary' | 'dark' | 'light' | 'auto';
-type StylesTypes = string | null | number;
+export type DirectionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'left-top' | 'left-bottom' | 'right' | 'right-top' | 'right-bottom';
+export type TooltipType = 'info' | 'warning' | 'error' | 'success' | 'danger' | 'primary' | 'accent' | 'secondary' | 'dark' | 'light' | 'auto';
+export type StylesTypes = string | null | number;
 
 @Directive({
   selector: '[tooltip], [appTooltip]',

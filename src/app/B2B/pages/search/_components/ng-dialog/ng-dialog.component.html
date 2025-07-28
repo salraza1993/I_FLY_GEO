@@ -1,0 +1,23 @@
+<dialog
+  #dialogElement
+  [id]="dialogId()"
+  class="dialog-wrapper hasScrollbar {{ animationType() }}"
+  [attr.aria-label]="'Dialog: ' + dialogId()"
+>
+@if(!hideHeader() || dialogTitle()) {
+  <div class="dialog-header">
+    <h4 class="m-0">{{ dialogTitle() }}</h4>
+    <button class="dialog-close-button danger-light size--small" (click)="closeDialog()" aria-label="Close dialog" type="button">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+}
+
+<div class="dialog-body">
+  <ng-content>
+    Body Content
+  </ng-content>
+</div>
+<!-- @if(dialogVisible()) {
+} -->
+</dialog>

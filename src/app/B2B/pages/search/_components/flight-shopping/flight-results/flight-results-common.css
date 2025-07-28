@@ -3,7 +3,7 @@
   --card-bg: light-dark(var(--primary-100_light), var(--primary-85_dark));
   --card-color: light-dark(var(--primary-80_dark), var(--primary-20_dark));
   --card-border: light-dark(var(--primary-85_light), var(--primary-60_dark));
-  --line-border: light-dark(var(--primary-85_light), var(--primary-60_dark));
+  --line-border: light-dark(var(--primary-85_light), var(--primary-80_dark));
   --card-footer-width: calc(100% - calc(var(--card-padding) * 3.15));
   --card-border-radius: calc(var(--border-radius) * 2);
   --card-footer-border: light-dark(var(--primary-75_light), var(--primary-75_dark));

@@ -1,4 +1,4 @@
-<div class="airline-wrapper" [tooltip]="airlineTooltip" [tooltipDirection]="'top-left'" [tooltipMaxWidth]="300">
+<div class="airline-wrapper" [tooltip]="airlineTooltip" [tooltipDirection]="tooltipDirection()" [tooltipMaxWidth]="300">
   <picture class="airline-logo">
     <!-- @if(themeService.themeModeSignal() === 'light') {
       <img

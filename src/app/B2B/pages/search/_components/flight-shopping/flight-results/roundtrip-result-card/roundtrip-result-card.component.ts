@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, input, ViewEncapsulation } from '@angular/core';
 import { CardFooterComponent } from "../card-footer/card-footer.component";
-import { SegementComponent } from '../segment/segment.component';
+import { SegmentComponent } from '../segment/segment.component';
 
 @Component({
   selector: 'app-roundtrip-result-card, roundtrip-result-card',
-  imports: [CommonModule, SegementComponent, CardFooterComponent],
+  imports: [CommonModule, SegmentComponent, CardFooterComponent],
   templateUrl: './roundtrip-result-card.component.html',
   styleUrls: ['./roundtrip-result-card.component.css', '../flight-results-common.css'],
   encapsulation: ViewEncapsulation.None,

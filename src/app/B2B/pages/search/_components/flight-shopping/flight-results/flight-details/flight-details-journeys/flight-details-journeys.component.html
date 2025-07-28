@@ -1,0 +1,25 @@
+@for(journey of journeys(); track journey.journeyId) {
+<div class="accordion-block" tabindex="0" role="accordion-header" [ngClass]="{ 'is-opened': journey.isActive }">
+  <div class="accordion-block__header" [ngClass]="{ 'active': journey.isActive }" (click)="toggleAccordion(journey)">
+    <airline-logo
+      [tooltipDirection]="'right'"
+      [getAirline]="journey.segments[0].operatingCarrierInfo" />
+    <timeline [timelineData]="journey.segments" [journeyTime]="journey.duration" />
+    <div class="icon"><i class="fa-solid fa-angle-{{ journey.isActive ? 'up' : 'down' }}"></i></div>
+  </div>
+  <div class="accordion-block__body" [ngClass]="{ 'active': journey.isActive }">
+    <div class="__inner">
+      <p>
+        Sit amet consectetur velit integer tincidunt sceleries nodalesry
+        volutpat neque fermentum malesuada sceleris quecy massa lacus ultrices
+        eget leo cras odio blandit rhoncus eues feugiat. Sit amet consectetur
+        velit integer tincidunt sceleries nodalesry volutpat neque fermentum
+        malesuada sceleris quecy massa lacus ultrices eget leo cras odio blandit
+        rhoncus eues feugiat. Sit amet consectetur velit integer tincidunt
+        sceleries nodalesry volutpat neque fermentum malesuada sceleris quecy
+        massa lacus ultrices eget leo cras odio blandit rhoncus.
+      </p>
+    </div>
+  </div>
+</div>
+}

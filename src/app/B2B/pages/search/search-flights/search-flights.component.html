@@ -1,15 +1,13 @@
 <div class="search-form-card-wrapper">
   <search-form-content-wrapper [headingSmall]="'search'" [headingBig]="'Flights'">
     <custom-tabs [setTabs]="flightTabs()" />
+
     @switch (selectedTab()) {
       @case ('multi-city') {
-        <multi-city></multi-city>
-      }
-      @case ('roundtrip') {
-        <onward-roundtrip roundTrip></onward-roundtrip>
+        <multi-city />
       }
       @default {
-        <onward-roundtrip></onward-roundtrip>
+        <onward-roundtrip [roundTrip]="selectedTab() === 'roundtrip'" />
       }
     }
   </search-form-content-wrapper>

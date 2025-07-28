@@ -1,0 +1,77 @@
+:host {
+  --container-max-width: 600px;
+  --gaps: 1rem;
+  --grid-row-height: 0fr;
+  --accordion-body-pad-x: 0.75rem;
+  --accordion-body-pad-y: 0;
+  --accordion-border-radius: calc(var(--border-radius) * 2);
+
+  --accordion-header-bg: light-dark(var(--primary-100_light), var(--primary-60_dark));
+  --accordion-body-bg: light-dark(var(--primary-90_light), var(--primary-95_dark));
+  --accordion-border: light-dark(var(--primary-80_light), var(--primary-60_dark));
+  --accordion-header-active-bg: light-dark(var(--secondary-10_light), var(--secondary-30_dark));
+  --accordion-active-body-bg: light-dark(var(--primary-100_light), var(--secondary-10_dark));
+  --accordion-active-border: light-dark(var(--secondary-0_light), var(--secondary-0_dark));
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gaps) / 1);
+
+  .accordion-block {
+    border-radius: var(--accordion-border-radius);
+    position: relative;
+    background-color: var(--accordion-body-bg);
+    box-shadow: 0 0 0 1px var(--accordion-border);
+    overflow: clip;
+    transition: var(--transition);
+
+    .accordion-block__header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: var(--gaps);
+      padding: var(--gaps);
+      background-color: var(--accordion-header-bg);
+      transition: var(--transition);
+      cursor: pointer;
+      border-start-start-radius: var(--accordion-border-radius);
+      border-start-end-radius: var(--accordion-border-radius);
+
+      .ailine {
+        position: relative;
+        display: flex;
+        gap: var(--gaps);
+
+        .airlin-logo {
+          position: relative;
+          border-radius: var(--border-radius);
+          overflow: clip;
+          width: 50px;
+          height: 50px;
+          flex-shrink: 0;
+
+        }
+      }
+    }
+
+    .accordion-block__body {
+      display: grid;
+      grid-template-rows: var(--grid-row-height);
+      transition: grid-template-rows 450ms ease-out, padding-block 450ms ease-out;
+      padding-inline: var(--accordion-body-pad-x);
+      padding-block: var(--accordion-body-pad-y);
+      .__inner { overflow: hidden; }
+
+    }
+    &.is-opened {
+      --grid-row-height: 1fr;
+      --accordion-body-pad-y: 0.75rem;
+      --accordion-header-bg: var(--accordion-header-active-bg);
+      --accordion-body-bg: var(--accordion-active-body-bg);
+      --accordion-border: var(--accordion-active-border);
+      z-index: 1;
+      box-shadow: 0 0 0 2px var(--accordion-border);
+    }
+  }
+}

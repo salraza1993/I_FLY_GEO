@@ -2,6 +2,10 @@
   --content-wrapper-max-width: calc(1100px + 5vw);
   display: block;
   position: relative;
+  z-index: 2;
+
+  /* &:has(*:hover) {
+  } */
 
   .separator-line, .line-breaker {
     position: relative;

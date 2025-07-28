@@ -8,12 +8,17 @@
   --card-border-radius: calc(var(--border-radius) * 2);
   --card-footer-border: light-dark(var(--primary-75_light), var(--primary-75_dark));
 
+  /* Custom properties for projected content */
+  --dialog-content-bg: red;
+  --dialog-content-padding: var(--card-padding);
+
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   &:hover {
     z-index: 2;
+    border-color: red;
   }
 
   .card-body {
@@ -93,4 +98,13 @@
       border-inline-start: 1px solid var(--line-border);
     }
   }
+}
+
+.card-content {
+  position: relative;
+  background-color: red;
+  width: 500px;
+  padding: var(--card-padding);
+  padding: 2rem;
+  margin-inline: auto;
 }

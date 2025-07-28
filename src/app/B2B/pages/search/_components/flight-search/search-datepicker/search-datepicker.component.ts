@@ -36,7 +36,7 @@ export class SearchDatepickerComponent implements AfterViewInit, OnDestroy {
   public hasError = model<boolean>(false);
   public focusNext = output<string>();
   public getDate = model<SearchDateType>(null);
-  public isRoundtrip = input(false, { transform: booleanAttribute});
+  public isRoundtrip = model<boolean>(false);
 
   private plugins = signal<any>([LockPlugin]);
   private pluginConfig = signal<any>({
@@ -65,7 +65,16 @@ export class SearchDatepickerComponent implements AfterViewInit, OnDestroy {
         this.showDatePickerHandler(true);
       }
       queueMicrotask(() => this.showCalendar.set(false));
-    })
+    });
+
+    // Effect to handle roundtrip changes
+    effect(() => {
+      const roundtrip = this.isRoundtrip();
+      // Only reinitialize if datePicker exists (component is already initialized)
+      if (this.datePicker && Object.keys(this.datePicker).length > 0) {
+        this.initializeCalender();
+      }
+    });
   }
 
   public showDatePickerHandler(value: boolean){
@@ -108,16 +117,28 @@ export class SearchDatepickerComponent implements AfterViewInit, OnDestroy {
   private initializeCalender(): void {
     const startDateElement = document.getElementById('startDate') as HTMLInputElement;
     const endDateElement = document.getElementById('endDate') as HTMLInputElement;
-    if (this.isRoundtrip() && !this.plugins().includes(RangePlugin)) {
-      this.plugins.update(prev => [...prev, RangePlugin]);
-      this.pluginConfig.update(prev => ({
-        ...prev,
-        RangePlugin: {
-          elementEnd: endDateElement,
-          repick: false,
-          tooltip: true
-        }
-      }));
+
+    // Update plugins based on roundtrip mode
+    if (this.isRoundtrip()) {
+      // Add RangePlugin for roundtrip
+      if (!this.plugins().includes(RangePlugin)) {
+        this.plugins.update(prev => [...prev, RangePlugin]);
+        this.pluginConfig.update(prev => ({
+          ...prev,
+          RangePlugin: {
+            elementEnd: endDateElement,
+            repick: false,
+            tooltip: true
+          }
+        }));
+      }
+    } else {
+      // Remove RangePlugin for one-way
+      this.plugins.update(prev => prev.filter((plugin: any) => plugin !== RangePlugin));
+      this.pluginConfig.update(prev => {
+        const { RangePlugin: _, ...rest } = prev;
+        return rest;
+      });
     }
     let calendarConfig: any = {
       element: startDateElement,

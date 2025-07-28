@@ -6,9 +6,13 @@
   display: block;
   position: sticky;
   inset-block-start: var(--header-height);
-  z-index: 10;
   margin-block-end: var(--common-margin-y-end);
-
+  &:is(.fixed) {
+    z-index: 10;
+  }
+  &:has(.filter-dropdown-wrapper.active) {
+    z-index: 5;
+  }
   .content-wrapper {
     position: relative;
     color: var(--wrapper-color);

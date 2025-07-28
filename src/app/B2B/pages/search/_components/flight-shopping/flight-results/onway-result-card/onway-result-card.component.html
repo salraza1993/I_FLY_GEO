@@ -1,7 +1,7 @@
 <div class="card-body">
   <div class="journey-wrapper">
     @for (journey of journeys(); track $index;) {
-      <segment [segementData]="journey.segments" [journeyTime]="journey.duration" />
+      <segment [segmentData]="journey.segments" [journeyTime]="journey.duration" />
     }
   </div>
   <div class="line-breaker vertical"></div>

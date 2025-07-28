@@ -1,8 +1,9 @@
+<!-- (getOriginDestinationChange)="updateOriginDestination(idx, $event)" -->
 @for (segment of segments(); track segment.id; let idx = $index) {
   <div class="form-row" [style.--grid-columns]="2">
-    <!-- <origin-destination
-      [(getOriginDestination)]="segments()[idx].originDestination"
-      data-z-index="1" /> -->
+    <origin-destination
+      [getOriginDestination]="segments()[idx].originDestination ?? { origin: null, destination: null }"
+      data-z-index="1" />
     <datepicker
       [alignment]="['y-start', 'x-end']"
       [(getDate)]="segments()[idx].date"

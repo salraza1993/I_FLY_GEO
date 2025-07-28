@@ -1,0 +1,70 @@
+@let tooltipWidth = 180;
+<div class="airport-time origin">
+  @if(departFrom(); as origin) {
+  <h6
+    class="m-0"
+    [tooltip]="departFromTemplate"
+    [tooltipMaxWidth]="tooltipWidth"
+    [tooltipDirection]="'top'"
+  >
+    <span class="airport-code">{{ origin.dep.IATALocationCode }}</span>
+    <span>&nbsp;-&nbsp;</span>
+    <span class="time">{{
+      origin.dep.AircraftScheduledDateTime | dateFormat : "time"
+    }}</span>
+  </h6>
+  <small class="date">{{
+    origin.dep.AircraftScheduledDateTime | dateFormat : "preset" : "DATE_MED"
+  }}</small>
+  }
+  <ng-template #departFromTemplate>
+    @if(departFrom(); as origin) {
+      @let data = airportList.getAirport(origin.dep.IATALocationCode);
+      {{ data?.City }}, ({{ data?.IATA }}) {{ data?.AirportName }}
+    }
+  </ng-template>
+</div>
+<div class="duration">
+  <div class="m-0 total-duration">
+    <span [tooltip]="'Total Duration'" [tooltipDirection]="'top'">{{
+      totalDuration
+    }}</span>
+  </div>
+  @if(layoverSegments().length > 0) {
+  <div class="layover-strip">
+    <small>{{ layoverSegments().length }} Stop{{ layoverSegments().length > 1 ? "s" : ""}} at</small>
+
+    @for(segment of layoverSegments(); track segment; let i = $index) {
+    <span class="pill" [tooltip]="getLayoverTooltip(i)" [tooltipDirection]="'top'" [tooltipMaxWidth]="tooltipWidth">
+      {{ segment.arrival.IATALocationCode }}
+    </span>
+    }
+  </div>
+  }
+</div>
+<div class="airport-time destination">
+  @if(departTo(); as destination) {
+    <h6
+      class="m-0"
+      [tooltip]="departToTemplate"
+      [tooltipMaxWidth]="tooltipWidth"
+      [tooltipDirection]="'top'"
+    >
+      <span class="airport-code">{{ destination.arrival.IATALocationCode }}</span>
+      <span>&nbsp;-&nbsp;</span>
+      <span class="time">{{
+        destination.arrival.AircraftScheduledDateTime | dateFormat : "time"
+      }}</span>
+    </h6>
+    <small class="date">{{
+      destination.arrival.AircraftScheduledDateTime | dateFormat : "preset" : "DATE_MED" }}
+    </small>
+  }
+
+  <ng-template #departToTemplate>
+    @if(departTo(); as destination) {
+      @let data = airportList.getAirport(destination.arrival.IATALocationCode);
+      {{ data?.City }}, ({{ data?.IATA }}) {{ data?.AirportName }}
+    }
+  </ng-template>
+</div>

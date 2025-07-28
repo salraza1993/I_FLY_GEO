@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  position: relative;
+  background-color: var(--dialog-content-bg, #f8f9fa);
+  padding: var(--dialog-content-padding, 1rem);
+  border-radius: 8px;
+}
+
+.more-fares-container {
+  position: relative;
+  width: 100%;
+}
+
+.dialog-header {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.fare-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fare-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.fare-item:last-child {
+  border-bottom: none;
+}
+
+.fare-item span {
+  font-weight: 500;
+}
+
+.fare-item strong {
+  color: #dc2626;
+  font-weight: 600;
+}

@@ -1,14 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { COMMON_IMPORTS } from '../../../../../shared/helpers/common-imports';
-import { CustomTabsComponent } from '../../../../../shared/components/custom-tabs/custom-tabs.component';
+import { CustomTabsComponent, TabDataTypes } from '../../../../../shared/components/custom-tabs/custom-tabs.component';
 import { ContentCardComponent } from '../../../../../shared/components/elements/content-card/content-card.component';
 import { TranslateService } from '@ngx-translate/core';
-interface SubTabs {
-  label: string,
-  id: string,
-  selected: boolean,
-  method: (tabItem: SubTabs) => void,
-}
+
 @Component({
   selector: 'dashboard-graph',
   imports: [COMMON_IMPORTS, CustomTabsComponent, ContentCardComponent],
@@ -20,8 +15,8 @@ interface SubTabs {
 })
 export class DashboardGraphComponent {
   private translate = inject(TranslateService);
-  public daysTabs = signal<SubTabs[]>([]);
-  public subTabs = signal<SubTabs[]>([
+  public daysTabs = signal<TabDataTypes[]>([]);
+  public subTabs = signal<TabDataTypes[]>([
     { label: 'All Reports', id: 'allReports', selected: true, method: this.tabHandler.bind(this) },
     { label: 'By Bookings', id: 'byBookings', selected: false, method: this.tabHandler.bind(this) },
     { label: 'By Supplier', id: 'bySuppliers', selected: false, method: this.tabHandler.bind(this) },
@@ -45,16 +40,16 @@ export class DashboardGraphComponent {
       ]);
     });
   }
-  dummyCards = [
+  protected dummyCards = [
     { heading: 'Passengers Wise', data: 'BodyData'},
     { heading: 'Supplier Wise', data: 'BodyData'},
     { heading: 'Revenue Wise', data: 'BodyData'},
   ]
 
-  public tabHandler(tabItem: SubTabs): void {
+  private tabHandler(tabItem: TabDataTypes): void {
     this.subTabs.update((tabs) =>
       tabs.map(tab => ({ ...tab, selected: tab.id === tabItem.id }))
     )
   }
-  
+
 }

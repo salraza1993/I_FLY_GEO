@@ -1,0 +1,203 @@
+dialog {
+  --dialog-bg-fallback: light-dark(var(--primary-95_light),var(--primary-80_dark));
+  --dialog-color-fallback: light-dark(var(--primary-95_light),var(--primary-90_dark));
+  --dialog-padding-fallback: 1.5rem;
+
+  border: none;
+  margin-inline: auto;
+  margin-block: auto;
+  background-color: var(--dialog-bg, var(--dialog-bg-fallback));
+  width: max-content;
+  height: max-content;
+  min-width: var(--dialog-min-width, initial);
+  max-width: var(--dialog-max-width, 95vw);
+  min-height: var(--dialog-max-height, 350px);
+  border-radius: var(--dialog-border-radius, calc(var(--border-radius) * 3));
+  transition: all var(--animation-duration) ease-in-out, overlay var(--animation-duration) ease-in-out;
+  display: flex;
+  flex-direction: column;
+  transition-behavior: allow-discrete;
+
+
+  &:not(.fade-in) {
+    transform-origin: center;
+    scale: 0.5;
+    opacity: 0;
+    &[open] {
+      scale: 1;
+      opacity: 1;
+    }
+    @starting-style {
+      &[open] {
+        scale: 0.8;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &.fade-in {
+    opacity: 0;
+    visibility: hidden;
+    &[open] {
+      opacity: 1;
+      visibility: visible;
+    }
+    @starting-style {
+      &[open] {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
+
+  &:is(.slide-in--up, .slide-in--up-center, .slide-in--down, .slide-in--down-center, .slide-in--left, .slide-in--left-center, .slide-in--right, .slide-in--right-center) {
+    scale: 1;
+    &[open] {
+      translate: 0 0;
+    }
+  }
+
+  &.slide-in--up, &.slide-in--up-center {
+    margin-block: 0 auto;
+    translate: 0 -100vh;
+    @starting-style {
+      &[open] {
+        translate: 0 -100vh;
+      }
+    }
+  }
+
+  &.slide-in--down, &.slide-in--down-center {
+    margin-block: auto 0;
+    translate: 0 100vh;
+    @starting-style {
+      &[open] {
+        translate: 0 100vh;
+      }
+    }
+  }
+  &.slide-in--up-center, &.slide-in--down-center {
+    margin-block: auto;
+  }
+  &.slide-in--down {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+  &.slide-in--up {
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+  }
+
+  &.slide-in--left, &.slide-in--left-center {
+    margin-inline: 0 auto;
+    translate: -100vw 0;
+    @starting-style {
+      &[open] {
+        translate: -100vw 0;
+      }
+    }
+  }
+
+  &.slide-in--right, &.slide-in--right-center {
+    margin-inline: auto 0;
+    translate: 100vw 0;
+    &[open] {
+      translate: 0 0;
+    }
+    @starting-style {
+      &[open] {
+        translate: 100vw 0;
+      }
+    }
+  }
+  &.slide-in--left-center, &.slide-in--right-center {
+    margin-inline: auto;
+  }
+  &.slide-in--left {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+  &.slide-in--right {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  &::backdrop {
+    background-color: light-dark(rgba(0, 0, 0, 0.75), rgba(20, 20, 20, 0.75));
+    backdrop-filter: blur(8px);
+    opacity: 1;
+    transition: opacity 1000ms ease-in;
+    transition-delay: 300ms;
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  .dialog-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 1;
+    padding-inline: var(--dialog-padding, var(--dialog-padding-fallback));
+    padding-block-start: calc(var(--dialog-padding, var(--dialog-padding-fallback)) / 1.25);
+    padding-block-end: calc(var(--dialog-padding, var(--dialog-padding-fallback)) / 2.5);
+    backdrop-filter: blur(30px);
+  }
+
+  .dialog-body {
+    position: relative;
+    padding-inline: var(--dialog-padding, var(--dialog-padding-fallback));
+    padding-block-start: calc(var(--dialog-padding, var(--dialog-padding-fallback)) / 2.5);
+    padding-block-end: var(--dialog-padding, var(--dialog-padding-fallback));
+  }
+
+  .dialog-close-button {
+    margin-inline-start: auto;
+  }
+  .close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    transition: all 0.2s ease;
+    z-index: 1;
+  }
+
+  .close-button:hover {
+    background-color: #f3f4f6;
+    color: #374151;
+  }
+
+  .close-button:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+}
+
+/* Animation state handling */
+:host(.animating-out) dialog {
+  pointer-events: none;
+}
+
+:host(.animating-out) dialog:not(.fade-in) {
+  scale: 0.8;
+  opacity: 0;
+}
+
+:host(.animating-out) dialog.fade-in {
+  opacity: 0;
+  visibility: hidden;
+}

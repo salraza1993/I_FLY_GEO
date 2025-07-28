@@ -1,7 +1,7 @@
-@let tooltipWidth = 180;
 <airline-logo [getAirline]="segment()[0].operatingCarrierInfo" />
 <div class="line-breaker vertical"></div>
-<div class="timeline">
+
+<!-- <div class="timeline">
   <div class="airport-time origin">
     <h6 class="m-0" [tooltip]="departFromTemplate" [tooltipMaxWidth]="tooltipWidth" [tooltipDirection]="'top'">
       <span class="airport-code">{{departFrom().dep.IATALocationCode}}</span>
@@ -17,7 +17,7 @@
   <div class="duration">
     <div class="layover-strip">
         @for(segment of layoverSegments(); track segment) {
-        <span class="pill" [tooltip]="layoverTooltipData" [tooltipOnClick]="true" [tooltipDirection]="'top'" [tooltipMaxWidth]="tooltipWidth">
+        <span class="pill" [tooltip]="layoverTooltipData" [tooltipDirection]="'top'" [tooltipMaxWidth]="tooltipWidth">
           {{ segment.arrival.IATALocationCode }}
         </span>
       }
@@ -37,13 +37,14 @@
       <span>&nbsp;-&nbsp;</span>
       <span class="time">{{ departTo().arrival.AircraftScheduledDateTime | dateFormat: "time" }}</span>
     </h6>
-    <small class="date">{{ departTo().arrival.AircraftScheduledDateTime | dateFormat: "preset": "DATE_MED" }}</small>
+    <small class="date">{{ departTo().dep.AircraftScheduledDateTime | dateFormat: "preset": "DATE_MED" }}</small>
 
     <ng-template #departToTemplate>
-      @let data = airportList.getAirport(departTo().arrival.IATALocationCode);
+      @let data = airportList.getAirport(departTo().dep.IATALocationCode);
       {{ data?.City }}, ({{ data?.IATA }}) {{ data?.AirportName }}
     </ng-template>
   </div>
-</div>
+</div> -->
 
-<!-- {{segmentLength | json}} -->
+<timeline [timelineData]="segment()" [journeyTime]="journeyTime()" />
+

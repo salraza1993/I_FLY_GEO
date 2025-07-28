@@ -1,0 +1,52 @@
+:host,
+:host.airline {
+  --logo-img-bg-fallback: light-dark(var(--primary-95_light), var(--primary-80_dark));
+  --block-padding: var(--card-padding, 0.85rem);
+  --logo-max-width-fallback: 150px;
+  --logo-ailine-name-width-fallback: calc(var(--logo-max-width) - var(--logo-img-width) - calc(var(--block-padding) * 0.7));
+
+  position: relative;
+  display: flex;
+
+  .airline-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-basis: var(--logo-max-width, var(--logo-max-width-fallback));
+    max-width: var(--logo-max-width, var(--logo-max-width-fallback));
+    gap: calc(var(--block-padding) / 1.5);
+
+    & .airline-logo {
+      width: var(--logo-img-width, 55px);
+      height: var(--logo-img-height, 55px);
+      aspect-ratio: 1;
+      flex-shrink: 0;
+      background-color: var(--airline-box-bg);
+      border-radius: var(--border-radius);
+      overflow: clip;
+      padding: 0.25rem;
+      background-color: var(--logo-img-bg, var(--logo-img-bg-fallback));
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+    & .airline-name {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      max-width: var(--logo-ailine-name-width, var(--logo-ailine-name-width-fallback));
+      & .airline-full-name {
+        font-size: var(--airline-name-font-size, 0.8rem);
+      }
+      & .airline-code {
+        font-size: var(--airline-code-font-size, 0.75rem);
+      }
+    }
+  }
+
+}

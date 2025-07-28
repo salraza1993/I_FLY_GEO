@@ -5,6 +5,8 @@
       <result-card [cardData]="flight" [offers]="getOffers()" [tripType]="tripType" />
     } @placeholder {
       <result-card-skeleton [tripType]="tripType" />
+    } @error {
+      <P>Failed to load flight data.</P>
     }
   }
 </div>

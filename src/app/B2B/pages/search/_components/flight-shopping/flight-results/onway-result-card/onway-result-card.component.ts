@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, ViewEncapsulation } from '@angular/core';
 import { CardFooterComponent } from "../card-footer/card-footer.component";
-import { SegementComponent } from '../segment/segment.component';
+import { SegmentComponent } from '../segment/segment.component';
 @Component({
   selector: 'app-onway-result-card, onway-result-card',
-  imports: [CommonModule, SegementComponent, CardFooterComponent],
+  imports: [CommonModule, SegmentComponent, CardFooterComponent],
   templateUrl: './onway-result-card.component.html',
   styleUrls: ['./onway-result-card.component.css', '../flight-results-common.css'],
   encapsulation: ViewEncapsulation.None,

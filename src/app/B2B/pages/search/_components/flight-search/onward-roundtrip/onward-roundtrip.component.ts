@@ -5,6 +5,7 @@ import {
   inject,
   input,
   linkedSignal,
+  model,
   signal,
 } from '@angular/core';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
@@ -55,7 +56,7 @@ export class OnwardRoundtripComponent {
   private sessionManager = inject(SessionManagerService);
   private localStorage = inject(LocalStorageService);
   router = inject(Router);
-  roundTrip = input(false, { transform: booleanAttribute });
+  roundTrip = model<boolean>(false);
 
   // Signals
   setOriginDestination = signal<OriginDestinationDataType>({

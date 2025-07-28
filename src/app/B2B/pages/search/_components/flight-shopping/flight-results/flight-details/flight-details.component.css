@@ -1,0 +1,74 @@
+:host {
+  --card-color: light-dark(var(--primary-15_light), var(--primary-20_dark));
+  --block-border: light-dark(var(--primary-75_light), var(--primary-70_dark));
+  --strip-item-bg: light-dark(var(--primary-85_light), var(--primary-75_dark));
+  --strip-item-border: var(--border-color);
+  --tabs-bg: light-dark(var(--primary-90_light), var(--primary-85_dark));
+  --tabs-active-strip-bg: light-dark(var(--primary-10_light), var(--primary-65_dark));
+  --tabs-active-strip-color: light-dark(var(--primary-90_light), var(--primary-15_dark));
+
+  width: 700px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--card-color);
+
+  .top-strips {
+    position: relative;
+    display: flex;
+    gap: 0.85rem;
+    & .top-strips-list {
+      position: relative;
+      background-color: var(--strip-item-bg);
+      padding-inline: 0.65rem 0.85rem;
+      padding-block: 0.35rem;
+      border: 1px solid var(--block-border);
+      display: flex;
+      gap: 0.85rem;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+    }
+  }
+
+  .flight-details-tabs {
+    --tab-height: 40px;
+    --tab-padding: 0.35rem;
+    --tab-width: calc(50% - var(--tab-padding));
+    --tab-active-strip-pos-x: var(--tab-padding);
+    position: relative;
+    display: flex;
+    width: 100%;
+    background-color: var(--tabs-bg);
+    padding: var(--tab-padding);
+    border-radius: calc(var(--border-radius) * 1.5);
+    isolation: isolate;
+
+    & .flight-details-tab {
+      height: var(--tab-height);
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:is(.active) {
+        font-weight: 700;
+        color: var(--tabs-active-strip-color);
+      }
+    }
+    & .active-strip {
+      position: absolute;
+      height: var(--tab-height);
+      inset-inline-start: var(--tab-active-strip-pos-x);
+      background-color: var(--tabs-active-strip-bg);
+      width: var(--tab-width);
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      z-index: -1;
+      &:is(.active-1) {
+        inset-inline-start: calc(var(--tab-width) + var(--tab-padding));
+      }
+    }
+  }
+}

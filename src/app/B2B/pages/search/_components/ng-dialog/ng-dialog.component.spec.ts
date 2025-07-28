@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SegmentComponent } from './segment.component'
+import { NgDialogComponent } from './ng-dialog.component';
 
-describe('SegmentComponent', () => {
-  let component: SegmentComponent;
-  let fixture: ComponentFixture<SegmentComponent>;
+describe('NgDialogComponent', () => {
+  let component: NgDialogComponent;
+  let fixture: ComponentFixture<NgDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SegmentComponent]
+      imports: [NgDialogComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SegmentComponent);
+    fixture = TestBed.createComponent(NgDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
