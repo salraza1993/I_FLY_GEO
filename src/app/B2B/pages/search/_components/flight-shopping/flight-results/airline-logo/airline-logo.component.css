@@ -7,6 +7,7 @@
 
   position: relative;
   display: flex;
+  background-color: var(--airline-block-bg, transparent);
 
   .airline-wrapper {
     position: relative;
@@ -22,8 +23,7 @@
       height: var(--logo-img-height, 55px);
       aspect-ratio: 1;
       flex-shrink: 0;
-      background-color: var(--airline-box-bg);
-      border-radius: var(--border-radius);
+      border-radius: var(--logo-img-border-radius, var(--border-radius));
       overflow: clip;
       padding: 0.25rem;
       background-color: var(--logo-img-bg, var(--logo-img-bg-fallback));
@@ -40,6 +40,7 @@
       flex-direction: column;
       gap: 0.35rem;
       max-width: var(--logo-ailine-name-width, var(--logo-ailine-name-width-fallback));
+      line-height: normal;
       & .airline-full-name {
         font-size: var(--airline-name-font-size, 0.8rem);
       }

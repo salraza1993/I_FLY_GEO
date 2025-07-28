@@ -3,6 +3,7 @@ import { FilterDropdownComponent, DropdownSelectedValueType } from "../filter-dr
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { FiltersService } from '@/B2B/pages/search/services/filters.service';
 
 type AirlineType = {
   id: string;
@@ -19,6 +20,7 @@ type AirlineType = {
   }
 })
 export class AirlinesComponent {
+  private readonly filterAirlineService = inject(FiltersService);
   @ViewChild('airlineSelectInputElement') airlineSelectInputElement!: ElementRef<HTMLInputElement>;
   private readonly AIRLINES_JSON_PATH = 'assets/static-json/airlines.json';
   http = inject(HttpClient);

@@ -32,7 +32,7 @@ export type OriginDestinationDataType = {
   templateUrl: './origin-destination.component.html',
   styleUrls: ['./origin-destination.component.css'],
   animations: [fadeIn],
-  providers: [AirportListService],
+  // providers: [AirportListService],
   host: {
     class: 'origin-destination-wrapper',
     '[class.error]': 'errors().origin || errors().destination',

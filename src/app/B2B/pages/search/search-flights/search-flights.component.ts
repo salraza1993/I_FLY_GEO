@@ -26,7 +26,6 @@ type FlightTabType = 'one-way' | 'roundtrip' | 'multi-city';
   }
 })
 export class SearchFlightsComponent implements OnInit, OnDestroy {
-  private readonly flightSearchService = inject(FlightSearchService);
   private readonly sessionManagerService = inject(SessionManagerService);
 
   // State management

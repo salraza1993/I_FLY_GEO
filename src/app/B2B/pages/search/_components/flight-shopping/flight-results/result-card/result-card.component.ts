@@ -1,12 +1,11 @@
-import { Component, computed, input, inject, model } from '@angular/core';
+import { Component, computed, input, inject, model, effect } from '@angular/core';
 import { SegmentComponent } from "../segment/segment.component";
 import { CardFooterComponent } from "../card-footer/card-footer.component";
 import { CommonModule } from '@angular/common';
-import { NgDialogComponent } from "../../../ng-dialog/ng-dialog.component";
 
 @Component({
   selector: 'app-result-card, result-card',
-  imports: [CommonModule, CardFooterComponent, NgDialogComponent, SegmentComponent],
+  imports: [CommonModule, CardFooterComponent, SegmentComponent],
   templateUrl: './result-card.component.html',
   styleUrl: './result-card.component.css',
   host: {

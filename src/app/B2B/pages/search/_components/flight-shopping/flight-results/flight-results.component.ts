@@ -1,12 +1,12 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OnwayResultCardComponent } from "./onway-result-card/onway-result-card.component";
 import { FlightSearchService } from '../../../services/flight-search.service';
 import { ActivatedRoute } from '@angular/router';
 import { SearchCriteriaDataType } from '@/shared/models/SearchCriteria.interface';
 import { SearchCriteriaService } from '@/shared/services/search-criteria.service';
 import { ResultCardComponent } from "./result-card/result-card.component";
 import { ResultCardSkeletonComponent } from "./result-card-skeleton/result-card-skeleton.component";
+import { AirportListService } from '../../../services/airport-list.service';
 
 @Component({
   selector: 'app-flight-results, flight-results',

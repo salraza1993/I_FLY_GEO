@@ -14,9 +14,9 @@
     <div class="price">
       <small>Starting From</small>
       @if(tripType() === 'roundtrip') {
-        <h4 class="m-0">{{getPrice()?.currencyCode}} {{ getPrice().totalAmount }}</h4>
+        <h4 class="m-0">{{getPrice()?.currencyCode}} {{ getPrice()?.totalAmount }}</h4>
       } @else {
-        <h5 class="m-0">{{getPrice()?.currencyCode}} {{ getPrice().totalAmount }}</h5>
+        <h5 class="m-0">{{getPrice()?.currencyCode}} {{ getPrice()?.totalAmount }}</h5>
       }
     </div>
     <div class="buttons">
@@ -24,18 +24,11 @@
         <span class="icon icon-before"><i class="fa-solid fa-list"></i></span>
         <span>More Fare</span>
       </button>
-      <button class="button size--small secondary-on-hover accent">
-        <span class="icon icon-before"><i class="fa-regular fa-circle-info"></i></span>
+      <button class="button size--small secondary-on-hover accent font-weight--bold">
         <span>Book Now</span>
+        <span class="icon icon-after"><i class="fa-regular fa-arrow-right"></i></span>
       </button>
     </div>
   </div>
 </div>
 <card-footer />
-
-<ng-dialog
-  dialogId="more-fares-dialog"
-  [overlayClose]="true"
-  [(isDialogActive)]="isDialogActive">
-  More Fare
-</ng-dialog>

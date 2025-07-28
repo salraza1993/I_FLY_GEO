@@ -3,13 +3,14 @@ import { Component, inject, signal } from '@angular/core';
 import { AirlineLogoComponent } from "../../airline-logo/airline-logo.component";
 import { TimelineComponent } from "../../timeline/timeline.component";
 import { AirportListService } from '@/B2B/pages/search/services/airport-list.service';
+import { DetailsSementComponent } from "../details-sement/details-sement.component";
 
 @Component({
   selector: 'app-flight-details-journeys, flight-details-journeys',
-  imports: [CommonModule, AirlineLogoComponent, TimelineComponent],
+  imports: [CommonModule, AirlineLogoComponent, TimelineComponent, DetailsSementComponent],
   templateUrl: './flight-details-journeys.component.html',
   styleUrl: './flight-details-journeys.component.css',
-  providers: [AirportListService],
+  // providers: [AirportListService],
   host: {
     class: 'flight-details-journeys-wrapper',
   },
@@ -44,8 +45,8 @@ export class FlightDetailsJourneysComponent {
           operatingCarrierInfo: {
             CarrierDesigCode: '789',
             CarrierDesigName: 'BOEING 787-9',
-            CarrierName: 'EGYPTAIR',
-            CarrierCode: 'MS',
+            CarrierName: 'Saudia Arabian Airlines',
+            CarrierCode: 'AI',
             OperatingCarrierFlightNumberText: '912',
           },
           secureFlightInd: false,

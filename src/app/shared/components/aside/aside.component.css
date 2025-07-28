@@ -117,7 +117,8 @@
         font-size: 0.95rem;
         display: flex;
         align-items: center;
-        padding: 0 0.65rem;
+        padding-block: 0;
+        padding-inline: 0.65rem;
         line-height: 1.25;
         border-radius: calc(var(--border-radius) / 1.25);
         pointer-events: none;

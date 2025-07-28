@@ -13,7 +13,7 @@
   <p [style]="{'margin-block-start': '1.5rem'}">
     {{'LOGIN.DO_NOT_HAVE_AN_ACCOUNT' | translate }}
     <strong>
-      <a [routerLink]="['/register']" class="link">{{'LOGIN.REGISTER' | translate }}</a>
+      <a [href]="registerPageUrl" target="_blank" class="link">{{'LOGIN.REGISTER' | translate }}</a>
     </strong>
   </p>
 </div>

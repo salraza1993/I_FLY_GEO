@@ -9,6 +9,7 @@ import { ViewportService } from '@sharedServices/viewport.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { CreateTranslateLoader } from '../i18n/translate-loader.factory';
 import { SessionManagerService } from '@/B2B/pages/search/services/session-manager.service';
+import { AirportListService } from '@/B2B/pages/search/services/airport-list.service';
 
 export const COMMON_PROVIDERS = [
   importProvidersFrom(
@@ -21,6 +22,7 @@ export const COMMON_PROVIDERS = [
     LanguageService,
     BodyClassModifierService,
     SessionManagerService,
+    AirportListService,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {

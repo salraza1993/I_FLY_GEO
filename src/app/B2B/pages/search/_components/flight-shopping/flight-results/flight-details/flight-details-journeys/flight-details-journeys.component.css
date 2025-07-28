@@ -1,77 +1,125 @@
 :host {
   --container-max-width: 600px;
-  --gaps: 1rem;
+  --gaps: 0.85rem;
   --grid-row-height: 0fr;
-  --accordion-body-pad-x: 0.75rem;
+  --accordion-body-pad-x: 0;
   --accordion-body-pad-y: 0;
   --accordion-border-radius: calc(var(--border-radius) * 2);
 
-  --accordion-header-bg: light-dark(var(--primary-100_light), var(--primary-60_dark));
-  --accordion-body-bg: light-dark(var(--primary-90_light), var(--primary-95_dark));
-  --accordion-border: light-dark(var(--primary-80_light), var(--primary-60_dark));
+  --accordion-header-bg: light-dark(var(--primary-100_light), var(--primary-70_dark));
+  --accordion-body-bg: light-dark(var(--primary-90_light), var(--primary-60_dark));
+  --accordion-border: light-dark(var(--primary-80_light), var(--primary-65_dark));
   --accordion-header-active-bg: light-dark(var(--secondary-10_light), var(--secondary-30_dark));
   --accordion-active-body-bg: light-dark(var(--primary-100_light), var(--secondary-10_dark));
-  --accordion-active-border: light-dark(var(--secondary-0_light), var(--secondary-0_dark));
+  --accordion-active-border: light-dark(var(--secondary-0_light), var(--secondary-70_dark));
+
+  --baggage-info-bg: light-dark(var(--primary-95_light), var(--secondary-20_dark));
+  --baggage-info-border: light-dark(var(--primary-85_light), var(--secondary-50_dark));
+  --baggage-strip-bg: light-dark(var(--primary-100_light), var(--secondary-10_dark));
+  --baggage-strip-color: light-dark(var(--primary-20_light), var(--secondary-100_dark));
+  --baggage-strip-border: light-dark(var(--primary-85_light), var(--secondary-40_dark));
+
+  --logo-img-bg: var(--accordion-body-bg);
+  --logo-img-width: 50px;
+  --logo-img-height: 50px;
+  --logo-max-width: 120px;
+  --total-duration-bg: var(--accordion-header-bg);
 
   position: relative;
   display: flex;
   flex-direction: column;
   gap: calc(var(--gaps) / 1);
+  /* padding-block-end: calc(var(--gaps) * 1.5); */
 
   .accordion-block {
     border-radius: var(--accordion-border-radius);
     position: relative;
     background-color: var(--accordion-body-bg);
     box-shadow: 0 0 0 1px var(--accordion-border);
-    overflow: clip;
     transition: var(--transition);
 
     .accordion-block__header {
       position: relative;
       display: flex;
-      align-items: center;
       gap: var(--gaps);
-      padding: var(--gaps);
+      padding-inline: var(--gaps) calc(var(--gaps) / 2);
+      padding-block: var(--gaps);
       background-color: var(--accordion-header-bg);
       transition: var(--transition);
       cursor: pointer;
-      border-start-start-radius: var(--accordion-border-radius);
-      border-start-end-radius: var(--accordion-border-radius);
+      border-radius: var(--accordion-border-radius);
+      &:is(.active) {
+        border-end-start-radius: 0;
+        border-end-end-radius: 0;
+      }
 
-      .ailine {
+      .close-icon {
         position: relative;
+        flex-shrink: 0;
+        width: var(--logo-img-width);
+        height: var(--logo-img-height);
         display: flex;
-        gap: var(--gaps);
-
-        .airlin-logo {
-          position: relative;
-          border-radius: var(--border-radius);
-          overflow: clip;
-          width: 50px;
-          height: 50px;
-          flex-shrink: 0;
-
-        }
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--border-radius);
       }
     }
 
     .accordion-block__body {
+      position: relative;
       display: grid;
       grid-template-rows: var(--grid-row-height);
       transition: grid-template-rows 450ms ease-out, padding-block 450ms ease-out;
       padding-inline: var(--accordion-body-pad-x);
       padding-block: var(--accordion-body-pad-y);
+      padding-block-start: 0;
       .__inner { overflow: hidden; }
 
     }
+
     &.is-opened {
       --grid-row-height: 1fr;
       --accordion-body-pad-y: 0.75rem;
       --accordion-header-bg: var(--accordion-header-active-bg);
       --accordion-body-bg: var(--accordion-active-body-bg);
       --accordion-border: var(--accordion-active-border);
+      --total-duration-bg: var(--accordion-header-bg);
+      --dashed-line: var(--accordion-active-border);
+      --logo-img-bg: var(--accordion-active-body-bg);
+      --line-border: light-dark(var(--secondary-30_light), var(--secondary-50_dark));
       z-index: 1;
       box-shadow: 0 0 0 2px var(--accordion-border);
+    }
+  }
+
+  .baggage-info {
+    position: relative;
+    width: calc(100% - var(--gaps) * 2);
+    margin-inline: auto;
+    background-color: var(--baggage-info-bg);
+    border: 1px solid var(--baggage-info-border);
+    border-radius: calc(var(--border-radius) * 1.5);
+    padding: var(--gaps);
+    font-size: 0.9rem;
+    line-height: normal;
+    .strips {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--gaps);
+
+      & .strips-list {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: calc(var(--gaps) / 1.5);
+        padding-inline: 0.45rem 0.65rem;
+        padding-block: 0.45rem;
+        background-color: var(--baggage-strip-bg);
+        color: var(--baggage-strip-color);
+        border: 1px solid var(--baggage-strip-border);
+        border-radius: var(--border-radius);
+      }
     }
   }
 }

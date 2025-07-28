@@ -1,3 +1,7 @@
+:host {
+  display: block;
+  position: fixed;
+}
 dialog {
   --dialog-bg-fallback: light-dark(var(--primary-95_light),var(--primary-80_dark));
   --dialog-color-fallback: light-dark(var(--primary-95_light),var(--primary-90_dark));
@@ -141,7 +145,7 @@ dialog {
     align-items: center;
     position: sticky;
     inset-block-start: 0;
-    z-index: 1;
+    z-index: 3;
     padding-inline: var(--dialog-padding, var(--dialog-padding-fallback));
     padding-block-start: calc(var(--dialog-padding, var(--dialog-padding-fallback)) / 1.25);
     padding-block-end: calc(var(--dialog-padding, var(--dialog-padding-fallback)) / 2.5);

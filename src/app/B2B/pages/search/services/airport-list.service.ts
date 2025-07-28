@@ -12,9 +12,9 @@ export type AirportDataType = {
   TimeZone?: string
 };
 
-// @Injectable({
-//   providedIn: 'root',
-// })
+@Injectable({
+  providedIn: 'root',
+})
 export class AirportListService {
   private readonly AIRPORT_LIST_JSON_URL = 'assets/static-json/airports.json';
   private http = inject(HttpClient);

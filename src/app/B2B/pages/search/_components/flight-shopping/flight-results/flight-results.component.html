@@ -1,12 +1,16 @@
 <div class="content-wrapper">
   <hr class="separator-line" />
-  @for (flight of flightsData(); track flight) {
+  @for (flight of flightsData(); track flight; let i = $index) {
     @defer (on viewport){
       <result-card [cardData]="flight" [offers]="getOffers()" [tripType]="tripType" />
-    } @placeholder {
-      <result-card-skeleton [tripType]="tripType" />
+    } @placeholder (minimum 500ms) {
+      <div>
+        @if(i < 5) {
+          <result-card-skeleton [tripType]="tripType" />
+        }
+      </div>
     } @error {
-      <P>Failed to load flight data.</P>
+      <p>Failed to load flight data.</p>
     }
   }
 </div>

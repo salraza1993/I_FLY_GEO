@@ -1,28 +1,7 @@
 :host {
-  --layover-strip-height: 30px;
-  --pill-bg: light-dark(var(--primary-90_light),var(--primary-80_dark));
-  --pill-border: light-dark(var(--primary-80_light),var(--primary-50_dark));
-  --airline-box-bg: light-dark(var(--primary-95_light),var(--primary-80_dark));
   --block-padding: var(--card-padding, 0.85rem);
 
   display: block;
   position: relative;
   display: flex;
-
-
-  .line-breaker {
-    position: relative;
-    width: 100%;
-    border: 0;
-
-    &:not(.vertical) {
-      margin-block: calc(var(--block-padding) / 1.15);
-      border-block-start: 1px solid var(--line-border);
-    }
-    &:is(.vertical) {
-      width: 1px;
-      margin-inline: calc(var(--block-padding) / 1);
-      border-inline-start: 1px solid var(--line-border);
-    }
-  }
 }

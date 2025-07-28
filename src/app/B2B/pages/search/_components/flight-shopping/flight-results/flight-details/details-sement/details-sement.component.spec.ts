@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OnwayResultCardComponent } from './onway-result-card.component';
+import { DetailsSementComponent } from './details-sement.component';
 
-describe('OnwayResultCardComponent', () => {
-  let component: OnwayResultCardComponent;
-  let fixture: ComponentFixture<OnwayResultCardComponent>;
+describe('DetailsSementComponent', () => {
+  let component: DetailsSementComponent;
+  let fixture: ComponentFixture<DetailsSementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OnwayResultCardComponent]
+      imports: [DetailsSementComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OnwayResultCardComponent);
+    fixture = TestBed.createComponent(DetailsSementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -11,19 +11,13 @@ import { TimelineComponent } from "../timeline/timeline.component";
   imports: [CommonModule, AirlineLogoComponent, TimelineComponent],
   templateUrl: './segment.component.html',
   styleUrls: ['./segment.component.css', '../flight-results-common.css'],
-  providers: [AirportListService],
   host: {
     class: 'segment-wrapper journey',
   },
 })
 export class SegmentComponent {
-  readonly airportList = inject(AirportListService);
   segmentData = input<any>([]);
   journeyTime = input<string>('');
 
   protected segment = computed(() => this.segmentData());
-  private segmentEffect = effect(() => {
-    console.log('Segment data changed:', this.segment());
-  });
-
 }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, signal } from '@angular/core';
 import { FlightDetailsJourneysComponent } from "./flight-details-journeys/flight-details-journeys.component";
+import { DetailsPriceComponent } from "./details-price/details-price.component";
 
 interface TabTypes {
   label: string,
@@ -10,7 +11,7 @@ interface TabTypes {
 
 @Component({
   selector: 'app-flight-details, flight-details',
-  imports: [CommonModule, FlightDetailsJourneysComponent],
+  imports: [CommonModule, FlightDetailsJourneysComponent, DetailsPriceComponent],
   templateUrl: './flight-details.component.html',
   styleUrl: './flight-details.component.css',
   host: {

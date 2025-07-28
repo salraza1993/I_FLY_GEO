@@ -30,7 +30,6 @@ import { SearchCriteriaDataType } from '@/shared/models/SearchCriteria.interface
   },
 })
 export class FlightShoppingComponent {
-  private fliterService = inject(FiltersService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private flightSearchService = inject(FlightSearchService);

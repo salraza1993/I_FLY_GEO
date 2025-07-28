@@ -23,6 +23,7 @@ interface LoginTranslations {
 })
 export class LoginComponent implements OnInit {
   private translate = inject(TranslateService);
+  protected registerPageUrl = 'https://www.iflygeo.com/register';
   public clientLogoPath = '/assets/client/';
   constructor() {
     this.loadTranslatedData();

@@ -4,21 +4,26 @@
     <airline-logo
       [tooltipDirection]="'right'"
       [getAirline]="journey.segments[0].operatingCarrierInfo" />
+    <div class="line-breaker vertical"></div>
     <timeline [timelineData]="journey.segments" [journeyTime]="journey.duration" />
-    <div class="icon"><i class="fa-solid fa-angle-{{ journey.isActive ? 'up' : 'down' }}"></i></div>
+    <div class="close-icon"><i class="fa-solid fa-angle-{{ journey.isActive ? 'up' : 'down' }}"></i></div>
   </div>
   <div class="accordion-block__body" [ngClass]="{ 'active': journey.isActive }">
     <div class="__inner">
-      <p>
-        Sit amet consectetur velit integer tincidunt sceleries nodalesry
-        volutpat neque fermentum malesuada sceleris quecy massa lacus ultrices
-        eget leo cras odio blandit rhoncus eues feugiat. Sit amet consectetur
-        velit integer tincidunt sceleries nodalesry volutpat neque fermentum
-        malesuada sceleris quecy massa lacus ultrices eget leo cras odio blandit
-        rhoncus eues feugiat. Sit amet consectetur velit integer tincidunt
-        sceleries nodalesry volutpat neque fermentum malesuada sceleris quecy
-        massa lacus ultrices eget leo cras odio blandit rhoncus.
-      </p>
+      <details-sement [getSegmentDetails]="journey.segments" />
+      <div class="baggage-info">
+        <p class="mb-0_75 font-weight--bold">Baggage Information</p>
+        <ul class="strips">
+          <li class="strips-list">
+            <span><i class="fa-solid fa-cart-flatbed-suitcase"></i></span>
+            <span>Check-in: <strong>25kg / Adult</strong></span>
+          </li>
+          <li class="strips-list">
+            <span><i class="fa-solid fa-person-walking-luggage"></i></span>
+            <span>Cabin: <strong>7 kg / Adult</strong></span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

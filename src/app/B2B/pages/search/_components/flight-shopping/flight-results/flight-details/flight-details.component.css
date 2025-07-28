@@ -8,11 +8,11 @@
   --tabs-active-strip-color: light-dark(var(--primary-90_light), var(--primary-15_dark));
 
   width: 700px;
-  height: 800px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   color: var(--card-color);
+
 
   .top-strips {
     position: relative;

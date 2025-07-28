@@ -24,7 +24,7 @@ export const DASHBOARD_ROUTES: Routes = [
       { path: 'hotels', component: SearchContentContainerComponent },
       { path: 'cars', component: SearchContentContainerComponent },
       { path: 'activities', component: SearchContentContainerComponent },
-      { path: '', redirectTo: 'flights', pathMatch: 'full' } // Default tab
+      { path: '', redirectTo: 'flights', pathMatch: 'full' }
     ]
   },
   { path: 'search/flight-results',

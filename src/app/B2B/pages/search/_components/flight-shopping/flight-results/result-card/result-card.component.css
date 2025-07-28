@@ -3,7 +3,6 @@
   --card-bg: light-dark(var(--primary-100_light), var(--primary-85_dark));
   --card-color: light-dark(var(--primary-80_dark), var(--primary-20_dark));
   --card-border: light-dark(var(--primary-85_light), var(--primary-60_dark));
-  --line-border: light-dark(var(--primary-85_light), var(--primary-60_dark));
   --card-footer-width: calc(100% - calc(var(--card-padding) * 3.15));
   --card-border-radius: calc(var(--border-radius) * 2);
   --card-footer-border: light-dark(var(--primary-75_light), var(--primary-75_dark));
@@ -28,7 +27,6 @@
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     border: 1px solid var(--card-footer-border);
-    /* box-shadow:  0 0 0 1px var(--card-border); */
     display: flex;
     justify-content: center;
     align-items: stretch;
@@ -42,9 +40,7 @@
       position: absolute;
       width: calc(100% - var(--card-padding) * 1.85);
       height: 3px;
-      /* background-color: var(--card-bg); */
       inset-block-end: -1px;
-      /* opacity: 0.1; */
     }
 
     & .journey-wrapper {
@@ -68,8 +64,9 @@
       padding-inline-end: calc(var(--card-padding) * 1.5);
       flex-shrink: 0;
       display: flex;
-      flex-direction: column;
       justify-content: center;
+      flex-direction: column;
+      flex-grow: 1;
       gap: 0.35rem;
     }
     & .buttons {
@@ -83,21 +80,7 @@
     }
   }
 
-  .line-breaker {
-    position: relative;
-    width: 100%;
-    border: 0;
 
-    &:not(.vertical) {
-      margin-block: calc(var(--card-padding) / 1.15);
-      border-block-start: 1px solid var(--line-border);
-    }
-    &:is(.vertical) {
-      width: 1px;
-      margin-inline: calc(var(--card-padding) / 1);
-      border-inline-start: 1px solid var(--line-border);
-    }
-  }
 }
 
 .card-content {

@@ -1,19 +1,25 @@
 :host {
+  --total-duration-bg-fallback: light-dark(var(--primary-100_light), var(--primary-85_dark));
+  --block-gap-fallback: 0.4rem;
+  --layover-strip-height-fallback: 30px;
+  --pill-bg-fallback: light-dark(var(--primary-90_light), var(--primary-80_dark));
+  --pill-border-fallback: light-dark(var(--primary-80_light), var(--primary-50_dark));
+
   position: relative;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
+  gap: var(--elements-padding, calc(var(--block-gap-fallback) * 2.25));
 
   & .airport-time {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: calc(var(--card-padding) / 1.5);
+    gap: var(--airport-time-gap, var(--block-gap-fallback));
     flex-shrink: 0;
     z-index: 1;
-    min-width: 110px;
+    min-width: var(--airport-time-min-width, 100px);
   }
 
   .duration {
@@ -31,10 +37,10 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      height: var(--layover-strip-height);
+      height: var(--layover-strip-height, var(--layover-strip-height-fallback));
 
       span {
-        background-color: var(--card-bg);
+        background-color: var(--total-duration-bg, var(--total-duration-bg-fallback));
         display: inline-flex;
         padding-inline: 0.5rem;
       }
@@ -44,7 +50,7 @@
         content: "";
         width: 8px;
         height: 8px;
-        background-color: var(--secondary);
+        background-color: var(--origin-dot-bg, var(--secondary));
         position: absolute;
         inset-block-start: calc(50% - 4px);
       }
@@ -53,7 +59,7 @@
         border-radius: 10px;
       }
       &::after {
-        background-color: var(--accent);
+        background-color: var(--destination-dot-bg, var(--accent));
         inset-inline-end: 0;
       }
     }
@@ -64,11 +70,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 0.4rem;
+      gap: var(--elements-padding, var(--block-gap-fallback));
 
       .pill {
-        background-color: var(--pill-bg);
-        box-shadow: 0 0 0 1px var(--pill-border);
+        background-color: var(--pill-bg, var(--pill-bg-fallback));
+        box-shadow: 0 0 0 1px var(--pill-border, var(--pill-border-fallback));
         padding-inline: 0.3rem;
         padding-block: 0.1rem;
         font-size: 0.75rem;
@@ -76,9 +82,9 @@
         border-radius: calc(var(--border-radius) / 2);
         transition: var(--transition);
         &:hover {
-          --pill-bg: var(--accent);
-          --pill-border: var(--accent);
-          color: var(--accent-color);
+          --pill-bg: var(--pill-hover-bg, var(--accent));
+          --pill-border: var(--pill-hover-border, var(--accent-color));
+          color: var(--pill-hover-color, var(--card-bg));
         }
       }
     }
@@ -87,9 +93,9 @@
       content: "";
       width: 100%;
       position: absolute;
-      border-block-start: 1px dashed var(--pill-border);
+      border-block-start: 1px dashed var(--dashed-line, var(--pill-border-fallback));
       height: 1px;
-      inset-block-start: calc(var(--layover-strip-height) / 2);
+      inset-block-start: calc(var(--layover-strip-height, var(--layover-strip-height-fallback)) / 2);
     }
   }
   .ng-tooltip {

@@ -113,7 +113,7 @@ export class OnwardRoundtripComponent {
       searchCriteria: {...this.setSearchCriteria()},
     }
     const sessionId = this.sessionManager.createSessionWithData(data);
-    this.flightSearchService.searchHandler(data.bodyParams);
+    // this.flightSearchService.searchHandler(data.bodyParams);
     this.router.navigate(['/search/flight-results'], {
       queryParams: { session: sessionId },
     });

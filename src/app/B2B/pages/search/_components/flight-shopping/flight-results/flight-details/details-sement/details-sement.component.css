@@ -1,0 +1,141 @@
+:host {
+  --separator-width: 1.5rem;
+  --start-block-width: 120px;
+  --row-padding: 1rem;
+  --row-bg: light-dark(var(--primary-100_light), var(--secondary-10_dark));
+  --row-layover-bg: light-dark(var(--primary-90_light), var(--secondary-30_dark));
+  --row-layover-line: light-dark(var(--primary-60_light), var(--secondary-70_dark));
+  --stroke-width: 2px;
+  --stroke-position: calc(var(--start-block-width) + var(--separator-width) / 2 - calc(var(--stroke-width) / 2));
+
+  display: flex;
+  flex-direction: column;
+  border-top: calc(var(--stroke-width) + 1px) solid var(--secondary);
+
+  .detail-segment-row {
+    position: relative;
+    display: flex;
+    padding-block: var(--row-padding);
+
+    i { font-size: 1rem;}
+
+    &::before {
+      content: '';
+      position: absolute;
+      border: var(--stroke-width) solid var(--secondary);
+      height: 100%;
+      inset-block-start: 0;
+      inset-inline-start: var(--stroke-position);
+    }
+    &:is(.segment-1, .segment-2)::after {
+      content: '';
+      position: absolute;
+      border: var(--stroke-width) dashed var(--row-layover-line);
+      height: 100%;
+      inset-block-start: calc(var(--row-padding) * 2);
+      inset-inline-start: var(--stroke-position);
+    }
+    &:is(.segment-2)::after {
+      height: calc(var(--row-padding) * 1.25);
+      inset-block-start: 0;
+    }
+
+    &:is(.layover) {
+      background-color: var(--row-layover-bg);
+      padding-block: calc(var(--row-padding) / 1.5);
+      display: flex;
+      align-items: center;
+      z-index: 1;
+      .block-start {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      &::before {
+        height: 100%;
+        border: var(--stroke-width) dashed var(--secondary);
+        border-color: var(--row-layover-line);
+      }
+    }
+
+    &:is(.origin)::before {
+      inset-block-start: calc(var(--row-padding) * 2);
+    }
+
+    &:is(.destination)::before {
+      height: calc(var(--row-padding) * 1.5);
+    }
+
+    &:is(.airline) {
+      padding-block: calc(var(--row-padding) / 2);
+      align-items: center;
+    }
+
+    .content {
+      position: relative;
+      padding-inline-end: 0.65rem;
+
+      .airline-info {
+        position: relative;
+        display: flex;
+        gap: calc(var(--row-padding) / 1.5);
+
+        .airline-logo {
+          position: relative;
+          width: 35px;
+          height: 35px;
+          border-radius: var(--border-radius);
+          overflow: hidden;
+        }
+        .airline-name {
+          display: flex;
+          flex-direction: column;
+          gap: calc(var(--row-padding) / 3);
+        }
+      }
+    }
+
+    .block-start {
+      position: relative;
+      flex-shrink: 0;
+      width: var(--start-block-width);
+    }
+    .end-block {
+      padding-inline-start: var(--row-padding);
+    }
+
+    .border-line {
+      width: var(--separator-width);
+      display: flex;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      &:is(.airplane) {
+        i {
+          text-shadow: 4px 0 0 var(--row-bg), 0 4px 0 var(--row-bg), -4px 0 0 var(--row-bg), 0 -4px 0 var(--row-bg);
+          font-size: 1.25rem;
+        }
+      }
+      &:not(.airplane)::after {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background-color: var(--secondary);
+        inset-block-start: calc(var(--row-padding) / 2);
+        border-radius: 10px;
+      }
+      &:is(.square):after {
+        border-radius: 0;
+        background-color: var(--accent);
+      }
+      &:is(.layover):after {
+        inset-block-start: calc(50% - 6px);
+        outline: calc(var(--stroke-width) + 1px) solid var(--row-layover-line);
+        background-color: var(--row-layover-bg);
+      }
+    }
+  }
+
+}
