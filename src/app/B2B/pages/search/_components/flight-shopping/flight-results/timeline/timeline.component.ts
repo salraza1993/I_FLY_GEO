@@ -1,5 +1,5 @@
-import { TimelineDataType } from '@/B2B/pages/search/models/SearchCardDataTypes.interface';
-import { AirportDataType, AirportListService } from '@/B2B/pages/search/services/airport-list.service';
+import { TimelineData } from '@/B2B/pages/search/models/FlightResultRequestData.interface';
+import { AirportListService } from '@/B2B/pages/search/services/airport-list.service';
 import { TooltipDirective } from '@/core/directives/tooltip.directive';
 import { DateFormatPipe } from '@/core/pipes/date-format.pipe';
 import { DateUtils } from '@/core/utilities/date-utils';
@@ -20,7 +20,7 @@ export class TimelineComponent {
   readonly airportList = inject(AirportListService);
 
   // Two-way binded
-  timelineData = input<TimelineDataType[]>([]);
+  timelineData = input<TimelineData[]>([]);
   journeyTime = input<string>('');
 
   protected segment = computed(() => this.timelineData());
@@ -37,7 +37,7 @@ export class TimelineComponent {
 
   protected layoverSegments = computed(() => {
     const data = this.segment();
-    return data?.length > 1 ? data.slice(0, -1) : [];
+    return data.slice(0, -1);
   });
 
   get totalDuration(): string {

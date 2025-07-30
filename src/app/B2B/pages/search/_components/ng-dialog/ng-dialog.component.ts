@@ -105,13 +105,13 @@ export class NgDialogComponent {
   closeDialog(): void {
     this.isDialogActive.set(false);
     const duration = this.animationDuration() * 0.7;
-    setTimeout(() => {
-      this.dialogVisible.set(false);
-      const dialogEl = this.dialogElement();
-      if (dialogEl) {
-        dialogEl.close();
-        this.removeBackdropClickListener(dialogEl);
-      }
-    }, duration);
+    this.dialogVisible.set(false);
+    const dialogEl = this.dialogElement();
+    if (dialogEl) {
+      dialogEl.close();
+      this.removeBackdropClickListener(dialogEl);
+    }
+    // setTimeout(() => {
+    // }, duration);
   }
 }

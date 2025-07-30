@@ -1,15 +1,26 @@
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { FlightSearchRequestType } from '../models/FlightSearchRequestType.interface';
 
+
+type PaxType = { type: string, total: number };
+type JourneyType = {
+  destArrival_IATA_LocationCode: string,
+  originDepature_IATA_LocationCode: string,
+  date: string,
+};
+
+export type FlightSearchRequestType = {
+  supplierCode: string,
+  passengers: PaxType[],
+  originDestinationsCriteria: JourneyType[],
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class FlightSearchRequestService {
-
-
-  requestType: FlightSearchRequestType = {
+  // example of request
+  private requestType: FlightSearchRequestType = {
     supplierCode: '1A',
     passengers: [
       {

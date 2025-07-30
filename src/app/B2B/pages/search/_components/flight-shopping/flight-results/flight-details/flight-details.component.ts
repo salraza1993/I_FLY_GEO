@@ -25,12 +25,6 @@ export class FlightDetailsComponent {
   productId = input<string>();
   detailsData = input<string>();
 
-  constructor() {
-    effect(() => {
-      console.log('asdfklasdjfl: ', this.detailsData());
-    })
-  }
-
   protected tabs = signal<TabTypes[]>([
     { id: 'itineraryDetails', label: 'Itinerary Details', selected: true, },
     { id: 'fareDetails', label: 'Fare Details', selected: false },

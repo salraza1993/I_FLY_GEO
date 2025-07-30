@@ -24,7 +24,7 @@
     data-z-index="1" />
 </div>
 <custom-button
-  [attr.disabled]="isDisabled()"
+  [attr.disabled]="isDisabled() || spinner()"
   (click)="searchFlight()"
   (keydown.enter)="searchFlight()"
   data-z-index="0"
@@ -32,6 +32,7 @@
   buttonTitle="Search Flight"
   iconBefore="plane-departure">
 </custom-button>
+
 
 <!-- smaple | delete below lines after validations -->
 <!-- <pre>destination:  {{ setOriginDestination() | json}},

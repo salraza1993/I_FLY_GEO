@@ -1,10 +1,7 @@
 import {
-  booleanAttribute,
   Component,
   computed,
   inject,
-  input,
-  linkedSignal,
   model,
   signal,
 } from '@angular/core';
@@ -26,10 +23,7 @@ import {
 import { Router } from '@angular/router';
 import {
   FlightSearchRequestBodyType,
-  FlightSearchService,
 } from '../../../services/flight-search.service';
-import { DateTime } from 'luxon';
-import { LocalStorageService } from '../../../../../../shared/services/localStorage.service';
 import { SessionManagerService } from '../../../services/session-manager.service';
 import { SearchCriteriaDataType } from '@/shared/models/SearchCriteria.interface';
 
@@ -52,9 +46,7 @@ import { SearchCriteriaDataType } from '@/shared/models/SearchCriteria.interface
   },
 })
 export class OnwardRoundtripComponent {
-  private flightSearchService = inject(FlightSearchService);
   private sessionManager = inject(SessionManagerService);
-  private localStorage = inject(LocalStorageService);
   router = inject(Router);
   roundTrip = model<boolean>(false);
 
@@ -82,6 +74,7 @@ export class OnwardRoundtripComponent {
   paxError = signal(false);
 
   focusNext = signal<string | null>(null);
+  spinner = signal<boolean>(false);
 
   // Button disabled logic
   isDisabled = computed(() => {
@@ -106,14 +99,13 @@ export class OnwardRoundtripComponent {
 
   public searchFlight(): void {
     if (this.isDisabled()) return;
-
+    this.spinner.set(true);
     this.sessionManager.autoDeleteExpiredSessions();
     const data = {
       bodyParams: { ...this.setRequestBody() },
       searchCriteria: {...this.setSearchCriteria()},
     }
     const sessionId = this.sessionManager.createSessionWithData(data);
-    // this.flightSearchService.searchHandler(data.bodyParams);
     this.router.navigate(['/search/flight-results'], {
       queryParams: { session: sessionId },
     });

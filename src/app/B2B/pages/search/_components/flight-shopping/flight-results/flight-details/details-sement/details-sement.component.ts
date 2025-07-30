@@ -1,4 +1,4 @@
-import { TimelineDataType } from '@/B2B/pages/search/models/SearchCardDataTypes.interface';
+import { TimelineData} from '@/B2B/pages/search/models/FlightResultRequestData.interface';
 import { CommonModule } from '@angular/common';
 import { Component, effect, input } from '@angular/core';
 
@@ -12,8 +12,5 @@ import { Component, effect, input } from '@angular/core';
   },
 })
 export class DetailsSementComponent {
-  getSegmentDetails = input<TimelineDataType[]>([]);
-  effectSegment  = effect(() => {
-    console.log('get: ', this.getSegmentDetails());
-  })
+  getSegmentDetails = input<TimelineData[]>([]);
 }

@@ -55,4 +55,26 @@ export class AirportListService {
     const airport = this.allAirport().find(airport => airport.IATA.toLowerCase() === airportCode.toLowerCase());
     return airport || null;
   }
+
+  public getAirportByIATA(iata: string, getData?: Partial<AirportDataType>): AirportDataType | null {
+    if (!this.isLoaded()) return null;
+    const airport = this.allAirport().find(a => a.IATA.toLowerCase() === iata.toLowerCase());
+    if (!airport) return null;
+
+    if (getData && Object.keys(getData).length > 0) {
+      const setData: Partial<AirportDataType> = {};
+      for (const key of Object.keys(getData) as (keyof AirportDataType)[]) {
+        setData[key] = airport[key] ?? '';
+      }
+      return setData as AirportDataType;
+    }
+
+    return {
+      AirportName: airport.AirportName,
+      City: airport.City,
+      Country: airport.Country,
+      IATA: airport.IATA,
+      ICAO: airport.ICAO
+    };
+  }
 }

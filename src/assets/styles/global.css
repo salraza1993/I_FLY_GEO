@@ -1,7 +1,9 @@
 /* @import url('./common/custom-grid.css'); */
-@import url('./pages/auth-pages.css');
-@import url('./global/global-styles.css');
-*, *::after, *::before {
+@import url("./pages/auth-pages.css");
+@import url("./global/global-styles.css");
+*,
+*::after,
+*::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -24,14 +26,15 @@ html {
   }
   &:is(.freez) {
     /* --scrollbar-gutter: initial; */
-
+    overflow: hidden !important;
   }
 }
 
 /* scrollbar-color: var(--scrollbar-thumb-bg) var(--scrollbar-track-bg);
 scrollbar-width: var(--scrollbar-width);
 scrollbar-gutter: var(--scrollbar-gutter); */
-*.hasScrollbar, [data-has-scrollbar] {
+*.hasScrollbar,
+[data-has-scrollbar] {
   &::-webkit-scrollbar-track {
     background-color: var(--scrollbar-track-thumb);
   }
@@ -54,9 +57,11 @@ body {
   min-height: 100dvh;
   font-family: var(--body-font-family) !important;
   font-family: var(--base-body-font-size);
+
   &[dir="rtl"] {
     font-family: var(--fonts_arabic), var(--body-font-family) !important;
   }
+
   &:not(.auth-page) {
     padding-inline-start: var(--aside-width);
     padding-block-start: var(--header-height);
@@ -65,7 +70,6 @@ body {
   &:is(.freez) {
     overflow-y: hidden !important;
     overflow-x: hidden !important;
-    height: 100vh !important;
   }
   &::-webkit-scrollbar-track {
     background-color: var(--scrollbar-track-thumb);
@@ -78,9 +82,7 @@ body {
   &::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-bg-thumb);
   }
-
 }
-
 
 .root-wrapper {
   position: relative;
@@ -102,18 +104,23 @@ dialog {
 }
 
 .line-breaker {
-  --line-border-fallback: light-dark(var(--primary-85_light), var(--primary-75_dark));
+  --line-border-fallback: light-dark(
+    var(--primary-85_light),
+    var(--primary-75_dark)
+  );
   position: relative;
   width: 100%;
   border: 0;
 
   &:not(.vertical) {
     margin-block: calc(var(--card-padding) / 1.15);
-    border-block-start: 1px solid var(--line-border, var(--line-border-fallback));
+    border-block-start: 1px solid
+      var(--line-border, var(--line-border-fallback));
   }
   &:is(.vertical) {
     width: 1px;
     margin-inline: calc(var(--card-padding) / 1);
-    border-inline-start: 1px solid var(--line-border, var(--line-border-fallback));
+    border-inline-start: 1px solid
+      var(--line-border, var(--line-border-fallback));
   }
 }
