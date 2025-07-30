@@ -1,3 +1,4 @@
+import { CarrierInfo } from '@/B2B/pages/search/models/FlightResultCardInterface.interface';
 import { DirectionTypes, TooltipDirective } from '@/core/directives/tooltip.directive';
 import { AirlinesLogoPipe } from '@/core/pipes/airlines-logo.pipe';
 import { TextTransformPipe } from '@/core/pipes/text-transform.pipe';
@@ -23,27 +24,31 @@ export type OperatingCarrierTypes = {
   },
 })
 export class AirlineLogoComponent {
-  getAirline = input.required<OperatingCarrierTypes | undefined>();
+  getAirline = input<CarrierInfo | null>(null);
   airlineLineInfo = computed(() => this.getAirline());
   tooltipDirection = input<DirectionTypes>('top-left');
 
   airlinesLogoNotFound = ['X1', 'VF'];
 
   get airlineLogoCode() : string  {
-    const airline = this.getAirline()?.CarrierCode;
+    const airline = this.getAirline()?.code;
     if(this.airlinesLogoNotFound.includes(airline!)) return '';
     return airline || '';
   }
   get airlineCode() : string  {
-    const airline = this.getAirline()?.CarrierCode;
+    const airline = this.getAirline()?.code;
     return airline || '';
   }
   get airlineName() : string {
-    const airline = this.getAirline()?.CarrierName;
+    const airline = this.getAirline()?.name;
+    return airline || '';
+  }
+  get flightNumber() : string {
+    const airline = this.getAirline()?.flightNumber;
     return airline || '';
   }
   get airlineDesigCode() : string {
-    const airline = this.getAirline()?.CarrierDesigCode;
+    const airline = this.getAirline()?.code;
     return airline || '';
   }
 }

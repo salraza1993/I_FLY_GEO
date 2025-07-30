@@ -1,3 +1,9 @@
-<airline-logo [getAirline]="segment()[0].operatingCarrierInfo" />
+@if(operatingCarrier()) {
+  <airline-logo [getAirline]="operatingCarrier()" />
+} @else {
+  <div class="airline-placeholder">No Airline Data</div>
+}
 <div class="line-breaker vertical"></div>
-<timeline [timelineData]="segment()" [journeyTime]="journeyTime()" />
+<timeline [timelineData]="segments()" [journeyTime]="journeyTime()" />
+<!-- <br /> -->
+<!-- <pre>{{ segments() | json }}</pre> -->

@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
-import { FlightsHeroBgComponent } from '@search/elements/flights-hero-bg/flights-hero-bg.component';
+import { FlightsHeroBgComponent } from '@search/_components/elements/flights-hero-bg/flights-hero-bg.component';
 
 @Component({
   selector: 'app-search-form-content-wrapper, search-form-content-wrapper',

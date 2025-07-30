@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { NgModalService } from '@/shared/services/ng-modal.service';
 import { FlightDetailsComponent } from '../flight-details/flight-details.component';
 import { FlightResultModifierService } from '@/B2B/pages/search/services/flight-result-modifier.service';
+import { FlightJourney, FlightResultCard, PricingDetails } from '@/B2B/pages/search/models/FlightResultCardInterface.interface';
 
 @Component({
   selector: 'app-result-card, result-card',
@@ -19,25 +20,22 @@ import { FlightResultModifierService } from '@/B2B/pages/search/services/flight-
 })
 export class ResultCardComponent {
   private readonly resultModifierService = inject(FlightResultModifierService);
-  protected isDialogActive = model<boolean>(false);
-  protected newFlight = computed<any>(() => this.resultModifierService.modifiedResultSignal());
 
   cardData = input<any>();
   offers = input<any>();
-  pricing = input<any>();
   tripType = input<string>();
 
-  constructor() {
-    effect(() => {
-      const data = this.cardData();
-      this.resultModifierService.resultModifyHanlder(data);
-    })
-  }
+  protected modifiedResult = computed<FlightResultCard | null>(() => this.resultModifierService.modifiedResultComputed()!);
 
-  private readonly allOffers = computed<any[]>(() => this.offers());
-  protected readonly journeys = computed<any[]>(() => this.cardData().journeys || []);
+  protected readonly journeys = computed<FlightJourney[]>(() =>
+    this.modifiedResult() ? this.modifiedResult()!.journeys : []);
 
-  getPrice = computed(() => {
-    return this.allOffers()?.find((item: any) => item.offerId === this.cardData().C_offers[0])
+  protected readonly pricing = computed<PricingDetails>(() => this.modifiedResult()?.pricing ?? {} as PricingDetails);
+
+  private resultCardEffect = effect(() => {
+    const data = this.cardData();
+    this.resultModifierService.resultModifyHanlder(data);
+    // console.log(this.modifiedResult());
   });
+
 }

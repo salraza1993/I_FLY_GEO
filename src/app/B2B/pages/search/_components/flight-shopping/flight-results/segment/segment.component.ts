@@ -1,10 +1,8 @@
-import { TooltipDirective } from '@/core/directives/tooltip.directive';
-import { DateFormatPipe } from '@/core/pipes/date-format.pipe';
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, input, effect } from '@angular/core';
+import { Component, computed, effect, input, signal } from '@angular/core';
 import { AirlineLogoComponent } from "../airline-logo/airline-logo.component";
-import { AirportDataType, AirportListService } from '@/B2B/pages/search/services/airport-list.service';
 import { TimelineComponent } from "../timeline/timeline.component";
+import { FlightSegment } from '@/B2B/pages/search/models/FlightResultCardInterface.interface';
 
 @Component({
   selector: 'app-segment, segment',
@@ -16,8 +14,17 @@ import { TimelineComponent } from "../timeline/timeline.component";
   },
 })
 export class SegmentComponent {
-  segmentData = input<any>([]);
+  segmentData = input<FlightSegment[]>([]);
   journeyTime = input<string>('');
 
-  protected segment = computed(() => this.segmentData());
+  protected segments = signal<FlightSegment[]>(this.segmentData());
+  private segmentEffect = effect(() => {
+    this.segments.set(this.segmentData() || []);
+  })
+  // protected segments = computed(() => this.segmentData());
+
+  protected operatingCarrier = computed(() => {
+    const segment = this.segments()[0];
+    return segment?.carrier || null;
+  });
 }

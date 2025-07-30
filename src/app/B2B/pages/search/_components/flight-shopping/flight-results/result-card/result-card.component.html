@@ -12,9 +12,9 @@
     <div class="price">
       <small>Starting From</small>
       @if(tripType() === 'roundtrip') {
-        <h4 class="m-0">{{getPrice()?.currencyCode}} {{ getPrice()?.totalAmount }}</h4>
+        <h4 class="m-0">{{ pricing().currencyCode }} {{ pricing().totalAmount }}</h4>
       } @else {
-        <h5 class="m-0">{{getPrice()?.currencyCode}} {{ getPrice()?.totalAmount }}</h5>
+        <h5 class="m-0">{{ pricing().currencyCode }} {{ pricing().totalAmount }}</h5>
       }
     </div>
     <div class="buttons">
@@ -31,6 +31,6 @@
 </div>
 <card-footer />
 
-
-<!-- <br />
-<pre>{{ newFlight() | json }}</pre> -->
+<!--
+<br />
+<pre>{{ modifiedResult() | json }}</pre> -->

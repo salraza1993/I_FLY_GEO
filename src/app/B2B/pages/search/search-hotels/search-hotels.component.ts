@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { COMMON_IMPORTS } from '@sharedHelpers/common-imports';
-import { HotelsHeroBgComponent } from '../elements/hotels-hero-bg/hotels-hero-bg.component';
 import { SearchFormContentWrapperComponent } from '../_components/search-form-content-wrapper/search-form-content-wrapper.component';
+import { HotelsHeroBgComponent } from '@search/_components/elements/hotels-hero-bg/hotels-hero-bg.component';
 
 @Component({
   selector: 'app-search-hotels, search-hotels',

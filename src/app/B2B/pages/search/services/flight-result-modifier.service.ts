@@ -9,8 +9,10 @@ import {
   RequestJourneySegmentData,
 } from '../models/FlightResultRequestData.interface';
 import {
+  AirportInfo,
   FlightJourney,
   FlightResultCard,
+  FlightSegment,
   LayoverInfo,
   PricingDetails,
 } from '../models/FlightResultCardInterface.interface';
@@ -23,10 +25,10 @@ export class FlightResultModifierService {
   private readonly airlinesService = inject(AirportListService);
   private readonly flightSearchService = inject(FlightSearchService);
 
-  private modifiedResult = signal<any>(null);
+  private modifiedResult = signal<FlightResultCard | null>(null);
   private originalFlights = signal<any>(null);
 
-  readonly modifiedResultSignal = computed(() => this.modifiedResult());
+  readonly modifiedResultComputed = computed<FlightResultCard | null>(() => this.modifiedResult());
   readonly getOffers = computed(() => this.flightSearchService.getOffers());
 
   resultModifyHanlder(data: FlightResultRequestData) {
@@ -96,7 +98,7 @@ export class FlightResultModifierService {
         segments: [] as any[],
       };
 
-      const segments = journey.segments;
+      const segments: RequestJourneySegmentData[] = journey.segments;
       segments.forEach((segment: RequestJourneySegmentData, index: number) => {
         const hasNext = segments.length > index + 1;
         let layovers: LayoverInfo[] = [];
@@ -112,10 +114,11 @@ export class FlightResultModifierService {
 
         const opCarrier = segment.operatingCarrierInfo || {};
 
-        const newSegment = {
+        const newSegment: FlightSegment = {
           segmentId: segment.segmentId,
-          arriveTo: this.setAirportDetails(segment.arrival),
-          departFrom: this.setAirportDetails(segment.dep),
+          arrival: this.setAirportDetails(segment.arrival),
+          departure: this.setAirportDetails(segment.dep),
+          duration: DateUtils.formatDuration(segment.duration),
           layovers,
           carrier: {
             name: opCarrier.CarrierName,
@@ -135,14 +138,19 @@ export class FlightResultModifierService {
     return journeysData;
   }
 
-  private setAirportDetails(segmentType: RequestAirportInfo): any {
+  private setAirportDetails(segmentType: RequestAirportInfo): AirportInfo {
     const options = { AirportName: 'true', City: 'true', Country: 'true' };
-    return {
-      ...segmentType,
-      ...this.airlinesService.getAirportByIATA(
+    const getDetails = this.airlinesService.getAirportByIATA(
         segmentType.IATALocationCode,
         options
-      ),
+      )
+    return {
+      scheduledDateTime: segmentType.AircraftScheduledDateTime,
+      iataCode: segmentType.IATALocationCode,
+      terminal: segmentType.TerminalName,
+      airportName: getDetails?.AirportName || '',
+      city: getDetails?.City || '',
+      country: getDetails?.Country || '',
     };
   }
 

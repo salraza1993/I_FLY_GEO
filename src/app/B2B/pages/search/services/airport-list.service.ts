@@ -35,7 +35,7 @@ export class AirportListService {
     this.http
       .get<AirportDataType[]>(this.AIRPORT_LIST_JSON_URL).subscribe({
         next: (data) => {
-          this.allAirport.set(data);
+          this.allAirport.set(JSON.parse(JSON.stringify(data)));
           this.isLoaded.set(true);
         },
         error: (error) => {

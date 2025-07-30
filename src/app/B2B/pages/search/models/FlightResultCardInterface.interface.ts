@@ -91,7 +91,7 @@ export interface FlightSegment {
   readonly carrier: CarrierInfo;
   readonly operatingCarrier?: CarrierInfo; // If different from marketing carrier
   readonly aircraft?: AircraftInfo;
-  readonly layover?: LayoverInfo;
+  readonly layovers?: LayoverInfo[];
   readonly secureFlightIndicator?: boolean;
   readonly segmentType?: any;
 }
@@ -114,12 +114,12 @@ export interface LayoverInfo {
 export interface AirportInfo {
   readonly scheduledDateTime: string; // ISO 8601 format
   readonly iataCode: string; // 3-letter IATA code
-  readonly icaoCode?: string; // 4-letter ICAO code
   readonly airportName: string;
+  readonly terminal: string;
   readonly city: string;
   readonly country: string;
+  readonly icaoCode?: string; // 4-letter ICAO code
   readonly countryCode?: string; // ISO 2-letter country code
-  readonly terminal?: string;
   readonly gate?: string;
   readonly timezone?: string; // IANA timezone
 }
@@ -132,6 +132,7 @@ export interface CarrierInfo {
   readonly code: string; // 2-letter IATA code
   readonly flightNumber: string; // Full flight number (e.g., "AA1234")
   readonly logo?: string; // URL to carrier logo
+  readonly aircraft?: AircraftInfo; // Optional aircraft details
 }
 
 /**
