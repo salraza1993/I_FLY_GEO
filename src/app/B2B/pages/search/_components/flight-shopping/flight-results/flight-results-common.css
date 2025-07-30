@@ -1,3 +1,10 @@
+:host {
+  position: relative;
+  display: block;
+
+}
+
+
 .result-card {
   --card-padding: 0.85rem;
   --card-bg: light-dark(var(--primary-100_light), var(--primary-85_dark));

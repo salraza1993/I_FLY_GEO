@@ -28,7 +28,19 @@
   <div class="m-0 total-duration">
     <span [tooltip]="'Total Duration'" [tooltipDirection]="'top'">{{ journeyTime() }}</span>
   </div>
-  @if(layoverSegments().length > 0) {
+
+  @if(layovers().length > 0) {
+    <div class="layover-strip">
+      <small>{{ layovers().length }} Stop{{ layovers().length > 1 ? "s" : ""}} at</small>
+      @for(layover of layovers(); track layover; let i = $index) {
+        <span class="pill" [tooltip]="getLayoverTooltip(i)" [tooltipDirection]="'top'" [tooltipMaxWidth]="tooltipWidth">
+          {{ layover.arrival.iataCode }}
+        </span>
+      }
+    </div>
+  }
+
+  <!-- @if(layoverSegments().length > 0) {
   <div class="layover-strip">
     <small>{{ layoverSegments().length }} Stop{{ layoverSegments().length > 1 ? "s" : ""}} at</small>
 
@@ -38,7 +50,7 @@
     </span>
     }
   </div>
-  }
+  } -->
 </div>
 <div class="airport-time destination">
   @if (destination(); as destinationData) {
@@ -64,7 +76,5 @@
   @else {
     <div class="placeholder">Loading...</div>
   }
-  <!-- @if(destination(); as destinationSegment) {
-  } -->
 
 </div>

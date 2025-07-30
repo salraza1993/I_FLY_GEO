@@ -1,0 +1,26 @@
+
+<div class="journey-type in-bound" [tooltip]="inBoundTooltip" [tooltipMaxWidth]="250" [tooltipDirection]="'bottom-left'">
+  <h6 class="m-0">{{origin?.IATA}}</h6>
+  <span class="spacer"></span>
+  <h6 class="m-0">{{destination?.IATA}}</h6>
+  <ng-template #inBoundTooltip>
+    <small class="tooltip-text">{{originTooltip}}</small>
+    <hr />
+    <small class="tooltip-text">{{destinationTooltip}}</small>
+  </ng-template>
+</div>
+
+<div class="icon">
+  <i class="fa-solid fa-arrow-right-arrow-left"></i>
+</div>
+
+<div class="journey-type out-bound" [tooltip]="outBoundTooltip" [tooltipMaxWidth]="250" [tooltipDirection]="'bottom-left'">
+  <h6 class="m-0">{{destination?.IATA}}</h6>
+  <span class="spacer"></span>
+  <h6 class="m-0">{{origin?.IATA}}</h6>
+  <ng-template #outBoundTooltip>
+    <small class="tooltip-text">{{destinationTooltip}}</small>
+    <hr />
+    <small class="tooltip-text">{{originTooltip}}</small>
+  </ng-template>
+</div>

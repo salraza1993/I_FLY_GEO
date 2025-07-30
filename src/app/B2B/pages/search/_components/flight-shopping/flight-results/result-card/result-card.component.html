@@ -4,7 +4,9 @@
       @if(index > 0) {
         <div class="line-breaker"></div>
       }
-      <segment [segmentData]="journey.segments" [journeyTime]="journey.duration" />
+      <segment
+        [segmentData]="journey.segments"
+        [journeyTime]="journey.duration" />
     }
   </div>
   <div class="line-breaker vertical"></div>
@@ -29,8 +31,8 @@
     </div>
   </div>
 </div>
-<card-footer />
+<card-footer [cardData]="modifiedResult()" />
 
-<!--
-<br />
+
+<!-- <br />
 <pre>{{ modifiedResult() | json }}</pre> -->

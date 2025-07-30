@@ -1,11 +1,8 @@
 :host {
   --content-wrapper-max-width: calc(1100px + 5vw);
-  display: block;
+  display: flex;
   position: relative;
   z-index: 2;
-
-  /* &:has(*:hover) {
-  } */
 
   .separator-line, .line-breaker {
     position: relative;
@@ -24,6 +21,25 @@
     flex-direction: column;
     gap: 1rem;
     padding-block-end: calc(1rem + 1vw);
+  }
+
+  .cards-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    isolation: isolate;
+
+    &:is(.active)::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: calc(var(--border-radius) * 1.25);
+      box-shadow: 0 0 0 0.90rem var(--secondary-10_light), 0 0 0 0.98rem var(--secondary);
+      background-color: light-dark(var(--secondary-10_light), var(--primary-100_dark));
+    }
   }
 }
 

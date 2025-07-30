@@ -8,7 +8,7 @@ import { FlightSegment } from '@/B2B/pages/search/models/FlightResultCardInterfa
   selector: 'app-segment, segment',
   imports: [CommonModule, AirlineLogoComponent, TimelineComponent],
   templateUrl: './segment.component.html',
-  styleUrls: ['./segment.component.css', '../flight-results-common.css'],
+  styleUrl: './segment.component.css',
   host: {
     class: 'segment-wrapper journey',
   },

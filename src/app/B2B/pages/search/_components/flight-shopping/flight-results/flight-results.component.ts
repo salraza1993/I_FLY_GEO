@@ -6,13 +6,14 @@ import { SearchCriteriaDataType } from '@/shared/models/SearchCriteria.interface
 import { SearchCriteriaService } from '@/shared/services/search-criteria.service';
 import { ResultCardComponent } from "./result-card/result-card.component";
 import { ResultCardSkeletonComponent } from "./result-card-skeleton/result-card-skeleton.component";
-import { AirportListService } from '../../../services/airport-list.service';
+import { AirportDataType, AirportListService } from '../../../services/airport-list.service';
+import { JourneyTypesComponent } from "./journey-types/journey-types.component";
 
 @Component({
   selector: 'app-flight-results, flight-results',
-  imports: [CommonModule, ResultCardComponent, ResultCardSkeletonComponent],
+  imports: [CommonModule, ResultCardComponent, ResultCardSkeletonComponent, JourneyTypesComponent],
   templateUrl: './flight-results.component.html',
-  styleUrls: ['./flight-results.component.css', './flight-results-common.css'],
+  styleUrl: './flight-results.component.css',
   host: {
     'class': 'flight-search-results'
   }
@@ -24,7 +25,6 @@ export class FlightResultsComponent {
   protected searchCriteria = signal<SearchCriteriaDataType | null>(null);
 
   flightsData = computed<any>(() => this.flightSearchService.getFlights());
-  getOffers = computed<string>(() => this.flightSearchService.getOffers());
 
   constructor() {
     const sessionId = this.route.snapshot.queryParamMap.get('session');
@@ -34,6 +34,12 @@ export class FlightResultsComponent {
   get tripType(): string {
     const data = this.searchCriteria();
     return data?.tripType?.toLocaleLowerCase() || '';
+  }
+
+  get tripDetails(): Partial<SearchCriteriaDataType> {
+    const destination = this.searchCriteria()?.destination;
+    const origin = this.searchCriteria()?.origin;
+    return { destination, origin };
   }
 
 }

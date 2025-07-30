@@ -2,7 +2,6 @@ import { FlightSegment } from '@/B2B/pages/search/models/FlightResultCardInterfa
 import { AirportListService } from '@/B2B/pages/search/services/airport-list.service';
 import { TooltipDirective } from '@/core/directives/tooltip.directive';
 import { DateFormatPipe } from '@/core/pipes/date-format.pipe';
-import { DateUtils } from '@/core/utilities/date-utils';
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, inject, input, signal } from '@angular/core';
 import { DateTime } from 'luxon';
@@ -30,6 +29,7 @@ export class TimelineComponent {
 
   protected origin = computed(() => this.segment()?.[0].departure);
   protected destination = computed(() => this.segment()?.slice(-1)?.[0].arrival);
+  protected layovers = computed(() => this.segment()?.slice(0, -1));
 
   protected layoverSegments = computed(() => {
     const data = this.segment();
@@ -44,14 +44,14 @@ export class TimelineComponent {
     }
 
     const segment = segments[layoverIndex];
-    const airport = this.airportList.getAirport(segment.arrival.iataCode);
+    // const airport = this.airportList.getAirport(segment.arrival.iataCode);
     const layoverTime = this.getLayoverTime(layoverIndex);
 
-    if (!airport) {
-      return `${segment.arrival.iataCode}\nLayover Time: ${layoverTime}`;
-    }
+    // if (!airport) {
+    //   return `${segment.arrival.iataCode}\n\nLayover Time: ${layoverTime}`;
+    // }
 
-    return `${airport.City}, (${airport.IATA}) ${airport.AirportName}\nLayover Time: ${layoverTime}`;
+    return `${segment.arrival.city}, (${segment.arrival.iataCode}) ${segment.arrival.airportName}\n\nLayover Time: ${layoverTime}`;
   }
 
   // Calculating layover time for each layover airport

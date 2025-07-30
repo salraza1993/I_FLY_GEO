@@ -1,11 +1,10 @@
-import { Component, computed, input, inject, model, effect, signal } from '@angular/core';
+import { Component, computed, input, inject, effect } from '@angular/core';
 import { SegmentComponent } from "../segment/segment.component";
 import { CardFooterComponent } from "../card-footer/card-footer.component";
 import { CommonModule } from '@angular/common';
-import { NgModalService } from '@/shared/services/ng-modal.service';
-import { FlightDetailsComponent } from '../flight-details/flight-details.component';
 import { FlightResultModifierService } from '@/B2B/pages/search/services/flight-result-modifier.service';
-import { FlightJourney, FlightResultCard, PricingDetails } from '@/B2B/pages/search/models/FlightResultCardInterface.interface';
+import { FlightJourney, FlightResultCard, FlightServices, PricingDetails } from '@/B2B/pages/search/models/FlightResultCardInterface.interface';
+import { FlightResultRequestData } from '@/B2B/pages/search/models/FlightResultRequestData.interface';
 
 @Component({
   selector: 'app-result-card, result-card',
@@ -21,8 +20,8 @@ import { FlightJourney, FlightResultCard, PricingDetails } from '@/B2B/pages/sea
 export class ResultCardComponent {
   private readonly resultModifierService = inject(FlightResultModifierService);
 
-  cardData = input<any>();
-  offers = input<any>();
+  cardData = input<FlightResultRequestData>();
+  offers = input<PricingDetails | undefined>();
   tripType = input<string>();
 
   protected modifiedResult = computed<FlightResultCard | null>(() => this.resultModifierService.modifiedResultComputed()!);
@@ -30,12 +29,12 @@ export class ResultCardComponent {
   protected readonly journeys = computed<FlightJourney[]>(() =>
     this.modifiedResult() ? this.modifiedResult()!.journeys : []);
 
-  protected readonly pricing = computed<PricingDetails>(() => this.modifiedResult()?.pricing ?? {} as PricingDetails);
+  protected readonly pricing = computed<PricingDetails>(() => this.modifiedResult()?.pricing!);
+  protected readonly services = computed<FlightServices>(() => this.modifiedResult()?.services!);
 
   private resultCardEffect = effect(() => {
     const data = this.cardData();
-    this.resultModifierService.resultModifyHanlder(data);
-    // console.log(this.modifiedResult());
+    this.resultModifierService.resultModifyHanlder(data as FlightResultRequestData);
   });
 
 }

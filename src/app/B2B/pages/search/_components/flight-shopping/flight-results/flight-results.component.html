@@ -1,16 +1,22 @@
 <div class="content-wrapper">
-  <hr class="separator-line" />
-  @for (flight of flightsData(); track flight; let i = $index) {
-    @defer (on viewport){
-      <result-card [cardData]="flight" [offers]="getOffers()" [tripType]="tripType" />
-    } @placeholder (minimum 500ms) {
-      <div>
-        @if(i < 5) {
-          <result-card-skeleton [tripType]="tripType" />
-        }
-      </div>
-    } @error {
-      <p>Failed to load flight data.</p>
-    }
+  @if(tripType === 'roundtrip') {
+    <journey-types [tripDetails]="tripDetails" />
+  } @else {
+    <hr class="separator-line" />
   }
+  <div class="cards-wrapper">
+    @for (flight of flightsData(); track flight; let i = $index) {
+      @defer (on viewport){
+        <result-card [cardData]="flight" [tripType]="tripType" />
+      } @placeholder (minimum 500ms) {
+        <div>
+          @if(i < 5) {
+            <result-card-skeleton [tripType]="tripType" />
+          }
+        </div>
+      } @error {
+        <p>Failed to load flight data.</p>
+      }
+    }
+  </div>
 </div>
