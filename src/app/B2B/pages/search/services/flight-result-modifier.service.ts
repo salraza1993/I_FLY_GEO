@@ -17,6 +17,7 @@ import {
   PricingDetails,
 } from '../models/FlightResultCardInterface.interface';
 import { FlightSearchService } from './flight-search.service';
+import { from } from 'rxjs';
 
 // @Injectable({
 //   providedIn: 'root'
@@ -101,15 +102,16 @@ export class FlightResultModifierService {
       const segments: RequestJourneySegmentData[] = journey.segments;
       segments.forEach((segment: RequestJourneySegmentData, index: number) => {
         const hasNext = segments.length > index + 1;
-        let layovers: LayoverInfo[] = [];
+        let layoverInfo: LayoverInfo | undefined = undefined;
+        let layoverDuration : string | undefined = undefined;
 
         if (hasNext) {
           const nextSegment = segments[index + 1];
-          layovers.push({
+          layoverInfo = {
             arrival: this.setAirportDetails(segment.arrival),
-            departure: this.setAirportDetails(nextSegment.dep),
             duration: this.getLayoverTime(index, segments),
-          });
+          };
+          layoverDuration = layoverInfo.duration;
         }
 
         const opCarrier = segment.operatingCarrierInfo || {};
@@ -118,8 +120,8 @@ export class FlightResultModifierService {
           segmentId: segment.segmentId,
           arrival: this.setAirportDetails(segment.arrival),
           departure: this.setAirportDetails(segment.dep),
-          duration: DateUtils.formatDuration(segment.duration),
-          layovers,
+          duration: this.segmentDurationCalculator(segment),
+          layovers: layoverInfo,
           carrier: {
             name: opCarrier.CarrierName,
             code: opCarrier.CarrierCode,
@@ -160,7 +162,7 @@ export class FlightResultModifierService {
       segments.length < 2 ||
       layoverIndex >= segments.length - 1
     ) {
-      return '0h 00m';
+      return '';
     }
 
     try {
@@ -172,7 +174,7 @@ export class FlightResultModifierService {
       );
 
       if (!arrivalAtLayover.isValid || !departureFromLayover.isValid) {
-        return '0h 00m';
+        return '';
       }
 
       const layoverDuration = departureFromLayover.diff(arrivalAtLayover);
@@ -186,7 +188,43 @@ export class FlightResultModifierService {
         .padStart(2, '0')}m`;
     } catch (error) {
       console.warn('Error calculating layover time:', error);
-      return '0h 00m';
+      return '';
     }
   }
+
+  private segmentDurationCalculator(segment: RequestJourneySegmentData): string {
+    if (segment.duration && segment.duration !== '') {
+      return String(DateUtils.durationInMinutes(segment.duration));
+    }
+    const departureTime = segment.dep.AircraftScheduledDateTime;
+    const arrivalTime = segment.arrival.AircraftScheduledDateTime;
+    return this.getDifferenceInTime(departureTime, arrivalTime);
+  }
+
+  private getDifferenceInTime(fromTime: string, toTime: string): string {
+    // need to discuss timeZone with Saud
+    const depTime = DateTime.fromISO(fromTime, { zone: 'utc' });
+    const arrTime = DateTime.fromISO(toTime, { zone: 'utc' });
+    if (!depTime.isValid || !arrTime.isValid) {
+      return 'Invalid DateTime format';
+    }
+
+    // Get the duration
+    const diff = arrTime.diff(depTime, ["hours", "minutes"]).toObject();
+    const durationHours = Math.floor(diff.hours ?? 0);
+    const durationMinutes = Math.floor(diff.minutes ?? 0);
+
+    const dayDifference = arrTime.startOf('day').diff(depTime.startOf('day'), 'days').days;
+
+    // Format duration (e.g., "02h 00m")
+    const durationFormat = `${String(diff.hours).padStart(2, "0")}h ${String(diff.minutes).padStart(2, "0")}m`;
+
+    // Format like "04h 30m" or "23h 45m +1"
+    let durationString = `${String(durationHours).padStart(2, '0')}h ${String(durationMinutes).padStart(2, '0')}m`;
+    if (dayDifference >= 1) {
+      durationString += ` +${dayDifference}`;
+    }
+    return durationString;
+  }
+
 }

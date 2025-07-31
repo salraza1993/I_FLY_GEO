@@ -1,22 +1,22 @@
-<div class="segment segment-1">
+<div class="segment segment-{{segmentIndex()}}">
   <div class="detail-segment-row origin">
     <div class="block-start">
       <div class="content">
-        <h5 class="m-0 text--end">11:00</h5>
+        <h5 class="m-0 text--end">{{ origin()?.scheduledDateTime | dateFormat:'time'}}</h5>
       </div>
     </div>
     <div class="border-line circle"></div>
     <div class="end-block">
       <div class="content">
-        <h5 class="m-0 ">Dubai (DXB), Terminal 1</h5>
-        <small>Dubai International Airport</small>
+        <h5 class="m-0 ">{{origin()?.city}} ({{origin()?.iataCode}}), Terminal {{origin()?.terminal}}</h5>
+        <small>{{ origin()?.airportName }}, {{ origin()?.country }}</small>
       </div>
     </div>
   </div>
   <div class="detail-segment-row airline">
     <div class="block-start">
       <div class="content">
-        <small class="m-0 d-block text--end">3h 45m</small>
+        <small class="m-0 d-block text--end">{{ layoverDuration() }}</small>
       </div>
     </div>
     <div class="border-line airplane"><i class="fa-solid fa-plane-up fa-rotate-180"></i></div>
@@ -24,79 +24,11 @@
       <div class="content">
         <div class="airline-info">
           <div class="airline-logo">
-            <img src="assets/images/airlines/ai.svg" alt="">
+            <img [src]="carrier()?.code | airlineLogo" alt="">
           </div>
           <div class="airline-name">
-            <small class="m-0 font-weight--bold">Air India Express</small>
-            <small class="font-weight--bold">IX - 20</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="detail-segment-row segment-1 destination">
-    <div class="block-start">
-      <div class="content">
-        <h5 class="m-0 text--end">11:00</h5>
-      </div>
-    </div>
-    <div class="border-line segment-1 square"></div>
-    <div class="end-block">
-      <div class="content">
-        <h5 class="m-0">Mumbai (BOM), Terminal 3</h5>
-        <small>Mumbai Chhatrapati Shivaji Maharaj International Airport</small>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="detail-segment-row layover">
-  <div class="block-start">
-    <div class="content">
-      <small class="m-0 d-block text--end text--uppercase">Layover</small>
-    </div>
-  </div>
-  <div class="border-line layover"></div>
-  <div class="end-block">
-    <div class="content">
-      <p class="m-0">
-        <strong>5h 40m</strong> at
-        <strong>Mumbai (BOM), Mumbai Airport</strong>
-      </p>
-    </div>
-  </div>
-</div>
-<div class="segment segment-2">
-  <div class="detail-segment-row segment-2 origin">
-    <div class="block-start">
-      <div class="content">
-        <h5 class="m-0 text--end">11:00</h5>
-      </div>
-    </div>
-    <div class="border-line segment-2 circle"></div>
-    <div class="end-block">
-      <div class="content">
-        <h5 class="m-0 ">Dubai (DXB), Terminal 1</h5>
-        <small>Dubai International Airport</small>
-      </div>
-    </div>
-  </div>
-  <div class="detail-segment-row airline">
-    <div class="block-start">
-      <div class="content">
-        <small class="m-0 d-block text--end">3h 45m</small>
-      </div>
-    </div>
-    <div class="border-line airplane"><i class="fa-solid fa-plane-up fa-rotate-180"></i></div>
-    <div class="end-block">
-      <div class="content">
-        <div class="airline-info">
-          <div class="airline-logo">
-            <img src="assets/images/airlines/ai.svg" alt="">
-          </div>
-          <div class="airline-name">
-            <small class="m-0 font-weight--bold">Air India Express</small>
-            <small class="font-weight--bold">IX - 20</small>
+            <small class="m-0 font-weight--bold">{{ carrier()?.name | textTransform: 'capitalize'}}</small>
+            <small class="font-weight--bold">{{carrier()?.flightNumber}}</small>
           </div>
         </div>
       </div>
@@ -105,15 +37,18 @@
   <div class="detail-segment-row destination">
     <div class="block-start">
       <div class="content">
-        <h5 class="m-0 text--end">11:00</h5>
+        <h5 class="m-0 text--end">{{ destination()?.scheduledDateTime | dateFormat:'time'}}</h5>
       </div>
     </div>
     <div class="border-line square"></div>
     <div class="end-block">
       <div class="content">
-        <h5 class="m-0">Mumbai (BOM), Terminal 3</h5>
-        <small>Mumbai Chhatrapati Shivaji Maharaj International Airport</small>
+        <h5 class="m-0">{{destination()?.city}} ({{destination()?.iataCode}}), Terminal {{destination()?.terminal}}</h5>
+        <small>{{ destination()?.airportName }}, {{ destination()?.country }}</small>
       </div>
     </div>
   </div>
 </div>
+
+<!-- <br />
+<pre>{{ segment() | json }}</pre> -->

@@ -2,13 +2,15 @@
   --item-height: 35px;
   --journey-type-bg: light-dark(var(--primary-100_light), var(--primary-85_dark));
 
-  position: sticky;
+  position: relative;
   display: block;
   display: flex;
   align-items: center;
   z-index: 2;
-  inset-block-start: calc(var(--header-height) * 2.40);
+  /* position: sticky;
+  inset-block-start: calc(var(--header-height) * 2.40); */
   gap: calc(1rem + 0vw);
+  background-color: var(--body-bg);
 
   &:is(.selected) {
     padding-inline-start: 1rem;

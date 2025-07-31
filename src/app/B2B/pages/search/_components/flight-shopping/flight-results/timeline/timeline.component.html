@@ -39,18 +39,6 @@
       }
     </div>
   }
-
-  <!-- @if(layoverSegments().length > 0) {
-  <div class="layover-strip">
-    <small>{{ layoverSegments().length }} Stop{{ layoverSegments().length > 1 ? "s" : ""}} at</small>
-
-    @for(segment of layoverSegments(); track segment; let i = $index) {
-    <span class="pill" [tooltip]="getLayoverTooltip(i)" [tooltipDirection]="'top'" [tooltipMaxWidth]="tooltipWidth">
-      {{ segment.arrival.iataCode }}
-    </span>
-    }
-  </div>
-  } -->
 </div>
 <div class="airport-time destination">
   @if (destination(); as destinationData) {

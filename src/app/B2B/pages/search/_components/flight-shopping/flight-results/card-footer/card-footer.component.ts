@@ -16,12 +16,10 @@ import { FlightJourney, FlightResultCard, FlightServices, PricingDetails } from 
 })
 export class CardFooterComponent {
   protected isDialogActive = model<boolean>(false);
-
   cardData = input<FlightResultCard | null>();
 
-  protected readonly pricing = computed<PricingDetails>(() => this.cardData()?.pricing!);
+  protected readonly detailsDataPrice = computed<PricingDetails>(() => this.cardData()?.pricing!);
   protected readonly services = computed<FlightServices>(() => this.cardData()?.services!);
-
 
   showFlightDetails() {
     this.isDialogActive.set(true);

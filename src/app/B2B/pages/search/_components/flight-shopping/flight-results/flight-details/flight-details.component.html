@@ -1,13 +1,22 @@
 <ul class="top-strips">
   <li class="top-strips-list">
-    <span class="icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></span>
-    <span>Roundtrip</span>
+    <span class="icon"><i class="fa-solid fa-arrow-{{tripType === 'roundtrip' ? 'right-arrow-left' : 'right'}}"></i></span>
+    <span>{{ tripType | textTransform:'capitalize' }}</span>
   </li>
   <li class="top-strips-list">
-    <span class="icon"><i class="fa-solid fa-family"></i></span>
-    <span>01 Adt</span>|
-    <span>0 Ch</span>|
-    <span>0 Inf</span>
+    <span class="icon">
+      <i class="fa-solid fa-{{ isFamily ? 'family' : 'user' }}"></i>
+    </span>
+    <span>
+      {{ searchCriteria()?.passengers?.adults }}
+      @if(isFamily) { Ad }
+      @else { Adult }
+    </span>
+    @if(searchCriteria()?.passengers?.children){
+      |<span>{{ searchCriteria()?.passengers?.children }} Ch</span>
+    } @if(searchCriteria()?.passengers?.infants){
+      | <span>{{ searchCriteria()?.passengers?.infants }} Inf</span>
+    }
   </li>
 </ul>
 
@@ -20,5 +29,5 @@
   }
 </ul>
 
-<flight-details-journeys />
-<details-price />
+<flight-details-journeys [getJourneys]="journeys()" />
+<details-price [getPricing]="pricing()" />

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { PricingDetails } from '@/B2B/pages/search/models/FlightResultCardInterface.interface';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-details-price, details-price',
@@ -10,5 +11,5 @@ import { Component } from '@angular/core';
   },
 })
 export class DetailsPriceComponent {
-
+  getPricing = input<PricingDetails | null>()
 }

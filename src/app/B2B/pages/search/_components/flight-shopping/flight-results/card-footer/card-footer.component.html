@@ -50,7 +50,7 @@
   [animationType]="'slide-in--down'"
   dialogId="flight-details"
   [(isDialogActive)]="isDialogActive">
-  <flight-details />
+  <flight-details [detailsData]="cardData()" />
 </ng-dialog>
-<br />
-<!-- <pre>{{ cardData() | json }}</pre> -->
+<!-- <br />
+<pre>{{ cardData() | json }}</pre> -->

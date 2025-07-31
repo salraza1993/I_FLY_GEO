@@ -78,6 +78,7 @@ export interface FlightJourney {
   readonly isDirect: boolean;
   readonly segments: FlightSegment[];
   readonly totalDistance?: number; // In kilometers
+  readonly isActive?: boolean; // For UI state management
 }
 
 /**
@@ -91,7 +92,8 @@ export interface FlightSegment {
   readonly carrier: CarrierInfo;
   readonly operatingCarrier?: CarrierInfo; // If different from marketing carrier
   readonly aircraft?: AircraftInfo;
-  readonly layovers?: LayoverInfo[];
+  readonly layovers?: LayoverInfo;
+  readonly layoverDuration?: string; // Format: "1h 45m"
   readonly secureFlightIndicator?: boolean;
   readonly segmentType?: any;
 }
@@ -100,9 +102,9 @@ export interface FlightSegment {
  * Layover information between segments
  */
 export interface LayoverInfo {
-  readonly departure: AirportInfo;
   readonly arrival: AirportInfo;
   readonly duration: string; // Format: "1h 45m"
+  readonly departure?: AirportInfo;
   readonly airport?: AirportInfo;
   readonly isOvernight?: boolean;
   readonly facilities?: string[]; // Available facilities during layover
