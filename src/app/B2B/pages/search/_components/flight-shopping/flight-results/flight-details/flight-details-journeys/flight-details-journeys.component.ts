@@ -1,15 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, input, signal } from '@angular/core';
 import { AirlineLogoComponent } from "../../airline-logo/airline-logo.component";
 import { TimelineComponent } from "../../timeline/timeline.component";
-import { AirportListService } from '@/B2B/pages/search/services/airport-list.service';
-import { DetailsSementComponent } from "../details-sement/details-sement.component";
 import { FlightJourney } from '@/B2B/pages/search/models/FlightResultCardInterface.interface';
-import { DetailsLayoverComponent } from "../details-sement/details-layover/details-layover.component";
+import { DetailsLayoverComponent } from "../details-segment/details-layover/details-layover.component";
+import { DetailsSegmentComponent } from '../details-segment/details-segment.component';
 
 @Component({
   selector: 'app-flight-details-journeys, flight-details-journeys',
-  imports: [CommonModule, AirlineLogoComponent, TimelineComponent, DetailsSementComponent, DetailsLayoverComponent],
+  imports: [CommonModule, AirlineLogoComponent, TimelineComponent, DetailsSegmentComponent, DetailsLayoverComponent],
   templateUrl: './flight-details-journeys.component.html',
   styleUrl: './flight-details-journeys.component.css',
   // providers: [AirportListService],

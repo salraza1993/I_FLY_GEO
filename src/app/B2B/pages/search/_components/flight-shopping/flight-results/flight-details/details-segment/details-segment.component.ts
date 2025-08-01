@@ -7,18 +7,18 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, effect, input, signal, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-details-sement, details-sement',
+  selector: 'app-details-segment, details-segment',
   imports: [CommonModule, DateFormatPipe, TextTransformPipe, AirlinesLogoPipe],
-  templateUrl: './details-sement.component.html',
-  styleUrl: './details-sement.component.css',
+  templateUrl: './details-segment.component.html',
+  styleUrl: './details-segment.component.css',
   host: {
-    'class': 'details-sement-wrapper',
+    'class': 'details-segment-wrapper',
   },
 })
-export class DetailsSementComponent {
+export class DetailsSegmentComponent {
   getSegmentDetails = input<FlightSegment | undefined>();
   segmentDuration = input<string | undefined>(undefined);
-  segmentIndex = input<number>(0);
+  segmentIndex = input<number | null>(0);
 
   protected segment = signal<FlightSegment | undefined>(undefined);
   private segmentEffect = effect(() => {

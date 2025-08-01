@@ -1,11 +1,11 @@
 :host {
   --separator-width: 1.5rem;
-  --start-block-width: 120px;
+  --start-block-width: 135px;
   --row-padding: 1rem;
   --row-bg: light-dark(var(--primary-100_light), var(--secondary-10_dark));
   --row-layover-bg: light-dark(var(--primary-90_light), var(--secondary-30_dark));
   --row-layover-line: light-dark(var(--primary-60_light), var(--secondary-70_dark));
-  --stroke-width: 2px;
+  --stroke-width: 1px;
   --stroke-position: calc(var(--start-block-width) + var(--separator-width) / 2 - calc(var(--stroke-width) / 2));
 
   display: flex;
@@ -159,8 +159,13 @@
         display: none;
       }
     }
-    /* &:is(.segment-2).detail-segment-row::after {
-      height: calc(var(--row-padding) * 1.25);
+  }
+
+  &:has(:not(.segment.segment-2)) {
+    /* .segment-1 {
+      .detail-segment-row:is(.destination)::after {
+        display: none;
+      }
     } */
   }
 

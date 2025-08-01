@@ -4,7 +4,9 @@
     "appearanceMode": "auto",
     "language": "en",
     "layoutDirection": "ltr",
-    "posCurrency": "AED"
+    "posCurrency": "AED",
+    "timeFormat": "12-hour",
+    "dateFormat": "dd-MM-yyyy"
   },
   "userInfo": {
     "firstName": "Salman",

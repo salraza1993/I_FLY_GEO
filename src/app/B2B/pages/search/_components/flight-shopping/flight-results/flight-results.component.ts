@@ -6,12 +6,10 @@ import { SearchCriteriaDataType } from '@/shared/models/SearchCriteria.interface
 import { SearchCriteriaService } from '@/shared/services/search-criteria.service';
 import { ResultCardComponent } from "./result-card/result-card.component";
 import { ResultCardSkeletonComponent } from "./result-card-skeleton/result-card-skeleton.component";
-import { AirportDataType, AirportListService } from '../../../services/airport-list.service';
-import { JourneyTypesComponent } from "./journey-types/journey-types.component";
 
 @Component({
   selector: 'app-flight-results, flight-results',
-  imports: [CommonModule, ResultCardComponent, ResultCardSkeletonComponent, JourneyTypesComponent],
+  imports: [CommonModule, ResultCardComponent, ResultCardSkeletonComponent],
   templateUrl: './flight-results.component.html',
   styleUrl: './flight-results.component.css',
   host: {

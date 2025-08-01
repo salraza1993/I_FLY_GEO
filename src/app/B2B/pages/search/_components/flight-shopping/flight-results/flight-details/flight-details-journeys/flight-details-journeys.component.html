@@ -17,8 +17,13 @@
   </div>
   <div class="accordion-block__body" [ngClass]="{ 'active': journey.isActive }">
     <div class="__inner">
-      @for (segment of journey.segments; track $index; let segmentIndex = $index) {
-        <details-sement [attr.data-segment-index]="segmentIndex + 1" [segmentIndex]="segmentIndex + 1" [getSegmentDetails]="segment" [segmentDuration]="getJourneyDuration(journey)" />
+      @for (segment of journey.segments; track $index; let index = $index) {
+        @let segmentIndex = !journey.isDirect ? index + 1 : null;
+        <details-segment
+          [attr.data-segment-index]="index + 1"
+          [segmentIndex]="segmentIndex"
+          [getSegmentDetails]="segment"
+          [segmentDuration]="getJourneyDuration(journey)" />
         @if(!journey.isDirect && segment.layovers) {
           <details-layover [setlayover]="segment.layovers" />
         }

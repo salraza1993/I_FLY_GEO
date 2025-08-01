@@ -1,11 +1,19 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { computed, inject, Pipe, PipeTransform } from '@angular/core';
 import { DateTime, Duration } from 'luxon';
+import { LocalStorageService } from '../../shared/services/localStorage.service';
 
 @Pipe({
   name: 'dateFormat',
-  standalone: true
 })
 export class DateFormatPipe implements PipeTransform {
+  private readonly LocalStorageService = inject(LocalStorageService);
+  private readonly userPreferences = this.LocalStorageService.getInnerItem('appSettings', 'preferences');
+  private readonly userDatePreference = computed(() => this.userPreferences?.dateFormat);
+  private readonly userTimePreference = computed(() => this.userPreferences?.timeFormat);
+
+  private checkTimeFormat(): string {
+    return this.userTimePreference() === '12-hour' ? 'hh:mm a' : 'HH:mm';
+  }
 
   transform(
     value: string | Date | null | undefined,
@@ -27,46 +35,24 @@ export class DateFormatPipe implements PipeTransform {
         luxonObj = DateTime.fromJSDate(value);
       }
 
+      if (luxonObj?.isValid) {
+        luxonObj = luxonObj.toLocal();
+      }
+
       // Predefined format shortcuts
       switch (type.toLowerCase()) {
-        case 'duration': {
-          if (typeof value === 'string' && value.startsWith('PT')) {
-            const duration = Duration.fromISO(value);
-            if (duration.isValid) {
-              switch (format?.toLowerCase()) {
-                case 'hours':
-                  return Math.floor(duration.as('hours')).toString();
-                case 'minutes':
-                  return Math.floor(duration.as('minutes')).toString();
-                case 'seconds':
-                  return Math.floor(duration.as('seconds')).toString();
-                case 'hm':
-                  return `${Math.floor(duration.as('hours'))}h ${duration.minutes}m`;
-                case 'hms':
-                  const totalHours = Math.floor(duration.as('hours'));
-                  return `${totalHours}h ${duration.minutes}m ${duration.seconds}s`;
-                default:
-                  // Default HH:mm format
-                  const hours = Math.floor(duration.as('hours'));
-                  const minutes = duration.minutes;
-                  return `${hours.toString().padStart(2, '0')} h : ${minutes.toString().padStart(2, '0')} m`;
-              }
-            }
-          }
-          return '';
-        }
         case 'date':
           if (!luxonObj || !luxonObj.isValid) return '';
-          return luxonObj.toFormat(format || 'dd-MM-yyyy');
+          return luxonObj.toFormat(format || this.userDatePreference() || 'dd-MM-yyyy');
         case 'time':
           if (!luxonObj || !luxonObj.isValid) return '';
-          return luxonObj.toFormat(format || 'HH:mm');
+          return luxonObj.toFormat(format || this.checkTimeFormat());
         case 'timeseconds':
           if (!luxonObj || !luxonObj.isValid) return '';
-          return luxonObj.toFormat(format || 'HH:mm:ss');
+          return luxonObj.toFormat(format || 'hh:mm:ss a');
         case 'datetime':
           if (!luxonObj || !luxonObj.isValid) return '';
-          return luxonObj.toFormat(format || 'dd-MM-yyyy, HH:mm');
+          return luxonObj.toFormat(format || 'dd-MM-yyyy, hh:mm a');
         case 'short':
           if (!luxonObj || !luxonObj.isValid) return '';
           return luxonObj.toFormat(format || 'dd MMM yyyy');

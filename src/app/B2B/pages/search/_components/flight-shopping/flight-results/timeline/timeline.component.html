@@ -9,7 +9,7 @@
     >
       <span class="airport-code">{{ originData.iataCode }}</span>
       <span>&nbsp;-&nbsp;</span>
-      <span class="time">{{
+      <span class="time text--lowercase">{{
         originData.scheduledDateTime | dateFormat : "time"
       }}</span>
     </h6>
@@ -50,9 +50,7 @@
     >
       <span class="airport-code">{{ destination().iataCode }}</span>
       <span>&nbsp;-&nbsp;</span>
-      <span class="time">{{
-        destination().scheduledDateTime | dateFormat : "time"
-      }}</span>
+      <span class="time text--lowercase">{{ destination().scheduledDateTime | dateFormat : "time" }}</span>
     </h6>
     <small class="date">{{
       destination().scheduledDateTime | dateFormat : "preset" : "DATE_MED" }}
