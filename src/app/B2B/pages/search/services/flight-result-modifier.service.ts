@@ -51,7 +51,7 @@ export class FlightResultModifierService {
         onward: data.O_offers,
         return: data.R_offers,
       },
-      journeys: this.journeyModifier(data.journeys) || [],
+      journeys: this.journeyModifier(data.journeys),
       pricing: this.setPriceFromOffers(data.C_offers[0], currentOffers),
       availability: {
         availableSeats: this.setSeats(data.C_offers[0], currentOffers) || null,
@@ -61,6 +61,11 @@ export class FlightResultModifierService {
     };
 
     this.modifiedResult.set(transformedData);
+  }
+
+  getDeferencialDayCount(startSegment: any, endSegment: any):string {
+
+    return 'day'
   }
 
   private setPriceFromOffers(
@@ -142,10 +147,8 @@ export class FlightResultModifierService {
 
   private setAirportDetails(segmentType: RequestAirportInfo): AirportInfo {
     const options = { AirportName: 'true', City: 'true', Country: 'true' };
-    const getDetails = this.airlinesService.getAirportByIATA(
-        segmentType.IATALocationCode,
-        options
-      )
+    const getDetails = this.airlinesService.getAirportByIATA(segmentType.IATALocationCode, options);
+
     return {
       scheduledDateTime: segmentType.AircraftScheduledDateTime,
       iataCode: segmentType.IATALocationCode,

@@ -90,6 +90,7 @@ export interface FlightSegment {
   readonly arrival: AirportInfo;
   readonly duration: string;
   readonly carrier: CarrierInfo;
+  readonly marketing?: CarrierInfo;
   readonly operatingCarrier?: CarrierInfo; // If different from marketing carrier
   readonly aircraft?: AircraftInfo;
   readonly layovers?: LayoverInfo;
@@ -115,6 +116,7 @@ export interface LayoverInfo {
  */
 export interface AirportInfo {
   readonly scheduledDateTime: string; // ISO 8601 format
+  readonly timeDifference?: string; // e.g., "+1 day"
   readonly iataCode: string; // 3-letter IATA code
   readonly airportName: string;
   readonly terminal: string;

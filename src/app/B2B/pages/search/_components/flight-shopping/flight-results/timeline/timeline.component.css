@@ -20,6 +20,13 @@
     flex-shrink: 0;
     z-index: 1;
     min-width: var(--airport-time-min-width, 100px);
+    vertical-align: baseline;
+    font-size: 100%;
+    sup {
+      font-size: 0.7em;
+      vertical-align: super;
+      line-height: 0;
+    }
   }
 
   .duration {

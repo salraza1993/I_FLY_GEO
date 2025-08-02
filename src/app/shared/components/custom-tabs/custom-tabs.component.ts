@@ -91,7 +91,7 @@ export class CustomTabsComponent implements AfterViewInit {
         tab.style.setProperty('--tab-item-width', `${textWidth}px`);
         tab.style.setProperty('--tab-item-offset-x', `${offsetX}px`);
       });
-    }, 0);
+    }, 300);
   }
 
   ngAfterViewInit(): void {
